@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Monika — osobna web stranica." />
+    <title>Monika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="logo" href="#top" aria-label="Monika početna">Monika</a>
+      <nav class="nav" aria-label="Glavna navigacija">
+        <a href="#o-meni">O meni</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Uvod">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2400&q=80"
+            alt=""
+            width="2400"
+            height="1600"
+          />
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="brand">Monika</p>
+          <h1>Prostor za ideje koje rastu mirno.</h1>
+          <p class="lede">
+            Osobna stranica u nastajanju — jednostavna, topla i spremna za tvoj
+            sadržaj.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#kontakt">Javi se</a>
+            <a class="btn btn-ghost" href="#o-meni">Saznaj više</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="o-meni" class="section about">
+        <p class="eyebrow">O meni</p>
+        <h2>Priča koja tek počinje.</h2>
+        <p>
+          Ovdje možeš predstaviti tko si, čime se baviš i što te pokreće.
+          Tekst, fotografije i linkovi — sve je lako zamijeniti svojim
+          sadržajem.
+        </p>
+      </section>
+
+      <section id="kontakt" class="section contact">
+        <p class="eyebrow">Kontakt</p>
+        <h2>Reci bok.</h2>
+        <p>
+          Zamijeni ovaj mail svojim adresom kad budeš spremna.
+        </p>
+        <a class="contact-link" href="mailto:hello@example.com">hello@example.com</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Monika</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+:root {
+  --ink: #1c2430;
+  --ink-soft: #3d4a5c;
+  --paper: #f3efe8;
+  --mist: #d9e3ec;
+  --sea: #2f6f7e;
+  --sea-deep: #1f4f5a;
+  --foam: rgba(243, 239, 232, 0.92);
+  --line: rgba(28, 36, 48, 0.12);
+  --shadow: 0 18px 50px rgba(18, 28, 38, 0.22);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Figtree", "Segoe UI", sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #e7eef5 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #e4ddd2 0%, transparent 50%),
+    linear-gradient(180deg, #eef2f5 0%, var(--paper) 45%, #e8e2d8 100%);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.top {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+  background: linear-gradient(180deg, rgba(28, 36, 48, 0.35), transparent);
+  color: var(--paper);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.nav a {
+  opacity: 0.9;
+  transition: opacity 0.25s var(--ease);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  opacity: 1;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  color: var(--paper);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  animation: drift 18s var(--ease) infinite alternate;
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 28, 38, 0.25) 0%, rgba(18, 28, 38, 0.55) 55%, rgba(18, 28, 38, 0.78) 100%),
+    linear-gradient(90deg, rgba(18, 28, 38, 0.45), transparent 55%);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(5.5rem, 14vh, 8rem) clamp(1.25rem, 4vw, 3rem) clamp(2.5rem, 7vh, 4.5rem);
+  max-width: 42rem;
+}
+
+.brand {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 8vw, 5.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s var(--ease) 0.15s forwards;
+}
+
+.hero h1 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3.4vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 18ch;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s var(--ease) 0.35s forwards;
+}
+
+.lede {
+  margin: 0 0 1.6rem;
+  max-width: 34ch;
+  color: rgba(243, 239, 232, 0.88);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s var(--ease) 0.5s forwards;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s var(--ease) 0.65s forwards;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #fff;
+}
+
+.btn-ghost {
+  border: 1px solid rgba(243, 239, 232, 0.45);
+  color: var(--paper);
+  background: rgba(243, 239, 232, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background: rgba(243, 239, 232, 0.16);
+}
+
+.section {
+  padding: clamp(3.5rem, 9vh, 6rem) clamp(1.25rem, 4vw, 3rem);
+  max-width: 42rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.65rem;
+  color: var(--sea);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.section p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.about {
+  border-top: 1px solid var(--line);
+}
+
+.contact {
+  margin: 0 clamp(1.25rem, 4vw, 3rem) clamp(2rem, 5vh, 3.5rem);
+  padding: clamp(2rem, 5vw, 3rem);
+  max-width: none;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(145deg, rgba(47, 111, 126, 0.12), transparent 45%),
+    linear-gradient(180deg, #f7f3ed, #ebe4da);
+  box-shadow: var(--shadow);
+}
+
+.contact-link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  color: var(--sea-deep);
+  font-weight: 600;
+  font-size: 1.15rem;
+  border-bottom: 1px solid rgba(31, 79, 90, 0.35);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  color: var(--sea);
+  border-color: var(--sea);
+}
+
+.footer {
+  padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 2.5rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: scale(1.16) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    gap: 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .contact {
+    margin-inline: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .brand,
+  .hero h1,
+  .lede,
+  .cta-row,
+  .hero-media img,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
