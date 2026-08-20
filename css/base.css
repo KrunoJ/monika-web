@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap");
-
 *,
 *::before,
 *::after {
@@ -212,13 +210,14 @@ button {
   letter-spacing: 0;
 }
 
-.reveal {
+/* Only hide when JS is available — avoids blank page if script fails to load */
+.js .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(1.25rem);
   transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
