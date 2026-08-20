@@ -3,74 +3,309 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Monika — osobna web stranica." />
-    <title>Monika</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600&display=swap"
-      rel="stylesheet"
+    <title>Monika Jagić — Strategija i implementacija</title>
+    <meta
+      name="description"
+      content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, prodajni lijevak, sustavi i dizajn."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <meta property="og:title" content="Monika Jagić" />
+    <meta
+      property="og:description"
+      content="Povežimo što tvoje poslovanje već ima i izgradimo što mu nedostaje."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- [SOCIAL IMAGE] -->
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <header class="top">
-      <a class="logo" href="#top" aria-label="Monika početna">Monika</a>
-      <nav class="nav" aria-label="Glavna navigacija">
-        <a href="#o-meni">O meni</a>
-        <a href="#kontakt">Kontakt</a>
+    <a class="skip-link" href="#main">Preskoči na sadržaj</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="index.html">Monika <span>Jagić</span></a>
+        <nav class="nav-desktop" aria-label="Glavna navigacija">
+          <a href="index.html" aria-current="page">Početna</a>
+          <a href="biznis-okvir/">Biznis okvir</a>
+          <a href="prodajni-lijevak/">Prodajni lijevak</a>
+          <a href="o-meni/">O meni</a>
+          <a class="btn btn--primary" href="#upitnik">Krenimo od tvoje situacije</a>
+        </nav>
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Otvori izbornik"
+        >
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
+        <a href="index.html" aria-current="page">Početna</a>
+        <a href="biznis-okvir/">Biznis okvir</a>
+        <a href="prodajni-lijevak/">Prodajni lijevak</a>
+        <a href="o-meni/">O meni</a>
+        <a class="btn btn--primary" href="#upitnik">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero" aria-label="Uvod">
-        <div class="hero-media" aria-hidden="true">
-          <img
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2400&q=80"
-            alt=""
-            width="2400"
-            height="1600"
-          />
-        </div>
-        <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-copy">
-          <p class="brand">Monika</p>
-          <h1>Prostor za ideje koje rastu mirno.</h1>
-          <p class="lede">
-            Osobna stranica u nastajanju — jednostavna, topla i spremna za tvoj
-            sadržaj.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#kontakt">Javi se</a>
-            <a class="btn btn-ghost" href="#o-meni">Saznaj više</a>
+    <main id="main">
+      <!-- 01 HERO -->
+      <section class="hero hero--editorial" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div class="hero__copy reveal">
+            <span class="paper-label">Strategija + tehnikalije + dizajn</span>
+            <h1 id="hero-title" class="hero__title">
+              Povežimo što tvoje poslovanje već ima i izgradimo što mu nedostaje.
+            </h1>
+            <p class="hero__lede">
+              Strategija i implementacija za iskusne poduzetnice koje posao rasteže
+              na sto strana.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#upitnik">Krenimo od tvoje situacije</a>
+              <a class="btn btn--ghost" href="#gdje-zapinjes">Gdje zapinješ?</a>
+            </div>
+            <div class="stats" aria-label="Trust signali">
+              <div class="stats__item">
+                <strong>110+</strong>
+                <span>suradnji</span>
+              </div>
+              <div class="stats__item">
+                <strong>15+</strong>
+                <span>industrija</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__media reveal">
+            <div class="placeholder placeholder--photo" role="img" aria-label="Fotografija Monike">
+              [PHOTO]<br />Monika — editorial hero
+            </div>
+            <div class="sticky-note" style="top: 8%; left: -4%">
+              prvo dijagnoza,<br />onda rješenje
+            </div>
+            <div class="annotation" style="bottom: 6%; right: 4%">ovo je stvarno ti →</div>
           </div>
         </div>
       </section>
 
-      <section id="o-meni" class="section about">
-        <p class="eyebrow">O meni</p>
-        <h2>Priča koja tek počinje.</h2>
-        <p>
-          Ovdje možeš predstaviti tko si, čime se baviš i što te pokreće.
-          Tekst, fotografije i linkovi — sve je lako zamijeniti svojim
-          sadržajem.
-        </p>
+      <!-- 02 PROBLEM -->
+      <section class="section section--border" aria-labelledby="problem-title">
+        <div class="container">
+          <div class="reveal measure-wide">
+            <p class="eyebrow">Prepoznavanje</p>
+            <h2 id="problem-title">
+              Sjediš na puno znanja, a osjećaj rasterećenja nigdje na vidiku.
+            </h2>
+          </div>
+          <ul class="problem-list reveal" style="margin-top: var(--space-7)">
+            <li>imaš iskustvo, reputaciju i ponude, ali nešto više ne štima</li>
+            <li>vidiš puno mogućnosti i pokušavaš graditi više njih istovremeno</li>
+            <li>odluke donosiš usred overloada</li>
+            <li>svaka nova ideja postaje novi projekt</li>
+            <li>dosta ti je univerzalnih „provjerenih rješenja“</li>
+          </ul>
+          <p class="closing-note reveal">
+            Ovo nije trenutak za nastaviti gurati i nadati se boljim danima, nego
+            za dobru poslovnu dijagnozu.
+          </p>
+        </div>
       </section>
 
-      <section id="kontakt" class="section contact">
-        <p class="eyebrow">Kontakt</p>
-        <h2>Reci bok.</h2>
-        <p>
-          Zamijeni ovaj mail svojim adresom kad budeš spremna.
-        </p>
-        <a class="contact-link" href="mailto:hello@example.com">hello@example.com</a>
+      <!-- 03 GDJE ZAPINJEŠ -->
+      <section id="gdje-zapinjes" class="section section--tint" aria-labelledby="split-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="eyebrow">Dva smjera</p>
+            <h2 id="split-title">Gdje zapinješ?</h2>
+            <p class="muted measure" style="margin-top: var(--space-4)">
+              Nekad problem nije isti — pa nije ni rješenje. Odaberi što ti je bliže.
+            </p>
+          </div>
+
+          <div class="service-split reveal" style="margin-top: var(--space-7)">
+            <article class="service-panel">
+              <div>
+                <p class="service-panel__index">01</p>
+                <h3>Biznis okvir</h3>
+                <p class="service-panel__tag">/ šira slika poslovanja</p>
+              </div>
+              <p>
+                Kad postojeći model više nije održiv, sve prolazi kroz tebe i ne znaš
+                što je stvarni prioritet — krećemo od poslovne dijagnoze.
+              </p>
+              <p class="muted">
+                <span class="ph">[FINAL COPY]</span> — detaljnije objašnjenje problema i
+                pristupa.
+              </p>
+              <div class="service-panel__visual placeholder">[CUSTOM GRAPHIC]</div>
+              <a class="text-link text-link--arrow" href="biznis-okvir/">Pogledaj Biznis okvir</a>
+            </article>
+
+            <article class="service-panel service-panel--alt">
+              <div>
+                <p class="service-panel__index">02</p>
+                <h3>Prodajni lijevak</h3>
+                <p class="service-panel__tag">/ newsletter &amp; customer flow</p>
+              </div>
+              <p>
+                Kad model funkcionira, ali put od „pratim te“ do „radim s tobom“ nije
+                jasan — gradimo email, automatizacije, landing i onboarding.
+              </p>
+              <p class="muted">
+                <span class="ph">[FINAL COPY]</span> — detaljnije objašnjenje problema i
+                pristupa.
+              </p>
+              <div class="service-panel__visual placeholder">[CUSTOM GRAPHIC]</div>
+              <a class="text-link text-link--arrow" href="prodajni-lijevak/"
+                >Pogledaj Prodajni lijevak</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 MANIFESTO -->
+      <section class="section" aria-labelledby="manifesto-title">
+        <div class="container">
+          <div class="reveal measure-wide">
+            <p class="eyebrow">Kako razmišljam</p>
+            <h2 id="manifesto-title">
+              Poslovanje treba imati logiku, ne samo hrpu taskova.
+            </h2>
+          </div>
+          <div class="manifesto reveal" style="margin-top: var(--space-7)">
+            <article class="manifesto__item">
+              <h3>ne vjerujem u sve ili ništa</h3>
+              <p class="muted">
+                Postoji i: pauziraj, pojednostavi, prilagodi ili odgodi. Nije svaka
+                odluka „idem do kraja“ ili „odustajem od svega“.
+              </p>
+            </article>
+            <article class="manifesto__item">
+              <h3>smiren pristup ne znači manjak ambicije</h3>
+              <p class="muted">
+                Odluke se ne donose iz panike ni overloada. Prvo složimo logiku
+                poslovanja, tek onda akciju.
+              </p>
+            </article>
+            <article class="manifesto__item">
+              <h3>ne moraš monetizirati sve što znaš</h3>
+              <p class="muted">
+                Više ponuda ne znači nužno više prihoda — ponekad samo više
+                održavanja i raspršenosti.
+              </p>
+            </article>
+            <article class="manifesto__item">
+              <h3>kontekst je važniji od „provjerenih rješenja“</h3>
+              <p class="muted">
+                Ono što radi za tuđi biznis ne mora imati smisla za tvoj. Bez
+                copy-paste strategija.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 O MENI TEASER -->
+      <section class="section section--tint section--border" aria-labelledby="teaser-title">
+        <div class="container teaser">
+          <div class="reveal">
+            <div class="placeholder placeholder--photo">[PHOTO]<br />Monika — teaser</div>
+          </div>
+          <div class="reveal stack">
+            <p class="eyebrow">O meni</p>
+            <h2 id="teaser-title">Kratko, pa iskreno.</h2>
+            <p>
+              Ekonomistica, strateško-implementacijski partner, volonterka,
+              ljubiteljica društvenih igara, vlasnica mačke Ursule i osoba koja će
+              prije pronaći rješenje za tvoje poslovanje nego vlastite ključeve od
+              stana.
+            </p>
+            <p>
+              <a class="text-link text-link--arrow" href="o-meni/">Upoznaj me bolje</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 TESTIMONIAL -->
+      <section class="section" aria-labelledby="social-title">
+        <div class="container">
+          <p class="eyebrow reveal">Što kažu suradnice</p>
+          <h2 id="social-title" class="sr-only">Iskustva klijenata</h2>
+          <figure class="testimonial reveal">
+            <blockquote>
+              <span class="ph">[TESTIMONIAL]</span> — ovdje ide stvarna izjava. Dizajn
+              podržava dulji quote, ne samo jednu rečenicu.
+            </blockquote>
+            <p class="testimonial__pull">„<span class="ph">[izdvojeni dio]</span>“</p>
+            <div class="testimonial__meta">
+              <div class="testimonial__avatar">
+                <div class="placeholder">[PHOTO]</div>
+              </div>
+              <figcaption>
+                <strong><span class="ph">[Ime Prezime]</span></strong><br />
+                <span class="muted"><span class="ph">[uloga / biznis]</span></span>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 07 FINAL CTA -->
+      <section id="upitnik" class="final-cta" aria-labelledby="cta-title">
+        <div class="container reveal">
+          <p class="eyebrow">Sljedeći korak</p>
+          <h2 id="cta-title">Krenimo od tvoje situacije.</h2>
+          <p style="margin-top: var(--space-4)">
+            Ne moraš unaprijed znati trebaš li Biznis okvir, Prodajni lijevak ili
+            nešto treće. Krenut ćemo od razgovora i procijeniti što ima najviše
+            smisla.
+          </p>
+          <a
+            class="btn btn--on-dark"
+            href="https://forms.gle/PLACEHOLDER"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Ispuni početni upitnik
+          </a>
+          <p class="muted" style="margin-top: var(--space-4); font-size: var(--text-sm)">
+            <span class="ph">[Google Form URL]</span> — zamijeni placeholder link.
+          </p>
+        </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <p>© <span id="year"></span> Monika</p>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <p class="site-footer__brand">Monika Jagić</p>
+            <p class="muted" style="margin-top: var(--space-3); max-width: 22rem">
+              Strategija + tehnikalije + dizajn za iskusne poduzetnice.
+            </p>
+          </div>
+          <nav aria-label="Podnožje">
+            <a href="index.html">Početna</a>
+            <a href="biznis-okvir/">Biznis okvir</a>
+            <a href="prodajni-lijevak/">Prodajni lijevak</a>
+            <a href="o-meni/">O meni</a>
+            <a href="#upitnik">Upitnik</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          © <span data-year></span> Monika Jagić ·
+          <span class="ph">[cookie consent]</span> ·
+          <span class="ph">[analytics]</span>
+        </p>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>
