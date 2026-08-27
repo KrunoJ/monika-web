@@ -62,16 +62,38 @@
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero hero--editorial" aria-labelledby="hero-title">
-        <div class="container hero__grid">
-          <div class="hero__copy reveal">
+      <section class="hero hero--composition" aria-labelledby="hero-title">
+        <div class="hero__stage">
+          <div class="hero__backdrop" aria-hidden="true">
+            <span class="hero__word hero__word--top">povežimo</span>
+            <span class="hero__word hero__word--bottom">izgradimo</span>
+          </div>
+
+          <div class="hero__figure">
+            <picture>
+              <source srcset="assets/images/monika-hero.webp" type="image/webp" />
+              <img
+                src="assets/images/monika-hero.png"
+                alt="Monika Jagić"
+                width="637"
+                height="2000"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+
+          <div class="hero__rail hero__rail--copy reveal">
             <h1 id="hero-title" class="hero__title">
               Povežimo što tvoje poslovanje već ima<br />
               i izgradimo što mu nedostaje.
             </h1>
+          </div>
+
+          <div class="hero__rail hero__rail--meta reveal">
             <p class="hero__lede">
-              Strategija i implementacija za iskusne poduzetnice koje posao rasteže
-              na sto strana.
+              Analiza, strategija i implementacija za iskusne poduzetnice koje posao
+              rasteže na sto strana.
             </p>
             <div class="hero__actions">
               <a class="btn btn--primary text-link--arrow" href="#upitnik"
@@ -84,16 +106,6 @@
                 <span>suradnji</span>
               </div>
             </div>
-          </div>
-
-          <div class="hero__media reveal">
-            <div class="placeholder placeholder--photo" role="img" aria-label="Fotografija Monike">
-              [PHOTO]<br />Monika — editorial hero
-            </div>
-            <div class="sticky-note" style="top: 8%; left: -4%">
-              prvo dijagnoza,<br />onda rješenje
-            </div>
-            <div class="annotation" style="bottom: 6%; right: 4%">ovo je stvarno ti →</div>
           </div>
         </div>
       </section>
