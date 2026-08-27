@@ -1,5 +1,13 @@
 /* Bundled main stylesheet — tokens + base + components (no @import chain). */
 
+@font-face {
+  font-family: "Tan Ashford";
+  src: url("../assets/fonts/TanAshford-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand colors */
   --color-primary: #a45f43;
@@ -13,10 +21,10 @@
   --color-muted: rgba(118, 51, 23, 0.72);
   --color-soft: rgba(127, 146, 166, 0.18);
 
-  /* Typography — swap --font-display when Tan Ashford is available */
-  --font-display: "Tan Ashford", "Fraunces", "Libre Baskerville", Georgia, serif;
+  /* Typography */
+  --font-display: "Tan Ashford", Georgia, "Times New Roman", serif;
   --font-body: Inter, "Segoe UI", system-ui, sans-serif;
-  --font-hand: "Caveat", "Segoe Print", cursive;
+  --font-hand: Inter, "Segoe UI", system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -122,7 +130,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--color-ink);
@@ -583,7 +591,7 @@ button {
 .hero__word {
   display: block;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 0.82;
   letter-spacing: var(--tracking-tight);
   color: rgba(118, 51, 23, 0.16);
@@ -626,17 +634,7 @@ button {
   left: 50%;
   bottom: -1.25rem;
   transform: translateX(-50%);
-  animation: seal-spin 18s linear infinite;
   pointer-events: none;
-}
-
-@keyframes seal-spin {
-  from {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  to {
-    transform: translateX(-50%) rotate(360deg);
-  }
 }
 
 .hero__rail {
@@ -647,7 +645,8 @@ button {
 .hero__title {
   margin: 0;
   font-size: clamp(1.85rem, 7vw, 2.6rem);
-  max-width: 18ch;
+  max-width: 14ch;
+  font-weight: 700;
 }
 
 .hero__lede {
@@ -780,9 +779,10 @@ button {
   }
 
   .hero__title {
-    font-size: clamp(2rem, 2.5vw, 2.75rem);
+    font-size: clamp(2.05rem, 2.6vw, 2.85rem);
     line-height: 1.12;
-    max-width: 13ch;
+    max-width: 12ch;
+    font-weight: 700;
   }
 
   .hero__lede {

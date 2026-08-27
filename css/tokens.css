@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Tan Ashford";
+  src: url("../assets/fonts/TanAshford-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand colors */
   --color-primary: #a45f43;
@@ -11,10 +19,10 @@
   --color-muted: rgba(118, 51, 23, 0.72);
   --color-soft: rgba(127, 146, 166, 0.18);
 
-  /* Typography — swap --font-display when Tan Ashford is available */
-  --font-display: "Tan Ashford", "Fraunces", "Libre Baskerville", Georgia, serif;
+  /* Typography */
+  --font-display: "Tan Ashford", Georgia, "Times New Roman", serif;
   --font-body: Inter, "Segoe UI", system-ui, sans-serif;
-  --font-hand: "Caveat", "Segoe Print", cursive;
+  --font-hand: Inter, "Segoe UI", system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
