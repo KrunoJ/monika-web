@@ -2388,10 +2388,27 @@ button {
 .about-photos--solo {
   max-width: 28rem;
   justify-self: end;
+  width: 100%;
 }
 
 .about-photos--solo .about-photos__item {
   aspect-ratio: 5 / 4;
+}
+
+.about-photos--stack {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+.about-photos--stack .about-photos__item:first-child {
+  aspect-ratio: 3 / 4;
+}
+
+.about-photos--stack .about-photos__item:last-child {
+  aspect-ratio: 4 / 5;
+  margin-bottom: 8%;
 }
 
 @media (min-width: 900px) {
@@ -2417,19 +2434,16 @@ button {
   }
 
   .about-photos--stack {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
     gap: var(--space-4);
     align-items: start;
   }
 
   .about-photos--stack .about-photos__item:first-child {
-    aspect-ratio: 3 / 4;
     margin-top: var(--space-8);
   }
 
   .about-photos--stack .about-photos__item:last-child {
-    aspect-ratio: 4 / 5;
+    margin-bottom: 0;
   }
 }
 
