@@ -70,18 +70,21 @@
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero hero--portrait" aria-labelledby="hero-title">
+      <section class="hero hero--composition" aria-labelledby="hero-title">
         <div class="hero__stage">
-          <p class="hero__brand">monika jagić</p>
+          <div class="hero__backdrop" aria-hidden="true">
+            <span class="hero__word hero__word--top">monika</span>
+            <span class="hero__word hero__word--bottom">jagić</span>
+          </div>
 
           <div class="hero__figure">
             <picture>
               <source srcset="assets/images/monika-hero.webp" type="image/webp" />
               <img
-                src="assets/images/monika-hero.jpg"
+                src="assets/images/monika-hero.png"
                 alt="Monika Jagić"
-                width="1400"
-                height="2100"
+                width="858"
+                height="1991"
                 decoding="async"
                 fetchpriority="high"
               />
