@@ -15,11 +15,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-body);
-  color: var(--color-ink);
-  background:
-    radial-gradient(1200px 500px at 100% -10%, rgba(127, 146, 166, 0.12), transparent 55%),
-    radial-gradient(900px 420px at -10% 20%, rgba(164, 95, 67, 0.06), transparent 50%),
-    var(--color-white);
+  color: var(--color-body);
+  background: var(--color-bg-1);
 }
 
 img,
@@ -36,7 +33,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 :focus-visible {
@@ -52,7 +49,7 @@ h4 {
   font-weight: 700;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
-  color: var(--color-ink);
+  color: var(--color-heading);
   margin: 0;
 }
 
@@ -153,7 +150,7 @@ button {
 }
 
 .section--tint {
-  background: var(--color-surface);
+  background: var(--color-bg-2);
 }
 
 .section--border {
@@ -230,15 +227,11 @@ button {
   .reveal,
   .sticky-note,
   .hero-media img,
-  .annotation,
-  .hero__seal {
+  .annotation {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
     transition: none !important;
   }
 
-  .hero__seal {
-    transform: translateX(-50%) !important;
-  }
 }

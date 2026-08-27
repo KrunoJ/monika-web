@@ -7,17 +7,23 @@
 }
 
 :root {
-  /* Brand colors */
-  --color-primary: #a45f43;
-  --color-ink: #763317;
-  --color-accent: #7f92a6;
+  /* Brand palette */
+  --color-bg-1: #f1ebe4;
+  --color-bg-2: #f2e6d5;
+  --color-heading: #a46043;
+  --color-body: #763316;
+  --color-accent: #8491a0;
+
+  /* Aliases used across components */
+  --color-primary: var(--color-heading);
+  --color-ink: var(--color-body);
   --color-white: #ffffff;
-  --color-surface: #f7f6f4;
-  --color-surface-2: #f0eeeb;
-  --color-border: rgba(118, 51, 23, 0.14);
-  --color-border-strong: rgba(118, 51, 23, 0.28);
-  --color-muted: rgba(118, 51, 23, 0.72);
-  --color-soft: rgba(127, 146, 166, 0.18);
+  --color-surface: var(--color-bg-1);
+  --color-surface-2: var(--color-bg-2);
+  --color-border: rgba(118, 51, 22, 0.14);
+  --color-border-strong: rgba(118, 51, 22, 0.28);
+  --color-muted: rgba(118, 51, 22, 0.72);
+  --color-soft: rgba(132, 145, 160, 0.18);
 
   /* Typography */
   --font-display: "Tan Ashford", Georgia, "Times New Roman", serif;
@@ -69,7 +75,7 @@
   --duration: 0.55s;
 
   /* Shadows — restrained */
-  --shadow-soft: 0 12px 40px rgba(118, 51, 23, 0.08);
+  --shadow-soft: 0 12px 40px rgba(118, 51, 22, 0.08);
   --shadow-polaroid: 0 8px 28px rgba(28, 24, 20, 0.12);
 
   /* Sticky / paper accents */
