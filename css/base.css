@@ -51,6 +51,7 @@ h4 {
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
   margin: 0;
+  text-transform: lowercase;
 }
 
 h1 {
