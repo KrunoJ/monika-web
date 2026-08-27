@@ -1055,7 +1055,8 @@ button {
 .service-panel__tag {
   font-size: var(--text-sm);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-accent);
 }
 
@@ -1106,7 +1107,8 @@ button {
   margin: 0;
   font-size: var(--text-sm);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-accent);
 }
 
