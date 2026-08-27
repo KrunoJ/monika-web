@@ -576,10 +576,10 @@ button {
   display: block;
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 0.85;
+  line-height: 0.82;
   letter-spacing: var(--tracking-tight);
   text-transform: lowercase;
-  color: rgba(118, 51, 23, 0.12);
+  color: rgba(118, 51, 23, 0.16);
   white-space: nowrap;
 }
 
@@ -587,16 +587,19 @@ button {
   position: relative;
   z-index: 2;
   justify-self: center;
-  width: min(72vw, 22rem);
+  width: min(78vw, 20rem);
+  max-height: 58vh;
   margin-top: var(--space-2);
+  overflow: hidden;
 }
 
 .hero__figure img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 58vh;
   display: block;
-  object-fit: contain;
-  object-position: bottom center;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .hero__rail {
@@ -642,7 +645,12 @@ button {
   }
 
   .hero__figure {
-    width: min(48vw, 26rem);
+    width: min(48vw, 24rem);
+    max-height: 62vh;
+  }
+
+  .hero__figure img {
+    max-height: 62vh;
   }
 
   .hero__title {
@@ -654,47 +662,50 @@ button {
 @media (min-width: 960px) {
   .hero__stage {
     display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(18rem, 0.95fr) minmax(16rem, 1fr);
-    grid-template-rows: 1fr auto;
+    grid-template-columns: minmax(15rem, 1fr) minmax(20rem, 1.05fr) minmax(15rem, 1fr);
+    grid-template-rows: 1fr;
     align-items: end;
     min-height: calc(100svh - 4.25rem);
-    padding: clamp(1.5rem, 3vh, 2.5rem) 0 0;
+    padding: 0;
     gap: 0;
   }
 
   .hero__backdrop {
     display: block;
     position: absolute;
-    inset: 8% 0 auto;
+    inset: 12% 0 auto;
     z-index: 1;
     text-align: center;
   }
 
   .hero__word--top {
-    font-size: clamp(4.5rem, 12vw, 9.5rem);
-    margin-left: -4%;
+    font-size: clamp(5rem, 13vw, 10.5rem);
+    margin-left: -2%;
   }
 
   .hero__word--bottom {
-    font-size: clamp(4.2rem, 11vw, 8.75rem);
-    margin-top: 0.05em;
-    margin-right: -6%;
+    font-size: clamp(4.5rem, 12vw, 9.5rem);
+    margin-top: -0.02em;
+    margin-right: -4%;
   }
 
   .hero__figure {
     grid-column: 2;
-    grid-row: 1 / -1;
+    grid-row: 1;
     justify-self: center;
     align-self: end;
-    width: min(100%, 28rem);
-    height: min(92%, calc(100svh - 5rem));
+    width: min(100%, 34rem);
+    max-height: none;
+    height: calc(100svh - 4.25rem);
     margin: 0;
+    overflow: visible;
   }
 
   .hero__figure picture,
   .hero__figure img {
     width: 100%;
     height: 100%;
+    max-height: none;
     object-fit: contain;
     object-position: bottom center;
   }
@@ -703,8 +714,8 @@ button {
     grid-column: 1;
     grid-row: 1;
     align-self: center;
-    padding-right: var(--space-4);
-    padding-bottom: 18%;
+    padding-right: var(--space-3);
+    padding-bottom: 12%;
     max-width: 22rem;
   }
 
@@ -713,35 +724,39 @@ button {
     grid-row: 1;
     align-self: end;
     justify-self: end;
-    padding-left: var(--space-4);
-    padding-bottom: clamp(3rem, 10vh, 6rem);
-    max-width: 18rem;
+    padding-left: var(--space-3);
+    padding-bottom: clamp(4rem, 12vh, 7rem);
+    max-width: 17rem;
     text-align: left;
   }
 
   .hero__title {
-    font-size: clamp(2rem, 2.6vw, 2.85rem);
+    font-size: clamp(2rem, 2.5vw, 2.75rem);
     line-height: 1.12;
-    max-width: 14ch;
+    max-width: 13ch;
   }
 
   .hero__lede {
     font-size: var(--text-sm);
-    max-width: 18rem;
+    max-width: 17rem;
   }
 }
 
 @media (min-width: 1200px) {
+  .hero__backdrop {
+    inset: 10% 0 auto;
+  }
+
   .hero__word--top {
-    font-size: clamp(6rem, 13vw, 11rem);
+    font-size: clamp(6.5rem, 14vw, 12rem);
   }
 
   .hero__word--bottom {
-    font-size: clamp(5.5rem, 12vw, 10rem);
+    font-size: clamp(6rem, 13vw, 11rem);
   }
 
   .hero__figure {
-    width: min(100%, 32rem);
+    width: min(100%, 38rem);
   }
 
   .hero__rail--copy {
