@@ -827,9 +827,71 @@
   max-width: 42rem;
 }
 
-.testimonial--editorial {
-  max-width: 46rem;
-  margin-top: var(--space-6);
+/* ========== Editorial quote split (Biznis okvir testimonial) ========== */
+.quote-section__head {
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-7);
+}
+
+.quote-section__head .section-label {
+  margin-bottom: 0;
+}
+
+.quote-split {
+  margin: 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.quote-split__pull {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+  max-width: 14ch;
+}
+
+.quote-split__body {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.quote-split__text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
+  line-height: 1.7;
+  color: var(--color-body);
+  max-width: 38rem;
+}
+
+.quote-split__text p + p {
+  margin-top: var(--space-4);
+}
+
+.quote-split__name {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 900px) {
+  .quote-split {
+    grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .quote-split__pull {
+    max-width: 11ch;
+    padding-right: var(--space-4);
+  }
 }
 
 .testimonial blockquote {
