@@ -2309,7 +2309,7 @@ button {
 
 @media (min-width: 900px) {
   .about-hero__stage {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
     min-height: min(78vh, 44rem);
     align-items: center;
     gap: 0;
@@ -2317,13 +2317,19 @@ button {
 
   .about-hero__title {
     max-width: 10ch;
-    margin-right: -12%;
+    margin-right: -18%;
+    font-size: clamp(2.8rem, 5.5vw, 4.85rem);
   }
 
   .about-hero__visual {
-    width: min(100%, 28rem);
-    aspect-ratio: 4 / 5;
-    margin-left: -8%;
+    width: min(100%, 30rem);
+    aspect-ratio: 3 / 4;
+    margin-left: -10%;
+    z-index: 1;
+  }
+
+  .about-hero__visual img {
+    object-position: 50% 15%;
   }
 }
 
@@ -2557,52 +2563,136 @@ button {
   }
 }
 
-.about-quote-andrea {
-  margin: 0;
+.about-voices__title {
+  margin: 0 0 var(--space-7);
+  max-width: 14ch;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
 }
 
-.about-quote-antonia {
-  margin: 0;
-  max-width: 42rem;
-  padding: var(--space-4) 0;
+.about-voices {
+  display: grid;
+  gap: var(--space-7);
 }
 
-.about-quote-antonia__pull {
+.about-voice {
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.about-voice__num {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+}
+
+.about-voice__pull {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
   font-weight: 700;
-  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
-  line-height: 1.2;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.22;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
   max-width: 18ch;
 }
 
-.about-quote-antonia__support {
-  margin: var(--space-5) 0 0;
-  max-width: 34rem;
-  color: var(--color-muted);
-  font-size: var(--text-base);
-  line-height: var(--leading-body);
+.about-voice--feature .about-voice__pull {
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  max-width: 16ch;
 }
 
-.about-quote-antonia__name {
-  margin-top: var(--space-4);
+.about-voice__body {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 36rem;
+}
+
+.about-voice__body p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.about-voice__name {
+  margin: 0;
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--color-muted);
 }
 
+.about-voice--compact .about-voice__pull {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  max-width: 20ch;
+}
+
+.about-voice--mid .about-voice__pull {
+  max-width: 20ch;
+}
+
 @media (min-width: 900px) {
-  .about-quote-antonia {
-    max-width: 48rem;
-    margin-left: auto;
-    padding-right: 8%;
+  .about-voices {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-7) var(--space-6);
+    align-items: start;
   }
 
-  .about-quote-antonia__pull {
-    max-width: 16ch;
+  .about-voice {
+    padding-top: var(--space-5);
+    border-top: 0;
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-voice--mateja {
+    grid-column: 1 / span 7;
+  }
+
+  .about-voice--jovana {
+    grid-column: 8 / span 5;
+    margin-top: var(--space-8);
+  }
+
+  .about-voice--lana {
+    grid-column: 1 / span 4;
+    margin-top: var(--space-4);
+  }
+
+  .about-voice--andrea-k {
+    grid-column: 5 / span 8;
+  }
+
+  .about-voice--martina {
+    grid-column: 1 / span 7;
+  }
+
+  .about-voice--bezak {
+    grid-column: 8 / span 5;
+    margin-top: var(--space-6);
+  }
+
+  .about-voice--feature {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-5) var(--space-6);
+    align-items: start;
+  }
+
+  .about-voice--feature .about-voice__num {
+    grid-column: 1 / -1;
+  }
+
+  .about-voice--feature .about-voice__name {
+    grid-column: 2;
   }
 }
 
@@ -2628,6 +2718,10 @@ button {
   max-width: 34rem;
   color: var(--color-muted);
   font-size: var(--text-md);
+}
+
+.about-cta__copy p + p {
+  margin-top: var(--space-4);
 }
 
 .about-cta .btn {
