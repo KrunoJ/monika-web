@@ -2315,6 +2315,11 @@
   max-width: 20ch;
 }
 
+.about-voice__pull--long {
+  max-width: 28ch;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
 @media (min-width: 900px) {
   .about-voices {
     grid-template-columns: repeat(12, 1fr);
