@@ -1150,6 +1150,92 @@ button {
   max-width: 42rem;
 }
 
+/* Homepage Anita testimonial — editorial split */
+.home-proof-section {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.home-proof {
+  margin: var(--space-5) 0 0;
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.home-proof__pull {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.45rem, 2.5vw, 1.95rem);
+  line-height: 1.22;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+  max-width: 18ch;
+}
+
+.home-proof__side {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 34rem;
+}
+
+.home-proof__text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.home-proof__text p {
+  margin: 0;
+}
+
+.home-proof__text p + p {
+  margin-top: var(--space-4);
+}
+
+.home-proof__meta {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.home-proof__name {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-body);
+}
+
+.home-proof__handle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.home-proof__handle:hover {
+  color: var(--color-heading);
+}
+
+@media (min-width: 900px) {
+  .home-proof {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    margin-top: var(--space-6);
+  }
+
+  .home-proof__pull {
+    max-width: 16ch;
+  }
+
+  .home-proof__side {
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--color-border);
+  }
+}
+
 /* ========== Editorial quote split (Biznis okvir testimonial) ========== */
 .quote-section__head {
   padding-bottom: var(--space-5);
