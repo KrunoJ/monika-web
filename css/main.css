@@ -594,7 +594,8 @@ button {
   font-weight: 700;
   line-height: 0.82;
   letter-spacing: var(--tracking-tight);
-  color: rgba(118, 51, 23, 0.16);
+  text-transform: lowercase;
+  color: rgba(118, 51, 23, 0.28);
   white-space: nowrap;
 }
 
