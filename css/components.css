@@ -84,25 +84,28 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 4.25rem;
+  min-height: 4.75rem;
 }
 
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   color: var(--color-ink);
 }
 
-.logo:hover {
-  color: var(--color-primary);
+.logo__mark {
+  display: block;
+  width: auto;
+  height: 2.6rem;
 }
 
-.logo span {
-  font-weight: 500;
-  color: var(--color-muted);
+.logo:hover {
+  opacity: 0.82;
+}
+
+.logo:hover .logo__mark {
+  opacity: 1;
 }
 
 .nav-desktop {
@@ -244,7 +247,7 @@
   position: relative;
   width: min(100% - (var(--page-pad) * 2), var(--content-max));
   margin-inline: auto;
-  min-height: calc(100svh - 4.25rem);
+  min-height: calc(100svh - 4.75rem);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
@@ -265,7 +268,6 @@
   font-weight: 600;
   line-height: 0.82;
   letter-spacing: var(--tracking-tight);
-  text-transform: lowercase;
   color: rgba(118, 51, 23, 0.16);
   white-space: nowrap;
 }
@@ -277,16 +279,46 @@
   width: min(78vw, 20rem);
   max-height: 58vh;
   margin-top: var(--space-2);
+  margin-bottom: 2.5rem;
+  overflow: visible;
+}
+
+.hero__figure picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 58vh;
   overflow: hidden;
 }
 
-.hero__figure img {
+.hero__figure picture img {
   width: 100%;
   height: 100%;
   max-height: 58vh;
   display: block;
   object-fit: cover;
   object-position: top center;
+}
+
+.hero__seal {
+  position: absolute;
+  z-index: 4;
+  width: clamp(5.5rem, 18vw, 7.5rem);
+  height: auto;
+  left: 50%;
+  bottom: -1.25rem;
+  transform: translateX(-50%);
+  animation: seal-spin 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes seal-spin {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
 }
 
 .hero__rail {
@@ -336,7 +368,8 @@
     max-height: 62vh;
   }
 
-  .hero__figure img {
+  .hero__figure picture,
+  .hero__figure picture img {
     max-height: 62vh;
   }
 
@@ -352,7 +385,7 @@
     grid-template-columns: minmax(15rem, 1fr) minmax(20rem, 1.05fr) minmax(15rem, 1fr);
     grid-template-rows: 1fr;
     align-items: end;
-    min-height: calc(100svh - 4.25rem);
+    min-height: calc(100svh - 4.75rem);
     padding: 0;
     gap: 0;
   }
@@ -383,18 +416,29 @@
     align-self: end;
     width: min(100%, 34rem);
     max-height: none;
-    height: calc(100svh - 4.25rem);
+    height: calc(100svh - 4.75rem);
     margin: 0;
     overflow: visible;
   }
 
-  .hero__figure picture,
-  .hero__figure img {
+  .hero__figure picture {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+  }
+
+  .hero__figure picture img {
     width: 100%;
     height: 100%;
     max-height: none;
     object-fit: contain;
     object-position: bottom center;
+  }
+
+  .hero__seal {
+    width: clamp(7rem, 9vw, 9.5rem);
+    bottom: 4%;
+    left: 58%;
   }
 
   .hero__rail--copy {

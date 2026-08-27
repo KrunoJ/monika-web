@@ -11,7 +11,7 @@
     <meta property="og:title" content="Monika Jagić" />
     <meta
       property="og:description"
-      content="Povežimo što tvoje poslovanje već ima i izgradimo što mu nedostaje."
+      content="Povežimo što već imaš i izgradimo što ti nedostaje."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +32,15 @@
 
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="logo" href="index.html">Monika <span>Jagić</span></a>
+        <a class="logo" href="index.html" aria-label="Monika Jagić početna">
+          <img
+            class="logo__mark"
+            src="assets/images/logo-monika.webp"
+            alt=""
+            width="195"
+            height="180"
+          />
+        </a>
         <nav class="nav-desktop" aria-label="Glavna navigacija">
           <a href="index.html" aria-current="page">Početna</a>
           <a href="biznis-okvir/">Biznis okvir</a>
@@ -65,8 +73,8 @@
       <section class="hero hero--composition" aria-labelledby="hero-title">
         <div class="hero__stage">
           <div class="hero__backdrop" aria-hidden="true">
-            <span class="hero__word hero__word--top">povežimo</span>
-            <span class="hero__word hero__word--bottom">izgradimo</span>
+            <span class="hero__word hero__word--top">Monika</span>
+            <span class="hero__word hero__word--bottom">Jagić</span>
           </div>
 
           <div class="hero__figure">
@@ -81,12 +89,21 @@
                 fetchpriority="high"
               />
             </picture>
+            <img
+              class="hero__seal"
+              src="assets/images/seal-asi.webp"
+              alt=""
+              width="171"
+              height="155"
+              decoding="async"
+              aria-hidden="true"
+            />
           </div>
 
           <div class="hero__rail hero__rail--copy reveal">
             <h1 id="hero-title" class="hero__title">
-              Povežimo što tvoje poslovanje već ima<br />
-              i izgradimo što mu nedostaje.
+              povežimo što već imaš<br />
+              i izgradimo što ti nedostaje.
             </h1>
           </div>
 

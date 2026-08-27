@@ -230,10 +230,15 @@ button {
   .reveal,
   .sticky-note,
   .hero-media img,
-  .annotation {
+  .annotation,
+  .hero__seal {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
     transition: none !important;
+  }
+
+  .hero__seal {
+    transform: translateX(-50%) !important;
   }
 }
