@@ -581,8 +581,8 @@ button {
   position: relative;
   width: min(100% - (var(--page-pad) * 2), var(--content-max));
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   align-content: start;
   gap: var(--space-5);
   padding: var(--space-5) 0 var(--space-7);
@@ -683,6 +683,7 @@ button {
 
 @media (min-width: 960px) {
   .hero__stage {
+    display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     grid-template-areas:
       "brand brand"
