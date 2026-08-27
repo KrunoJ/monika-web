@@ -645,9 +645,14 @@ button {
 
 .hero__title {
   margin: 0;
-  font-size: clamp(1.85rem, 7vw, 2.6rem);
-  max-width: 14ch;
+  font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+  max-width: none;
   font-weight: 700;
+}
+
+.hero__title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .hero__lede {
@@ -693,7 +698,7 @@ button {
 
   .hero__title {
     font-size: clamp(2.2rem, 4vw, 3rem);
-    max-width: 16ch;
+    max-width: none;
   }
 }
 
@@ -711,20 +716,25 @@ button {
   .hero__backdrop {
     display: block;
     position: absolute;
-    inset: 12% 0 auto;
+    inset: 6% 0 auto;
     z-index: 1;
     text-align: center;
   }
 
   .hero__word--top {
-    font-size: clamp(5rem, 13vw, 10.5rem);
-    margin-left: -2%;
+    font-size: clamp(4.5rem, 11.5vw, 9rem);
+    margin-left: -6%;
   }
 
   .hero__word--bottom {
-    font-size: clamp(4.5rem, 12vw, 9.5rem);
-    margin-top: -0.02em;
-    margin-right: -4%;
+    display: block;
+    font-size: clamp(4.2rem, 11vw, 8.5rem);
+    margin-top: -0.04em;
+    margin-left: auto;
+    margin-right: 0;
+    width: max-content;
+    transform: translateX(28%);
+    text-align: right;
   }
 
   .hero__figure {
@@ -780,9 +790,9 @@ button {
   }
 
   .hero__title {
-    font-size: clamp(2.05rem, 2.6vw, 2.85rem);
+    font-size: clamp(1.85rem, 2.35vw, 2.55rem);
     line-height: 1.12;
-    max-width: 12ch;
+    max-width: none;
     font-weight: 700;
   }
 
@@ -794,19 +804,19 @@ button {
 
 @media (min-width: 1200px) {
   .hero__backdrop {
-    inset: 10% 0 auto;
+    inset: 4% 0 auto;
   }
 
   .hero__word--top {
-    font-size: clamp(6.5rem, 14vw, 12rem);
+    font-size: clamp(5.5rem, 12vw, 10rem);
   }
 
   .hero__word--bottom {
-    font-size: clamp(6rem, 13vw, 11rem);
+    font-size: clamp(5.2rem, 11.5vw, 9.5rem);
   }
 
   .hero__figure {
-    width: min(100%, 38rem);
+    width: min(100%, 36rem);
   }
 
   .hero__rail--copy {
