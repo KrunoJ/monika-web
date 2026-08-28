@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Prodajni lijevak — Monika Jagić</title>
+    <title>Newsletter sustav — Monika Jagić</title>
     <meta
       name="description"
-      content="Customer flow kroz email marketing, automatizacije, landing stranice i onboarding."
+      content="Newsletter strategija i implementacija: od prvog interesa do kupnje, povratka i preporuke."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,7 +38,13 @@
           <a href="../biznis-okvir/">Biznis okvir</a>
           <a href="./" aria-current="page">Newsletter sustav</a>
           <a href="../o-meni/">O meni</a>
-          <a class="btn btn--primary" href="#cta">Krenimo od tvoje situacije</a>
+          <a
+            class="btn btn--primary"
+            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Krenimo od tvoje situacije</a
+          >
         </nav>
         <button
           class="nav-toggle"
@@ -56,200 +62,487 @@
         <a href="../biznis-okvir/">Biznis okvir</a>
         <a href="./" aria-current="page">Newsletter sustav</a>
         <a href="../o-meni/">O meni</a>
-        <a class="btn btn--primary" href="#cta">Krenimo od tvoje situacije</a>
+        <a
+          class="btn btn--primary"
+          href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+          rel="noopener noreferrer"
+          target="_blank"
+          >Krenimo od tvoje situacije</a
+        >
       </nav>
     </header>
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero__grid">
-          <div class="hero__copy reveal">
-            <p class="eyebrow">// usluga</p>
-            <h1 id="hero-title" class="hero__title">Od publike do kupaca koji se vraćaju.</h1>
-            <p class="hero__lede">
-              Ovdje gradimo customer flow kroz email marketing, automatizacije,
-              landing stranice, sadržaj, onboarding i prodajnu komunikaciju.
-            </p>
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="#cta">Krenimo od tvoje situacije</a>
-              <a class="btn btn--ghost" href="#interaktivno">Isprobaj interaktivni element</a>
+      <section class="nl-hero" aria-labelledby="hero-title">
+        <div class="container nl-hero__grid">
+          <div class="nl-hero__copy reveal">
+            <p class="section-label">// newsletter strategija + implementacija</p>
+            <h1 id="hero-title" class="nl-hero__title">
+              od publike do kupaca koji se vraćaju.
+            </h1>
+            <div class="nl-hero__lede">
+              <p>
+                Ako dobivaš premalo upita, odgovora ili ponovnih kupnji, rješenje nije
+                nužno još sadržaja i još kampanja.
+              </p>
+              <p>
+                Newsletter povezujemo s ostatkom poslovanja i gradimo sustav koji prati
+                ljude od prvog interesa do kupnje, povratka i preporuke.
+              </p>
+            </div>
+            <div class="nl-hero__actions">
+              <a class="btn btn--primary text-link--arrow" href="#hourglass"
+                >Pronađi rupe u svojem sustavu</a
+              >
             </div>
           </div>
-          <div class="hero__media reveal">
-            <div class="placeholder placeholder--photo">[PHOTO / CUSTOM GRAPHIC]</div>
+
+          <div class="nl-hero__tool reveal" id="hourglass">
+            <div class="hourglass" data-hourglass>
+              <div class="hourglass__stages" data-hourglass-stages role="group" aria-label="Faze customer journeyja"></div>
+              <div class="hourglass__panel" data-hourglass-panel></div>
+            </div>
+            <p class="nl-hero__note">
+              Klikni kroz faze i pronađi gdje ti trenutno cure prilike.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- 02 INTERACTIVE EMBED -->
-      <section
-        id="interaktivno"
-        class="section section--tint embed-section"
-        aria-labelledby="embed-title"
-      >
-        <div class="container">
-          <div class="reveal measure-wide">
-            <p class="eyebrow">// interaktivno</p>
-            <h2 id="embed-title">Pogledaj kako flow može izgledati</h2>
-            <p class="muted" style="margin-top: var(--space-4)">
-              <span class="ph">[FINAL COPY]</span> — uvod u interaktivni element.
-            </p>
-          </div>
-          <div class="embed-section__frame reveal" style="margin-top: var(--space-6)">
-            <div class="placeholder placeholder--embed">
-              [INTERACTIVE EMBED]<br />
-              Dedicated container — kasnije embed postojećeg alata
-            </div>
-            <!-- <iframe title="Interaktivni prodajni lijevak" src="" loading="lazy"></iframe> -->
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 TWO MODELS -->
+      <!-- 02 TWO MODELS -->
       <section class="section" aria-labelledby="models-title">
         <div class="container">
-          <div class="reveal">
-            <p class="eyebrow">// suradnja</p>
-            <h2 id="models-title">Dva modela suradnje</h2>
+          <div class="reveal measure-wide">
+            <p class="section-label">// dva modela suradnje</p>
+            <h2 id="models-title">od prvog newslettera do ozbiljnije nadogradnje sustava.</h2>
           </div>
-          <div class="models reveal" style="margin-top: var(--space-7)">
-            <article class="model">
-              <p class="service-panel__index">01</p>
-              <h3>Pokretanje prodajnog lijevka</h3>
-              <p class="model__price">390 EUR</p>
-              <p class="muted">
-                <span class="ph">[FINAL COPY]</span> — što uključuje pokretanje.
+
+          <div class="nl-models reveal" style="margin-top: var(--space-7)">
+            <article class="nl-model" id="pokretanje">
+              <p class="nl-model__num">01</p>
+              <h3 class="nl-model__title">pokretanje newsletter sustava</h3>
+              <p class="nl-model__price">390 €</p>
+              <div class="nl-model__copy">
+                <p>
+                  Za poduzetnice koje žele pokrenuti newsletter bez tjedana istraživanja
+                  platformi, domena, automatizacija i tehničkih postavki.
+                </p>
+                <p>
+                  Zajedno definiramo ulogu newslettera u tvom poslovanju, a ja preuzimam
+                  njegovo tehničko i vizualno postavljanje.
+                </p>
+              </div>
+              <ul class="nl-model__list">
+                <li>newsletter platforma</li>
+                <li>autentifikacija domene</li>
+                <li>prijavna forma / landing stranica</li>
+                <li>welcome sekvenca</li>
+                <li>newsletter predložak usklađen s brendom</li>
+                <li>osnovne automatizacije</li>
+                <li>onboarding komunikacija</li>
+                <li>edukacija za samostalno korištenje sustava</li>
+              </ul>
+              <p class="nl-model__close">
+                Na kraju nemaš samo otvoren MailerLite račun. Imaš postavljen newsletter,
+                prve automatizacije i dovoljno znanja da ga dalje možeš voditi sama.
               </p>
-              <a class="text-link text-link--arrow" href="#cta">Krenimo</a>
-            </article>
-            <article class="model model--alt">
-              <p class="service-panel__index">02</p>
-              <h3>Optimizacija prodajnog lijevka</h3>
-              <p class="model__price">od 790 EUR</p>
-              <p class="muted">
-                <span class="ph">[FINAL COPY]</span> — što uključuje optimizaciju.
+              <p>
+                <a
+                  class="btn btn--primary text-link--arrow"
+                  href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Želim pokrenuti newsletter</a
+                >
               </p>
-              <a class="text-link text-link--arrow" href="#cta">Krenimo</a>
+            </article>
+
+            <article class="nl-model" id="nadogradnja">
+              <p class="nl-model__num">02</p>
+              <h3 class="nl-model__title">nadogradnja newsletter sustava</h3>
+              <p class="nl-model__price">od 790 €</p>
+              <div class="nl-model__copy">
+                <p>
+                  Za poduzetnice koje već imaju newsletter, publiku i ponude, ali žele
+                  bolje povezati ono što se događa prije prijave, tijekom prodaje i nakon
+                  kupnje.
+                </p>
+                <p>Ovisno o tome gdje postoje rupe, radimo na:</p>
+              </div>
+              <ul class="nl-model__list">
+                <li>customer flowu i korisničkom iskustvu</li>
+                <li>segmentaciji publike</li>
+                <li>automatizacijama i sekvencama</li>
+                <li>prodajnoj i onboarding komunikaciji</li>
+                <li>newsletter strategiji i sadržaju</li>
+                <li>analitici i rezultatima</li>
+                <li>povezivanju newslettera s ponudama i drugim kanalima</li>
+                <li>prodajnim landing stranicama i kampanjama</li>
+                <li>komunikaciji s postojećim kupcima</li>
+                <li>planu daljnjeg razvoja</li>
+              </ul>
+              <p class="nl-model__close">
+                Ne dodajemo automatizacije zato što ih MailerLite može napraviti. Prvo
+                gledamo što treba postići, a tek onda što ima smisla postaviti.
+              </p>
+              <p>
+                <a
+                  class="btn btn--primary text-link--arrow"
+                  href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Želim nadograditi sustav</a
+                >
+              </p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- 04 CUSTOMER FLOW -->
-      <section class="section section--border" aria-labelledby="flow-title">
+      <!-- 03 IN PRACTICE -->
+      <section class="section section--tint section--border" aria-labelledby="practice-title">
         <div class="container">
-          <div class="reveal measure">
-            <p class="eyebrow">// sustav</p>
-            <h2 id="flow-title">Vizualni prikaz customer flowa</h2>
-            <p class="muted" style="margin-top: var(--space-4)">
-              Placeholder za custom grafiku. Logika toka:
-            </p>
+          <div class="reveal measure-wide">
+            <p class="section-label">// kako to izgleda u praksi?</p>
+            <h2 id="practice-title">što zapravo nastaje tijekom suradnje.</h2>
           </div>
-          <div class="reveal" style="margin-top: var(--space-6); display: grid; gap: var(--space-6); grid-template-columns: 1fr;">
-            <ol class="flow-vertical">
-              <li>Publika</li>
-              <li>Lead magnet</li>
-              <li>Newsletter</li>
-              <li>Automatizacije</li>
-              <li>Ponuda</li>
-              <li>Onboarding</li>
-              <li>Ponovna kupnja / preporuka</li>
-            </ol>
-            <div class="placeholder placeholder--wide">[CUSTOM GRAPHIC] — customer flow</div>
+
+          <div class="nl-practice" style="margin-top: var(--space-8)">
+            <article class="nl-practice__block reveal">
+              <div class="nl-practice__copy-wrap">
+                <p class="nl-practice__num" aria-hidden="true">01</p>
+                <h3 class="nl-practice__title">strategija i customer flow</h3>
+                <div class="nl-practice__copy">
+                  <p>
+                    Prije implementacije definiramo što newsletter treba raditi unutar
+                    ostatka poslovanja: odakle ljudi dolaze, što ih vodi prema kupnji i što
+                    se događa nakon nje.
+                  </p>
+                  <p>
+                    Kroz Marketing Hourglass mapiramo put od prvog kontakta do pretplate,
+                    kupnje i preporuke kako bismo vidjeli gdje se gradi povjerenje, gdje
+                    ljudi odustaju i gdje newsletter može napraviti najveću razliku.
+                  </p>
+                </div>
+              </div>
+              <div class="nl-practice__visual">
+                <div class="placeholder placeholder--wide">[MARKETING HOURGLASS VISUAL]</div>
+              </div>
+            </article>
+
+            <article class="nl-practice__block nl-practice__block--flip reveal">
+              <div class="nl-practice__copy-wrap">
+                <p class="nl-practice__num" aria-hidden="true">02</p>
+                <h3 class="nl-practice__title">newsletter sustav i postavke</h3>
+                <div class="nl-practice__copy">
+                  <p>
+                    Preuzimam tehnički i vizualni dio postavljanja – od prijavnih obrazaca
+                    i landing stranica do newsletter predložaka, autentifikacije domene i
+                    korisničkog iskustva nakon prijave.
+                  </p>
+                  <p>Sve treba funkcionirati, ali i izgledati kao dio tvog brenda.</p>
+                </div>
+              </div>
+              <div class="nl-practice__visual">
+                <div class="placeholder placeholder--wide">[NEWSLETTER SETUP COLLAGE]</div>
+              </div>
+            </article>
+
+            <article class="nl-practice__block reveal">
+              <div class="nl-practice__copy-wrap">
+                <p class="nl-practice__num" aria-hidden="true">03</p>
+                <h3 class="nl-practice__title">automatizacije i komunikacija</h3>
+                <div class="nl-practice__copy">
+                  <p>
+                    Pozdravne sekvence, isporuka lead magneta, segmentacija, prodajne
+                    poruke, onboarding i follow-up povezujemo prema ponašanju i potrebama
+                    tvojih pretplatnika.
+                  </p>
+                  <p>
+                    Tako newsletter ne ovisi o tome jesi li danas stigla nešto ručno
+                    poslati, a ljudi ne dobivaju svi iste poruke bez obzira na to gdje se
+                    nalaze u procesu.
+                  </p>
+                </div>
+              </div>
+              <div class="nl-practice__visual">
+                <div class="placeholder placeholder--wide">[AUTOMATIONS COLLAGE]</div>
+              </div>
+            </article>
+
+            <article class="nl-practice__block nl-practice__block--flip reveal">
+              <div class="nl-practice__copy-wrap">
+                <p class="nl-practice__num" aria-hidden="true">04</p>
+                <h3 class="nl-practice__title">onboarding edukacija</h3>
+                <p class="nl-practice__key">
+                  Jer sustav nije osobito koristan ako nakon suradnje ne znaš što s njim.
+                  😁
+                </p>
+                <div class="nl-practice__copy">
+                  <p>
+                    Nakon implementacije zajedno prolazimo sve što smo postavili. Pokazujem
+                    ti kako koristiti sustav u praksi, odgovaram na pitanja i ostavljam ti
+                    dovoljno znanja da nakon suradnje ne ovisiš o meni za svaki novi
+                    newsletter.
+                  </p>
+                  <p>
+                    Uz edukaciju dobivaš i materijale koji ti pomažu dalje planirati
+                    sadržaj, pratiti rezultate i razvijati listu.
+                  </p>
+                  <p class="nl-practice__support">
+                    Ovisno o suradnji, to uključuje moje postojeće materijale poput:
+                    Newsletter Blueprint · eBook Prvi klik počinje u glavi · trening Lead
+                    magneti · FAQ materijali
+                  </p>
+                  <p>
+                    Cilj nije da nakon suradnje imaš samo „postavljen newsletter”, nego da
+                    znaš što poslati, kako pratiti rezultate i što dalje razvijati.
+                  </p>
+                </div>
+              </div>
+              <div class="nl-practice__visual">
+                <div class="placeholder placeholder--wide">[ONBOARDING COLLAGE]</div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- 05 VIDEO -->
-      <section class="section section--tint video-section" aria-labelledby="video-title">
-        <div class="container">
-          <div class="reveal measure">
-            <p class="eyebrow">// pristup</p>
-            <h2 id="video-title">Video</h2>
-            <p class="muted" style="margin-top: var(--space-4)">
-              Monika objašnjava pristup email marketingu i customer flowu.
-            </p>
-          </div>
-          <div class="video-section__frame reveal">
-            <div class="placeholder placeholder--wide">[VIDEO]</div>
-            <!-- <iframe title="Video o customer flowu" src="" loading="lazy" allowfullscreen></iframe> -->
-          </div>
-        </div>
-      </section>
-
-      <!-- 06 CASE STUDY -->
+      <!-- 04 CASE STUDY -->
       <section class="section" aria-labelledby="case-title">
-        <div class="container reveal">
-          <p class="eyebrow">// primjer</p>
-          <h2 id="case-title">Case study / konkretan primjer sustava</h2>
-          <div class="placeholder placeholder--wide" style="margin-top: var(--space-6)">
-            [CASE STUDY]
+        <div class="container">
+          <div class="nl-case reveal">
+            <div class="nl-case__copy">
+              <p class="section-label">// kad sve spojimo</p>
+              <h2 id="case-title">kako izgleda cijeli sustav na jednom projektu?</h2>
+              <h3 class="nl-case__title">sirkorii — lansiranje online edukacije</h3>
+              <p>
+                Za lansiranje online edukacije povezali smo sadržaj, newsletter,
+                automatizacije i prodajnu komunikaciju u jedan customer flow – od prvog
+                kontakta do kupnje i komunikacije nakon nje.
+              </p>
+              <div class="nl-case__metrics" aria-label="Rezultati projekta">
+                <div class="nl-case__metric">
+                  <strong>6 tjedana</strong>
+                  <span>trajanje projekta</span>
+                </div>
+                <div class="nl-case__metric">
+                  <strong>40%+ prijava</strong>
+                  <span>došlo putem newslettera</span>
+                </div>
+                <div class="nl-case__metric">
+                  <strong>45%+</strong>
+                  <span>otvorenost e-mailova</span>
+                </div>
+                <div class="nl-case__metric">
+                  <strong>prodaja edukacije</strong>
+                  <span>unutar 2 tjedna lansiranja</span>
+                </div>
+              </div>
+              <p>
+                <a class="text-link text-link--arrow" href="#case-study-placeholder"
+                  >Pogledaj cijelu studiju slučaja</a
+                >
+              </p>
+            </div>
+            <div class="nl-case__visual" id="case-study-placeholder">
+              <div class="placeholder placeholder--wide">[SIRKORII CUSTOMER FLOW]</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 07 TESTIMONIALS -->
-      <section class="section section--tint" aria-labelledby="t-title">
+      <!-- 05 TESTIMONIALS -->
+      <section class="section section--tint section--border" aria-labelledby="proof-title">
         <div class="container">
-          <h2 id="t-title" class="reveal">Iskustva</h2>
-          <div class="long-testimonial__grid" style="margin-top: var(--space-6)">
-            <figure class="long-testimonial reveal">
-              <blockquote><span class="ph">[TESTIMONIAL]</span></blockquote>
-              <figcaption class="muted" style="margin-top: var(--space-4)">
-                <strong><span class="ph">[Ime]</span></strong>
-              </figcaption>
+          <div class="reveal measure-wide">
+            <p class="section-label">// iskustva klijentica</p>
+            <h2 id="proof-title">
+              newsletter je tehnički sustav. suradnja ne mora biti tehnička muka. 😁
+            </h2>
+          </div>
+
+          <div class="nl-proof-videos reveal" style="margin-top: var(--space-7)">
+            <div class="placeholder placeholder--embed">[VIDEO RECENZIJA 01]</div>
+            <div class="placeholder placeholder--embed">[VIDEO RECENZIJA 02]</div>
+          </div>
+
+          <div class="nl-proof-quotes reveal">
+            <figure class="nl-proof-quote">
+              <blockquote>
+                „Monika, hvala ti što si toliko detaljna u poslu, a toliko jednostavna u
+                komunikaciji. Hvala ti što si pridonijela da e-book u samo jednom danu
+                preuzme više od 100 ljudi. :)”
+              </blockquote>
+              <figcaption>Petra Begović</figcaption>
             </figure>
-            <figure class="long-testimonial reveal">
-              <blockquote><span class="ph">[TESTIMONIAL]</span></blockquote>
-              <figcaption class="muted" style="margin-top: var(--space-4)">
-                <strong><span class="ph">[Ime]</span></strong>
-              </figcaption>
+            <figure class="nl-proof-quote">
+              <blockquote>
+                „Predala sam skoro pola posla u tuđe ruke i osjetila lakoću za veći fokus
+                na ono što je moja ekspertiza. :)”
+              </blockquote>
+              <figcaption>Lana Matica</figcaption>
             </figure>
           </div>
         </div>
       </section>
 
-      <!-- 08 FAQ -->
-      <section class="section section--border" aria-labelledby="faq-title">
+      <!-- 06 INDIVIDUAL SERVICES -->
+      <section class="section" aria-labelledby="services-title">
         <div class="container">
-          <h2 id="faq-title" class="reveal">FAQ</h2>
+          <div class="reveal measure-wide">
+            <p class="section-label">// pojedinačne usluge</p>
+            <h2 id="services-title">ne moraš uzeti cijeli paket.</h2>
+            <p style="margin-top: var(--space-4); max-width: 38rem">
+              Već imaš dio newsletter sustava postavljen ili točno znaš gdje trebaš pomoć?
+              Možemo riješiti samo taj dio.
+            </p>
+          </div>
+
+          <div class="nl-services reveal" style="margin-top: var(--space-7)">
+            <article class="nl-service">
+              <h3>newsletter konzultacije</h3>
+              <p>
+                Za konkretan tehnički ili strateški problem koji želiš riješiti zajedno sa
+                mnom.
+              </p>
+              <div class="nl-service__price">
+                <span>NL Tech konzultacije — 60 min / 60 €</span>
+                <span>Strateške konzultacije — 60 min / 100 €</span>
+              </div>
+            </article>
+            <article class="nl-service">
+              <h3>newsletter edukacije</h3>
+              <p>
+                Želiš sama upravljati sustavom, ali bez učenja metodom „kliknut ću pa ćemo
+                vidjeti”.
+              </p>
+              <p>
+                Individualnu edukaciju prilagođavam tvojoj platformi, postojećem znanju i
+                onome što stvarno trebaš koristiti u praksi.
+              </p>
+            </article>
+            <article class="nl-service">
+              <h3>automatizacije i sekvence</h3>
+              <p>
+                Welcome, lead magnet, prodajna sekvenca, onboarding, follow-up ili druga
+                automatizacija koja ti trenutno nedostaje.
+              </p>
+              <p>
+                Možemo postaviti jednu konkretnu automatizaciju bez izgradnje cijelog
+                newsletter sustava.
+              </p>
+            </article>
+            <article class="nl-service">
+              <h3>landing stranice i forme</h3>
+              <p>
+                Dizajn i postavljanje landing stranica za lead magnete, newsletter
+                prijave, webinare, programe i prodajne kampanje.
+              </p>
+            </article>
+            <article class="nl-service">
+              <h3>newsletter dizajn</h3>
+              <p>
+                Predlošci usklađeni s tvojim vizualnim identitetom koje kasnije možeš
+                jednostavno uređivati i koristiti sama.
+              </p>
+            </article>
+            <article class="nl-service">
+              <h3>analiza i optimizacija</h3>
+              <p>
+                Već šalješ newsletter, ali želiš drugo mišljenje o rezultatima, sadržaju,
+                strukturi, segmentima ili postojećim automatizacijama.
+              </p>
+            </article>
+          </div>
+
+          <p class="reveal" style="margin-top: var(--space-7)">
+            <a
+              class="btn btn--primary text-link--arrow"
+              href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Pošalji mi što trebaš</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- 07 FAQ -->
+      <section class="section section--tint section--border" aria-labelledby="faq-title">
+        <div class="container">
+          <h2 id="faq-title" class="reveal">imaš pitanje?</h2>
           <div class="faq reveal" style="margin-top: var(--space-6)">
             <details>
-              <summary>Treba li mi cijeli lijevak ili samo newsletter?</summary>
-              <div class="faq__body"><span class="ph">[FINAL COPY]</span></div>
+              <summary>Moram li već imati MailerLite?</summary>
+              <div class="faq__body">
+                <p>
+                  Ne. Ako krećemo od nule, postavljanje platforme dio je suradnje.
+                </p>
+              </div>
             </details>
             <details>
-              <summary>Koja je razlika između pokretanja i optimizacije?</summary>
-              <div class="faq__body"><span class="ph">[FINAL COPY]</span></div>
+              <summary>Moram li već imati lead magnet?</summary>
+              <div class="faq__body">
+                <p>
+                  Ne nužno. Prvo gledamo treba li ti uopće i koju bi ulogu imao u sustavu.
+                </p>
+              </div>
             </details>
             <details>
-              <summary>Na kojim alatima radimo?</summary>
-              <div class="faq__body"><span class="ph">[FINAL COPY]</span></div>
+              <summary>
+                Mogu li angažirati samo izradu landing stranice ili automatizacije?
+              </summary>
+              <div class="faq__body">
+                <p>
+                  Da. Ako ti ne treba cijeli sustav, možemo dogovoriti zasebnu uslugu
+                  prema onome što već imaš.
+                </p>
+              </div>
             </details>
             <details>
-              <summary>Što ako još nemam publiku?</summary>
-              <div class="faq__body"><span class="ph">[FINAL COPY]</span></div>
+              <summary>Što nakon završetka suradnje?</summary>
+              <div class="faq__body">
+                <p>
+                  Cilj je da sustav možeš samostalno koristiti. Zato implementaciju prati
+                  edukacija i materijali za daljnji rad, a za kasnije nadogradnje možemo
+                  ponovno surađivati.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                Što ako ne znam trebam li pokretanje, nadogradnju ili samo jednu uslugu?
+              </summary>
+              <div class="faq__body">
+                <p>
+                  Ne moraš to znati unaprijed. U početnom upitniku mi napiši što trenutno
+                  imaš, gdje zapinje i što želiš postići pa ću ti predložiti oblik
+                  suradnje koji ima najviše smisla.
+                </p>
+              </div>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- 09 CTA -->
-      <section id="cta" class="final-cta" aria-labelledby="cta-title">
+      <!-- 08 FINAL CTA -->
+      <section id="cta" class="nl-final" aria-labelledby="cta-title">
         <div class="container reveal">
-          <h2 id="cta-title">Krenimo od tvoje situacije.</h2>
-          <p style="margin-top: var(--space-4)">
-            Ako ti treba jasniji put od publike do kupaca koji se vraćaju — krenimo od
-            upitnika.
+          <h2 id="cta-title" class="nl-final__title">nisi sigurna koja opcija ti treba?</h2>
+          <p class="nl-final__copy">
+            Pokaži mi što trenutno imaš, gdje zapinje i što želiš postići pa ću ti
+            predložiti oblik suradnje koji ima najviše smisla.
           </p>
           <a
-            class="btn btn--on-dark"
-            href="https://forms.gle/PLACEHOLDER"
+            class="btn btn--primary text-link--arrow"
+            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
             rel="noopener noreferrer"
             target="_blank"
-            >Ispuni početni upitnik</a
+            >Ispuni upitnik</a
           >
+          <p class="nl-final__note">Možemo sve. Ili možemo koliko ti sada odgovara.</p>
         </div>
       </section>
     </main>
@@ -257,7 +550,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
-                    <div>
+          <div>
             <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić">
               <img
                 src="../assets/images/logo-monika-wordmark.webp"
@@ -280,5 +573,6 @@
     </footer>
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/hourglass.js" defer></script>
   </body>
 </html>
