@@ -2575,13 +2575,6 @@
 }
 
 /* Marketing Hourglass interactive widget */
-.mh-widget,
-.mh-widget *,
-.mh-widget *::before,
-.mh-widget *::after {
-  box-sizing: border-box;
-}
-
 .mh-widget {
   --mh-brown: #763317;
   --mh-terracotta: #a45f43;
@@ -2591,6 +2584,7 @@
   --mh-text: #3b2418;
   --mh-radius: 14px;
   --mh-transition: 0.28s ease;
+  box-sizing: border-box;
   font-family: var(--font-body);
   color: var(--mh-text);
   background: var(--mh-bg);
@@ -2601,9 +2595,15 @@
   line-height: 1.6;
 }
 
+.mh-widget *,
+.mh-widget *::before,
+.mh-widget *::after {
+  box-sizing: border-box;
+}
+
 .mh-layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: stretch;
 }
@@ -2614,9 +2614,6 @@
   flex-direction: column;
   align-self: stretch;
   min-height: 100%;
-  max-width: min(100%, 400px);
-  margin: 0 auto 0.5rem;
-  min-height: 468px;
 }
 
 .mh-viz-title {
@@ -2633,7 +2630,7 @@
 .mh-funnel-row {
   display: flex;
   align-items: stretch;
-  gap: 0.5rem;
+  gap: 0.75rem;
   flex: 1 1 auto;
   height: 100%;
   min-height: 0;
@@ -2644,13 +2641,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 3.75rem;
+  width: 5rem;
   flex-shrink: 0;
-  padding: 1.25rem 0;
+  padding: 2rem 0;
 }
 
 .mh-axis-label {
-  font-size: 0.58rem;
+  font-size: 0.62rem;
   line-height: 1.25;
   text-align: center;
   color: var(--mh-brown);
@@ -2659,10 +2656,13 @@
 
 .mh-axis-arrow {
   width: 1.1rem;
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 5rem;
+  max-width: 1.1rem;
+  height: auto;
   color: var(--mh-brown);
   opacity: 0.75;
+  display: block;
 }
 
 .mh-glass {
@@ -2681,7 +2681,9 @@
 
 .mh-hourglass-svg {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 280 / 400;
+  max-width: 100%;
   flex: 1 1 auto;
   min-height: 0;
   display: block;
@@ -2690,7 +2692,7 @@
 }
 
 .mh-glass-stroke {
-  fill: none;
+  fill: none !important;
   stroke: rgba(118, 51, 23, 0.14);
   stroke-width: 1.2;
   pointer-events: none;
@@ -2701,7 +2703,7 @@
 }
 
 .mh-seg-shape {
-  fill: transparent;
+  fill: none;
   stroke: transparent;
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
@@ -2788,6 +2790,7 @@
 .mh-icon-pill svg {
   width: 1rem;
   height: 1rem;
+  max-width: 1rem;
   stroke: currentColor;
   fill: none;
   stroke-width: 1.8;
@@ -2814,6 +2817,11 @@
   line-height: 1.2;
 }
 
+.mh-card h3.mh-card-title {
+  color: var(--mh-brown);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+}
+
 .mh-card-subtitle {
   margin: 0 0 1.1rem;
   color: rgba(59, 36, 24, 0.78);
@@ -2833,9 +2841,20 @@
   margin: 0 0 0.45rem;
 }
 
+.mh-card h4.mh-block-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mh-sage);
+  line-height: 1.4;
+}
+
 .mh-block-text {
   margin: 0;
   font-size: 0.95rem;
+  color: var(--mh-text);
 }
 
 .mh-highlight {
@@ -2855,7 +2874,7 @@
 
 .mh-columns {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -2872,6 +2891,7 @@
   position: relative;
   padding-left: 1.2rem;
   font-size: 0.92rem;
+  color: var(--mh-text);
 }
 
 .mh-list--check li::before {
@@ -2888,6 +2908,7 @@
   padding: 0.75rem 1rem;
   margin-bottom: 1.25rem;
   font-size: 0.95rem;
+  color: var(--mh-text);
 }
 
 .mh-focus-label {
@@ -2898,7 +2919,6 @@
 
 .mh-nav {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -2924,7 +2944,7 @@
 .mh-btn--primary {
   background: var(--mh-brown);
   color: #fff;
-  margin-left: 0;
+  margin-left: auto;
 }
 
 .mh-btn--primary:hover:not(:disabled) {
@@ -2947,40 +2967,40 @@
   cursor: not-allowed;
 }
 
-@media (min-width: 861px) {
+@media (max-width: 860px) {
   .mh-layout {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .mh-hourglass-wrap {
-    max-width: none;
-    margin: 0;
-    min-height: 100%;
+    max-width: min(100%, 400px);
+    margin: 0 auto 0.5rem;
+    min-height: 468px;
   }
 
   .mh-funnel-row {
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .mh-axis {
-    width: 5rem;
-    padding: 2rem 0;
+    width: 3.75rem;
+    padding: 1.25rem 0;
   }
 
   .mh-axis-label {
-    font-size: 0.62rem;
+    font-size: 0.58rem;
   }
 
   .mh-columns {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .mh-nav {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .mh-btn--primary {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
