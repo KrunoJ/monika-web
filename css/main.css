@@ -1095,7 +1095,7 @@ button {
 }
 
 .service-panel .stack p {
-  line-height: var(--leading-relaxed, 1.65);
+  line-height: var(--leading-body);
 }
 
 .service-panel .text-link {
