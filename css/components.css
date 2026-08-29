@@ -2574,7 +2574,25 @@
   font-style: italic;
 }
 
-/* Marketing Hourglass interactive widget */
+.mh-embed {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 640px;
+  height: 720px;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .mh-embed {
+    min-height: 980px;
+    height: 1100px;
+  }
+}
+
+/* Marketing Hourglass interactive widget (legacy inline styles kept for safety) */
 .mh-widget {
   --mh-brown: #763317;
   --mh-terracotta: #a45f43;
