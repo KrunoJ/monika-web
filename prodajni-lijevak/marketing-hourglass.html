@@ -103,10 +103,6 @@
       <div class="mh-diagnose">
         <h4 class="mh-block-label">Gdje najčešće zapinje?</h4>
         <div class="mh-diagnose-text" id="mh-stuck"></div>
-        <div class="mh-check">
-          <p class="mh-check-label">Provjeri:</p>
-          <p class="mh-check-text" id="mh-check"></p>
-        </div>
       </div>
 
       <div class="mh-nav">
@@ -384,30 +380,6 @@
 
   .mh-diagnose .mh-block-label { color: var(--mh-brown); }
 
-  .mh-check {
-    margin-top: 0.7rem;
-    padding-top: 0.65rem;
-    border-top: 1px solid rgba(59, 36, 24, 0.1);
-  }
-
-  .mh-check-label {
-    margin: 0 0 0.3rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--mh-terracotta);
-  }
-
-  .mh-check-text {
-    margin: 0;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--mh-brown);
-    line-height: 1.45;
-  }
-
-  .mh-check-text strong,
   .mh-diagnose-text strong,
   .mh-block-text strong {
     font-weight: 700;
@@ -510,8 +482,7 @@
       stuck: [
         "Možeš biti dosljedno prisutna i stvarati puno sadržaja, a da ljudi i dalje <strong>ne prepoznaju dovoljno brzo da se obraćaš baš njima</strong>.",
         "Ako su teme preširoke, poruke generičke ili nije jasno s kojim te problemom i rezultatom trebaju povezati - <strong>dobivaš vidljivost, ali ona ne prelazi nužno u stvarni interes</strong>."
-      ],
-      check: "Može li osoba koja te prvi put vidi brzo shvatiti <strong>je li ovo za nju</strong>, <strong>s čim joj možeš pomoći</strong> i <strong>zašto bi trebala nastaviti pratiti</strong>?"
+      ]
     },
     {
       id: "interest",
@@ -525,8 +496,7 @@
       stuck: [
         "Ljudi prate, gledaju i reagiraju na sadržaj, ali <strong>nemaju kamo dalje</strong> - ili ih vodiš prema besplatnom sadržaju koji nema jasnu vezu s onime što kasnije želiš prodati.",
         "Tako možeš imati puno pratitelja, preuzimanja ili pregleda, a <strong>vrlo malo ljudi koji prirodno nastavljaju prema sljedećoj fazi</strong>."
-      ],
-      check: "Kad se nekome svidi ono što objavljuješ, postoji li <strong>jasan sljedeći korak</strong> koji ga vodi bliže tvojoj ponudi?"
+      ]
     },
     {
       id: "consideration",
@@ -540,8 +510,7 @@
       stuck: [
         "Osoba je ušla u tvoj svijet, ali nakon toga dobiva <strong>premalo razloga da ti nastavi vjerovati</strong>.",
         "Primjerice, preuzme lead magnet i dobije samo jedan mail, newsletter se javlja povremeno ili sadržaj stalno ostaje na površini. Kontakt postoji, ali odnos se ne produbljuje dovoljno da bi osoba od “zanimljiva mi je” došla do “želim raditi baš s njom”."
-      ],
-      check: "Što se događa nakon što ti osoba ostavi svoj kontakt ili pokaže ozbiljniji interes - imaš li način da <strong>odnos nastaviš graditi</strong> ili čekaš da se sama vrati?"
+      ]
     },
     {
       id: "purchase",
@@ -556,8 +525,7 @@
         "Interes postoji, ali prijelaz prema kupnji traži <strong>previše razmišljanja ili truda</strong>.",
         "Nije dovoljno jasno što osoba dobiva, za koga je ponuda, koliko košta ili što treba napraviti dalje. Ponekad pak dobro educiraš i gradiš povjerenje, ali <strong>rijetko ili nejasno pozivaš osobu prema konkretnoj ponudi</strong>.",
         "A ako ne kupi odmah, odnos tu ne bi trebao završiti. možda samo još nije došlo njezino vrijeme za odluku."
-      ],
-      check: "Može li zainteresirana osoba bez dodatnog istraživanja razumjeti <strong>što joj nudiš</strong>, <strong>zašto bi joj to pomoglo</strong> i <strong>koji je sljedeći korak ako želi kupiti</strong>?"
+      ]
     },
     {
       id: "retention",
@@ -571,8 +539,7 @@
       stuck: [
         "Puno pažnje ulažeš u privlačenje i prodaju, a nakon kupnje <strong>komunikacija naglo stane</strong>.",
         "Klijent dobije ono što je platio, ali nema promišljenog onboardinga, follow-upa ili razloga da ostane povezan s tobom. Tako svaki novi prihod ponovno ovisi prvenstveno o pronalaženju novih ljudi, umjesto i o odnosima koje si već izgradila."
-      ],
-      check: "Što se događa odmah nakon što osoba kupi i što se događa mjesecima kasnije? Postoji li razlog da <strong>ostane, vrati se ili ponovno kupi</strong>?"
+      ]
     },
     {
       id: "advocacy",
@@ -587,9 +554,8 @@
         "Klijenti su zadovoljni, ali poslovanje to zadovoljstvo <strong>gotovo uopće ne koristi</strong>.",
         "Ne tražiš feedback, nemaš trenutak u kojem prirodno potičeš preporuku ili nakon završetka suradnje potpuno nestaneš iz njihova svijeta. Dobra iskustva postoje, ali ostaju privatna.",
         "A upravo preporuka zadovoljnog klijenta može novoj osobi skratiti nekoliko prethodnih faza jer povjerenje ne gradiš više samo ti."
-      ],
-      check: "Kad je netko stvarno zadovoljan suradnjom ili kupnjom, ima li jednostavan i prirodan način da to iskustvo <strong>podijeli, preporuči te ili nastavi odnos s tobom</strong>?"
-    }
+      ]
+}
   ];
 
   var root = document.querySelector("[data-mh-widget]");
@@ -641,7 +607,6 @@
     el("mh-card-title").textContent = phase.name;
     setHtmlParagraphs(el("mh-happen"), phase.happen);
     setHtmlParagraphs(el("mh-stuck"), phase.stuck);
-    el("mh-check").innerHTML = phase.check;
 
     var setupList = el("mh-setup");
     setupList.innerHTML = "";
