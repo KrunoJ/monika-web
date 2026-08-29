@@ -2564,6 +2564,7 @@
 .nl-hero__tool {
   display: grid;
   gap: var(--space-3);
+  min-width: 0;
 }
 
 .nl-hero__note {
@@ -2573,105 +2574,413 @@
   font-style: italic;
 }
 
-@media (min-width: 960px) {
-  .nl-hero__grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: var(--space-8);
-    align-items: center;
-  }
+/* Marketing Hourglass interactive widget */
+.mh-widget,
+.mh-widget *,
+.mh-widget *::before,
+.mh-widget *::after {
+  box-sizing: border-box;
 }
 
-.hourglass {
-  background: var(--color-bg-2);
-  border: 1px solid var(--color-border);
-  padding: var(--space-5);
-  display: grid;
-  gap: var(--space-5);
-}
-
-.hourglass__stages {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-
-.hourglass__stage {
-  display: grid;
-  gap: 0.15rem;
-  text-align: left;
-  padding: var(--space-3);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-1);
-  color: var(--color-body);
-  transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease);
-}
-
-.hourglass__stage:hover,
-.hourglass__stage.is-active {
-  border-color: var(--color-heading);
-  background: #fff;
-}
-
-.hourglass__stage-num {
-  font-size: var(--text-xs);
-  letter-spacing: 0.12em;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.hourglass__stage-label {
-  font-family: var(--font-display);
-  text-transform: lowercase;
-  font-size: var(--text-base);
-  color: var(--color-heading);
-}
-
-.hourglass__panel {
-  display: grid;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
-}
-
-.hourglass__eyebrow {
+.mh-widget {
+  --mh-brown: #763317;
+  --mh-terracotta: #a45f43;
+  --mh-sage: #7f92a6;
+  --mh-bg: #fbf7f3;
+  --mh-card: #ffffff;
+  --mh-text: #3b2418;
+  --mh-radius: 14px;
+  --mh-transition: 0.28s ease;
+  font-family: var(--font-body);
+  color: var(--mh-text);
+  background: var(--mh-bg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--mh-radius);
+  max-width: 1200px;
   margin: 0;
-  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+.mh-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: stretch;
+}
+
+.mh-hourglass-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-height: 100%;
+  max-width: min(100%, 400px);
+  margin: 0 auto 0.5rem;
+  min-height: 468px;
+}
+
+.mh-viz-title {
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mh-brown);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.mh-funnel-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+.mh-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 3.75rem;
+  flex-shrink: 0;
+  padding: 1.25rem 0;
+}
+
+.mh-axis-label {
+  font-size: 0.58rem;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--mh-brown);
+  max-width: 4.25rem;
+}
+
+.mh-axis-arrow {
+  width: 1.1rem;
+  flex: 1;
+  min-height: 5rem;
+  color: var(--mh-brown);
+  opacity: 0.75;
+}
+
+.mh-glass {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  max-width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mh-hourglass-svg {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: block;
+  overflow: visible;
+  font-family: var(--font-body);
+}
+
+.mh-glass-stroke {
+  fill: none;
+  stroke: rgba(118, 51, 23, 0.14);
+  stroke-width: 1.2;
+  pointer-events: none;
+}
+
+.mh-seg-hit {
+  cursor: pointer;
+}
+
+.mh-seg-shape {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.28s ease, stroke 0.28s ease;
+}
+
+.mh-seg-hit:hover .mh-seg-shape {
+  fill: rgba(59, 36, 24, 0.04);
+}
+
+.mh-seg-hit[aria-selected="true"] .mh-seg-shape {
+  fill: rgba(118, 51, 23, 0.08);
+  stroke: var(--mh-brown);
+  stroke-width: 1.5;
+}
+
+.mh-seg-hit:focus {
+  outline: none;
+}
+
+.mh-seg-hit:focus-visible .mh-seg-shape {
+  stroke: var(--mh-brown);
+}
+
+.mh-svg-name {
+  fill: var(--mh-text);
+  font-size: 14px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.mh-svg-desc {
+  fill: var(--mh-text);
+  font-size: 10px;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.mh-svg-desc--sm {
+  font-size: 8.5px;
+}
+
+.mh-card {
+  background: var(--mh-card);
+  border: 1px solid rgba(59, 36, 24, 0.08);
+  border-radius: var(--mh-radius);
+  padding: clamp(1.1rem, 2.5vw, 1.75rem);
+  box-shadow: 0 12px 32px rgba(59, 36, 24, 0.06);
+  transition: opacity var(--mh-transition);
+  height: fit-content;
+}
+
+.mh-card.is-updating {
+  opacity: 0.55;
+}
+
+.mh-card-icons {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(59, 36, 24, 0.08);
+}
+
+.mh-icon-pill {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(127, 146, 166, 0.12);
+  color: var(--mh-sage);
+  transition: background var(--mh-transition), color var(--mh-transition),
+    transform var(--mh-transition);
+}
+
+.mh-icon-pill.is-active {
+  background: rgba(164, 95, 67, 0.16);
+  color: var(--mh-terracotta);
+  transform: scale(1.05);
+}
+
+.mh-icon-pill svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mh-card-phase {
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--mh-terracotta);
+  margin: 0 0 0.35rem;
 }
 
-.hourglass__question {
+.mh-card-title {
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--mh-brown);
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+}
+
+.mh-card-subtitle {
+  margin: 0 0 1.1rem;
+  color: rgba(59, 36, 24, 0.78);
+  font-size: 0.95rem;
+}
+
+.mh-block {
+  margin-bottom: 1rem;
+}
+
+.mh-block-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mh-sage);
+  margin: 0 0 0.45rem;
+}
+
+.mh-block-text {
   margin: 0;
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-size: 0.95rem;
 }
 
-.hourglass__body {
+.mh-highlight {
+  background: rgba(127, 146, 166, 0.1);
+  border-left: 3px solid var(--mh-sage);
+  border-radius: 0 10px 10px 0;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.mh-highlight-text {
   margin: 0;
-  color: var(--color-body);
+  font-weight: 600;
+  color: var(--mh-brown);
+  font-size: 1rem;
 }
 
-.hourglass__leak {
+.mh-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mh-list {
   margin: 0;
-  color: var(--color-heading);
-  font-weight: 500;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
 }
 
-@media (min-width: 700px) {
-  .hourglass__stages {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.mh-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.92rem;
+}
+
+.mh-list--check li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--mh-terracotta);
+  font-weight: 700;
+}
+
+.mh-focus {
+  background: rgba(164, 95, 67, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.mh-focus-label {
+  font-weight: 700;
+  color: var(--mh-terracotta);
+  margin-right: 0.35rem;
+}
+
+.mh-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mh-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--mh-transition), color var(--mh-transition),
+    opacity var(--mh-transition), transform var(--mh-transition);
+}
+
+.mh-btn:focus-visible {
+  outline: 2px solid var(--mh-terracotta);
+  outline-offset: 2px;
+}
+
+.mh-btn--primary {
+  background: var(--mh-brown);
+  color: #fff;
+  margin-left: 0;
+}
+
+.mh-btn--primary:hover:not(:disabled) {
+  background: var(--mh-terracotta);
+  transform: translateY(-1px);
+}
+
+.mh-btn--ghost {
+  background: transparent;
+  color: var(--mh-brown);
+  border: 1px solid rgba(118, 51, 23, 0.25);
+}
+
+.mh-btn--ghost:hover:not(:disabled) {
+  background: rgba(118, 51, 23, 0.06);
+}
+
+.mh-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (min-width: 861px) {
+  .mh-layout {
+    grid-template-columns: 1fr 1fr;
   }
-}
 
-@media (min-width: 1100px) {
-  .hourglass {
-    padding: var(--space-6);
+  .mh-hourglass-wrap {
+    max-width: none;
+    margin: 0;
+    min-height: 100%;
   }
 
-  .hourglass__stages {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .mh-funnel-row {
+    gap: 0.75rem;
+  }
+
+  .mh-axis {
+    width: 5rem;
+    padding: 2rem 0;
+  }
+
+  .mh-axis-label {
+    font-size: 0.62rem;
+  }
+
+  .mh-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mh-nav {
+    flex-direction: row;
+  }
+
+  .mh-btn--primary {
+    margin-left: auto;
   }
 }
 
