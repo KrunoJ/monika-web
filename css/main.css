@@ -1770,13 +1770,20 @@ button {
 /* ========== FAQ ========== */
 .faq {
   display: grid;
-  gap: var(--space-3);
+  gap: 0;
   max-width: 46rem;
 }
 
 .faq details {
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.faq details:first-child {
+  border-top: 1px solid var(--color-border);
 }
 
 .faq summary {
@@ -1784,10 +1791,22 @@ button {
   justify-content: space-between;
   gap: var(--space-4);
   align-items: center;
-  padding: var(--space-4) var(--space-5);
+  padding: 1.5rem 0;
   font-weight: 600;
+  color: var(--color-body);
   cursor: pointer;
   list-style: none;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.faq summary:hover {
+  background: rgba(118, 51, 22, 0.04);
+}
+
+.faq summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .faq summary::-webkit-details-marker {
@@ -1796,7 +1815,9 @@ button {
 
 .faq summary::after {
   content: "+";
+  flex-shrink: 0;
   font-size: 1.25rem;
+  font-weight: 500;
   color: var(--color-primary);
   line-height: 1;
 }
@@ -1806,8 +1827,14 @@ button {
 }
 
 .faq__body {
-  padding: 0 var(--space-5) var(--space-5);
+  padding: 0 0 1.5rem;
   color: var(--color-muted);
+}
+
+.faq__body p {
+  margin: 0;
+  max-width: 40rem;
+  line-height: var(--leading-body);
 }
 
 /* ========== Principles (About) ========== */
