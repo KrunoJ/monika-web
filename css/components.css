@@ -719,20 +719,25 @@
 /* ========== Service split ========== */
 .service-split {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-7);
 }
 
 .service-panel {
   position: relative;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-5);
-  padding: var(--space-6);
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
+  padding: var(--space-5) 0 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .service-panel--alt {
-  background: var(--color-bg-2);
+  background: transparent;
 }
 
 .service-panel__index {
@@ -744,6 +749,7 @@
 }
 
 .service-panel__tag {
+  margin: 0;
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -752,29 +758,43 @@
 }
 
 .service-panel h3 {
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
+  margin-bottom: 0;
+}
+
+.service-panel .stack {
+  max-width: 34rem;
+}
+
+.service-panel .stack p {
+  line-height: var(--leading-relaxed, 1.65);
+}
+
+.service-panel .text-link {
+  margin-top: var(--space-1);
 }
 
 @media (min-width: 900px) {
   .service-split {
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    border: 1px solid var(--color-border);
+    align-items: stretch;
   }
 
   .service-panel {
-    border: 0;
+    padding: var(--space-5) clamp(var(--space-6), 4vw, var(--space-8));
+    border-top: 1px solid var(--color-border);
     border-right: 1px solid var(--color-border);
     min-height: 100%;
-    padding: var(--space-7);
+  }
+
+  .service-panel:first-child {
+    padding-left: 0;
   }
 
   .service-panel:last-child {
     border-right: 0;
-  }
-
-  .service-panel__visual {
-    min-height: 10rem;
+    padding-right: 0;
   }
 }
 
