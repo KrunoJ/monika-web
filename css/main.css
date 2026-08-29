@@ -3730,49 +3730,123 @@ button {
   }
 }
 
+.nl-services__intro {
+  margin-top: var(--space-4);
+  max-width: 40rem;
+  color: var(--color-muted);
+}
+
 .nl-services {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 0;
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nl-service {
   padding: var(--space-5) 0;
   border-top: 1px solid var(--color-border);
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  align-content: start;
+  background: none;
+  box-shadow: none;
 }
 
-.nl-service:last-child {
-  border-bottom: 1px solid var(--color-border);
+.nl-service:first-child {
+  border-top: 0;
 }
 
-.nl-service h3 {
+.nl-service__num {
   margin: 0;
-  font-size: var(--text-xl);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
 }
 
-.nl-service p {
+.nl-service__title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  line-height: 1.15;
+  max-width: 18ch;
+}
+
+.nl-service__price {
+  margin: 0;
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  color: var(--color-heading);
+  line-height: 1.2;
+}
+
+.nl-service__copy {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.nl-service__copy p {
   margin: 0;
   max-width: 36rem;
   color: var(--color-body);
 }
 
-.nl-service__price {
+.nl-service__meta {
+  margin: 0.35rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  max-width: 36rem;
+}
+
+.nl-service__link {
+  margin: 0.5rem 0 0;
+}
+
+.nl-services__cta {
+  margin-top: var(--space-7);
+  max-width: 38rem;
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.nl-services__cta-lead {
+  margin: 0;
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  color: var(--color-heading);
+  line-height: 1.2;
+}
+
+.nl-services__cta-copy {
   margin: 0;
   color: var(--color-muted);
-  font-size: var(--text-sm);
-  display: grid;
-  gap: var(--space-1);
+  max-width: 36rem;
 }
 
 @media (min-width: 900px) {
   .nl-services {
     grid-template-columns: 1fr 1fr;
     column-gap: var(--space-8);
+    margin-top: var(--space-7);
   }
 
   .nl-service {
     padding: var(--space-5) 0;
+  }
+
+  .nl-service:nth-child(2) {
+    border-top: 0;
+  }
+
+  .nl-service:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
   }
 }
 
