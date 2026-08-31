@@ -61,7 +61,7 @@
 
   --page-pad: clamp(1.25rem, 4vw, 3.5rem);
 
-  /* Section vertical rhythm — comfortable inset inside each band
+  /* Section vertical rhythm - comfortable inset inside each band
      Desktop ≈ 80 / 64 / 104 · Tablet ≈ 72 / 56 / 88 · Mobile ≈ 56 / 48 / 72 */
   --section-space: 5rem;
   --section-space-compact: 4rem;
@@ -82,7 +82,7 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.55s;
 
-  /* Shadows — restrained */
+  /* Shadows - restrained */
   --shadow-soft: 0 12px 40px rgba(118, 51, 22, 0.08);
   --shadow-polaroid: 0 8px 28px rgba(28, 24, 20, 0.12);
 
@@ -333,7 +333,7 @@ button {
   letter-spacing: 0;
 }
 
-/* Only hide when JS is available — avoids blank page if script fails to load */
+/* Only hide when JS is available - avoids blank page if script fails to load */
 .js .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(1.25rem);
@@ -774,7 +774,7 @@ button {
   font-weight: 700;
   line-height: 0.82;
   letter-spacing: var(--tracking-tight);
-  /* Light faded brand wash — not dark */
+  /* Light faded brand wash - not dark */
   color: rgba(164, 96, 67, 0.18);
   white-space: nowrap;
 }
@@ -1166,7 +1166,7 @@ button {
 }
 
 .problem-list li::before {
-  content: "—";
+  content: "-";
   color: var(--color-primary);
   font-family: var(--font-display);
   text-transform: lowercase;
@@ -1465,7 +1465,7 @@ button {
   max-width: 42rem;
 }
 
-/* Homepage Anita testimonial — editorial split */
+/* Homepage Anita testimonial - editorial split */
 .home-proof-section {
   padding-block: clamp(3rem, 7vw, 5rem);
 }
@@ -2072,7 +2072,7 @@ button {
 }
 
 .included-list li::before {
-  content: "—";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -2302,7 +2302,7 @@ button {
 }
 
 .faq details[open] summary::after {
-  content: "–";
+  content: "-";
 }
 
 .faq__body {
@@ -2647,7 +2647,7 @@ button {
 }
 
 .cs-list li::before {
-  content: "–";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -2942,7 +2942,7 @@ button {
 }
 
 .cs-result__list li::before {
-  content: "–";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -3010,7 +3010,7 @@ button {
   }
 }
 
-/* ========== O meni — editorial about ========== */
+/* ========== O meni - editorial about ========== */
 .about-hero {
   position: relative;
   padding: clamp(2rem, 5vw, 3.5rem) 0 var(--section-space);

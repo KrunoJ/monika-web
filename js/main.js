@@ -138,7 +138,7 @@
     iframe.addEventListener("error", fail, { once: true });
     window.setTimeout(() => {
       if (!settled) {
-        // Still loading after timeout — keep trying briefly, then accept live state
+        // Still loading after timeout - keep trying briefly, then accept live state
         // only if iframe remains in DOM with a src (blocked frames often look blank).
         try {
           void iframe.contentWindow;

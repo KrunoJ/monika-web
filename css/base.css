@@ -224,7 +224,7 @@ button {
   letter-spacing: 0;
 }
 
-/* Only hide when JS is available — avoids blank page if script fails to load */
+/* Only hide when JS is available - avoids blank page if script fails to load */
 .js .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(1.25rem);

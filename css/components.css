@@ -411,7 +411,7 @@
   font-weight: 700;
   line-height: 0.82;
   letter-spacing: var(--tracking-tight);
-  /* Light faded brand wash — not dark */
+  /* Light faded brand wash - not dark */
   color: rgba(164, 96, 67, 0.18);
   white-space: nowrap;
 }
@@ -803,7 +803,7 @@
 }
 
 .problem-list li::before {
-  content: "—";
+  content: "-";
   color: var(--color-primary);
   font-family: var(--font-display);
   text-transform: lowercase;
@@ -1102,7 +1102,7 @@
   max-width: 42rem;
 }
 
-/* Homepage Anita testimonial — editorial split */
+/* Homepage Anita testimonial - editorial split */
 .home-proof-section {
   padding-block: clamp(3rem, 7vw, 5rem);
 }
@@ -1709,7 +1709,7 @@
 }
 
 .included-list li::before {
-  content: "—";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -1939,7 +1939,7 @@
 }
 
 .faq details[open] summary::after {
-  content: "–";
+  content: "-";
 }
 
 .faq__body {
@@ -2284,7 +2284,7 @@
 }
 
 .cs-list li::before {
-  content: "–";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -2579,7 +2579,7 @@
 }
 
 .cs-result__list li::before {
-  content: "–";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--color-heading);
@@ -2647,7 +2647,7 @@
   }
 }
 
-/* ========== O meni — editorial about ========== */
+/* ========== O meni - editorial about ========== */
 .about-hero {
   position: relative;
   padding: clamp(2rem, 5vw, 3.5rem) 0 var(--section-space);
