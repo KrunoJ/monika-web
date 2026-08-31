@@ -2518,23 +2518,18 @@
 .cs-deliverables {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-5);
+  gap: clamp(1.75rem, 3vw, 2.75rem);
   width: 100%;
   margin-top: 0;
   align-items: start;
-}
-
-.cs-deliverables__right {
-  display: grid;
-  gap: var(--space-5);
-  min-width: 0;
+  justify-items: stretch;
 }
 
 .cs-deliverables__pair {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-5);
-  align-items: end;
+  gap: clamp(1.5rem, 2.5vw, 2rem);
+  width: 100%;
   min-width: 0;
 }
 
@@ -2550,9 +2545,10 @@
 .cs-deliverables__item img {
   display: block;
   width: 100%;
-  min-height: 0;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center top;
   border: 1px solid var(--color-border);
   border-radius: 0;
   box-shadow: none;
@@ -2560,9 +2556,9 @@
 }
 
 .cs-deliverables__item figcaption {
-  margin-top: 0.7rem; /* ~11px */
+  margin-top: 0.7rem;
   font-family: var(--font-body);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.4;
   text-transform: none;
@@ -2570,87 +2566,31 @@
   color: var(--color-body);
 }
 
-/* Mobile: full-bleed stacked screenshots */
-.cs-deliverables__item--hero .placeholder,
-.cs-deliverables__item--hero img {
-  aspect-ratio: 3 / 4;
-  min-height: 22rem;
-  object-fit: cover;
-}
-
-.cs-deliverables__item--b .placeholder,
-.cs-deliverables__item--b img {
-  aspect-ratio: 3 / 4;
-  min-height: 18rem;
-  object-fit: cover;
-}
-
-.cs-deliverables__item--c .placeholder,
-.cs-deliverables__item--c img {
-  aspect-ratio: 4 / 5;
-  min-height: 16rem;
-  object-fit: cover;
-}
-
-.cs-deliverables__item--d .placeholder,
-.cs-deliverables__item--d img {
-  aspect-ratio: 16 / 9;
-  min-height: 14rem;
-  object-fit: cover;
-}
-
 @media (min-width: 900px) {
   .cs-deliverables {
-    /* ~46% / 54% with tight editorial gap */
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.05fr);
-    gap: 1.5rem; /* 24px */
-    align-items: stretch;
+    gap: clamp(2rem, 3vw, 3rem);
   }
 
-  .cs-deliverables__right {
-    gap: 1.5rem;
-  }
-
-  .cs-deliverables__pair {
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-    gap: 1.5rem;
-    align-items: end;
-  }
-
-  .cs-deliverables__item--hero {
-    height: 100%;
-    display: grid;
-    grid-template-rows: 1fr auto;
-  }
-
-  .cs-deliverables__item--hero .placeholder,
-  .cs-deliverables__item--hero img {
-    aspect-ratio: auto;
-    min-height: 36rem;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .cs-deliverables__item--b .placeholder,
-  .cs-deliverables__item--b img {
-    aspect-ratio: 3 / 4.2;
-    min-height: 26rem;
-  }
-
-  .cs-deliverables__item--c .placeholder,
-  .cs-deliverables__item--c img {
-    aspect-ratio: 4 / 5;
-    min-height: 24rem;
-  }
-
+  /* Dominant full-bleed document spreads */
+  .cs-deliverables__item--a,
   .cs-deliverables__item--d {
     width: 100%;
+    max-width: 100%;
   }
 
-  .cs-deliverables__item--d .placeholder,
-  .cs-deliverables__item--d img {
-    aspect-ratio: 16 / 9;
-    min-height: 18rem;
+  /* Smaller mid pair — narrower band, right-weighted asymmetry */
+  .cs-deliverables__pair {
+    width: min(100%, 68%);
+    justify-self: end;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  /* Second dominant spread slightly inset for editorial rhythm */
+  .cs-deliverables__item--d {
+    width: min(100%, 92%);
+    justify-self: start;
   }
 }
 
