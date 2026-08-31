@@ -1100,7 +1100,7 @@ button {
   position: absolute;
   z-index: 3;
   font-family: var(--font-hand);
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
   color: var(--color-primary);
   transform: rotate(-6deg);
   pointer-events: none;
@@ -3279,7 +3279,7 @@ button {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
   line-height: 1.18;
   max-width: 16ch;
   color: var(--color-heading);
