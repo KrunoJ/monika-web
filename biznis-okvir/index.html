@@ -34,11 +34,13 @@
           />
         </a>
         <nav class="nav-desktop" aria-label="Glavna navigacija">
-          <a href="../index.html">Početna</a>
-          <a href="./" aria-current="page">Biznis okvir</a>
-          <a href="../prodajni-lijevak/">Newsletter sustav</a>
-          <a href="../o-meni/">O meni</a>
-          <a class="btn btn--primary" href="#upitnik">Krenimo od tvoje situacije</a>
+          <div class="nav-desktop__links">
+            <a class="nav-link" href="../index.html">Početna</a>
+            <a class="nav-link" href="./">Biznis okvir</a>
+            <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a class="nav-link" href="../o-meni/">O meni</a>
+          </div>
+          <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -52,11 +54,11 @@
         </button>
       </div>
       <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
-        <a href="../index.html">Početna</a>
-        <a href="./" aria-current="page">Biznis okvir</a>
-        <a href="../prodajni-lijevak/">Newsletter sustav</a>
-        <a href="../o-meni/">O meni</a>
-        <a class="btn btn--primary" href="#upitnik">Krenimo od tvoje situacije</a>
+        <a class="nav-link" href="../index.html">Početna</a>
+        <a class="nav-link" href="./">Biznis okvir</a>
+        <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+        <a class="nav-link" href="../o-meni/">O meni</a>
+        <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
@@ -229,37 +231,147 @@
             </p>
           </div>
 
-          <div class="bo-impl-collage reveal" aria-hidden="true">
-            <figure class="bo-impl-collage__item bo-impl-collage__item--a">
-              <div class="bo-impl-collage__frame">
-                <span>LANDING</span>
-              </div>
-            </figure>
-            <figure class="bo-impl-collage__item bo-impl-collage__item--b">
-              <div class="bo-impl-collage__frame">
-                <span>WEB</span>
-              </div>
-            </figure>
-            <figure class="bo-impl-collage__item bo-impl-collage__item--c">
-              <div class="bo-impl-collage__frame">
-                <span>NEWSLETTER</span>
-              </div>
-            </figure>
-            <figure class="bo-impl-collage__item bo-impl-collage__item--d">
-              <div class="bo-impl-collage__frame">
-                <span>LANDING</span>
-              </div>
-            </figure>
-            <figure class="bo-impl-collage__item bo-impl-collage__item--e">
-              <div class="bo-impl-collage__frame">
-                <span>WEB</span>
-              </div>
-            </figure>
-            <figure class="bo-impl-collage__item bo-impl-collage__item--f">
-              <div class="bo-impl-collage__frame">
-                <span>NEWSLETTER</span>
-              </div>
-            </figure>
+          <div class="bo-impl-showcase reveal">
+            <!-- RED 1: WEB + EBOOK -->
+            <div class="bo-impl-row bo-impl-row--1">
+              <figure class="bo-impl-item bo-impl-item--web">
+                <figcaption class="bo-impl-caption">Web</figcaption>
+                <div
+                  class="bo-browser"
+                  data-bo-preview="web"
+                  data-bo-url=""
+                  data-bo-fallback="../assets/images/impl/web-fallback.svg"
+                >
+                  <div class="bo-browser__chrome">
+                    <span class="bo-browser__url" data-bo-url-label>Dodaj WEB_URL</span>
+                    <a
+                      class="bo-browser__ext"
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Otvori web u novom tabu"
+                      hidden
+                      >↗</a
+                    >
+                  </div>
+                  <div class="bo-browser__viewport">
+                    <iframe
+                      class="bo-browser__frame"
+                      title="Web preview"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                      hidden
+                    ></iframe>
+                    <img
+                      class="bo-browser__fallback"
+                      src="../assets/images/impl/web-fallback.svg"
+                      alt="Web preview"
+                      width="1200"
+                      height="1600"
+                    />
+                  </div>
+                </div>
+              </figure>
+
+              <figure class="bo-impl-item bo-impl-item--ebook">
+                <figcaption class="bo-impl-caption">Ebook</figcaption>
+                <div class="bo-impl-media bo-impl-media--portrait">
+                  <img
+                    src="../assets/images/impl/ebook.svg"
+                    alt="Ebook naslovnica"
+                    width="1600"
+                    height="2000"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+            </div>
+
+            <!-- RED 2: NEWSLETTER + LANDING -->
+            <div class="bo-impl-row bo-impl-row--2">
+              <figure class="bo-impl-item bo-impl-item--newsletter">
+                <figcaption class="bo-impl-caption">Newsletter predložak</figcaption>
+                <div class="bo-impl-media bo-impl-media--portrait">
+                  <img
+                    src="../assets/images/impl/newsletter.svg"
+                    alt="Newsletter predložak"
+                    width="1600"
+                    height="2000"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+
+              <figure class="bo-impl-item bo-impl-item--landing">
+                <figcaption class="bo-impl-caption">Landing stranica</figcaption>
+                <div
+                  class="bo-browser"
+                  data-bo-preview="landing"
+                  data-bo-url=""
+                  data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                >
+                  <div class="bo-browser__chrome">
+                    <span class="bo-browser__url" data-bo-url-label>Dodaj LANDING_URL</span>
+                    <a
+                      class="bo-browser__ext"
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Otvori landing stranicu u novom tabu"
+                      hidden
+                      >↗</a
+                    >
+                  </div>
+                  <div class="bo-browser__viewport">
+                    <iframe
+                      class="bo-browser__frame"
+                      title="Landing preview"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                      hidden
+                    ></iframe>
+                    <img
+                      class="bo-browser__fallback"
+                      src="../assets/images/impl/landing-fallback.svg"
+                      alt="Landing preview"
+                      width="1200"
+                      height="1600"
+                    />
+                  </div>
+                </div>
+              </figure>
+            </div>
+
+            <!-- RED 3: PLATFORM + AUTOMATION -->
+            <div class="bo-impl-row bo-impl-row--3">
+              <figure class="bo-impl-item bo-impl-item--platform">
+                <figcaption class="bo-impl-caption">Platforma / CRM</figcaption>
+                <div class="bo-impl-media bo-impl-media--portrait">
+                  <img
+                    src="../assets/images/impl/platform.svg"
+                    alt="Platforma / CRM sučelje"
+                    width="1600"
+                    height="2000"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+
+              <figure class="bo-impl-item bo-impl-item--automation">
+                <figcaption class="bo-impl-caption">Automatizacija</figcaption>
+                <div class="bo-impl-media bo-impl-media--landscape">
+                  <img
+                    src="../assets/images/impl/automation.svg"
+                    alt="Automatizacijski flow"
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+            </div>
           </div>
 
           <p class="bo-impl__note reveal">

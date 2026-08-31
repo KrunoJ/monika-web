@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2000" viewBox="0 0 1600 2000" role="img" aria-label="EBOOK">
+  <rect width="100%" height="100%" fill="#f2e6d5"/>
+  <rect x="24" y="24" width="1552" height="1952" fill="none" stroke="#a46043" stroke-opacity="0.28" stroke-width="2"/>
+  <text x="50%" y="48%" text-anchor="middle" fill="#763316" font-family="Georgia, serif" font-size="88" opacity="0.85">EBOOK</text>
+  <text x="50%" y="56%" text-anchor="middle" fill="#8491a0" font-family="system-ui,sans-serif" font-size="40">1600 × 2000</text>
+</svg>

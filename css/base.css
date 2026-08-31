@@ -147,7 +147,40 @@ button {
 }
 
 .section {
-  padding-block: var(--section-y);
+  padding-block: var(--section-space);
+}
+
+.section--compact {
+  padding-block: var(--section-space-compact);
+}
+
+.section--large {
+  padding-block: var(--section-space-large);
+}
+
+/*
+  Adjacent bands each keep full padding for tinted/dark backgrounds,
+  but cancel one side so the visual gap ≈ a single --section-space.
+*/
+.section + .section,
+.section + .final-cta,
+.section + .about-cta,
+.section + .nl-final,
+.section + .result-band,
+.result-band + .section,
+.final-cta + .section,
+.about-cta + .section,
+.nl-final + .section {
+  margin-top: calc(var(--section-space) * -1);
+}
+
+.section + .section--compact,
+.section--compact + .section--compact {
+  margin-top: calc(var(--section-space-compact) * -1);
+}
+
+.section--compact + .section:not(.section--compact) {
+  margin-top: calc(var(--section-space) * -1);
 }
 
 .section--tint {
