@@ -3200,6 +3200,11 @@ button {
   }
 }
 
+.bo-hero__title {
+  max-width: 15ch;
+  text-transform: none;
+}
+
 .mh-embed {
   display: block;
   width: 100%;
