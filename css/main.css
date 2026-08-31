@@ -1163,6 +1163,15 @@ button {
   max-width: 14ch;
 }
 
+.section-label {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
 .manifesto__item .muted {
   margin: 0;
   font-size: var(--text-md);
