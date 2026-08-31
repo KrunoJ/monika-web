@@ -921,7 +921,7 @@
   padding: var(--space-5) 0 0;
   background: transparent;
   border: 0;
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
   box-shadow: none;
   border-radius: 0;
 }
@@ -967,14 +967,13 @@
 @media (min-width: 900px) {
   .service-split {
     grid-template-columns: 1fr 1fr;
-    gap: 0;
+    gap: var(--space-7);
     align-items: stretch;
   }
 
   .service-panel {
-    padding: var(--space-5) clamp(var(--space-6), 4vw, var(--space-8));
-    border-top: 1px solid var(--color-border);
-    border-right: 1px solid var(--color-border);
+    padding: var(--space-5) 0 0;
+    border: 0;
     min-height: 100%;
   }
 
@@ -1407,7 +1406,7 @@
 
 /* ========== Page hero / result / included ========== */
 .page-hero {
-  padding: var(--section-space-large) 0 0;
+  padding: var(--section-space-large) 0 var(--section-space);
   background: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
 }
@@ -2106,7 +2105,7 @@
 }
 
 .cs-hero {
-  padding: var(--section-space-large) 0 0;
+  padding: var(--section-space-large) 0 var(--section-space);
   background: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
 }
@@ -2651,7 +2650,7 @@
 /* ========== O meni — editorial about ========== */
 .about-hero {
   position: relative;
-  padding: clamp(2rem, 5vw, 3.5rem) 0 0;
+  padding: clamp(2rem, 5vw, 3.5rem) 0 var(--section-space);
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
 }
@@ -3073,7 +3072,7 @@
 
 /* ========== Newsletter sustav ========== */
 .nl-hero {
-  padding: clamp(2.5rem, 6vw, 4rem) 0 0;
+  padding: clamp(2.5rem, 6vw, 4rem) 0 var(--section-space);
   border-bottom: 1px solid var(--color-border);
 }
 
