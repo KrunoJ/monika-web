@@ -1040,7 +1040,7 @@ button {
 
 .closing-note--editorial {
   margin-top: var(--space-9);
-  max-width: 34rem;
+  max-width: 40rem;
   padding-left: var(--space-5);
   border-left: 2px solid var(--color-primary);
   background: transparent;
@@ -1075,7 +1075,7 @@ button {
   font-weight: 400;
   line-height: 1.6;
   color: var(--color-body);
-  max-width: 32rem;
+  max-width: 38rem;
 }
 
 @media (max-width: 699px) {
