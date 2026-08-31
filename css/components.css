@@ -1276,14 +1276,14 @@
   padding-left: var(--space-4);
   border-left: 3px solid var(--color-primary);
   font-family: var(--font-hand);
-  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-size: clamp(1.2rem, 2.1vw, 1.45rem);
   line-height: 1.35;
   color: var(--color-primary);
 }
 
 .testimonial__pull {
   font-family: var(--font-hand);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--color-primary);
 }
 
@@ -1417,7 +1417,7 @@
 
 .page-hero__title {
   margin-top: var(--space-4);
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: clamp(2.05rem, 4.5vw, 3.25rem);
   max-width: 16ch;
 }
 
@@ -3097,7 +3097,7 @@
 .nl-hero__title {
   margin-top: var(--space-4);
   margin-bottom: 0;
-  font-size: clamp(2.2rem, 5vw, 3.75rem);
+  font-size: clamp(2.05rem, 4.5vw, 3.35rem);
   max-width: 14ch;
 }
 
@@ -4193,7 +4193,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: var(--color-heading);
   line-height: 1.1;
 }
