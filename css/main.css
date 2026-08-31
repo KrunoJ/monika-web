@@ -5083,58 +5083,41 @@ button {
   }
 }
 
-/* Scope */
-.ek-scope {
-  margin-top: var(--space-7);
+/* Scope (compact) */
+.ek-scope--compact {
+  margin-top: 0;
   display: grid;
-  gap: var(--space-7);
-  align-items: start;
+  gap: var(--space-4);
+  max-width: 48rem;
+  padding-block: 0;
+  border: 0;
 }
 
-.ek-scope__visual {
+.ek-scope--compact .section-label {
+  margin-bottom: 0;
+}
+
+.ek-scope--compact .ek-section-title {
   margin: 0;
 }
 
-.ek-scope__visual figcaption {
-  margin-top: 0.7rem;
-  font-size: 0.9375rem;
-  color: var(--color-muted);
+.ek-scope__line {
+  margin: var(--space-2) 0 0;
+  max-width: 44rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--color-heading);
+  font-weight: 500;
 }
 
-.ek-scope__list {
-  display: grid;
-  gap: 0;
-}
-
-.ek-scope__item {
-  padding: var(--space-5) 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.ek-scope__item:first-child {
-  border-top: 1px solid var(--color-border);
-}
-
-.ek-scope__item h3 {
-  margin: 0 0 var(--space-2);
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-  max-width: 18ch;
-  line-height: 1.2;
-}
-
-.ek-scope__item p {
-  margin: 0;
+.ek-scope__note {
+  margin: var(--space-3) 0 0;
+  max-width: 40rem;
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--color-muted);
-  max-width: 34rem;
-}
-
-@media (min-width: 900px) {
-  .ek-scope {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    column-gap: clamp(2rem, 5vw, 4rem);
-  }
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 /* Price */
@@ -5262,14 +5245,14 @@ button {
 /* Process */
 .ek-process {
   list-style: none;
-  margin: var(--space-7) 0 0;
+  margin: var(--space-6) 0 0;
   padding: 0;
 }
 
 .ek-process__row {
   display: grid;
-  gap: var(--space-3);
-  padding: var(--space-5) 0;
+  gap: var(--space-2);
+  padding: 1.75rem 0; /* ~28px */
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -5286,7 +5269,7 @@ button {
 
 .ek-process__content h3 {
   margin: 0 0 var(--space-2);
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
 }
 
 .ek-process__content p {
@@ -5297,31 +5280,20 @@ button {
   color: var(--color-muted);
 }
 
-.ek-process__note {
-  margin-top: var(--space-7);
+.ek-process__footnote {
+  margin: var(--space-4) 0 0;
   max-width: 40rem;
-  display: grid;
-  gap: var(--space-3);
-}
-
-.ek-process__note h3 {
-  margin: 0;
-  font-size: clamp(1.25rem, 2vw, 1.55rem);
-}
-
-.ek-process__note p {
-  margin: 0;
-  font-size: var(--text-base);
-  line-height: var(--leading-body);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.5;
   color: var(--color-muted);
 }
 
 @media (min-width: 900px) {
   .ek-process__row {
     grid-template-columns: 3.5rem minmax(0, 1fr);
-    column-gap: var(--space-6);
+    column-gap: var(--space-5);
     align-items: start;
-    padding-block: var(--space-6);
+    padding-block: 2rem; /* ~32px */
   }
 }
 
@@ -5329,7 +5301,7 @@ button {
 .ek-folio {
   margin-top: var(--space-7);
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .ek-folio__item {
@@ -5368,40 +5340,50 @@ button {
 
 .ek-folio__item--tall img {
   aspect-ratio: 3 / 4;
+  min-height: 28rem;
 }
 
 .ek-folio__item--mid img {
   aspect-ratio: 3 / 4;
+  min-height: 24rem;
 }
 
 @media (min-width: 900px) {
   .ek-folio {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 1.5rem 1.35rem;
+    gap: 1.75rem 1.5rem;
     align-items: start;
   }
 
   .ek-folio__item--tall {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
   }
 
   .ek-folio__item--mid {
-    grid-column: 6 / span 4;
-    margin-top: 3rem;
+    grid-column: 7 / span 5;
+    margin-top: 2.5rem;
   }
 
   .ek-folio__item--wide {
-    grid-column: 10 / span 3;
-    margin-top: 1rem;
+    grid-column: 1 / span 7;
   }
 
   .ek-folio__item--short {
-    grid-column: 1 / span 4;
+    grid-column: 8 / span 4;
+    margin-top: 1.5rem;
   }
 
   .ek-folio__item--detail {
-    grid-column: 5 / span 3;
-    margin-top: -2rem;
+    grid-column: 5 / span 4;
+    margin-top: -1rem;
+  }
+
+  .ek-folio__item--tall img {
+    min-height: 34rem;
+  }
+
+  .ek-folio__item--mid img {
+    min-height: 28rem;
   }
 }
 
