@@ -3511,6 +3511,7 @@ button {
 
   .about-principle__title {
     padding-right: var(--space-5);
+    font-size: 1.625rem; /* 26px desktop */
   }
 }
 
@@ -3526,7 +3527,7 @@ button {
   padding: var(--space-5) 0;
   border-bottom: 1px solid var(--color-border);
   display: grid;
-  gap: var(--space-3);
+  gap: 1.375rem; /* ~22px between pull and body */
   align-content: start;
   background: none;
   box-shadow: none;
@@ -3542,8 +3543,8 @@ button {
   text-transform: lowercase;
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  line-height: 1.28;
+  font-size: 1.5rem; /* 24px mobile */
+  line-height: 1.25;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
   max-width: 34rem;
@@ -3582,6 +3583,11 @@ button {
 
   .about-voice {
     padding: var(--space-5) 0;
+  }
+
+  .about-voice__pull {
+    font-size: 1.75rem; /* 28px desktop */
+    line-height: 1.2;
   }
 
   .about-voice:nth-child(2) {
