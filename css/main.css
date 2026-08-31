@@ -5137,61 +5137,6 @@ button {
   }
 }
 
-/* Gušt feature */
-.ek-feature {
-  display: grid;
-  gap: var(--space-7);
-}
-
-.ek-feature__lede {
-  margin: var(--space-5) 0 0;
-  max-width: 40rem;
-  font-size: var(--text-base);
-  line-height: var(--leading-body);
-  color: var(--color-body);
-}
-
-.ek-feature__proof {
-  margin: var(--space-5) 0 0;
-  max-width: 40rem;
-  font-size: var(--text-sm);
-  line-height: 1.55;
-  color: var(--color-muted);
-}
-
-.ek-feature__proof-label {
-  display: block;
-  margin-bottom: var(--space-2);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-}
-
-.ek-feature__gallery {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.ek-feature__shot {
-  margin: 0;
-}
-
-.ek-feature__shot figcaption {
-  margin-top: 0.7rem;
-  font-size: 0.9375rem;
-  color: var(--color-muted);
-}
-
-@media (min-width: 900px) {
-  .ek-feature__gallery {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
-    gap: 1.35rem;
-    align-items: end;
-  }
-}
-
 /* Price */
 .ek-price {
   margin-top: var(--space-7);
