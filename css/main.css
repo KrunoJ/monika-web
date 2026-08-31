@@ -2488,7 +2488,7 @@ button {
 }
 
 .cs-hero {
-  padding: clamp(3.25rem, 6.5vw, 4.75rem) 0 clamp(3rem, 5.5vw, 4.25rem);
+  padding: clamp(3.75rem, 7vw, 5.25rem) 0 clamp(3.5rem, 6vw, 4.75rem);
   background: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
 }
@@ -2603,19 +2603,19 @@ button {
 
 @media (min-width: 960px) {
   .cs-hero__grid {
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.95fr);
-    column-gap: clamp(3rem, 8vw, 5.5rem);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.95fr);
+    column-gap: clamp(3rem, 8.5vw, 5.75rem);
     align-items: start;
   }
 
   .cs-hero__title {
-    max-width: 16.5ch;
-    font-size: clamp(2.6rem, 4.2vw, 3.65rem);
+    max-width: 18.5ch;
+    font-size: clamp(2.55rem, 4vw, 3.5rem);
   }
 
   .cs-hero__aside {
-    /* Align with upper half of the H1, below the left eyebrow */
-    padding-top: clamp(2.75rem, 4.5vw, 3.75rem);
+    /* Sit with the upper half of the H1, not the eyebrow */
+    padding-top: clamp(2.15rem, 3.4vw, 2.85rem);
   }
 
   .cs-hero__lede {
@@ -2750,16 +2750,24 @@ button {
 
 .cs-outcome {
   display: grid;
-  gap: var(--space-7);
+  gap: clamp(3rem, 4.5vw, 4rem); /* ~48–64px to showcase */
   align-items: start;
-  margin-top: var(--space-5);
+  margin-top: 0;
+  width: 100%;
 }
 
 .cs-proof {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-5);
   width: 100%;
   max-width: none;
+  align-items: start;
+}
+
+.cs-proof__stat {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
 }
 
 .cs-proof__number {
@@ -2767,59 +2775,74 @@ button {
   font-family: var(--font-display);
   text-transform: none;
   font-weight: 700;
-  font-size: clamp(6.5rem, 22vw, 12.5rem);
-  line-height: 0.82;
+  font-size: clamp(5.5rem, 9vw, 7.5rem); /* ~88–120px */
+  line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--color-heading);
+}
+
+.cs-proof__stat .cs-label {
+  margin: 0;
 }
 
 .cs-proof__text {
   display: grid;
   gap: var(--space-3);
-  max-width: 28rem;
+  max-width: 34rem;
+  align-content: start;
 }
 
 .cs-proof__label {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
-  line-height: 1.15;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem); /* 20–24px */
+  line-height: 1.2;
   color: var(--color-heading);
 }
 
 .cs-proof__copy {
   margin: 0;
-  font-size: var(--text-base);
+  font-size: var(--text-base); /* ~17px */
   line-height: var(--leading-body);
   color: var(--color-muted);
-  max-width: 32rem;
+  max-width: 36rem;
 }
 
 @media (min-width: 800px) {
   .cs-proof {
-    grid-template-columns: minmax(10rem, 0.42fr) minmax(0, 0.58fr);
-    column-gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: end;
-  }
-
-  .cs-proof__number {
-    justify-self: start;
+    grid-template-columns: minmax(10rem, 0.38fr) minmax(0, 0.62fr);
+    column-gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: center;
   }
 
   .cs-proof__text {
-    max-width: 28rem;
-    padding-bottom: 0.8rem;
+    max-width: 32rem;
+    padding-top: 0.35rem;
   }
 }
 
 .cs-deliverables {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: var(--space-5);
   width: 100%;
   margin-top: 0;
   align-items: start;
+}
+
+.cs-deliverables__right {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.cs-deliverables__pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  align-items: end;
+  min-width: 0;
 }
 
 .cs-deliverables__item {
@@ -2827,6 +2850,7 @@ button {
   background: none;
   box-shadow: none;
   width: 100%;
+  min-width: 0;
 }
 
 .cs-deliverables__item .placeholder,
@@ -2835,6 +2859,7 @@ button {
   width: 100%;
   min-height: 0;
   object-fit: cover;
+  object-position: top center;
   border: 1px solid var(--color-border);
   border-radius: 0;
   box-shadow: none;
@@ -2842,112 +2867,97 @@ button {
 }
 
 .cs-deliverables__item figcaption {
-  margin-top: var(--space-3);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+  margin-top: 0.7rem; /* ~11px */
+  font-family: var(--font-body);
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-body);
 }
 
-/* Mobile: stacked, alternating widths, large enough to read */
+/* Mobile: full-bleed stacked screenshots */
 .cs-deliverables__item--hero .placeholder,
 .cs-deliverables__item--hero img {
   aspect-ratio: 3 / 4;
-  min-height: 18rem;
-}
-
-.cs-deliverables__item--b {
-  width: 82%;
-  justify-self: end;
+  min-height: 22rem;
+  object-fit: cover;
 }
 
 .cs-deliverables__item--b .placeholder,
 .cs-deliverables__item--b img {
-  aspect-ratio: 3 / 5;
-  min-height: 16rem;
-}
-
-.cs-deliverables__item--c {
-  width: 90%;
+  aspect-ratio: 3 / 4;
+  min-height: 18rem;
+  object-fit: cover;
 }
 
 .cs-deliverables__item--c .placeholder,
 .cs-deliverables__item--c img {
-  aspect-ratio: 16 / 10;
-  min-height: 12rem;
+  aspect-ratio: 4 / 5;
+  min-height: 16rem;
+  object-fit: cover;
 }
 
 .cs-deliverables__item--d .placeholder,
 .cs-deliverables__item--d img {
   aspect-ratio: 16 / 9;
   min-height: 14rem;
+  object-fit: cover;
 }
 
 @media (min-width: 900px) {
-  .cs-outcome {
-    gap: var(--space-8);
+  .cs-deliverables {
+    /* ~46% / 54% with tight editorial gap */
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.05fr);
+    gap: 1.5rem; /* 24px */
+    align-items: stretch;
   }
 
-  .cs-deliverables {
-    grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.7fr) minmax(0, 0.95fr);
-    grid-template-rows: auto auto auto;
-    gap: var(--space-6) var(--space-5);
-    align-items: start;
+  .cs-deliverables__right {
+    gap: 1.5rem;
+  }
+
+  .cs-deliverables__pair {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: 1.5rem;
+    align-items: end;
   }
 
   .cs-deliverables__item--hero {
-    grid-column: 1;
-    grid-row: 1 / span 3;
-    width: 100%;
-    padding-top: 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
   }
 
   .cs-deliverables__item--hero .placeholder,
   .cs-deliverables__item--hero img {
-    aspect-ratio: 3 / 4.2;
-    min-height: 34rem;
+    aspect-ratio: auto;
+    min-height: 36rem;
     height: 100%;
-  }
-
-  .cs-deliverables__item--b {
-    grid-column: 2;
-    grid-row: 1;
-    width: 100%;
-    justify-self: stretch;
-    margin-top: var(--space-7);
+    object-fit: cover;
   }
 
   .cs-deliverables__item--b .placeholder,
   .cs-deliverables__item--b img {
-    aspect-ratio: 3 / 5;
-    min-height: 18rem;
-  }
-
-  .cs-deliverables__item--c {
-    grid-column: 3;
-    grid-row: 1 / span 2;
-    width: 100%;
-    margin-top: var(--space-4);
+    aspect-ratio: 3 / 4.2;
+    min-height: 26rem;
   }
 
   .cs-deliverables__item--c .placeholder,
   .cs-deliverables__item--c img {
-    aspect-ratio: 5 / 6;
-    min-height: 20rem;
+    aspect-ratio: 4 / 5;
+    min-height: 24rem;
   }
 
   .cs-deliverables__item--d {
-    grid-column: 2 / span 2;
-    grid-row: 3;
-    width: 92%;
-    justify-self: end;
-    margin-top: calc(var(--space-5) * -1);
-    max-width: none;
-    padding-right: 0;
+    width: 100%;
   }
 
   .cs-deliverables__item--d .placeholder,
   .cs-deliverables__item--d img {
     aspect-ratio: 16 / 9;
-    min-height: 14rem;
+    min-height: 18rem;
   }
 }
 
