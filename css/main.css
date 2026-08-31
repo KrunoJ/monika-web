@@ -1822,11 +1822,137 @@ button {
 .case-preview {
   display: grid;
   gap: var(--space-6);
-  max-width: 46rem;
+  max-width: none;
 }
 
-.case-preview__visual {
+.case-preview > h2 {
   margin: 0;
+  max-width: 18ch;
+}
+
+.case-preview__intro {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.case-preview__lead {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.case-preview__lead .section-label {
+  margin: 0;
+}
+
+.case-preview__headline {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  line-height: 1.15;
+}
+
+.case-preview__meta {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.case-preview__copy {
+  margin: 0;
+  max-width: 36rem;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.case-preview__proofs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.case-preview__proof {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.case-preview__proof:last-child {
+  border-bottom: 0;
+}
+
+.case-preview__proof-num {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.case-preview__proof-value {
+  margin: 0;
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-weight: 700;
+  font-size: clamp(2rem, 3.2vw, 2.625rem); /* 32–42px */
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+  max-width: 14ch;
+}
+
+.case-preview__proof-desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.1vw, 1.0625rem); /* 16–17px */
+  line-height: 1.45;
+  color: var(--color-body);
+  max-width: 18ch;
+}
+
+.case-preview__link {
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .case-preview {
+    gap: var(--space-6);
+  }
+
+  .case-preview__intro {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    column-gap: var(--space-7);
+    align-items: start;
+    padding-top: var(--space-5);
+  }
+
+  .case-preview__proofs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .case-preview__proof {
+    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+    border-bottom: 0;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .case-preview__proof:last-child {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .case-preview__proof:not(:first-child) {
+    padding-left: var(--space-5);
+  }
 }
 
 /* ========== Biznis okvir implementation showcase ========== */
