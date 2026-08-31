@@ -75,9 +75,9 @@
   /* ---------- Biznis okvir: implementation previews ----------
      Swap these constants when real URLs / Canva assets are ready. */
   const BO_IMPL = {
-    WEB_URL: "",
+    WEB_URL: "https://www.poduzetnistvospovjerenjem.hr/",
     WEB_FALLBACK_IMAGE: "../assets/images/impl/web-fallback.svg",
-    LANDING_URL: "",
+    LANDING_URL: "https://ebook-30plusgresaka.subscribepage.io/",
     LANDING_FALLBACK_IMAGE: "../assets/images/impl/landing-fallback.svg",
   };
 
