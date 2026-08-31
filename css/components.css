@@ -1653,6 +1653,11 @@
     grid-template-columns: 1.15fr 1fr;
   }
 
+  .bo-impl-row--4 {
+    grid-template-columns: minmax(0, 0.72fr);
+    justify-content: start;
+  }
+
   .bo-browser__viewport {
     height: clamp(20rem, 48vw, 28rem);
   }
@@ -1669,6 +1674,11 @@
 
   .bo-impl-row--3 {
     grid-template-columns: 1.55fr 1fr; /* ~61% / 39% */
+  }
+
+  .bo-impl-row--4 {
+    grid-template-columns: minmax(0, 0.48fr);
+    justify-content: start;
   }
 
   .bo-impl-item--web .bo-browser__viewport,
@@ -1688,13 +1698,14 @@
     display: contents;
   }
 
-  /* Mobile order: WEB, EBOOK, NEWSLETTER, LANDING, PLATFORM, AUTOMATION */
+  /* Mobile order: WEB, EBOOK, NEWSLETTER, LANDING, PLATFORM, AUTOMATION, KATALOG */
   .bo-impl-item--web { order: 1; }
   .bo-impl-item--ebook { order: 2; }
   .bo-impl-item--newsletter { order: 3; }
   .bo-impl-item--landing { order: 4; }
   .bo-impl-item--platform { order: 5; }
   .bo-impl-item--automation { order: 6; }
+  .bo-impl-item--katalog { order: 7; }
 
   .bo-browser__viewport {
     height: 20rem;
