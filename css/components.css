@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 2.5rem;
-  padding: 0.55rem 1.1rem;
+  min-height: 2.4rem;
+  padding: 0.45rem 0.95rem;
   border-radius: var(--radius-sm);
   font-size: var(--text-ui);
   font-weight: 600;
@@ -183,10 +183,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   flex-shrink: 0;
   min-height: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.42rem 0.85rem;
   border: 1px solid var(--color-primary);
   border-radius: 3px;
   background: rgba(164, 96, 67, 0.06);
@@ -514,11 +514,15 @@
     grid-template-columns: minmax(11rem, 0.72fr) minmax(18rem, 1.2fr) minmax(11rem, 0.72fr);
     grid-template-rows: 1fr;
     align-items: end;
-    min-height: clamp(34rem, 88svh, 48rem);
+    /* Cap below full viewport so the next section peeks under the fold */
+    height: clamp(32rem, 78svh, 40rem);
+    min-height: clamp(32rem, 78svh, 40rem);
+    max-height: calc(100svh - 5.75rem);
     padding: 0;
     gap: 0;
     /* Keep the whole composition tighter so eyes don't travel as far */
     width: min(100% - (var(--page-pad) * 2), 58rem);
+    overflow: hidden;
   }
 
   .hero__backdrop {
@@ -546,24 +550,24 @@
     justify-self: center;
     align-self: end;
     width: min(100%, 28rem);
-    max-height: none;
+    max-height: 100%;
     height: 100%;
     margin: 0;
-    padding-top: clamp(4.5rem, 11vh, 8rem);
-    overflow: visible;
+    padding-top: clamp(3rem, 7vh, 5.25rem);
+    overflow: hidden;
     box-sizing: border-box;
   }
 
   .hero__figure picture {
     width: 100%;
     height: 100%;
-    max-height: none;
+    max-height: 100%;
   }
 
   .hero__figure picture img {
     width: 100%;
     height: 100%;
-    max-height: none;
+    max-height: 100%;
     object-fit: contain;
     object-position: bottom center;
   }
@@ -624,7 +628,7 @@
 
   .hero__figure {
     width: min(100%, 30rem);
-    padding-top: clamp(5rem, 12vh, 8.5rem);
+    padding-top: clamp(3.25rem, 7.5vh, 5.5rem);
   }
 
   .hero__rail--copy {
@@ -702,7 +706,7 @@
   background: var(--note-yellow);
   box-shadow: var(--shadow-soft);
   font-family: var(--font-hand);
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.25;
   color: var(--color-ink);
   transform: rotate(-3deg);
@@ -732,7 +736,7 @@
   position: absolute;
   z-index: 3;
   font-family: var(--font-hand);
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
   color: var(--color-primary);
   transform: rotate(-6deg);
   pointer-events: none;
@@ -766,7 +770,7 @@
 .polaroid figcaption {
   margin-top: var(--space-3);
   font-family: var(--font-hand);
-  font-size: 1.15rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -872,7 +876,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: none;
-  font-size: clamp(1.5rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
   line-height: 1.25;
   letter-spacing: var(--tracking-tight);
   color: var(--color-body);
@@ -1019,7 +1023,7 @@
 
 .manifesto__item h3 {
   margin: 0;
-  font-size: clamp(1.45rem, 2.8vw, 2.05rem);
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
   line-height: 1.15;
   max-width: 14ch;
 }
@@ -1035,7 +1039,7 @@
 
 .manifesto__item .muted {
   margin: 0;
-  font-size: var(--text-md);
+  font-size: var(--text-base);
   line-height: var(--leading-body);
   max-width: 36rem;
 }
@@ -1119,7 +1123,7 @@
   font-family: var(--font-display);
   text-transform: lowercase;
   font-weight: 700;
-  font-size: clamp(1.45rem, 2.5vw, 1.95rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   line-height: 1.22;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
@@ -1211,7 +1215,7 @@
   font-family: var(--font-display);
   text-transform: lowercase;
   font-weight: 700;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
   line-height: 1.2;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
@@ -1261,7 +1265,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   line-height: var(--leading-snug);
   font-weight: 500;
 }
@@ -1276,14 +1280,14 @@
   padding-left: var(--space-4);
   border-left: 3px solid var(--color-primary);
   font-family: var(--font-hand);
-  font-size: clamp(1.2rem, 2.1vw, 1.45rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   line-height: 1.35;
   color: var(--color-primary);
 }
 
 .testimonial__pull {
   font-family: var(--font-hand);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   color: var(--color-primary);
 }
 
@@ -1727,7 +1731,7 @@
 .included-meta__price {
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
   color: var(--color-heading);
 }
 
@@ -1769,7 +1773,7 @@
 .investment__price {
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   color: var(--color-primary);
 }
 
@@ -1792,7 +1796,7 @@
 .model__price {
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: var(--text-xl);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
   color: var(--color-primary);
 }
 
@@ -1907,8 +1911,8 @@
   justify-content: space-between;
   gap: var(--space-4);
   align-items: center;
-  padding: 1.15rem 0;
-  font-size: var(--text-base);
+  padding: 0.95rem 0;
+  font-size: var(--text-ui);
   font-weight: 600;
   color: var(--color-body);
   cursor: pointer;
@@ -1933,7 +1937,7 @@
 .faq summary::after {
   content: "+";
   flex-shrink: 0;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--color-primary);
   line-height: 1;
@@ -2330,7 +2334,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-size: clamp(1.3rem, 2.3vw, 1.75rem);
   line-height: 1.35;
   color: var(--color-heading);
   font-weight: 700;
@@ -2392,7 +2396,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
   line-height: 1.15;
   color: var(--color-heading);
 }
@@ -2611,7 +2615,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
   line-height: 1.35;
   color: var(--color-heading);
   font-weight: 700;
@@ -2911,7 +2915,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
   line-height: 1.18;
   max-width: 16ch;
   color: var(--color-heading);
@@ -2979,7 +2983,7 @@
   text-transform: lowercase;
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   line-height: 1.28;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
@@ -3410,7 +3414,7 @@
 .mh-card-title {
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
   font-weight: 700;
   color: var(--mh-brown);
   margin: 0 0 0.35rem;
@@ -3419,7 +3423,7 @@
 
 .mh-card h3.mh-card-title {
   color: var(--mh-brown);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
 }
 
 .mh-card-subtitle {
@@ -3633,7 +3637,7 @@
 
 .nl-model__title {
   margin: 0;
-  font-size: clamp(1.4rem, 2.3vw, 1.85rem);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
   max-width: 18ch;
   line-height: 1.15;
 }
@@ -3642,13 +3646,13 @@
   margin: 0.15rem 0 0.25rem;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
   color: var(--color-heading);
   line-height: 1.1;
 }
 
 .nl-model__price--scope {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   letter-spacing: 0.01em;
 }
 
@@ -3741,7 +3745,7 @@
 
 .nl-practice__title {
   margin: 0 0 var(--space-4);
-  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-size: clamp(1.55rem, 2.6vw, 2.1rem);
   max-width: 14ch;
 }
 
@@ -3755,7 +3759,7 @@
   margin: 0 0 var(--space-4);
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
   color: var(--color-heading);
   max-width: 28rem;
   line-height: 1.3;
@@ -4027,7 +4031,7 @@
 
 .nl-service__title {
   margin: 0;
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   line-height: 1.15;
   max-width: 18ch;
 }
@@ -4036,7 +4040,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
   color: var(--color-heading);
   line-height: 1.2;
 }
@@ -4184,7 +4188,7 @@
 
 .lp-option__title {
   margin: 0;
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.1vw, 1.6rem);
   max-width: 16ch;
   line-height: 1.18;
 }
@@ -4193,7 +4197,7 @@
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   color: var(--color-heading);
   line-height: 1.1;
 }
