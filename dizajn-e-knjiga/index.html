@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dizajn e-knjiga i digitalnih materijala - Monika Jagić</title>
+    <meta
+      name="description"
+      content="Dizajn e-knjiga, workbookova, priručnika i kataloga koji prenose duh brenda, jasno vode kroz sadržaj i pomažu predstaviti ili prodati ono što nudiš."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Preskoči na sadržaj</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="../index.html" aria-label="Monika Jagić početna">
+          <img
+            class="logo__mark"
+            src="../assets/images/logo-monika.webp"
+            alt=""
+            width="195"
+            height="180"
+          />
+        </a>
+        <nav class="nav-desktop" aria-label="Glavna navigacija">
+          <div class="nav-desktop__links">
+            <a class="nav-link" href="../index.html">Početna</a>
+            <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
+            <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a class="nav-link" href="../o-meni/">O meni</a>
+          </div>
+          <a
+            class="nav-cta"
+            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Krenimo od tvoje situacije</a
+          >
+        </nav>
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Otvori izbornik"
+        >
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav
+        id="mobile-nav"
+        class="nav-mobile"
+        data-nav-mobile
+        hidden
+        aria-label="Mobilna navigacija"
+      >
+        <a class="nav-link" href="../index.html">Početna</a>
+        <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
+        <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+        <a class="nav-link" href="../o-meni/">O meni</a>
+        <a
+          class="nav-cta"
+          href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+          rel="noopener noreferrer"
+          target="_blank"
+          >Krenimo od tvoje situacije</a
+        >
+      </nav>
+    </header>
+
+    <main id="main">
+      <!--
+        UPITNIK URL PLACEHOLDER
+        Zamijeni oba CTA href-a (#upitnik-dizajn) stvarnim URL-om upitnika
+        za uslugu dizajna e-knjiga kada bude dostupan.
+      -->
+
+      <!-- 01 HERO -->
+      <section class="ek-hero" aria-labelledby="ek-hero-title">
+        <div class="container">
+          <div class="ek-hero__grid reveal">
+            <div class="ek-hero__copy">
+              <p class="section-label">
+                // e-knjige · workbookovi · priručnici · katalozi
+              </p>
+              <h1 id="ek-hero-title" class="ek-hero__title">
+                dizajn je tihi prodavač brenda.
+              </h1>
+              <p class="ek-hero__lede">
+                Dobar digitalni materijal ne treba samo lijepo izgledati. Treba
+                prenijeti duh brenda, jasno voditi kroz sadržaj i pomoći ti da ono
+                što nudiš lakše predstaviš, koristiš ili prodaš.
+              </p>
+              <p class="ek-hero__price">
+                Naslovnica 40 € · prijelom i dizajn 3,50-7 € / str.
+              </p>
+              <div class="ek-hero__actions">
+                <a class="btn btn--primary" href="#upitnik-dizajn"
+                  >Ispuni upitnik za dizajn →</a
+                >
+                <p class="ek-hero__meta">
+                  Na temelju odgovora procjenjujem opseg projekta i šaljem ponudu.
+                </p>
+              </div>
+            </div>
+
+            <div class="ek-hero__showcase" aria-label="Primjeri radova">
+              <figure class="ek-hero__shot ek-hero__shot--cover">
+                <picture>
+                  <source
+                    srcset="../assets/images/impl/ebook.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/impl/ebook.png"
+                    alt="Naslovnica e-knjige"
+                    width="1600"
+                    height="2000"
+                    loading="eager"
+                  />
+                </picture>
+                <figcaption>Naslovnica</figcaption>
+              </figure>
+              <figure class="ek-hero__shot ek-hero__shot--spread">
+                <div
+                  class="ek-ph"
+                  role="img"
+                  aria-label="Placeholder: unutarnji spread"
+                >
+                  [UNUTARNJI SPREAD]
+                </div>
+                <figcaption>Unutarnji spread</figcaption>
+              </figure>
+              <figure class="ek-hero__shot ek-hero__shot--katalog">
+                <picture>
+                  <source
+                    srcset="../assets/images/impl/katalog.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/impl/katalog.jpg"
+                    alt="Katalog proizvoda"
+                    width="1600"
+                    height="2000"
+                    loading="eager"
+                  />
+                </picture>
+                <figcaption>Katalog</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 ŠTO DIZAJN TREBA NAPRAVITI -->
+      <section class="section section--border" aria-labelledby="ek-jobs-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// što dizajn treba napraviti</p>
+            <h2 id="ek-jobs-title" class="ek-section-title">
+              nije dovoljno da je samo lijepo.
+            </h2>
+          </div>
+
+          <ol class="ek-jobs reveal">
+            <li class="ek-jobs__row">
+              <span class="ek-jobs__num" aria-hidden="true">01</span>
+              <h3 class="ek-jobs__title">prenijeti duh brenda</h3>
+              <p class="ek-jobs__copy">
+                Da materijal izgleda kao nastavak tvog poslovanja, a ne kao
+                nasumično odabran Canva template.
+              </p>
+            </li>
+            <li class="ek-jobs__row">
+              <span class="ek-jobs__num" aria-hidden="true">02</span>
+              <h3 class="ek-jobs__title">jasno prenijeti informacije</h3>
+              <p class="ek-jobs__copy">
+                Da čitatelj razumije što je važno, može pratiti sadržaj i
+                jednostavno pronaći ono što mu treba.
+              </p>
+            </li>
+            <li class="ek-jobs__row">
+              <span class="ek-jobs__num" aria-hidden="true">03</span>
+              <h3 class="ek-jobs__title">privući i zadržati pažnju</h3>
+              <p class="ek-jobs__copy">
+                Da vizualna hijerarhija, fotografije i grafički elementi
+                podržavaju sadržaj umjesto da se s njim natječu.
+              </p>
+            </li>
+            <li class="ek-jobs__row">
+              <span class="ek-jobs__num" aria-hidden="true">04</span>
+              <h3 class="ek-jobs__title">
+                pomoći ti predstaviti i prodati ono što nudiš
+              </h3>
+              <p class="ek-jobs__copy">
+                Bilo da prodaješ sam dokument, koristiš ga u radu s klijentima ili
+                katalog šalješ potencijalnom kupcu.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 03 KAKO SE KORISTE -->
+      <section class="section section--tint" aria-labelledby="ek-uses-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// kako ih možeš koristiti</p>
+            <h2 id="ek-uses-title" class="ek-section-title">
+              ne mora svaki PDF raditi isti posao.
+            </h2>
+          </div>
+
+          <div class="ek-uses reveal">
+            <article class="ek-uses__row">
+              <h3 class="ek-uses__label">Prodaj ga</h3>
+              <p class="ek-uses__copy">
+                E-knjiga ili priručnik kao samostalan digitalni proizvod.
+              </p>
+            </article>
+            <article class="ek-uses__row ek-uses__row--shift">
+              <h3 class="ek-uses__label">Koristi ga s klijentima</h3>
+              <p class="ek-uses__copy">
+                Workbook, vježbe ili radni materijal kao dio programa, edukacije
+                ili individualnog rada.
+              </p>
+            </article>
+            <article class="ek-uses__row">
+              <h3 class="ek-uses__label">Dodaj ga svojoj ponudi</h3>
+              <p class="ek-uses__copy">
+                Bonus, poklon uz pretplatu, dodatni materijal ili resurs koji
+                klijent dobiva nakon kupnje.
+              </p>
+            </article>
+            <article class="ek-uses__row ek-uses__row--shift">
+              <h3 class="ek-uses__label">Pošalji ga kupcu</h3>
+              <p class="ek-uses__copy">
+                Katalog proizvoda ili usluga koji kupcu i suradniku olakšava
+                pregled ponude i odluku.
+              </p>
+            </article>
+            <article class="ek-uses__row">
+              <h3 class="ek-uses__label">Gradi listu</h3>
+              <p class="ek-uses__copy">
+                Besplatan vodič ili e-knjiga kao razlog za prijavu na newsletter.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 BRAND FIT -->
+      <section class="section section--border" aria-labelledby="ek-brand-title">
+        <div class="container">
+          <div class="ek-brand reveal">
+            <div class="ek-brand__copy">
+              <h2 id="ek-brand-title" class="ek-section-title ek-section-title--wide">
+                svaki brend ima svoj duh. takav treba biti i njegov dizajn.
+              </h2>
+              <p>
+                Ne radim e-knjige po jednom predlošku. Vizualni smjer gradimo
+                prema tvojem brendu, sadržaju, području kojim se baviš i ljudima
+                kojima je materijal namijenjen.
+              </p>
+            </div>
+            <div class="ek-brand__samples" aria-label="Različiti vizualni smjerovi">
+              <figure class="ek-brand__sample">
+                <picture>
+                  <source
+                    srcset="../assets/images/impl/ebook.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/impl/ebook.png"
+                    alt="Primjer e-knjige"
+                    width="800"
+                    height="1000"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+              <figure class="ek-brand__sample">
+                <picture>
+                  <source
+                    srcset="../assets/images/impl/katalog.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/impl/katalog.jpg"
+                    alt="Primjer kataloga"
+                    width="800"
+                    height="1000"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+              <figure class="ek-brand__sample">
+                <div
+                  class="ek-ph ek-ph--portrait"
+                  role="img"
+                  aria-label="Placeholder: treći projekt"
+                >
+                  [PROJEKT 03]
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 ŠTO MOŽE UĆI U DIZAJN -->
+      <section class="section" aria-labelledby="ek-scope-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// ovisno o sadržaju</p>
+            <h2 id="ek-scope-title" class="ek-section-title">
+              neke stranice traže malo više od naslova i odlomka.
+            </h2>
+          </div>
+
+          <div class="ek-scope reveal">
+            <figure class="ek-scope__visual">
+              <div
+                class="ek-ph ek-ph--spread"
+                role="img"
+                aria-label="Placeholder: unutarnja stranica / spread"
+              >
+                [UNUTARNJA STRANICA / SPREAD]
+              </div>
+              <figcaption>Primjer unutarnje stranice</figcaption>
+            </figure>
+
+            <div class="ek-scope__list">
+              <article class="ek-scope__item">
+                <h3>Naslovnica i vizualni smjer</h3>
+                <p>
+                  Od minimalističkog rješenja do fotografije, ilustracije ili
+                  izraženijih grafičkih elemenata.
+                </p>
+              </article>
+              <article class="ek-scope__item">
+                <h3>Prijelom i hijerarhija sadržaja</h3>
+                <p>
+                  Naslovi, podnaslovi, tekst, naglasci, citati i raspored sadržaja
+                  kroz dokument.
+                </p>
+              </article>
+              <article class="ek-scope__item">
+                <h3>Tablice, infografike i drugi grafički prikazi</h3>
+                <p>
+                  Za sadržaj koji je pregledniji kao checklista, usporedba,
+                  vremenska crta, tablica ili vizualni prikaz.
+                </p>
+              </article>
+              <article class="ek-scope__item">
+                <h3>Fotografije i ilustracije</h3>
+                <p>
+                  Vlastite fotografije ili vizuali iz Canve / stock baza, ovisno
+                  o dogovorenom smjeru.
+                </p>
+              </article>
+              <article class="ek-scope__item">
+                <h3>Klikabilni elementi</h3>
+                <p>
+                  Tablica sadržaja, poveznice unutar PDF-a te linkovi na web,
+                  newsletter, kontakt, društvene mreže ili druge resurse.
+                </p>
+              </article>
+              <article class="ek-scope__item">
+                <h3>Završne stranice i CTA</h3>
+                <p>
+                  O meni, predstavljanje usluga, kontakt, prijava na newsletter,
+                  konzultacije ili drugi smisleni sljedeći korak.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 MINI PROJECT – GUŠT -->
+      <section class="section section--tint section--border" aria-labelledby="ek-gust-title">
+        <div class="container">
+          <div class="ek-feature reveal">
+            <div class="ek-feature__intro">
+              <p class="section-label">
+                // katalog proizvoda · gušt beauty boutique
+              </p>
+              <h2 id="ek-gust-title" class="ek-section-title ek-section-title--wide">
+                24 stranice koje pričaju istu priču kao proizvodi.
+              </h2>
+              <p class="ek-feature__lede">
+                Vizualni smjer kataloga proizašao je iz postojećeg brenda i
+                dizajna poklon-paketa, a kroz 24 stranice trebalo je pregledno
+                predstaviti proizvode i istovremeno zadržati prepoznatljiv Gušt
+                dojam.
+              </p>
+              <p class="ek-feature__proof">
+                <span class="ek-feature__proof-label">Katalog pomaže:</span>
+                prenijeti duh brenda · lakše prezentirati ponudu · jasnije
+                prenijeti informacije · pojednostaviti prodaju
+              </p>
+            </div>
+
+            <div class="ek-feature__gallery" aria-label="Gušt katalog - vizuali">
+              <figure class="ek-feature__shot ek-feature__shot--cover">
+                <div
+                  class="ek-ph ek-ph--portrait"
+                  role="img"
+                  aria-label="Placeholder: Gušt naslovnica"
+                >
+                  [GUŠT NASLOVNICA]
+                </div>
+                <figcaption>Naslovnica</figcaption>
+              </figure>
+              <figure class="ek-feature__shot ek-feature__shot--spread">
+                <div
+                  class="ek-ph ek-ph--spread"
+                  role="img"
+                  aria-label="Placeholder: Gušt spread"
+                >
+                  [GUŠT SPREAD]
+                </div>
+                <figcaption>Spread</figcaption>
+              </figure>
+              <figure class="ek-feature__shot ek-feature__shot--detail">
+                <div
+                  class="ek-ph ek-ph--square"
+                  role="img"
+                  aria-label="Placeholder: Gušt detalj proizvoda"
+                >
+                  [DETALJ PROIZVODA]
+                </div>
+                <figcaption>Detalj proizvoda</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 CIJENA -->
+      <section class="section" aria-labelledby="ek-price-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// okvirna cijena</p>
+            <h2 id="ek-price-title" class="ek-section-title">
+              koliko košta dizajn?
+            </h2>
+          </div>
+
+          <div class="ek-price reveal">
+            <div class="ek-price__values">
+              <div class="ek-price__item">
+                <p class="ek-price__amount">40 €</p>
+                <p class="ek-price__label">naslovnica</p>
+              </div>
+              <p class="ek-price__plus" aria-hidden="true">+</p>
+              <div class="ek-price__item">
+                <p class="ek-price__amount">3,50-7 € / stranici</p>
+                <p class="ek-price__label">prijelom i dizajn unutarnjih stranica</p>
+              </div>
+            </div>
+            <div class="ek-price__copy">
+              <p>
+                Cijena po stranici ovisi o broju stranica, vrsti sadržaja,
+                količini grafičkih elemenata, tehničkim zahtjevima i postojećem
+                vizualnom identitetu.
+              </p>
+              <p>
+                Zato prije početka kroz upitnik prvo gledam što se na tim
+                stranicama stvarno nalazi, a zatim šaljem konkretnu ponudu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 UKLJUČENO / NIJE UKLJUČENO -->
+      <section class="section section--border" aria-labelledby="ek-incl-title">
+        <div class="container">
+          <h2 id="ek-incl-title" class="sr-only">Što je uključeno</h2>
+          <div class="ek-incl reveal">
+            <div class="ek-incl__col">
+              <h3 class="ek-incl__heading">Uključeno</h3>
+              <ul class="ek-incl__list">
+                <li>dizajn naslovnice</li>
+                <li>prijelom i dizajn stranica</li>
+                <li>prijedlog vizualnog smjera</li>
+                <li>grafički elementi prema dogovorenom opsegu</li>
+                <li>do 30 minuta manjih završnih izmjena</li>
+                <li>finalni PDF spreman za dijeljenje ili prodaju</li>
+              </ul>
+            </div>
+            <div class="ek-incl__col">
+              <h3 class="ek-incl__heading">Nije uključeno</h3>
+              <ul class="ek-incl__list">
+                <li>pisanje sadržaja</li>
+                <li>uređivanje teksta</li>
+                <li>lektura</li>
+                <li>čitanje i stručni osvrt na sadržaj</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="ek-callout reveal">
+            <p class="ek-callout__lead">
+              Tekst treba biti finaliziran prije početka prijeloma.
+            </p>
+            <p class="ek-callout__body">
+              Ako tekst nije lektoriran, preporučujem da lekturu odradiš prije
+              početka dizajna jer naknadne sadržajne izmjene mogu značajno
+              produžiti proces.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 09 PROCES -->
+      <section class="section" aria-labelledby="ek-process-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// od upitnika do gotovog PDF-a</p>
+            <h2 id="ek-process-title" class="ek-section-title ek-section-title--wide">
+              prvo dogovorimo smjer. onda dizajniramo svih 70 stranica. 😁
+            </h2>
+          </div>
+
+          <ol class="ek-process reveal">
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">01</span>
+              <div class="ek-process__content">
+                <h3>Upitnik</h3>
+                <p>
+                  Ispunjavaš kratki upitnik o sadržaju, namjeni dokumenta,
+                  vizualnom smjeru i tehničkim zahtjevima.
+                </p>
+              </div>
+            </li>
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">02</span>
+              <div class="ek-process__content">
+                <h3>Ponuda</h3>
+                <p>
+                  Na temelju odgovora dobivaš konkretnu ponudu, uvjete suradnje i
+                  okvirni rok.
+                </p>
+              </div>
+            </li>
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">03</span>
+              <div class="ek-process__content">
+                <h3>Potvrda i materijali</h3>
+                <p>
+                  Suradnju potvrđuješ uplatom akontacije od 40 €, a prije početka
+                  dostavljaš finalni tekst, fotografije i ostale dogovorene
+                  materijale.
+                </p>
+              </div>
+            </li>
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">04</span>
+              <div class="ek-process__content">
+                <h3>Prijedlog dizajna</h3>
+                <p>
+                  Prvo izrađujem naslovnicu i nekoliko oglednih stranica kako
+                  bismo potvrdili vizualni smjer prije nastavka rada.
+                </p>
+              </div>
+            </li>
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">05</span>
+              <div class="ek-process__content">
+                <h3>Dizajn i prijelom</h3>
+                <p>
+                  Nakon odobrenja izrađujem ostatak dokumenta prema dogovorenom
+                  smjeru.
+                </p>
+              </div>
+            </li>
+            <li class="ek-process__row">
+              <span class="ek-process__num" aria-hidden="true">06</span>
+              <div class="ek-process__content">
+                <h3>Finalna isporuka</h3>
+                <p>
+                  Dobivaš gotov PDF spreman za dijeljenje ili prodaju. U cijenu
+                  je uključeno do 30 minuta manjih izmjena, a dodatne izmjene
+                  naplaćuju se 20 €/h.
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="ek-process__note reveal">
+            <h3>Trebat ćeš ga kasnije sama mijenjati?</h3>
+            <p>
+              Dokument izrađujem u Canvi, a po dogovoru možeš dobiti pristup
+              dizajnu za buduće samostalne izmjene uz dodatnu naknadu.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 PORTFOLIO -->
+      <section class="section section--tint section--border" aria-labelledby="ek-folio-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// odabrani radovi</p>
+            <h2 id="ek-folio-title" class="ek-section-title">
+              stvarni materijali. različiti brendovi.
+            </h2>
+          </div>
+
+          <div class="ek-folio reveal">
+            <figure class="ek-folio__item ek-folio__item--tall">
+              <picture>
+                <source
+                  srcset="../assets/images/impl/ebook.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="../assets/images/impl/ebook.png"
+                  alt="E-knjiga Aromadog"
+                  width="1600"
+                  height="2000"
+                  loading="lazy"
+                />
+              </picture>
+              <figcaption>
+                <span class="ek-folio__name">Simptomi koje ne smijete zanemariti</span>
+                <span class="ek-folio__meta">Aromadog · e-knjiga</span>
+              </figcaption>
+            </figure>
+
+            <figure class="ek-folio__item ek-folio__item--mid">
+              <picture>
+                <source
+                  srcset="../assets/images/impl/katalog.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="../assets/images/impl/katalog.jpg"
+                  alt="Katalog Adorable"
+                  width="1600"
+                  height="2000"
+                  loading="lazy"
+                />
+              </picture>
+              <figcaption>
+                <span class="ek-folio__name">Katalog proizvoda</span>
+                <span class="ek-folio__meta">Adorable · katalog</span>
+              </figcaption>
+            </figure>
+
+            <figure class="ek-folio__item ek-folio__item--wide">
+              <div
+                class="ek-ph ek-ph--spread"
+                role="img"
+                aria-label="Placeholder: workbook spread"
+              >
+                [WORKBOOK SPREAD]
+              </div>
+              <figcaption>
+                <span class="ek-folio__name">[Naziv projekta]</span>
+                <span class="ek-folio__meta">[Klijent] · workbook · [stranice]</span>
+              </figcaption>
+            </figure>
+
+            <figure class="ek-folio__item ek-folio__item--short">
+              <div
+                class="ek-ph ek-ph--portrait"
+                role="img"
+                aria-label="Placeholder: priručnik naslovnica"
+              >
+                [PRIRUČNIK]
+              </div>
+              <figcaption>
+                <span class="ek-folio__name">[Naziv projekta]</span>
+                <span class="ek-folio__meta">[Klijent] · priručnik</span>
+              </figcaption>
+            </figure>
+
+            <figure class="ek-folio__item ek-folio__item--detail">
+              <div
+                class="ek-ph ek-ph--square"
+                role="img"
+                aria-label="Placeholder: detalj stranice"
+              >
+                [DETALJ]
+              </div>
+              <figcaption>
+                <span class="ek-folio__name">[Naziv projekta]</span>
+                <span class="ek-folio__meta">[Klijent] · detalj</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 TESTIMONIALS -->
+      <section class="section" aria-labelledby="ek-quotes-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// klijentice o dizajnu</p>
+            <h2 id="ek-quotes-title" class="sr-only">Iskustva klijentica</h2>
+          </div>
+
+          <div class="ek-quotes reveal">
+            <blockquote class="ek-quote">
+              <p class="ek-quote__text">[TESTIMONIAL 01 - tekst]</p>
+              <footer class="ek-quote__attr">
+                <cite>[Ime Prezime]</cite>
+                <span>[brend / vrsta dokumenta]</span>
+              </footer>
+            </blockquote>
+            <blockquote class="ek-quote">
+              <p class="ek-quote__text">[TESTIMONIAL 02 - tekst]</p>
+              <footer class="ek-quote__attr">
+                <cite>[Ime Prezime]</cite>
+                <span>[brend / vrsta dokumenta]</span>
+              </footer>
+            </blockquote>
+            <blockquote class="ek-quote">
+              <p class="ek-quote__text">[TESTIMONIAL 03 - tekst]</p>
+              <footer class="ek-quote__attr">
+                <cite>[Ime Prezime]</cite>
+                <span>[brend / vrsta dokumenta]</span>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 FAQ -->
+      <section class="section section--tint section--border" aria-labelledby="ek-faq-title">
+        <div class="container">
+          <div class="reveal">
+            <p class="section-label">// česta pitanja</p>
+            <h2 id="ek-faq-title" class="ek-section-title">prije nego kreneš</h2>
+          </div>
+
+          <div class="faq reveal">
+            <details>
+              <summary>Mora li tekst biti gotov prije početka?</summary>
+              <div class="faq__body">
+                <p>
+                  Da. Za početak prijeloma potrebna mi je konačna verzija teksta
+                  jer naknadne sadržajne izmjene mogu značajno produžiti proces.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Radiš li lekturu i uređivanje teksta?</summary>
+              <div class="faq__body">
+                <p>
+                  Ne. Usluga obuhvaća dizajn naslovnice te prijelom i dizajn
+                  stranica. Pisanje, uređivanje, lektura i stručni osvrt na
+                  sadržaj nisu uključeni.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Moram li imati definiran vizualni identitet?</summary>
+              <div class="faq__body">
+                <p>
+                  Ne. Ako imaš logo, boje, fontove ili brand book, koristit ćemo
+                  ih. Ako nemaš, vizualni smjer definiramo prema sadržaju, namjeni
+                  dokumenta i primjerima koji su ti bliski.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                Može li PDF imati klikabilan sadržaj i poveznice?
+              </summary>
+              <div class="faq__body">
+                <p>
+                  Da. Po dogovoru možemo uključiti klikabilnu tablicu sadržaja,
+                  interne poveznice i linkove prema webu, newsletteru, kontaktu
+                  ili drugim online resursima.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Dobivam li Canva dizajn?</summary>
+              <div class="faq__body">
+                <p>
+                  Standardna isporuka je finalni PDF. Pristup Canva dizajnu za
+                  buduće samostalne izmjene moguć je uz dodatnu naknadu.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Koliko traje izrada?</summary>
+              <div class="faq__body">
+                <p>
+                  Ovisi o broju stranica, zahtjevnosti sadržaja i trenutnom
+                  kapacitetu. Okvirni rok dobivaš zajedno s ponudom.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 FINAL CTA -->
+      <!-- TODO: zamijeni href="#upitnik-dizajn" stvarnim URL-om upitnika -->
+      <section class="final-cta" id="upitnik-dizajn" aria-labelledby="ek-cta-title">
+        <div class="container reveal">
+          <p class="eyebrow">// imaš sadržaj?</p>
+          <h2 id="ek-cta-title">vidimo što od njega možemo napraviti.</h2>
+          <p>
+            Ne trebaš unaprijed znati koliko će svaka stranica biti zahtjevna ni
+            kakav točno dizajn želiš. Kroz upitnik prolazimo namjenu dokumenta,
+            sadržaj, vizualni smjer i tehničke zahtjeve, a zatim dobivaš
+            konkretnu ponudu.
+          </p>
+          <a class="btn btn--on-dark" href="#upitnik-dizajn"
+            >Ispuni upitnik za dizajn →</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić">
+              <img
+                src="../assets/images/logo-monika-wordmark.webp"
+                alt="monika jagić"
+                width="329"
+                height="64"
+              />
+            </a>
+            <p class="site-footer__tagline">Analiza. Strategija. Implementacija.</p>
+          </div>
+          <nav aria-label="Podnožje">
+            <a href="../index.html">Početna</a>
+            <a href="../biznis-okvir/">Biznis okvir</a>
+            <a href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a href="./">Dizajn e-knjiga i digitalnih materijala</a>
+            <a href="../landing-stranice/">Landing stranice</a>
+            <a href="../o-meni/">O meni</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">© <span data-year></span> Monika Jagić</p>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>
