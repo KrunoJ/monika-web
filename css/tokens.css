@@ -61,11 +61,11 @@
 
   --page-pad: clamp(1.25rem, 4vw, 3.5rem);
 
-  /* Section vertical rhythm
-     Desktop ≈ 96 / 72 / 120 · Tablet ≈ 80 / 64 / 96 · Mobile ≈ 64 / 48 / 80 */
-  --section-space: 6rem;
-  --section-space-compact: 4.5rem;
-  --section-space-large: 7.5rem;
+  /* Section vertical rhythm — comfortable inset inside each band
+     Desktop ≈ 80 / 64 / 104 · Tablet ≈ 72 / 56 / 88 · Mobile ≈ 56 / 48 / 72 */
+  --section-space: 5rem;
+  --section-space-compact: 4rem;
+  --section-space-large: 6.5rem;
   /* Alias for older rules */
   --section-y: var(--section-space);
 
@@ -94,16 +94,16 @@
 
 @media (max-width: 699px) {
   :root {
-    --section-space: 4rem;
+    --section-space: 3.5rem;
     --section-space-compact: 3rem;
-    --section-space-large: 5rem;
+    --section-space-large: 4.5rem;
   }
 }
 
 @media (min-width: 700px) and (max-width: 1023px) {
   :root {
-    --section-space: 5rem;
-    --section-space-compact: 4rem;
-    --section-space-large: 6rem;
+    --section-space: 4.5rem;
+    --section-space-compact: 3.5rem;
+    --section-space-large: 5.5rem;
   }
 }
