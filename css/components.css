@@ -1587,6 +1587,10 @@
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
+.bo-browser__ext[hidden] {
+  display: none !important;
+}
+
 .bo-browser__ext:hover {
   background: rgba(164, 96, 67, 0.08);
   border-color: rgba(164, 96, 67, 0.22);
