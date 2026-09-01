@@ -4468,21 +4468,51 @@
 }
 
 /* ========== Landing pages service ========== */
-.page-hero--compact {
-  padding: clamp(2.75rem, 7vw, 4.5rem) 0 clamp(2.5rem, 6vw, 3.5rem);
+.nl-hero.lp-hero {
+  padding: clamp(3rem, 7vw, 4.5rem) 0;
 }
 
-.page-hero--compact .page-hero__title {
-  max-width: 14ch;
-  font-size: clamp(2rem, 4.5vw, 3.1rem);
-}
-
-.page-hero--compact .page-hero__lede {
+.lp-hero__title {
   margin-top: var(--space-4);
+  margin-bottom: 0;
+  font-size: clamp(2.375rem, 9vw, 2.75rem);
+  line-height: 1.08;
+  max-width: 11ch;
 }
 
-.page-hero--compact .hero__actions {
-  margin-top: var(--space-5);
+.lp-hero__lede {
+  margin: 0;
+  max-width: 32.5rem;
+  font-size: clamp(1.0625rem, 1.15vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.lp-hero__lede p {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .nl-hero.lp-hero {
+    padding: clamp(6.875rem, 9vw, 8.75rem) 0;
+  }
+
+  .lp-hero .nl-hero__intro {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+    column-gap: clamp(2.5rem, 5.5vw, 4.75rem);
+    align-items: start;
+  }
+
+  .lp-hero__title {
+    font-size: clamp(2.625rem, 4vw, 3.625rem);
+    line-height: 1.08;
+    max-width: 10ch;
+  }
+
+  .lp-hero .nl-hero__secondary {
+    max-width: 32.5rem;
+    padding-top: clamp(2.35rem, 3.6vw, 3.25rem);
+  }
 }
 
 .lp-options {
