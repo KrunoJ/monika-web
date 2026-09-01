@@ -4832,7 +4832,7 @@ button {
 }
 
 /* ========== Landing pages service ========== */
-.lp-hero {
+.nl-hero.lp-hero {
   padding: clamp(3rem, 7vw, 4.5rem) 0;
 }
 
@@ -4857,12 +4857,12 @@ button {
 }
 
 @media (min-width: 768px) {
-  .lp-hero {
+  .nl-hero.lp-hero {
     padding: clamp(6.875rem, 9vw, 8.75rem) 0;
   }
 
   .lp-hero .nl-hero__intro {
-    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.96fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
     column-gap: clamp(2.5rem, 5.5vw, 4.75rem);
     align-items: start;
   }
