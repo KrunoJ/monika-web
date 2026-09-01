@@ -3226,10 +3226,6 @@
   border-top: 1px solid var(--color-border);
 }
 
-.about-principle:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-
 .about-principle__num {
   margin: 0;
   font-family: var(--font-body);
@@ -4253,36 +4249,64 @@
   text-align: left;
 }
 
-.nl-proof-quotes {
+.nl-proof-voices {
   margin-top: clamp(4.5rem, 6vw, 6rem);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: 0;
+  align-items: start;
 }
 
-.nl-proof-quote {
+.nl-proof-voice {
   margin: 0;
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border);
+  padding: clamp(2rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  gap: 1.375rem;
+  align-content: start;
   background: none;
   box-shadow: none;
 }
 
-.nl-proof-quote blockquote {
+.nl-proof-voice:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.nl-proof-voice__pull {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  line-height: 1.35;
-  color: var(--color-heading);
+  font-style: normal;
   font-weight: 700;
+  font-size: clamp(1.25rem, 4.5vw, 1.375rem);
+  line-height: 1.35;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+  max-width: 100%;
 }
 
-.nl-proof-quote figcaption {
-  margin-top: var(--space-4);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+.nl-proof-voice__body {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 100%;
+}
+
+.nl-proof-voice__body p {
+  margin: 0;
   font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.nl-proof-voice__name {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.8125rem, 1vw, 0.875rem);
+  font-weight: 400;
+  color: var(--color-muted);
   text-transform: none;
   letter-spacing: 0;
 }
@@ -4299,22 +4323,26 @@
   .nl-proof-video {
     max-width: none;
   }
-
-  .nl-proof-quotes {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6) var(--space-7);
-  }
 }
 
-@media (min-width: 1024px) {
-  .nl-proof-quotes {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    column-gap: var(--space-7);
-    row-gap: var(--space-7);
+@media (min-width: 900px) {
+  .nl-proof-voices {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(4rem, 5.5vw, 5rem);
+    align-items: start;
   }
 
-  .nl-proof-quote {
-    grid-column: span 2;
+  .nl-proof-voice {
+    padding: clamp(2rem, 3vw, 2.5rem) 0;
+  }
+
+  .nl-proof-voice__pull {
+    font-size: clamp(1.375rem, 1.8vw, 1.5rem);
+    line-height: 1.35;
+  }
+
+  .nl-proof-voice:nth-child(2) {
+    border-top: 1px solid var(--color-border);
   }
 }
 
@@ -4630,80 +4658,17 @@
   color: var(--color-muted);
 }
 
-.lp-voices {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+.nl-proof-voices--section {
   margin-top: var(--space-6);
 }
 
-.lp-voice {
-  margin: 0;
-  padding: var(--space-5) 0;
-  border-top: 1px solid var(--color-border);
-  background: none;
-  box-shadow: none;
-}
-
-.lp-voice:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.lp-voice blockquote {
-  margin: 0;
-  font-family: var(--font-display);
-  text-transform: lowercase;
-  font-style: normal;
-  font-weight: 700;
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  line-height: 1.35;
-  color: var(--color-heading);
-  max-width: 100%;
-}
-
-.lp-voice figcaption {
-  margin-top: var(--space-4);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  text-transform: none;
-  letter-spacing: 0;
-}
-
 @media (min-width: 900px) {
-  .lp-voices {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .lp-voice {
-    padding: var(--space-5);
-    border-top: 0;
-    border-bottom: 0;
-    border-right: 1px solid var(--color-border);
-  }
-
-  .lp-voice:nth-child(2n) {
-    border-right: 0;
-    padding-right: 0;
-  }
-
-  .lp-voice:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .lp-voice:nth-child(odd) {
-    padding-left: 0;
-  }
-
-  .lp-voice:last-child {
-    border-bottom: 0;
+  .nl-proof-voices--section {
+    margin-top: var(--space-7);
   }
 }
 
-.lp-portfolio__heading {
+.nl-services__intro {
   margin-top: var(--space-4);
   max-width: 18ch;
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
