@@ -1595,7 +1595,7 @@
 .bo-impl__lede {
   margin-top: var(--space-4);
   max-width: 40rem;
-  color: var(--color-muted);
+  color: var(--color-body);
   font-size: var(--text-md);
   line-height: var(--leading-body);
 }
