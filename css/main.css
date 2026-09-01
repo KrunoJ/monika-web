@@ -4677,16 +4677,8 @@ button {
     row-gap: var(--space-7);
   }
 
-  .nl-proof-quote:nth-child(-n + 3) {
+  .nl-proof-quote {
     grid-column: span 2;
-  }
-
-  .nl-proof-quote:nth-child(4) {
-    grid-column: 1 / span 3;
-  }
-
-  .nl-proof-quote:nth-child(5) {
-    grid-column: 4 / span 3;
   }
 }
 
