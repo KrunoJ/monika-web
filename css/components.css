@@ -4593,20 +4593,24 @@
   margin-top: clamp(2.5rem, 4vw, 3rem);
   padding-top: 0;
   border-top: 0;
-  max-width: 44rem;
+  max-width: 47.5rem;
 }
 
 .lp-includes p {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 0.875rem;
-  line-height: 1.55;
-  color: var(--color-muted);
+  font-size: clamp(0.875rem, 1.05vw, 0.9375rem);
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+.lp-includes strong {
+  font-weight: 600;
 }
 
 .lp-process {
   margin-top: clamp(2.25rem, 3.5vw, 2.5rem);
-  max-width: 44rem;
+  max-width: 47.5rem;
 }
 
 .lp-process__title {
@@ -4623,11 +4627,45 @@
   color: var(--color-body);
 }
 
-.lp-process__meta {
-  margin: var(--space-4) 0 0;
-  font-size: var(--text-sm);
+.lp-process__facts {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: clamp(1.75rem, 3vw, 2rem);
+  padding-top: clamp(1.75rem, 3vw, 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.lp-process__fact {
+  margin: 0;
+}
+
+.lp-process__fact-label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 0.9vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  line-height: 1.35;
+}
+
+.lp-process__fact-value {
+  margin: 0.4375rem 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1.05vw, 1rem);
+  font-weight: 400;
   line-height: 1.5;
-  color: var(--color-muted);
+  color: var(--color-body);
+}
+
+@media (min-width: 768px) {
+  .lp-process__facts {
+    grid-template-columns: auto auto;
+    column-gap: clamp(3.75rem, 5.5vw, 5rem);
+    row-gap: 0;
+    align-items: start;
+  }
 }
 
 .nl-proof-voices--section {
