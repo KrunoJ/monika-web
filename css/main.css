@@ -4712,8 +4712,18 @@ button {
 
 .nl-services__intro {
   margin-top: var(--space-4);
-  max-width: 40rem;
-  color: var(--color-muted);
+  max-width: 42.5rem;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+@media (min-width: 768px) {
+  .nl-services__intro {
+    font-size: 1.1875rem;
+  }
 }
 
 .nl-services {
@@ -4832,31 +4842,40 @@ button {
 
 .nl-final {
   padding-block: var(--section-space);
-  background: var(--color-bg-2);
-  border-top: 1px solid var(--color-border);
+  background: var(--color-body);
+  color: var(--color-bg-2);
+  border-top: 1px solid rgba(242, 230, 213, 0.16);
 }
 
 .nl-final__title {
   margin: 0;
   font-size: clamp(2.1rem, 4.5vw, 3.25rem);
   max-width: 14ch;
+  color: var(--color-bg-2);
 }
 
 .nl-final__copy {
   margin-top: var(--space-5);
   max-width: 34rem;
-  color: var(--color-muted);
+  color: var(--color-bg-2);
   font-size: var(--text-md);
 }
 
 .nl-final__note {
   margin-top: var(--space-5);
   font-size: var(--text-sm);
-  color: var(--color-muted);
+  color: rgba(242, 230, 213, 0.78);
 }
 
 .nl-final .btn {
   margin-top: var(--space-6);
+  background: var(--color-bg-2);
+  color: var(--color-body);
+}
+
+.nl-final .btn:hover {
+  background: var(--color-bg-1);
+  color: var(--color-body);
 }
 
 /* ========== Landing pages service ========== */
@@ -5040,12 +5059,6 @@ button {
   .nl-proof-voices--section {
     margin-top: var(--space-7);
   }
-}
-
-.nl-services__intro {
-  margin-top: var(--space-4);
-  max-width: 18ch;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
 .lp-portfolio {
