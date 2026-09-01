@@ -162,7 +162,7 @@ button {
   Soften only same-surface cream→cream stacking so gaps don't feel doubled,
   while tinted/dark bands keep full padding so text never sits on the color edge.
 */
-.section:not(.section--tint) + .section:not(.section--tint):not(.final-cta):not(.about-cta):not(.nl-final):not(.result-band) {
+.section:not(.section--tint) + .section:not(.section--tint):not(.final-cta):not(.nl-final):not(.result-band) {
   padding-top: var(--section-space-compact);
 }
 
