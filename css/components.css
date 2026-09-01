@@ -4313,16 +4313,8 @@
     row-gap: var(--space-7);
   }
 
-  .nl-proof-quote:nth-child(-n + 3) {
+  .nl-proof-quote {
     grid-column: span 2;
-  }
-
-  .nl-proof-quote:nth-child(4) {
-    grid-column: 1 / span 3;
-  }
-
-  .nl-proof-quote:nth-child(5) {
-    grid-column: 4 / span 3;
   }
 }
 
@@ -4642,7 +4634,7 @@
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   line-height: 1.35;
   color: var(--color-heading);
-  max-width: 34rem;
+  max-width: 100%;
 }
 
 .lp-voice figcaption {
@@ -4656,26 +4648,34 @@
 
 @media (min-width: 900px) {
   .lp-voices {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
 
   .lp-voice {
-    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+    padding: var(--space-5);
     border-top: 0;
     border-bottom: 0;
     border-right: 1px solid var(--color-border);
   }
 
-  .lp-voice:last-child {
+  .lp-voice:nth-child(2n) {
     border-right: 0;
     padding-right: 0;
   }
 
-  .lp-voice:first-child {
+  .lp-voice:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .lp-voice:nth-child(odd) {
     padding-left: 0;
+  }
+
+  .lp-voice:last-child {
+    border-bottom: 0;
   }
 }
 
