@@ -1974,6 +1974,7 @@ button {
 
 .bo-impl-showcase {
   margin-top: var(--space-7);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
   display: grid;
   gap: clamp(2.75rem, 5vw, 4.5rem);
 }
@@ -2071,25 +2072,33 @@ button {
 }
 
 .bo-impl-item--katalog {
-  max-width: 62rem;
   width: 100%;
 }
 
-.bo-impl-item__more {
-  margin: var(--space-3) 0 0;
+.bo-impl-item--katalog .bo-impl-media--feature img {
+  object-fit: contain;
+  object-position: center top;
 }
 
-.bo-impl-item__more a {
+.bo-impl-service-link {
+  margin: var(--space-4) 0 0;
+}
+
+.bo-impl-service-link .text-link {
   font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-size: clamp(1rem, 1.05vw, 1.0625rem); /* 16–17px */
   font-weight: 600;
-  color: var(--color-primary);
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  color: var(--color-body);
+  text-decoration-color: rgba(118, 51, 22, 0.35);
 }
 
-.bo-impl-item__more a:hover {
+.bo-impl-service-link .text-link:hover {
   color: var(--color-heading);
+  text-decoration-color: rgba(164, 96, 67, 0.55);
+}
+
+.bo-impl-item .bo-browser__ext {
+  display: none !important;
 }
 
 /* Minimal browser frame for web / landing */
@@ -2217,8 +2226,12 @@ button {
   }
 
   .bo-impl-row--4 {
-    grid-template-columns: minmax(0, min(100%, 60rem));
+    grid-template-columns: minmax(0, 1fr);
     justify-content: start;
+  }
+
+  .bo-impl-item--katalog {
+    max-width: 42rem; /* ~672px */
   }
 
   .bo-impl-item--web .bo-browser__viewport,
@@ -2246,6 +2259,10 @@ button {
   .bo-impl-item--platform { order: 5; }
   .bo-impl-item--automation { order: 6; }
   .bo-impl-item--katalog { order: 7; }
+
+  .bo-impl-item--katalog {
+    max-width: none;
+  }
 
   .bo-browser__viewport {
     height: 20rem;

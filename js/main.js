@@ -170,8 +170,8 @@
     if (resolvedUrl) {
       if (label) label.textContent = hostLabel(resolvedUrl);
       if (ext) {
-        ext.hidden = false;
-        ext.href = resolvedUrl;
+        ext.hidden = true;
+        ext.removeAttribute("href");
       }
       if (preferFallbackPreview()) {
         showFallback(root, resolvedFallback);
