@@ -1842,6 +1842,10 @@
     justify-content: start;
   }
 
+  .bo-impl-item--katalog {
+    max-width: 42rem;
+  }
+
   .bo-browser__viewport {
     height: clamp(20rem, 48vw, 28rem);
   }
