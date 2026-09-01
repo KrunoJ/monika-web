@@ -2400,25 +2400,32 @@
   position: relative;
   padding-block: var(--section-space);
   background: var(--color-ink);
-  color: #f6f1ec;
+  color: var(--color-bg-2);
 }
 
 .final-cta h2,
 .final-cta .eyebrow {
-  color: #f6f1ec;
+  color: var(--color-bg-2);
 }
 
 .final-cta .eyebrow {
-  color: rgba(246, 241, 236, 0.65);
+  color: rgba(242, 230, 213, 0.72);
 }
 
 .final-cta p {
-  color: rgba(246, 241, 236, 0.82);
+  color: var(--color-bg-2);
   max-width: var(--measure);
 }
 
 .final-cta .btn {
   margin-top: var(--space-5);
+  background: var(--color-bg-2);
+  color: var(--color-body);
+}
+
+.final-cta .btn:hover {
+  background: var(--color-bg-1);
+  color: var(--color-body);
 }
 
 .video-section__frame,
