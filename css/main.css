@@ -3590,10 +3590,6 @@ button {
   border-top: 1px solid var(--color-border);
 }
 
-.about-principle:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-
 .about-principle__num {
   margin: 0;
   font-family: var(--font-body);
