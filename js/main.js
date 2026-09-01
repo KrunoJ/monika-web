@@ -22,10 +22,13 @@
 
   const navSection = (pathname) => {
     const path = normalizePath(pathname);
+    if (path.includes("/dizajn-e-knjiga") || path.includes("/landing-stranice")) {
+      return null;
+    }
     if (path.includes("/biznis-okvir") || path.includes("/case-study")) {
       return "biznis-okvir";
     }
-    if (path.includes("/prodajni-lijevak") || path.includes("/landing-stranice")) {
+    if (path.includes("/prodajni-lijevak")) {
       return "prodajni-lijevak";
     }
     if (path.includes("/o-meni")) return "o-meni";
@@ -47,7 +50,7 @@
   const current = navSection(window.location.pathname);
   document.querySelectorAll(".nav-link").forEach((link) => {
     const section = linkSection(link);
-    if (section && section === current) {
+    if (current && section && section === current) {
       link.setAttribute("aria-current", "page");
     } else {
       link.removeAttribute("aria-current");
