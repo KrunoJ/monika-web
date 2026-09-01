@@ -1439,19 +1439,19 @@
 
 .result-band {
   padding-block: var(--section-space);
-  background: var(--color-heading);
-  color: #f8f2ec;
+  background: var(--color-ink);
+  color: var(--color-bg-2);
 }
 
 .result-band h2 {
-  color: #f8f2ec;
+  color: var(--color-bg-2);
   max-width: 18ch;
 }
 
 .result-band__copy {
   margin-top: var(--space-5);
   max-width: 34rem;
-  color: rgba(248, 242, 236, 0.88);
+  color: var(--color-bg-2);
   font-size: var(--text-md);
 }
 
