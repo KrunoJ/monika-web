@@ -84,9 +84,15 @@
   const preferFallbackPreview = () =>
     window.matchMedia("(max-width: 767px)").matches;
 
-  const hostLabel = (url) => {
+  const browserLabel = (url) => {
     try {
-      return new URL(url).hostname.replace(/^www\./, "");
+      const u = new URL(url);
+      const host = u.hostname.replace(/^www\./, "");
+      if (host === "preview.mailerlite.io") {
+        const slug = u.pathname.split("/").filter(Boolean).pop();
+        return slug || host;
+      }
+      return host;
     } catch (_) {
       return url;
     }
@@ -150,13 +156,20 @@
     }, 3500);
   };
 
-  const initBoPreview = (key, url, fallback) => {
-    const root = document.querySelector(`[data-bo-preview="${key}"]`);
+  const initBrowserPreview = (root) => {
     if (!root) return;
 
-    const resolvedUrl = (url || root.getAttribute("data-bo-url") || "").trim();
-    const resolvedFallback =
-      (fallback || root.getAttribute("data-bo-fallback") || "").trim();
+    const key = root.getAttribute("data-bo-preview");
+    let resolvedUrl = (root.getAttribute("data-bo-url") || "").trim();
+    let resolvedFallback = (root.getAttribute("data-bo-fallback") || "").trim();
+
+    if (key === "web") {
+      if (BO_IMPL.WEB_URL) resolvedUrl = BO_IMPL.WEB_URL.trim();
+      if (BO_IMPL.WEB_FALLBACK_IMAGE) resolvedFallback = BO_IMPL.WEB_FALLBACK_IMAGE;
+    } else if (key === "landing") {
+      if (BO_IMPL.LANDING_URL) resolvedUrl = BO_IMPL.LANDING_URL.trim();
+      if (BO_IMPL.LANDING_FALLBACK_IMAGE) resolvedFallback = BO_IMPL.LANDING_FALLBACK_IMAGE;
+    }
 
     root.setAttribute("data-bo-url", resolvedUrl);
     root.setAttribute("data-bo-fallback", resolvedFallback);
@@ -168,7 +181,7 @@
     if (img && resolvedFallback) img.src = resolvedFallback;
 
     if (resolvedUrl) {
-      if (label) label.textContent = hostLabel(resolvedUrl);
+      if (label) label.textContent = browserLabel(resolvedUrl);
       if (ext) {
         ext.hidden = true;
         ext.removeAttribute("href");
@@ -179,7 +192,10 @@
         showLive(root, resolvedUrl);
       }
     } else {
-      if (label) label.textContent = key === "web" ? "Dodaj WEB_URL" : "Dodaj LANDING_URL";
+      if (label) {
+        label.textContent =
+          key === "web" ? "Dodaj WEB_URL" : key === "landing" ? "Dodaj LANDING_URL" : "";
+      }
       if (ext) {
         ext.hidden = true;
         ext.removeAttribute("href");
@@ -188,6 +204,5 @@
     }
   };
 
-  initBoPreview("web", BO_IMPL.WEB_URL, BO_IMPL.WEB_FALLBACK_IMAGE);
-  initBoPreview("landing", BO_IMPL.LANDING_URL, BO_IMPL.LANDING_FALLBACK_IMAGE);
+  document.querySelectorAll(".bo-browser").forEach(initBrowserPreview);
 })();

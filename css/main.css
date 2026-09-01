@@ -5059,7 +5059,23 @@ button {
   break-inside: avoid;
   margin: 0 0 var(--space-6);
   display: grid;
-  gap: var(--space-3);
+  gap: 0;
+}
+
+.lp-portfolio__item .bo-browser {
+  width: 100%;
+}
+
+.lp-portfolio__item--tall .bo-browser__viewport {
+  height: clamp(24rem, 55vw, 36rem);
+}
+
+.lp-portfolio__item--mid .bo-browser__viewport {
+  height: clamp(20rem, 46vw, 28rem);
+}
+
+.lp-portfolio__item--short .bo-browser__viewport {
+  height: clamp(16rem, 38vw, 22rem);
 }
 
 .lp-portfolio__frame {
