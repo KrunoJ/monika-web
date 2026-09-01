@@ -1592,9 +1592,26 @@
 }
 
 /* ========== Biznis okvir implementation showcase ========== */
+.bo-impl__intro {
+  display: grid;
+  gap: 0;
+  max-width: none;
+}
+
+.bo-impl__title {
+  margin: clamp(1.125rem, 2vw, 1.5rem) 0 0;
+  max-width: 43rem; /* ~688px */
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-size: clamp(2.25rem, 3vw, 2.625rem); /* 36–42px */
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+}
+
 .bo-impl__lede {
-  margin-top: var(--space-4);
-  max-width: 40rem;
+  margin: var(--space-5) 0 0;
+  max-width: 43rem;
   color: var(--color-body);
   font-size: var(--text-md);
   line-height: var(--leading-body);
