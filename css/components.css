@@ -3978,16 +3978,16 @@
 }
 
 .nl-model__price {
-  margin: 0.35rem 0 0.35rem;
+  margin: 0.35rem 0 0.875rem;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem); /* 28–30px desktop */
   color: var(--color-heading);
   line-height: 1.15;
 }
 
 .nl-model__price--scope {
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.35rem, 1.8vw, 1.625rem); /* 24–26px desktop */
   letter-spacing: 0.01em;
 }
 
