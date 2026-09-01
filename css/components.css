@@ -4316,11 +4316,6 @@
   .nl-proof-quote {
     grid-column: span 2;
   }
-
-  .nl-proof-quote:nth-child(7):last-child {
-    grid-column: 1 / -1;
-    max-width: 56rem;
-  }
 }
 
 .nl-services__intro {
