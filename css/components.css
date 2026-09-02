@@ -4466,24 +4466,38 @@
 }
 
 /* ========== Landing pages service ========== */
+.lp-choose.section {
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+}
+
+.lp-choose__inner {
+  max-width: 72rem;
+}
+
 .lp-options {
   display: grid;
-  gap: var(--space-7);
-  margin-top: var(--space-6);
+  gap: 0;
+  margin-top: clamp(3.5rem, 5vw, 4rem);
 }
 
 .lp-option {
-  padding: var(--space-6) 0;
+  padding: 0;
   border: 0;
   display: grid;
   gap: 0;
   align-content: start;
 }
 
+.lp-option + .lp-option {
+  margin-top: clamp(2rem, 4vw, 2.5rem);
+  padding-top: clamp(2rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--color-border);
+}
+
 .lp-option__num {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 0.9vw, 0.8125rem);
   font-weight: 600;
   letter-spacing: 0.12em;
   line-height: 1;
@@ -4492,61 +4506,62 @@
 }
 
 .lp-option__title {
-  margin: 1.5rem 0 0;
+  margin: clamp(1.375rem, 2.2vw, 1.625rem) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 5.5vw, 1.625rem);
-  font-weight: 400;
+  font-size: clamp(1.5rem, 4.5vw, 1.6875rem);
+  font-weight: 700;
   max-width: 16ch;
   line-height: 1.25;
   text-transform: lowercase;
 }
 
 .lp-option__price {
-  margin: clamp(1.25rem, 2vw, 1.5rem) 0 0;
+  margin: clamp(1rem, 1.8vw, 1.25rem) 0 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.4375rem, 5vw, 1.5625rem);
+  font-size: clamp(1.375rem, 3.5vw, 1.5625rem);
   color: var(--color-heading);
   line-height: 1.2;
 }
 
 .lp-option__copy {
   display: grid;
-  gap: clamp(1rem, 2vw, 1.25rem);
-  max-width: 36rem;
-  margin-top: clamp(1.75rem, 3vw, 2rem);
+  gap: clamp(1rem, 1.8vw, 1.25rem);
+  max-width: 31.25rem;
+  margin-top: clamp(1.75rem, 2.8vw, 2rem);
   color: var(--color-body);
 }
 
 .lp-option__copy p {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 2.5vw, 1.0625rem);
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 @media (min-width: 900px) {
   .lp-options {
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    margin-top: var(--space-7);
+    margin-top: clamp(3.5rem, 5vw, 4rem);
   }
 
   .lp-option {
-    padding: var(--space-7) clamp(var(--space-6), 3.5vw, var(--space-8));
-    border: 0;
+    padding: 0 clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .lp-option + .lp-option {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
   }
 
   .lp-option__title {
-    font-size: clamp(1.6rem, 2vw, 1.9rem);
+    font-size: clamp(1.6875rem, 2vw, 1.875rem);
   }
 
   .lp-option__price {
-    font-size: clamp(1.55rem, 1.8vw, 1.9rem);
-  }
-
-  .lp-option__copy p {
-    font-size: 1.0625rem;
+    font-size: clamp(1.5rem, 1.7vw, 1.6875rem);
   }
 
   .lp-option:first-child {
@@ -4560,48 +4575,58 @@
 }
 
 .lp-includes {
-  margin-top: clamp(2.5rem, 4vw, 3rem);
+  margin-top: clamp(3.5rem, 5vw, 4rem);
   padding-top: 0;
   border-top: 0;
-  max-width: 47.5rem;
+  max-width: 53.125rem;
 }
 
-.lp-includes p {
+.lp-includes__label {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.05vw, 0.9375rem);
+  font-size: clamp(0.75rem, 0.9vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  line-height: 1.35;
+}
+
+.lp-includes__text {
+  margin: 0.625rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--color-body);
 }
 
-.lp-includes strong {
-  font-weight: 600;
-}
-
 .lp-process {
-  margin-top: clamp(2.25rem, 3.5vw, 2.5rem);
+  margin-top: clamp(3rem, 4.5vw, 3.5rem);
   max-width: 47.5rem;
 }
 
 .lp-process__title {
   margin: 0 0 var(--space-3);
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2vw, 1.6875rem);
   max-width: 20ch;
   line-height: 1.2;
+  text-transform: lowercase;
 }
 
 .lp-process__copy {
   margin: 0;
-  font-size: var(--text-base);
-  line-height: var(--leading-body);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   color: var(--color-body);
 }
 
 .lp-process__facts {
   display: grid;
   gap: 1.25rem;
-  margin-top: clamp(1.75rem, 3vw, 2rem);
-  padding-top: clamp(1.75rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 3vw, 2.25rem);
+  padding-top: clamp(2rem, 3vw, 2.25rem);
   border-top: 1px solid var(--color-border);
 }
 
@@ -4951,15 +4976,6 @@
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-body);
-}
-
-.ek-price__note {
-  margin: 0.35rem 0 0;
-  font-family: var(--font-body);
-  font-size: clamp(0.9375rem, 1vw, 1rem);
-  font-weight: 400;
-  line-height: 1.45;
-  color: var(--color-muted);
   max-width: 18ch;
 }
 
