@@ -3347,10 +3347,11 @@ button {
 
 .about-hero__title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.25rem, 7vw, 2.75rem);
   line-height: 1.08;
   letter-spacing: var(--tracking-tight);
-  max-width: 18ch;
+  max-width: none;
 }
 
 .about-hero__br {
@@ -3398,19 +3399,19 @@ button {
   }
 
   .about-hero__copy {
-    max-width: 43.75rem;
+    max-width: 45rem;
     align-self: start;
     padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .about-hero__title {
-    max-width: 48rem;
-    font-size: clamp(3.25rem, 3.6vw, 3.625rem);
+    max-width: 43.75rem;
+    font-size: clamp(3.375rem, 3.8vw, 3.625rem);
     line-height: 1.08;
   }
 
   .about-hero__br {
-    display: inline;
+    display: revert;
   }
 
   .about-hero__visual {
@@ -3660,8 +3661,8 @@ button {
   box-shadow: none;
 }
 
-.about-voice:first-child {
-  border-top: 1px solid var(--color-border);
+.about-voice:last-child {
+  border-bottom: 0;
 }
 
 .about-voice__pull {
@@ -3717,8 +3718,8 @@ button {
     line-height: 1.2;
   }
 
-  .about-voice:nth-child(2) {
-    border-top: 1px solid var(--color-border);
+  .about-voice:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
 }
 
@@ -4583,8 +4584,8 @@ button {
   box-shadow: none;
 }
 
-.nl-proof-voice:first-child {
-  border-top: 1px solid var(--color-border);
+.nl-proof-voice:last-child {
+  border-bottom: 0;
 }
 
 .nl-proof-voice__pull {
@@ -4656,8 +4657,8 @@ button {
     line-height: 1.35;
   }
 
-  .nl-proof-voice:nth-child(2) {
-    border-top: 1px solid var(--color-border);
+  .nl-proof-voice:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
 }
 
@@ -5321,7 +5322,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: var(--space-4) var(--space-5);
+  gap: var(--space-4) clamp(2rem, 4vw, 3rem);
 }
 
 .ek-price__amount {
@@ -5345,9 +5346,12 @@ button {
 
 .ek-price__plus {
   margin: 0;
-  padding-top: 0.55em;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  height: calc(clamp(2rem, 2.8vw, 2.625rem) * 1.05);
   font-family: var(--font-body);
-  font-size: var(--text-ui);
+  font-size: clamp(1.25rem, 1.4vw, 1.375rem);
   font-weight: 400;
   color: var(--color-accent);
   line-height: 1;
