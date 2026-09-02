@@ -4931,7 +4931,7 @@
 .ek-price__values {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--space-5) var(--space-6);
 }
 
@@ -4944,6 +4944,15 @@
   color: var(--color-heading);
 }
 
+.ek-price__unit {
+  margin: 0.3125rem 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.8125rem, 0.9vw, 0.875rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
 .ek-price__label {
   margin: 0.45rem 0 0;
   font-size: var(--text-sm);
@@ -4951,8 +4960,13 @@
   max-width: 16ch;
 }
 
+.ek-price__unit + .ek-price__label {
+  margin-top: 1rem;
+}
+
 .ek-price__plus {
-  margin: 0 0 0.85rem;
+  margin: 0;
+  padding-top: 0.55em;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2rem);
   color: var(--color-accent);
