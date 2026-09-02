@@ -2984,9 +2984,13 @@
 .about-hero__title {
   margin: 0;
   font-size: clamp(2.25rem, 7vw, 2.75rem);
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: var(--tracking-tight);
-  max-width: 16ch;
+  max-width: 18ch;
+}
+
+.about-hero__br {
+  display: none;
 }
 
 .about-hero__visual {
