@@ -3040,9 +3040,13 @@
   }
 
   .about-hero__title {
-    max-width: 43.75rem;
+    max-width: 48rem;
     font-size: clamp(3.25rem, 3.6vw, 3.625rem);
-    line-height: 1.05;
+    line-height: 1.08;
+  }
+
+  .about-hero__br {
+    display: inline;
   }
 
   .about-hero__visual {
@@ -3091,6 +3095,9 @@
 .about-facts__photo {
   margin: 0;
   overflow: hidden;
+  aspect-ratio: 5 / 4;
+  max-width: 32rem;
+  width: 100%;
 }
 
 .about-facts__photo picture {
@@ -3109,14 +3116,12 @@
   border-radius: 0;
 }
 
-.about-facts__photo--landscape {
-  aspect-ratio: 5 / 4;
-  max-width: 32rem;
+.about-facts__photo--ursula img {
+  object-position: 50% 42%;
 }
 
-.about-facts__photo--portrait {
-  aspect-ratio: 3 / 4;
-  max-width: 18.5rem;
+.about-facts__photo--dubravica img {
+  object-position: 50% 38%;
 }
 
 .about-fact {
@@ -3168,8 +3173,7 @@
     order: 2;
   }
 
-  .about-facts__photo--landscape,
-  .about-facts__photo--portrait {
+  .about-facts__photo {
     max-width: none;
     width: 100%;
   }
@@ -3191,26 +3195,11 @@
     order: -1;
   }
 
-  .about-facts__photo--landscape {
+  .about-facts__photo {
     max-width: none;
     width: 100%;
     margin-top: clamp(0.5rem, 1.5vw, 1rem);
-  }
-
-  .about-facts__photo--portrait {
-    max-width: none;
-    width: min(100%, 18.5rem);
-    justify-self: center;
-  }
-
-  .about-facts__group--photo-first .about-facts__photo--portrait {
-    justify-self: start;
-    margin-top: clamp(0.5rem, 1.5vw, 1rem);
-  }
-
-  .about-facts__group--text-first .about-facts__photo--portrait {
-    justify-self: end;
-    margin-top: clamp(0.5rem, 1.5vw, 1rem);
+    justify-self: stretch;
   }
 }
 
