@@ -5296,43 +5296,43 @@ button {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: var(--space-5) var(--space-6);
+  gap: var(--space-4) var(--space-5);
 }
 
 .ek-price__amount {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-size: clamp(2rem, 2.8vw, 2.625rem);
   line-height: 1.05;
   color: var(--color-heading);
 }
 
-.ek-price__unit {
-  margin: 0.3125rem 0 0;
+.ek-price__label {
+  margin: 0.4rem 0 0;
   font-family: var(--font-body);
-  font-size: clamp(0.8125rem, 0.9vw, 0.875rem);
+  font-size: clamp(1rem, 1.05vw, 1.0625rem);
   font-weight: 400;
   line-height: 1.4;
-  color: var(--color-muted);
+  color: var(--color-body);
 }
 
-.ek-price__label {
-  margin: 0.45rem 0 0;
-  font-size: var(--text-sm);
+.ek-price__note {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1vw, 1rem);
+  font-weight: 400;
+  line-height: 1.45;
   color: var(--color-muted);
-  max-width: 16ch;
-}
-
-.ek-price__unit + .ek-price__label {
-  margin-top: 1rem;
+  max-width: 18ch;
 }
 
 .ek-price__plus {
   margin: 0;
   padding-top: 0.55em;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: var(--font-body);
+  font-size: var(--text-ui);
+  font-weight: 400;
   color: var(--color-accent);
   line-height: 1;
 }
