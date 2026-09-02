@@ -3231,9 +3231,9 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.4375rem, 3.2vw, 1.5rem);
+  font-size: 1.75rem;
   line-height: 1.2;
-  max-width: 16ch;
+  max-width: 14ch;
   color: var(--color-heading);
   text-transform: lowercase;
 }
@@ -3268,14 +3268,14 @@
 
   .about-principle__title {
     padding-right: var(--space-5);
-    font-size: 1.625rem;
+    font-size: 2.125rem;
     line-height: 1.2;
   }
 }
 
 @media (min-width: 700px) and (max-width: 899px) {
   .about-principle__title {
-    font-size: 1.5rem;
+    font-size: 1.875rem;
   }
 }
 
