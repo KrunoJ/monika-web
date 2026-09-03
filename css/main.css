@@ -772,7 +772,7 @@ button {
 }
 
 .hero__backdrop {
-  display: none !important;
+  display: none;
   pointer-events: none;
   user-select: none;
 }
