@@ -255,7 +255,17 @@
       <section class="section section--tint section--border" aria-labelledby="teaser-label">
         <div class="container teaser">
           <div class="reveal">
-            <div class="placeholder placeholder--photo">[PHOTO]<br />Monika - teaser</div>
+            <picture>
+              <source srcset="assets/images/monika-teaser.webp" type="image/webp" />
+              <img
+                src="assets/images/monika-teaser.jpg"
+                alt="Monika na eventu"
+                width="1200"
+                height="1600"
+                loading="lazy"
+                class="teaser__photo"
+              />
+            </picture>
           </div>
           <div class="reveal stack">
             <p id="teaser-label" class="section-label">// o meni</p>
