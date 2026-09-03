@@ -74,8 +74,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #ffffff;
-  border-bottom: 1px solid rgba(118, 51, 22, 0.1);
+  background: #ede6de;
+  border-bottom: 1px solid rgba(118, 51, 22, 0.08);
 }
 
 .site-header__inner {
@@ -83,7 +83,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 4.5rem; /* ~72px */
+  min-height: 4.5rem;
 }
 
 .logo {
@@ -97,7 +97,7 @@
 .logo__mark {
   display: block;
   width: auto;
-  height: 2.95rem;
+  height: 2.625rem;
 }
 
 .logo:hover {
@@ -112,13 +112,13 @@
   display: none;
   align-items: center;
   margin-left: auto;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
+  gap: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .nav-desktop__links {
   display: flex;
   align-items: center;
-  gap: clamp(1.15rem, 2.2vw, 1.85rem);
+  gap: clamp(1.5rem, 2vw, 2rem);
 }
 
 .nav-link {
@@ -126,8 +126,8 @@
   display: inline-block;
   padding: 0.2rem 0;
   font-family: var(--font-body);
-  font-size: var(--text-ui);
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 400;
   line-height: 1.2;
   text-decoration: none;
   color: var(--color-body);
@@ -147,8 +147,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.4rem;
-  height: 2px;
+  bottom: -0.35rem;
+  height: 1.5px;
   background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left center;
@@ -157,7 +157,7 @@
 
 .nav-link:hover::after {
   transform: scaleX(1);
-  opacity: 0.45;
+  opacity: 0.4;
 }
 
 .nav-link[aria-current="page"] {
@@ -186,13 +186,14 @@
   gap: 0.35rem;
   flex-shrink: 0;
   min-height: 0;
-  padding: 0.42rem 0.85rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
   border: 1px solid var(--color-primary);
   border-radius: 3px;
-  background: rgba(164, 96, 67, 0.06);
+  background: transparent;
   color: var(--color-primary);
   font-family: var(--font-body);
-  font-size: var(--text-ui);
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.2;
@@ -214,7 +215,7 @@
 .nav-cta:hover {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: #f8f2ec;
+  color: var(--color-bg-2);
   transform: none;
 }
 
@@ -272,8 +273,8 @@
 
 .nav-mobile {
   display: none;
-  border-top: 1px solid rgba(118, 51, 22, 0.1);
-  background: #ffffff;
+  border-top: 1px solid rgba(118, 51, 22, 0.08);
+  background: #ede6de;
   padding: var(--space-4) var(--page-pad) var(--space-5);
 }
 
@@ -305,6 +306,14 @@
 }
 
 @media (min-width: 900px) {
+  .site-header__inner {
+    min-height: 4.625rem;
+  }
+
+  .logo__mark {
+    height: 2.75rem;
+  }
+
   .nav-desktop {
     display: flex;
   }
