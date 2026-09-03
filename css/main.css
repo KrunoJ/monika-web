@@ -772,7 +772,7 @@ button {
 }
 
 .hero__backdrop {
-  display: none;
+  display: none !important;
   pointer-events: none;
   user-select: none;
 }
@@ -1463,6 +1463,16 @@ button {
   display: grid;
   gap: var(--space-6);
   align-items: center;
+}
+
+.teaser__photo {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+  object-fit: cover;
+  border: 0;
+  border-radius: 0;
 }
 
 @media (min-width: 860px) {
