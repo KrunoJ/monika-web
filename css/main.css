@@ -3833,9 +3833,9 @@ button {
 .mh-embed {
   display: block;
   width: 100%;
-  max-width: 1200px;
-  min-height: 640px;
-  height: 720px;
+  max-width: 940px;
+  min-height: 520px;
+  height: 580px;
   border: 0;
   background: transparent;
   overflow: hidden;

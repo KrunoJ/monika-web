@@ -25,7 +25,7 @@
     font-family: Inter, system-ui, -apple-system, sans-serif;
     color: var(--mh-text);
     background: var(--mh-bg);
-    padding: 0.65rem 0.75rem;
+    padding: 0.85rem 0.9rem;
     border-radius: var(--mh-radius);
     max-width: 940px;
     margin: 0 auto;
@@ -35,8 +35,8 @@
   .mh-layout {
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 0.75rem;
-    align-items: start;
+    gap: 0.85rem;
+    align-items: stretch;
   }
 
   .mh-hourglass-wrap {
@@ -156,11 +156,14 @@
     background: var(--mh-card);
     border: 1px solid rgba(59, 36, 24, 0.08);
     border-radius: var(--mh-radius);
-    padding: 0.7rem 0.8rem;
+    padding: 0.85rem 0.95rem;
     box-shadow: 0 1px 2px rgba(59, 36, 24, 0.04);
     transition: opacity var(--mh-transition);
-    max-height: 480px;
-    overflow: auto;
+    max-height: none;
+    overflow: visible;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .mh-card.is-updating { opacity: 0.55; }
@@ -288,6 +291,7 @@
     justify-content: space-between;
     gap: 0.5rem;
     flex-wrap: wrap;
+    margin-top: auto;
   }
 
   .mh-btn {
@@ -332,8 +336,9 @@
   }
 
   @media (min-width: 861px) {
-    .mh-hourglass-svg { max-height: 370px; }
-    .mh-card { max-height: 460px; }
+    .mh-hourglass-svg { max-height: 420px; }
+    .mh-hourglass-wrap { height: 100%; }
+    .mh-funnel-row { flex: 1 1 auto; }
   }
 
   @media (max-width: 860px) {
@@ -343,11 +348,15 @@
       margin: 0 auto 0.4rem;
     }
     .mh-hourglass-svg { max-height: 340px; }
-    .mh-card { max-height: none; overflow: visible; }
+    .mh-card {
+      height: auto;
+      max-height: none;
+      overflow: visible;
+    }
     .mh-funnel-row { gap: 0.35rem; }
     .mh-axis { width: 3.25rem; padding: 0.6rem 0; }
     .mh-axis-label { font-size: 0.55rem; }
-    .mh-nav { flex-direction: column; }
+    .mh-nav { flex-direction: column; margin-top: 0.35rem; }
     .mh-btn--primary { margin-left: 0; }
     .mh-icon-pill {
       width: 2.35rem;
@@ -643,7 +652,8 @@
       funnelRow.style.minHeight = "";
       return;
     }
-    if (!layoutHeight) layoutHeight = Math.min(measureMaxCardHeight(), 460);
+    // Equalize columns to tallest phase content — no max-height/scroll
+    if (!layoutHeight) layoutHeight = measureMaxCardHeight();
     card.style.minHeight = layoutHeight + "px";
     var header = root.querySelector(".mh-header");
     var headerSpace = 0;
@@ -651,7 +661,7 @@
       var headerStyle = window.getComputedStyle(header);
       headerSpace = header.offsetHeight + parseFloat(headerStyle.marginBottom);
     }
-    var target = Math.min(Math.max(0, layoutHeight - headerSpace), 380);
+    var target = Math.max(0, layoutHeight - headerSpace);
     funnelRow.style.minHeight = target + "px";
   }
 
