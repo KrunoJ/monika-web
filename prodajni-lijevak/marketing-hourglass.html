@@ -8,15 +8,364 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    html, body { margin: 0; padding: 0; background: transparent; }
-    body { font-family: Inter, system-ui, -apple-system, sans-serif; }
-  </style>
+  .mh-widget,
+  .mh-widget *,
+  .mh-widget *::before,
+  .mh-widget *::after { box-sizing: border-box; }
+
+  .mh-widget {
+    --mh-brown: #763317;
+    --mh-terracotta: #a45f43;
+    --mh-sage: #7f92a6;
+    --mh-bg: #fbf7f3;
+    --mh-card: #ffffff;
+    --mh-text: #3b2418;
+    --mh-radius: 12px;
+    --mh-transition: 0.28s ease;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    color: var(--mh-text);
+    background: var(--mh-bg);
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--mh-radius);
+    max-width: 940px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .mh-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .mh-hourglass-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .mh-header {
+    margin: 0 0 0.45rem;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  .mh-viz-title {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mh-brown);
+  }
+
+  .mh-viz-hint {
+    margin: 0.2rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: rgba(59, 36, 24, 0.62);
+  }
+
+  .mh-funnel-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.4rem;
+    min-height: 0;
+  }
+
+  .mh-axis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 3.5rem;
+    flex-shrink: 0;
+    padding: 0.75rem 0;
+  }
+
+  .mh-axis-label {
+    font-size: 0.58rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--mh-brown);
+    max-width: 3.5rem;
+  }
+
+  .mh-axis-arrow {
+    width: 0.95rem;
+    max-width: 0.95rem;
+    flex: 1;
+    min-height: 3.5rem;
+    color: var(--mh-brown);
+    opacity: 0.75;
+    display: block;
+  }
+
+  .mh-glass {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .mh-hourglass-svg {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    aspect-ratio: 280 / 400;
+    display: block;
+    overflow: visible;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+  }
+
+  .mh-glass-stroke {
+    fill: none !important;
+    stroke: rgba(118, 51, 23, 0.14);
+    stroke-width: 1.2;
+    pointer-events: none;
+  }
+
+  .mh-seg-hit { cursor: pointer; }
+
+  .mh-seg-shape {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+    pointer-events: all;
+    transition: fill 0.28s ease, stroke 0.28s ease;
+  }
+
+  .mh-seg-hit:hover .mh-seg-shape { fill: rgba(59, 36, 24, 0.04); }
+  .mh-seg-hit[aria-selected="true"] .mh-seg-shape {
+    fill: rgba(118, 51, 23, 0.08);
+    stroke: var(--mh-brown);
+  }
+  .mh-seg-hit:focus { outline: none; }
+  .mh-seg-hit:focus-visible .mh-seg-shape { stroke: var(--mh-brown); }
+
+  .mh-svg-name { fill: var(--mh-text); font-size: 12px; font-weight: 700; pointer-events: none; }
+  .mh-svg-desc { fill: var(--mh-text); font-size: 9px; opacity: 0.82; pointer-events: none; }
+  .mh-svg-desc--sm { font-size: 8px; }
+
+  .mh-card {
+    background: var(--mh-card);
+    border: 1px solid rgba(59, 36, 24, 0.08);
+    border-radius: var(--mh-radius);
+    padding: 0.7rem 0.8rem;
+    box-shadow: 0 1px 2px rgba(59, 36, 24, 0.04);
+    transition: opacity var(--mh-transition);
+    max-height: 480px;
+    overflow: auto;
+  }
+
+  .mh-card.is-updating { opacity: 0.55; }
+
+  .mh-card-icons {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+    margin-bottom: 0.45rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(59, 36, 24, 0.08);
+  }
+
+  .mh-icon-pill {
+    width: 1.85rem;
+    height: 1.85rem;
+    min-width: 1.85rem;
+    border: 0;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    background: rgba(127, 146, 166, 0.12);
+    color: var(--mh-sage);
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--mh-transition), color var(--mh-transition);
+  }
+
+  .mh-icon-pill:hover { background: rgba(127, 146, 166, 0.2); }
+  .mh-icon-pill.is-active {
+    background: rgba(164, 95, 67, 0.16);
+    color: var(--mh-terracotta);
+  }
+  .mh-icon-pill:focus-visible {
+    outline: 2px solid var(--mh-terracotta);
+    outline-offset: 2px;
+  }
+
+  .mh-icon-pill svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mh-card-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.35rem, 2vw, 1.55rem);
+    font-weight: 700;
+    color: var(--mh-brown);
+    margin: 0 0 0.55rem;
+    line-height: 1.15;
+  }
+
+  .mh-block { margin-bottom: 0.65rem; }
+
+  .mh-block-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mh-sage);
+    margin: 0 0 0.28rem;
+  }
+
+  .mh-block-text,
+  .mh-diagnose-text {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .mh-block-text p,
+  .mh-diagnose-text p {
+    margin: 0 0 0.35rem;
+  }
+
+  .mh-block-text p:last-child,
+  .mh-diagnose-text p:last-child { margin-bottom: 0; }
+
+  .mh-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .mh-list li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .mh-list--check li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--mh-terracotta);
+    font-weight: 700;
+  }
+
+  .mh-diagnose {
+    background: rgba(127, 146, 166, 0.1);
+    border-left: 3px solid var(--mh-sage);
+    border-radius: 0 8px 8px 0;
+    padding: 0.5rem 0.65rem;
+    margin: 0.1rem 0 0.7rem;
+  }
+
+  .mh-diagnose .mh-block-label { color: var(--mh-brown); }
+
+  .mh-diagnose-text strong,
+  .mh-block-text strong {
+    font-weight: 700;
+    color: var(--mh-brown);
+  }
+
+  .mh-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mh-btn {
+    border: none;
+    border-radius: 7px;
+    padding: 0.4rem 0.65rem;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--mh-transition), color var(--mh-transition), opacity var(--mh-transition);
+  }
+
+  .mh-btn:focus-visible {
+    outline: 2px solid var(--mh-terracotta);
+    outline-offset: 2px;
+  }
+
+  .mh-btn--primary {
+    background: var(--mh-brown);
+    color: #fff;
+    margin-left: auto;
+  }
+
+  .mh-btn--primary:hover:not(:disabled) {
+    background: var(--mh-terracotta);
+  }
+
+  .mh-btn--ghost {
+    background: transparent;
+    color: var(--mh-brown);
+    border: 1px solid rgba(118, 51, 23, 0.25);
+  }
+
+  .mh-btn--ghost:hover:not(:disabled) {
+    background: rgba(118, 51, 23, 0.06);
+  }
+
+  .mh-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 861px) {
+    .mh-hourglass-svg { max-height: 370px; }
+    .mh-card { max-height: 460px; }
+  }
+
+  @media (max-width: 860px) {
+    .mh-layout { grid-template-columns: 1fr; }
+    .mh-hourglass-wrap {
+      max-width: min(100%, 360px);
+      margin: 0 auto 0.4rem;
+    }
+    .mh-hourglass-svg { max-height: 340px; }
+    .mh-card { max-height: none; overflow: visible; }
+    .mh-funnel-row { gap: 0.35rem; }
+    .mh-axis { width: 3.25rem; padding: 0.6rem 0; }
+    .mh-axis-label { font-size: 0.55rem; }
+    .mh-nav { flex-direction: column; }
+    .mh-btn--primary { margin-left: 0; }
+    .mh-icon-pill {
+      width: 2.35rem;
+      height: 2.35rem;
+      min-width: 2.35rem;
+      flex: 1 1 0;
+    }
+  }
+</style>
 </head>
 <body>
 <div class="mh-widget" id="mh-widget" data-mh-widget>
   <div class="mh-layout">
     <div class="mh-hourglass-wrap">
-      <p class="mh-viz-title">Marketing Hourglass</p>
+      <div class="mh-header">
+        <p class="mh-viz-title">Marketing Hourglass</p>
+        <p class="mh-viz-hint">Klikni na fazu i pronađi gdje ti cure prilike.</p>
+      </div>
       <div class="mh-funnel-row">
         <div class="mh-axis" aria-hidden="true">
           <span class="mh-axis-label">široka publika</span>
@@ -639,15 +988,16 @@
       funnelRow.style.minHeight = "";
       return;
     }
-    if (!layoutHeight) layoutHeight = measureMaxCardHeight();
+    if (!layoutHeight) layoutHeight = Math.min(measureMaxCardHeight(), 460);
     card.style.minHeight = layoutHeight + "px";
-    var title = root.querySelector(".mh-viz-title");
-    var titleSpace = 0;
-    if (title) {
-      var titleStyle = window.getComputedStyle(title);
-      titleSpace = title.offsetHeight + parseFloat(titleStyle.marginBottom);
+    var header = root.querySelector(".mh-header");
+    var headerSpace = 0;
+    if (header) {
+      var headerStyle = window.getComputedStyle(header);
+      headerSpace = header.offsetHeight + parseFloat(headerStyle.marginBottom);
     }
-    funnelRow.style.minHeight = Math.max(0, (layoutHeight - titleSpace) * 0.9) + "px";
+    var target = Math.min(Math.max(0, layoutHeight - headerSpace), 380);
+    funnelRow.style.minHeight = target + "px";
   }
 
   function notifyHeight() {
