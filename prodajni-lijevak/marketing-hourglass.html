@@ -338,7 +338,12 @@
   @media (min-width: 861px) {
     .mh-hourglass-svg { max-height: 420px; }
     .mh-hourglass-wrap { height: 100%; }
-    .mh-funnel-row { flex: 1 1 auto; }
+    /* Drop hourglass + side labels so phase 1 aligns with right panel title */
+    .mh-funnel-row {
+      flex: 0 0 auto;
+      margin-top: 1.15rem; /* optical align: glass rim ≈ Vidljivost title */
+      align-items: flex-start;
+    }
   }
 
   @media (max-width: 860px) {
@@ -647,22 +652,21 @@
 
   function syncFunnelHeight() {
     if (!funnelRow || !card) return;
+    var axis = root.querySelector(".mh-axis");
+    var svg = root.querySelector(".mh-hourglass-svg");
     if (window.innerWidth <= 860) {
       card.style.minHeight = "";
       funnelRow.style.minHeight = "";
+      if (axis) axis.style.height = "";
       return;
     }
-    // Equalize columns to tallest phase content — no max-height/scroll
+    // Keep card height stable across phases; axis height follows the SVG
     if (!layoutHeight) layoutHeight = measureMaxCardHeight();
     card.style.minHeight = layoutHeight + "px";
-    var header = root.querySelector(".mh-header");
-    var headerSpace = 0;
-    if (header) {
-      var headerStyle = window.getComputedStyle(header);
-      headerSpace = header.offsetHeight + parseFloat(headerStyle.marginBottom);
+    funnelRow.style.minHeight = "";
+    if (axis && svg) {
+      axis.style.height = Math.round(svg.getBoundingClientRect().height) + "px";
     }
-    var target = Math.max(0, layoutHeight - headerSpace);
-    funnelRow.style.minHeight = target + "px";
   }
 
   function notifyHeight() {
