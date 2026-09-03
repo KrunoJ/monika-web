@@ -1104,16 +1104,18 @@
 .teaser__photo {
   display: block;
   width: 100%;
-  max-width: 22rem;
+  max-width: none;
   height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center;
   border: 0;
   border-radius: 0;
 }
 
 @media (min-width: 860px) {
   .teaser {
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 1.25fr 1fr;
     gap: var(--space-8);
   }
 }
@@ -3455,7 +3457,7 @@
   }
 
   .nl-hero__tool {
-    margin-top: var(--space-6);
+    margin-top: var(--space-5);
   }
 }
 
