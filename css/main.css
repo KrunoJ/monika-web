@@ -1369,7 +1369,7 @@ button {
 }
 
 .manifesto__item:last-child {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0;
 }
 
 .manifesto__index {
@@ -3113,7 +3113,7 @@ button {
 
 .cs-outcome {
   display: grid;
-  gap: clamp(4rem, 5.5vw, 5rem); /* ~64–80px to deliverables */
+  gap: clamp(2.5rem, 4vw, 3.5rem);
   align-items: start;
   margin-top: 0;
   width: 100%;
@@ -3162,87 +3162,119 @@ button {
   max-width: 34rem;
 }
 
-.cs-deliverables {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.75rem, 3vw, 2.75rem);
-  width: 100%;
-  margin-top: 0;
-  align-items: start;
-  justify-items: stretch;
-}
-
-.cs-deliverables__pair {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 2.5vw, 2rem);
-  width: 100%;
-  min-width: 0;
-}
-
-.cs-deliverables__item {
+/* Compact editorial stack of strategy-doc pages */
+.cs-doc-preview {
   margin: 0;
-  background: none;
-  box-shadow: none;
-  width: 100%;
-  min-width: 0;
+  width: min(100%, 44rem); /* ~704px */
+  justify-self: start;
 }
 
-.cs-deliverables__item .placeholder,
-.cs-deliverables__item img {
+.cs-doc-preview__stack {
+  position: relative;
+  width: 100%;
+  /* Room for peeks + subtle vertical offsets */
+  aspect-ratio: 16 / 10.6;
+}
+
+.cs-doc-preview__page {
+  position: absolute;
+  width: 88%;
+  margin: 0;
+  background: var(--color-bg-2);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-ink) 6%, transparent);
+  overflow: hidden;
+  transform-origin: center center;
+}
+
+.cs-doc-preview__page picture,
+.cs-doc-preview__page img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center top;
-  border: 1px solid var(--color-border);
-  border-radius: 0;
-  box-shadow: none;
-  background: var(--color-bg-2);
 }
 
-.cs-deliverables__item picture {
-  display: block;
-  width: 100%;
+.cs-doc-preview__page--back-a {
+  left: 0;
+  top: 10%;
+  z-index: 1;
+  transform: rotate(-1.6deg);
 }
 
-.cs-deliverables__item figcaption {
-  margin-top: 0.7rem;
+.cs-doc-preview__page--back-b {
+  left: 4.5%;
+  top: 6.5%;
+  z-index: 2;
+  transform: rotate(-0.6deg);
+}
+
+.cs-doc-preview__page--mid {
+  left: 8.5%;
+  top: 3%;
+  z-index: 3;
+  transform: rotate(0.7deg);
+}
+
+.cs-doc-preview__page--front {
+  left: 12%;
+  top: 0;
+  width: 88%;
+  z-index: 4;
+  transform: rotate(0deg);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-ink) 8%, transparent),
+    0 8px 20px color-mix(in srgb, var(--color-ink) 5%, transparent);
+}
+
+.cs-doc-preview__caption {
+  margin-top: 1rem;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 0.8125rem; /* 13px */
   font-weight: 400;
   line-height: 1.4;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--color-body);
+  letter-spacing: 0.01em;
+  color: var(--color-accent);
+  text-align: left;
 }
 
 @media (min-width: 900px) {
-  .cs-deliverables {
-    gap: clamp(2rem, 3vw, 3rem);
-  }
-
-  /* Dominant full-bleed document spreads */
-  .cs-deliverables__item--a,
-  .cs-deliverables__item--d {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Smaller mid pair — narrower band, right-weighted asymmetry */
-  .cs-deliverables__pair {
-    width: min(100%, 68%);
-    justify-self: end;
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  /* Second dominant spread slightly inset for editorial rhythm */
-  .cs-deliverables__item--d {
-    width: min(100%, 92%);
+  .cs-doc-preview {
+    width: min(100%, 46rem); /* ~736px */
     justify-self: start;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-doc-preview__stack {
+    aspect-ratio: 16 / 11.2;
+  }
+
+  .cs-doc-preview__page {
+    width: 90%;
+  }
+
+  .cs-doc-preview__page--back-a {
+    left: 0;
+    top: 9%;
+  }
+
+  .cs-doc-preview__page--back-b {
+    left: 3.5%;
+    top: 5.5%;
+  }
+
+  .cs-doc-preview__page--mid {
+    left: 7%;
+    top: 2.5%;
+  }
+
+  .cs-doc-preview__page--front {
+    left: 10%;
+    width: 90%;
   }
 }
 
