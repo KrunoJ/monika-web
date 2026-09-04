@@ -831,6 +831,14 @@
   color: var(--color-accent);
 }
 
+.problem-list--flush {
+  border-top: 0;
+}
+
+.problem-list--flush > li:last-child {
+  border-bottom: 0;
+}
+
 @media (min-width: 768px) {
   .problem-list li {
     grid-template-columns: 2.5rem 1fr;
