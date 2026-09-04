@@ -4115,12 +4115,14 @@
 .nl-case {
   display: grid;
   gap: var(--space-7);
+  align-items: start;
 }
 
 .nl-case__copy {
   display: grid;
   gap: var(--space-4);
   max-width: 42rem;
+  min-width: 0;
 }
 
 .nl-case__title {
@@ -4175,22 +4177,55 @@
   color: var(--color-accent);
 }
 
+.nl-case__visual {
+  min-width: 0;
+  margin: 0;
+}
+
 .nl-case__visual picture,
 .nl-case__visual img {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 @media (min-width: 900px) {
   .nl-case {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+    column-gap: clamp(3.75rem, 5vw, 5rem); /* ~60–80px */
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .nl-case__copy {
+    max-width: none;
+  }
+
+  /* Align collage top with main content (title), not the eyebrow */
+  .nl-case__visual {
+    padding-top: 3.35rem;
   }
 
   .nl-case__metrics {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: var(--space-6);
+  }
+}
+
+@media (max-width: 899px) {
+  .nl-case {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .nl-case__visual {
+    width: 100%;
+    padding-top: 0;
   }
 }
 
