@@ -5597,7 +5597,11 @@ button {
 }
 
 .ek-process__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-process__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-process__num {
