@@ -4114,11 +4114,11 @@
 
 .nl-case {
   display: grid;
-  gap: var(--space-7);
+  gap: var(--space-6);
   align-items: start;
 }
 
-.nl-case__copy {
+.nl-case__intro {
   display: grid;
   gap: var(--space-4);
   max-width: 42rem;
@@ -4135,9 +4135,10 @@
   display: grid;
   gap: var(--space-5);
   grid-template-columns: 1fr 1fr;
-  margin-top: var(--space-2);
-  padding-top: var(--space-5);
+  margin: 0;
+  padding-block: var(--space-5);
   border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nl-case__metric strong {
@@ -4157,14 +4158,21 @@
   max-width: 14ch;
 }
 
+.nl-case__evidence {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+  min-width: 0;
+}
+
 .nl-case__scope {
-  margin: var(--space-2) 0 0;
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+  margin: 0;
+  padding: 0;
+  border: 0;
   font-size: var(--text-sm);
   color: var(--color-muted);
   line-height: 1.55;
-  max-width: 40rem;
+  max-width: 22rem;
 }
 
 .nl-case__scope-label {
@@ -4196,36 +4204,47 @@
 
 @media (min-width: 900px) {
   .nl-case {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
-    column-gap: clamp(3.75rem, 5vw, 5rem); /* ~60–80px */
-    row-gap: 0;
-    align-items: start;
-  }
-
-  .nl-case__copy {
-    max-width: none;
-  }
-
-  /* Align collage top with main content (title), not the eyebrow */
-  .nl-case__visual {
-    padding-top: 3.35rem;
+    gap: var(--space-6);
   }
 
   .nl-case__metrics {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: var(--space-6);
+    padding-block: var(--space-5);
+  }
+
+  .nl-case__evidence {
+    grid-template-columns: minmax(0, 0.28fr) minmax(0, 0.72fr);
+    column-gap: clamp(3.75rem, 5vw, 5rem); /* ~60–80px */
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .nl-case__scope {
+    max-width: none;
+  }
+
+  .nl-case__visual {
+    width: 100%;
   }
 }
 
 @media (max-width: 899px) {
   .nl-case {
+    gap: var(--space-6);
+  }
+
+  .nl-case__evidence {
     grid-template-columns: 1fr;
-    gap: var(--space-7);
+    gap: var(--space-6);
+  }
+
+  .nl-case__scope {
+    max-width: none;
   }
 
   .nl-case__visual {
     width: 100%;
-    padding-top: 0;
   }
 }
 
