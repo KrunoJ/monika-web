@@ -75,17 +75,13 @@
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
-  /* ---------- Biznis okvir: implementation previews ----------
-     Swap these constants when real URLs / Canva assets are ready. */
+  /* ---------- Live browser previews (Biznis okvir + Landing portfolio) ---------- */
   const BO_IMPL = {
     WEB_URL: "https://www.poduzetnistvospovjerenjem.hr/",
     WEB_FALLBACK_IMAGE: "../assets/images/impl/web-fallback.svg",
     LANDING_URL: "https://ebook-30plusgresaka.subscribepage.io/",
     LANDING_FALLBACK_IMAGE: "../assets/images/impl/landing-fallback.svg",
   };
-
-  const preferFallbackPreview = () =>
-    window.matchMedia("(max-width: 767px)").matches;
 
   const browserLabel = (url) => {
     try {
@@ -105,6 +101,7 @@
     root.classList.remove("is-live");
     const iframe = root.querySelector(".bo-browser__frame");
     const img = root.querySelector(".bo-browser__fallback");
+    const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
     if (iframe) {
       iframe.hidden = true;
       iframe.removeAttribute("src");
@@ -113,16 +110,30 @@
       if (fallbackSrc) img.src = fallbackSrc;
       img.hidden = false;
     }
+    // Keep external open link available when live embed fails.
+    if (open instanceof HTMLAnchorElement) {
+      const url = (root.getAttribute("data-bo-url") || "").trim();
+      if (url) {
+        open.href = url;
+        open.hidden = false;
+      }
+    }
   };
 
   const showLive = (root, url) => {
     const iframe = root.querySelector(".bo-browser__frame");
     const img = root.querySelector(".bo-browser__fallback");
-    if (!iframe) return;
+    const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
+    const viewport = root.querySelector(".bo-browser__viewport");
+    if (!(iframe instanceof HTMLIFrameElement)) return;
+
     root.classList.add("is-live");
     iframe.hidden = false;
-    iframe.src = url;
     if (img) img.hidden = true;
+    if (open instanceof HTMLAnchorElement) {
+      open.href = url;
+      open.hidden = false;
+    }
 
     let settled = false;
     const fail = () => {
@@ -134,29 +145,22 @@
     const ok = () => {
       if (settled) return;
       settled = true;
-      // Cross-origin success throws; treat that as embeddable.
-      try {
-        const doc = iframe.contentDocument;
-        if (doc && (!doc.body || doc.body.childElementCount === 0)) fail();
-      } catch (_) {
-        /* framed successfully */
+      if (viewport instanceof HTMLElement) {
+        // Nudge so the scroll affordance is discoverable on touch devices.
+        viewport.scrollTop = 1;
+        window.requestAnimationFrame(() => {
+          viewport.scrollTop = 0;
+        });
       }
     };
 
     iframe.addEventListener("load", ok, { once: true });
     iframe.addEventListener("error", fail, { once: true });
     window.setTimeout(() => {
-      if (!settled) {
-        // Still loading after timeout - keep trying briefly, then accept live state
-        // only if iframe remains in DOM with a src (blocked frames often look blank).
-        try {
-          void iframe.contentWindow;
-          settled = true;
-        } catch (_) {
-          fail();
-        }
-      }
-    }, 3500);
+      if (!settled) ok();
+    }, 6000);
+
+    iframe.src = url;
   };
 
   const initBrowserPreview = (root) => {
@@ -178,30 +182,30 @@
     root.setAttribute("data-bo-fallback", resolvedFallback);
 
     const label = root.querySelector("[data-bo-url-label]");
-    const ext = root.querySelector(".bo-browser__ext");
+    const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
     const img = root.querySelector(".bo-browser__fallback");
 
     if (img && resolvedFallback) img.src = resolvedFallback;
 
     if (resolvedUrl) {
       if (label) label.textContent = browserLabel(resolvedUrl);
-      if (ext) {
-        ext.hidden = true;
-        ext.removeAttribute("href");
+      if (open instanceof HTMLAnchorElement) {
+        open.href = resolvedUrl;
+        open.hidden = false;
+        if (!open.getAttribute("aria-label") && !open.textContent.trim()) {
+          open.setAttribute("aria-label", "Otvori stranicu u novom prozoru");
+        }
       }
-      if (preferFallbackPreview()) {
-        showFallback(root, resolvedFallback);
-      } else {
-        showLive(root, resolvedUrl);
-      }
+      // Always attempt live iframe on all viewports (incl. mobile).
+      showLive(root, resolvedUrl);
     } else {
       if (label) {
         label.textContent =
           key === "web" ? "Dodaj WEB_URL" : key === "landing" ? "Dodaj LANDING_URL" : "";
       }
-      if (ext) {
-        ext.hidden = true;
-        ext.removeAttribute("href");
+      if (open instanceof HTMLAnchorElement) {
+        open.hidden = true;
+        open.removeAttribute("href");
       }
       showFallback(root, resolvedFallback);
     }
