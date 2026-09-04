@@ -3191,119 +3191,90 @@ button {
   max-width: 34rem;
 }
 
-/* Compact editorial stack of strategy-doc pages */
-.cs-doc-preview {
+/* Compact asymmetric collage of strategy-doc crops */
+.cs-doc-collage {
   margin: 0;
-  width: min(100%, 44rem); /* ~704px */
+  width: min(100%, 48rem); /* ~768px within 720–800 */
+  height: clamp(26.25rem, 38vw, 30rem); /* ~420–480px */
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); /* ~58% / 42% */
+  gap: 0.7rem;
+  align-items: stretch;
   justify-self: start;
 }
 
-.cs-doc-preview__stack {
+.cs-doc-collage__main,
+.cs-doc-collage__tile {
   position: relative;
-  width: 100%;
-  /* Room for peeks + subtle vertical offsets */
-  aspect-ratio: 16 / 10.6;
-}
-
-.cs-doc-preview__page {
-  position: absolute;
-  width: 88%;
   margin: 0;
-  background: var(--color-bg-2);
-  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-ink) 6%, transparent);
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
-  transform-origin: center center;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.cs-doc-preview__page picture,
-.cs-doc-preview__page img {
+.cs-doc-collage__main {
+  z-index: 1;
+  /* Very slight overlap into the side column */
+  margin-right: -0.65rem;
+}
+
+.cs-doc-collage__side {
+  z-index: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.7rem;
+  min-height: 0;
+  padding-left: 0.65rem; /* keep visual balance after main overlap */
+}
+
+.cs-doc-collage__main picture,
+.cs-doc-collage__tile picture,
+.cs-doc-collage__main img,
+.cs-doc-collage__tile img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
+}
+
+.cs-doc-collage__main img {
+  object-position: left top;
+}
+
+.cs-doc-collage__tile:first-child img {
   object-position: center top;
 }
 
-.cs-doc-preview__page--back-a {
-  left: 0;
-  top: 10%;
-  z-index: 1;
-  transform: rotate(-1.6deg);
+.cs-doc-collage__tile:last-child img {
+  object-position: left center;
 }
 
-.cs-doc-preview__page--back-b {
-  left: 4.5%;
-  top: 6.5%;
-  z-index: 2;
-  transform: rotate(-0.6deg);
-}
-
-.cs-doc-preview__page--mid {
-  left: 8.5%;
-  top: 3%;
-  z-index: 3;
-  transform: rotate(0.7deg);
-}
-
-.cs-doc-preview__page--front {
-  left: 12%;
-  top: 0;
-  width: 88%;
-  z-index: 4;
-  transform: rotate(0deg);
-  box-shadow:
-    0 1px 2px color-mix(in srgb, var(--color-ink) 8%, transparent),
-    0 8px 20px color-mix(in srgb, var(--color-ink) 5%, transparent);
-}
-
-.cs-doc-preview__caption {
-  margin-top: 1rem;
-  font-family: var(--font-body);
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
-  color: var(--color-accent);
-  text-align: left;
-}
-
-@media (min-width: 900px) {
-  .cs-doc-preview {
-    width: min(100%, 46rem); /* ~736px */
-    justify-self: start;
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .cs-doc-preview__stack {
-    aspect-ratio: 16 / 11.2;
+@media (max-width: 700px) {
+  .cs-doc-collage {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 0.65rem;
   }
 
-  .cs-doc-preview__page {
-    width: 90%;
+  .cs-doc-collage__main {
+    margin-right: 0;
+    height: 11.5rem;
   }
 
-  .cs-doc-preview__page--back-a {
-    left: 0;
-    top: 9%;
+  .cs-doc-collage__side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-left: 0;
   }
 
-  .cs-doc-preview__page--back-b {
-    left: 3.5%;
-    top: 5.5%;
-  }
-
-  .cs-doc-preview__page--mid {
-    left: 7%;
-    top: 2.5%;
-  }
-
-  .cs-doc-preview__page--front {
-    left: 10%;
-    width: 90%;
+  .cs-doc-collage__tile {
+    height: 10.5rem;
   }
 }
 
