@@ -4962,7 +4962,11 @@
 }
 
 .ek-jobs__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-jobs__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-jobs__num {
@@ -5012,7 +5016,11 @@
 }
 
 .ek-uses__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-uses__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-uses__label {
@@ -5225,7 +5233,11 @@
 }
 
 .ek-process__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-process__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-process__num {
