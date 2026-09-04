@@ -5326,7 +5326,11 @@ button {
 }
 
 .ek-jobs__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-jobs__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-jobs__num {
@@ -5376,7 +5380,11 @@ button {
 }
 
 .ek-uses__row:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.ek-uses__row:last-child {
+  border-bottom: 0;
 }
 
 .ek-uses__label {
