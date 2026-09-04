@@ -404,25 +404,7 @@
   grid-template-rows: auto auto auto;
   align-content: start;
   gap: var(--space-5);
-  padding: var(--space-5) 0 var(--space-6);
-}
-
-.hero__backdrop {
-  display: none;
-  pointer-events: none;
-  user-select: none;
-}
-
-.hero__word {
-  display: block;
-  font-family: var(--font-display);
-  text-transform: lowercase;
-  font-weight: 700;
-  line-height: 0.82;
-  letter-spacing: var(--tracking-tight);
-  /* Light faded brand wash - not dark */
-  color: rgba(164, 96, 67, 0.18);
-  white-space: nowrap;
+  padding: var(--space-6) 0 var(--space-6);
 }
 
 .hero__figure {
@@ -482,7 +464,43 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  margin-bottom: 1.25rem; /* ~20px to proof */
+}
+
+.hero__actions .btn {
+  text-align: left;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.hero__proof {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.5625rem; /* ~9px */
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.hero__proof-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.85rem, 4.5vw, 2.15rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-primary);
+  text-transform: none;
+}
+
+.hero__proof-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: 1.2;
+  color: var(--color-ink);
 }
 
 .hero__media {
@@ -527,29 +545,11 @@
     height: clamp(34rem, 84svh, 46rem);
     min-height: clamp(34rem, 84svh, 46rem);
     max-height: calc(100svh - 5.25rem);
-    padding: 0;
+    /* Soft top breathing room after removing the name wash */
+    padding: clamp(1.25rem, 3vh, 2.5rem) 0 0;
     gap: 0;
     width: min(100% - (var(--page-pad) * 2), 68rem);
     overflow: visible;
-  }
-
-  .hero__backdrop {
-    display: block;
-    position: absolute;
-    /* Sit higher so more of the name shows above the figure */
-    inset: 1% 0 auto;
-    z-index: 1;
-    text-align: center;
-  }
-
-  .hero__word--top {
-    font-size: clamp(4rem, 10vw, 7.5rem);
-  }
-
-  .hero__word--bottom {
-    display: block;
-    font-size: clamp(3.8rem, 9.5vw, 7rem);
-    margin-top: -0.04em;
   }
 
   .hero__figure {
@@ -582,7 +582,7 @@
     bottom: 0;
     top: auto;
     transform: translateX(-50%);
-    /* Head tops out at the marked mid line (~left copy / mid monika) */
+    /* Head tops out at the marked mid line (~left copy / mid figure) */
     height: 62%;
     width: auto;
     max-width: none;
@@ -597,7 +597,8 @@
     justify-self: end;
     padding-right: 0;
     margin-right: -0.25rem;
-    padding-bottom: 8%;
+    /* Nudge statement slightly up for balance without the backdrop */
+    padding-bottom: 14%;
     max-width: 16rem;
     z-index: 4;
   }
@@ -609,7 +610,7 @@
     justify-self: start;
     padding-left: 0;
     margin-left: -0.25rem;
-    padding-bottom: clamp(2.5rem, 7vh, 4.25rem);
+    padding-bottom: clamp(3.25rem, 9vh, 5.5rem);
     max-width: 14.5rem;
     text-align: left;
     z-index: 4;
@@ -627,23 +628,15 @@
     line-height: 1.6;
     max-width: 15rem;
   }
+
+  .hero__proof-num {
+    font-size: clamp(1.95rem, 2.2vw, 2.25rem);
+  }
 }
 
 @media (min-width: 1200px) {
   .hero__stage {
     width: min(100% - (var(--page-pad) * 2), 74rem);
-  }
-
-  .hero__backdrop {
-    inset: 0.5% 0 auto;
-  }
-
-  .hero__word--top {
-    font-size: clamp(4.75rem, 9.5vw, 8.25rem);
-  }
-
-  .hero__word--bottom {
-    font-size: clamp(4.4rem, 9vw, 7.75rem);
   }
 
   .hero__figure {
@@ -663,21 +656,6 @@
 }
 
 @media (max-width: 959px) {
-  .hero__backdrop {
-    display: block;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    order: 0;
-    margin-bottom: calc(var(--space-3) * -1);
-  }
-
-  .hero__word--top,
-  .hero__word--bottom {
-    font-size: clamp(2.4rem, 12vw, 3.6rem);
-    color: rgba(164, 96, 67, 0.2);
-  }
-
   .hero__rail--copy {
     order: 1;
   }
@@ -696,7 +674,7 @@
   }
 }
 
-/* ========== Stats ========== */
+/* ========== Stats (legacy utility; hero uses .hero__proof) ========== */
 .stats {
   display: flex;
   flex-wrap: wrap;
@@ -1043,7 +1021,7 @@
 
 .manifesto__item h3 {
   margin: 0;
-  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  font-size: clamp(1.55rem, 5.5vw, 1.85rem);
   line-height: 1.15;
   max-width: 14ch;
 }
@@ -1092,6 +1070,7 @@
 
   .manifesto__item h3 {
     padding-right: var(--space-4);
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
   }
 
   .manifesto__item .muted {
@@ -1247,7 +1226,7 @@
   font-family: var(--font-display);
   text-transform: lowercase;
   font-weight: 700;
-  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+  font-size: clamp(1.55rem, 6.2vw, 1.9rem);
   line-height: 1.2;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
@@ -1288,6 +1267,7 @@
   }
 
   .quote-split__pull {
+    font-size: clamp(1.35rem, 2.1vw, 1.65rem);
     max-width: 11ch;
     padding-right: var(--space-4);
   }
