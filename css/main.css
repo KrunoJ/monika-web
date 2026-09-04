@@ -2327,7 +2327,11 @@ button {
   }
 
   .bo-browser__viewport {
-    height: 20rem;
+    height: min(72vh, 28rem);
+  }
+
+  .bo-browser__frame {
+    height: 1800px;
   }
 }
 
