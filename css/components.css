@@ -1393,6 +1393,10 @@
   border-top: 1px solid var(--color-border);
 }
 
+.process--editorial .process__step:last-child {
+  border-bottom: 0;
+}
+
 .process--editorial .process__step-index {
   font-size: var(--text-sm);
   font-weight: 700;
