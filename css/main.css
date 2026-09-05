@@ -946,8 +946,8 @@ button {
     bottom: 0;
     top: auto;
     transform: translateX(-50%);
-    /* Larger cutout fills more of the stage; feet stay on the bottom edge */
-    height: 78%;
+    /* Scale up so the head reaches the upper hero zone (see mark-up) */
+    height: 92%;
     width: auto;
     max-width: none;
     max-height: none;
@@ -961,8 +961,8 @@ button {
     justify-self: end;
     padding-right: 0;
     margin-right: -0.25rem;
-    /* Sit in the upper/mid zone of the enlarged figure */
-    padding-top: clamp(1.75rem, 5vh, 3.25rem);
+    /* Align with upper/shoulder zone of the enlarged figure */
+    padding-top: clamp(2.5rem, 7vh, 4.75rem);
     padding-bottom: 0;
     max-width: 16rem;
     z-index: 4;
@@ -975,7 +975,7 @@ button {
     justify-self: start;
     padding-left: 0;
     margin-left: -0.25rem;
-    padding-top: clamp(4.5rem, 11vh, 7.5rem);
+    padding-top: clamp(5.5rem, 14vh, 9rem);
     padding-bottom: 0;
     max-width: 14.5rem;
     text-align: left;
