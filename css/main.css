@@ -909,8 +909,8 @@ button {
     height: clamp(34rem, 84svh, 46rem);
     min-height: clamp(34rem, 84svh, 46rem);
     max-height: calc(100svh - 5.25rem);
-    /* Soft top breathing room after removing the name wash */
-    padding: clamp(1.25rem, 3vh, 2.5rem) 0 0;
+    /* ~90–120px from nav to composition start */
+    padding: clamp(5.625rem, 7.5vw, 7.5rem) 0 0;
     gap: 0;
     width: min(100% - (var(--page-pad) * 2), 68rem);
     overflow: visible;
@@ -946,8 +946,8 @@ button {
     bottom: 0;
     top: auto;
     transform: translateX(-50%);
-    /* Head tops out at the marked mid line (~left copy / mid figure) */
-    height: 62%;
+    /* Larger cutout fills more of the stage; feet stay on the bottom edge */
+    height: 78%;
     width: auto;
     max-width: none;
     max-height: none;
@@ -957,12 +957,13 @@ button {
   .hero__rail--copy {
     grid-column: 1;
     grid-row: 1;
-    align-self: center;
+    align-self: start;
     justify-self: end;
     padding-right: 0;
     margin-right: -0.25rem;
-    /* Nudge statement slightly up for balance without the backdrop */
-    padding-bottom: 14%;
+    /* Sit in the upper/mid zone of the enlarged figure */
+    padding-top: clamp(1.75rem, 5vh, 3.25rem);
+    padding-bottom: 0;
     max-width: 16rem;
     z-index: 4;
   }
@@ -970,11 +971,12 @@ button {
   .hero__rail--meta {
     grid-column: 3;
     grid-row: 1;
-    align-self: end;
+    align-self: start;
     justify-self: start;
     padding-left: 0;
     margin-left: -0.25rem;
-    padding-bottom: clamp(3.25rem, 9vh, 5.5rem);
+    padding-top: clamp(4.5rem, 11vh, 7.5rem);
+    padding-bottom: 0;
     max-width: 14.5rem;
     text-align: left;
     z-index: 4;
