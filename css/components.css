@@ -1014,6 +1014,10 @@
   box-shadow: none;
 }
 
+.manifesto__item:first-child {
+  border-top: 0;
+}
+
 .manifesto__item:last-child {
   border-bottom: 0;
 }
