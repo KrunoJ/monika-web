@@ -28,8 +28,8 @@
     if (path.includes("/biznis-okvir") || path.includes("/case-study")) {
       return "biznis-okvir";
     }
-    if (path.includes("/prodajni-lijevak")) {
-      return "prodajni-lijevak";
+    if (path.includes("/newsletter-sustav")) {
+      return "newsletter-sustav";
     }
     if (path.includes("/o-meni")) return "o-meni";
     return "home";
@@ -39,7 +39,7 @@
     try {
       const path = normalizePath(new URL(anchor.href, window.location.href).pathname);
       if (path.includes("/biznis-okvir")) return "biznis-okvir";
-      if (path.includes("/prodajni-lijevak")) return "prodajni-lijevak";
+      if (path.includes("/newsletter-sustav")) return "newsletter-sustav";
       if (path.includes("/o-meni")) return "o-meni";
       return "home";
     } catch (_) {
