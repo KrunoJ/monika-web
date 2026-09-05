@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O meni - Monika Jagić</title>
+    <meta
+      name="description"
+      content="Volim jednostavne strategije i manje otvorenih tabova u glavi."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Preskoči na sadržaj</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="../index.html" aria-label="Monika Jagić početna">
+          <img
+            class="logo__mark"
+            src="../assets/images/logo-monika.webp"
+            alt=""
+            width="195"
+            height="180"
+          />
+        </a>
+        <nav class="nav-desktop" aria-label="Glavna navigacija">
+          <div class="nav-desktop__links">
+            <a class="nav-link" href="../index.html">Početna</a>
+            <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
+            <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a class="nav-link" href="./">O meni</a>
+          </div>
+          <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+        </nav>
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Otvori izbornik"
+        >
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
+        <a class="nav-link" href="../index.html">Početna</a>
+        <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
+        <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+        <a class="nav-link" href="./">O meni</a>
+        <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- 01 HERO -->
+      <section class="about-hero" aria-labelledby="about-hero-title">
+        <div class="about-hero__stage reveal">
+          <div class="about-hero__copy">
+            <p class="section-label about-hero__eyebrow">// o meni</p>
+            <h1 id="about-hero-title" class="about-hero__title">
+              volim jednostavne strategije<br class="about-hero__br" />
+              i manje otvorenih<br class="about-hero__br" />
+              tabova u glavi
+            </h1>
+          </div>
+          <div class="about-hero__visual">
+            <picture>
+              <img
+                src="../assets/images/monika-hero.jpg"
+                alt="Monika Jagić"
+                width="1400"
+                height="2100"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 FACTS -->
+      <section class="section about-facts-section" aria-labelledby="facts-title">
+        <div class="container about-facts reveal">
+          <h2 id="facts-title" class="about-facts__title">za početak, par činjenica</h2>
+
+          <div class="about-facts__groups">
+            <div class="about-facts__group about-facts__group--text-first">
+              <div class="about-facts__items">
+                <p class="about-fact about-fact--lead">
+                  <span class="about-fact__num" aria-hidden="true">01</span>
+                  <span class="about-fact__text"
+                    >Diplomirala ekonomiju (EFZG - Menadžment)</span
+                  >
+                </p>
+                <p class="about-fact about-fact--lead">
+                  <span class="about-fact__num" aria-hidden="true">02</span>
+                  <span class="about-fact__text"
+                    >Završila grafički i web dizajn (Sveučilište Algebra)</span
+                  >
+                </p>
+                <p class="about-fact about-fact--lead">
+                  <span class="about-fact__num" aria-hidden="true">03</span>
+                  <span class="about-fact__text"
+                    >Radila s više od 110 poduzetnika iz 15+ različitih industrija</span
+                  >
+                </p>
+              </div>
+              <figure class="about-facts__photo">
+                <picture>
+                  <source
+                    srcset="../assets/images/about/cafe.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/about/cafe.jpg"
+                    alt="Predavanje o marketingu s povjerenjem i primjeni generativne umjetne inteligencije"
+                    width="1600"
+                    height="900"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+            </div>
+
+            <div class="about-facts__group about-facts__group--photo-first">
+              <figure class="about-facts__photo about-facts__photo--ursula">
+                <picture>
+                  <source
+                    srcset="../assets/images/about/ursula-zoom.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/about/ursula-zoom.jpg"
+                    alt="Mačka Ursula uz laptop tijekom Zoom sastanka"
+                    width="1302"
+                    height="1208"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+              <div class="about-facts__items">
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">04</span>
+                  <span class="about-fact__text"
+                    >Vodila vlastiti proizvodni brend 3 godine</span
+                  >
+                </p>
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">05</span>
+                  <span class="about-fact__text"
+                    >Slaba na dobre volonterske projekte i udruge</span
+                  >
+                </p>
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">06</span>
+                  <span class="about-fact__text"
+                    >Udana za svoju srednjoškolsku ljubav s kojom odnedavno zajedno i
+                    radim</span
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="about-facts__group about-facts__group--text-first">
+              <div class="about-facts__items">
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">07</span>
+                  <span class="about-fact__text"
+                    >Imamo mačku Ursulu koja je uvjerena da je main character svakog Zoom
+                    sastanka</span
+                  >
+                </p>
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">08</span>
+                  <span class="about-fact__text"
+                    >Prije ću pronaći rješenje za tvoje poslovanje nego vlastite ključeve od
+                    stana</span
+                  >
+                </p>
+                <p class="about-fact">
+                  <span class="about-fact__num" aria-hidden="true">09</span>
+                  <span class="about-fact__text"
+                    >Najviše volim raditi iz kafića, a društvene igre i kroasan iz Dubravice
+                    mogu mi uljepšati baš svaki dan</span
+                  >
+                </p>
+              </div>
+              <figure class="about-facts__photo about-facts__photo--dubravica">
+                <picture>
+                  <source
+                    srcset="../assets/images/about/dubravica.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="../assets/images/about/dubravica.jpg"
+                    alt="Kroasan iz Dubravice uz bicikl na Jarunu"
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 PRINCIPLES -->
+      <section class="section section--tint section--border" aria-labelledby="principles-title">
+        <div class="container reveal">
+          <h2 id="principles-title" class="about-principles__title">
+            što možeš očekivati od mene
+          </h2>
+
+          <article class="about-principle">
+            <p class="about-principle__num">01</p>
+            <h3 class="about-principle__title">nemam šablone</h3>
+            <div class="about-principle__body">
+              <p>
+                Vjerujem u jasnoću prije akcije i personalizirana rješenja. Iako svaka moja
+                usluga ima svoju strukturu, način suradnje uvijek prilagođavam fazi
+                poslovanja, ali i životnim okolnostima u kojima se nalaziš.
+              </p>
+              <p>
+                Neću pristati na svaki upit niti predložiti nešto samo zato što postoji u
+                mojoj ponudi. Predložit ću ga tek kada prepoznam da će imati smisla upravo
+                za tebe.
+              </p>
+            </div>
+          </article>
+
+          <article class="about-principle about-principle--dose">
+            <p class="about-principle__num">02</p>
+            <h3 class="about-principle__title">doziram</h3>
+            <div class="about-principle__body">
+              <p>
+                Neću te zatrpati svim mogućnostima koje postoje niti svim znanjem koje
+                imam.
+              </p>
+              <p>
+                Ako te educiram, fokusirat ćemo se na ono što možeš odmah primijeniti. Ako
+                zajedno slažemo strategiju ili postavljamo sustav, dobit ćeš prioritete,
+                jasne korake i redoslijed kojim ima smisla ići.
+              </p>
+            </div>
+          </article>
+
+          <article class="about-principle">
+            <p class="about-principle__num">03</p>
+            <h3 class="about-principle__title">ne tapšam po ramenu, ali mi je stalo</h3>
+            <div class="about-principle__body">
+              <p>
+                Kad radimo zajedno, nije mi cilj samo isporučiti ono što si tražila.
+              </p>
+              <p>
+                Želim razumjeti što pokušavaš izgraditi i realizirati rješenje koje ima
+                najviše smisla za tvoje poslovanje.
+              </p>
+              <p>
+                Nekad ću potvrditi da si na dobrom putu, a nekad predložiti da nešto
+                promijeniš, odgodiš ili potpuno makneš.
+              </p>
+              <p>
+                Postavljam pitanja, slušam što govoriš, ali čitam i između redaka.
+              </p>
+              <p>
+                Javit ću ti se i nakon što suradnja završi jer volim znati kako ti ide,
+                čuti što se promijenilo i biti podrška kad se pojave nova pitanja.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 04 VOICES -->
+      <section class="section" aria-labelledby="voices-label">
+        <div class="container reveal">
+          <p id="voices-label" class="section-label">// klijentice o meni</p>
+
+          <div class="about-voices">
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „Ja prije suradnje s tobom pojma nisam imala koliko posao može biti
+                strukturiran”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  Sada imam potpuno nov pogled na sve i puno ti hvala na tome.
+                </p>
+                <p>
+                  Pomogla mi je da posloži sve na svoje mjesto. Da sve ima svoje zašto i
+                  kako i da je organizirano i da imam lakši uvid u sve.
+                </p>
+                <p>
+                  Jednostavnost i opuštenost kojom zračiš uvelike je i meni pružila iste te
+                  osjećaje i pomogla mi da se lakše nosim sa količinom posla kojeg nisam ni
+                  sama bila svjesna u početku.
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Mateja Valentić</figcaption>
+            </figure>
+
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „Nisi mi davala suvišne informacije nego upravo ono što mi sad treba”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  „Saslušala si sve moje potrebe i želje i skombinirala ponudu prilagođenu
+                  upravo onome što mi je u ovom trenutku potrebno.
+                </p>
+                <p>
+                  Efikasno i ekspresno si vodila cijeli proces odkad sam ti se javila do
+                  kraja. Cijelo vrijeme sam se osjećala da sigurno idem ka cilju i da ću na
+                  kraju dobiti točno po što sam došla.”
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Andrea Kovač</figcaption>
+            </figure>
+
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „osjećala sam se kao da smo tim, a ne da samo prepuštam zadatke nekome
+                izvana”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  „Najviše mi se svidjela tvoja organiziranost i sposobnost da sve obaviš
+                  pravovremeno, ali i s velikom pažnjom prema detaljima. Posebno cijenim
+                  što si preuzela inicijativu i predložila rješenja koja su poboljšala
+                  konačni rezultat.
+                </p>
+                <p>
+                  Također, tvoj profesionalizam i komunikacija bili su izuzetni - uvijek
+                  sam znala u kojoj smo fazi i što mogu očekivati.”
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Anita Kanđera</figcaption>
+            </figure>
+
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „Osjećala sam tvoj interes i posvećenost onome što radim”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  „Osim što je profesionalna i zna što radi, ima pozitivnu i kreativnu
+                  energiju koja pomaže da cijeli proces bude zabavan, a konačni rezultat je
+                  u skladu s vašim željama.
+                </p>
+                <p>
+                  Puno mi je značilo što sam u svakom trenutku osjećala slobodu postaviti
+                  bilo kakvo pitanje ili dati sugestiju, a to je rezultiralo sjajnom
+                  suradnjom!”
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Martina Divić</figcaption>
+            </figure>
+
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „Predala sam skoro pola posla u tuđe ruke i osjetila lakoću za veći fokus
+                na ono što je moja ekspertiza :)”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  Jasna komunikacija, prijedlozi za efikasnija rješenja, brzina dogovora i
+                  obavljanja zadataka.
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Lana Matica</figcaption>
+            </figure>
+
+            <figure class="about-voice">
+              <blockquote class="about-voice__pull">
+                „Prepusti tvom vođenju, čak i kad ne zna što želi”
+              </blockquote>
+              <div class="about-voice__body">
+                <p>
+                  „Prije svega svidjela mi se jednostavnost kojom pričaš i objašnjavaš.
+                </p>
+                <p>
+                  Neka ti se samo javi jer ti usmjeriš i daješ toliko prijedloga i ideja da
+                  nema šanse da ne ispadne odlično!”
+                </p>
+              </div>
+              <figcaption class="about-voice__name">Andrea Bezak</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 FINAL CTA -->
+      <section id="cta" class="final-cta" aria-labelledby="cta-title">
+        <div class="container reveal">
+          <h2 id="cta-title">misliš da bismo dobro kliknule?</h2>
+          <div class="stack" style="margin-top: var(--space-5); max-width: var(--measure-wide)">
+            <p>
+              Opiši mi gdje si trenutno, što želiš promijeniti ili izgraditi i što ti se
+              već neko vrijeme mota po glavi.
+            </p>
+            <p>
+              Ja ću procijeniti gdje ti mogu pomoći i predložiti sljedeći korak.
+            </p>
+          </div>
+          <a
+            class="btn btn--on-dark text-link--arrow"
+            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Krenimo od tvoje situacije</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić">
+              <img
+                src="../assets/images/logo-monika-wordmark.webp"
+                alt="monika jagić"
+                width="329"
+                height="64"
+              />
+            </a>
+            <p class="site-footer__tagline">Analiza. Strategija. Implementacija.</p>
+          </div>
+          <nav aria-label="Podnožje">
+            <a href="../index.html">Početna</a>
+            <a href="../biznis-okvir/">Biznis okvir</a>
+            <a href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a href="../dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
+            <a href="../landing-stranice/">Landing stranice</a>
+            <a href="./">O meni</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">© <span data-year></span> Monika Jagić</p>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

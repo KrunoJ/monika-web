@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "Tan Ashford";
+  src: url("../assets/fonts/TanAshford-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Brand palette */
+  --color-bg-1: #f1ebe4;
+  --color-bg-2: #f2e6d5;
+  --color-heading: #a46043;
+  --color-body: #763316;
+  --color-accent: #8491a0;
+
+  /* Aliases used across components */
+  --color-primary: var(--color-heading);
+  --color-ink: var(--color-body);
+  --color-white: #ffffff;
+  --color-surface: var(--color-bg-1);
+  --color-surface-2: var(--color-bg-2);
+  --color-border: rgba(118, 51, 22, 0.14);
+  --color-border-strong: rgba(118, 51, 22, 0.28);
+  --color-muted: rgba(118, 51, 22, 0.72);
+  --color-soft: rgba(132, 145, 160, 0.18);
+
+  /* Typography */
+  --font-display: "Tan Ashford", Georgia, "Times New Roman", serif;
+  --font-body: Inter, "Segoe UI", system-ui, sans-serif;
+  --font-hand: Inter, "Segoe UI", system-ui, sans-serif;
+
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.8125rem; /* 13 — eyebrows / meta */
+  --text-ui: 0.9375rem; /* 15 — nav, buttons, UI */
+  --text-base: 1.0625rem; /* 17 — body */
+  --text-md: 1.125rem; /* 18 — lede / emphasis body */
+  --text-lg: 1.375rem; /* 22 — secondary display */
+  --text-xl: clamp(1.55rem, 2.1vw, 2rem);
+  --text-2xl: clamp(2.1rem, 3.6vw, 2.95rem);
+  --text-3xl: clamp(2.5rem, 5.2vw, 4rem);
+  --text-hero: clamp(2.4rem, 6.2vw, 4.75rem);
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
+  --leading-body: 1.65;
+
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.08em;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --page-pad: clamp(1.25rem, 4vw, 3.5rem);
+
+  /* Section vertical rhythm - comfortable inset inside each band
+     Desktop ≈ 80 / 64 / 104 · Tablet ≈ 72 / 56 / 88 · Mobile ≈ 56 / 48 / 72 */
+  --section-space: 5rem;
+  --section-space-compact: 4rem;
+  --section-space-large: 6.5rem;
+  /* Alias for older rules */
+  --section-y: var(--section-space);
+
+  --content-max: 72rem;
+  --measure: 38rem;
+  --measure-wide: 46rem;
+
+  /* Shape */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 0.55s;
+
+  /* Shadows - restrained */
+  --shadow-soft: 0 12px 40px rgba(118, 51, 22, 0.08);
+  --shadow-polaroid: 0 8px 28px rgba(28, 24, 20, 0.12);
+
+  /* Sticky / paper accents */
+  --note-yellow: #f3e2a8;
+  --note-mint: #d8e4dc;
+  --paper: #fffdf8;
+}
+
+@media (max-width: 699px) {
+  :root {
+    --section-space: 3.5rem;
+    --section-space-compact: 3rem;
+    --section-space-large: 4.5rem;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+  :root {
+    --section-space: 4.5rem;
+    --section-space-compact: 3.5rem;
+    --section-space-large: 5.5rem;
+  }
+}
