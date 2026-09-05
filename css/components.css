@@ -2269,7 +2269,11 @@
 }
 
 .faq details:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.faq details:last-child {
+  border-bottom: 0;
 }
 
 .faq summary {
