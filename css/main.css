@@ -1363,6 +1363,63 @@ button {
   }
 }
 
+/* Homepage services break: brick band between light editorial sections */
+.section--services-break {
+  background: var(--color-heading);
+  color: var(--color-bg-1);
+  padding-block: clamp(5.75rem, 11vw, 8.75rem);
+}
+
+.section--services-break h2,
+.section--services-break .service-panel h3 {
+  color: var(--color-bg-1);
+}
+
+.section--services-break .service-panel .stack p {
+  color: rgba(241, 235, 228, 0.86);
+}
+
+.section--services-break .service-panel__tag {
+  color: rgba(241, 235, 228, 0.58);
+}
+
+.section--services-break .service-panel .text-link {
+  color: var(--color-bg-1);
+  text-decoration-color: rgba(241, 235, 228, 0.55);
+}
+
+.section--services-break .service-panel .text-link:hover,
+.section--services-break a:hover {
+  color: var(--color-bg-2);
+  text-decoration-color: rgba(242, 230, 213, 0.85);
+}
+
+.section--services-break .service-panel + .service-panel {
+  border-top: 1px solid rgba(241, 235, 228, 0.22);
+  padding-top: var(--space-7);
+}
+
+@media (min-width: 900px) {
+  .section--services-break .service-split {
+    gap: 0;
+  }
+
+  .section--services-break .service-panel {
+    padding-top: var(--space-5);
+  }
+
+  .section--services-break .service-panel:first-child {
+    padding-right: var(--space-7);
+  }
+
+  .section--services-break .service-panel + .service-panel {
+    border-top: 0;
+    border-left: 1px solid rgba(241, 235, 228, 0.22);
+    padding-top: var(--space-5);
+    padding-left: var(--space-7);
+  }
+}
+
 /* ========== Manifesto ========== */
 .manifesto {
   display: grid;
