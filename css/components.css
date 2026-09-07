@@ -4772,8 +4772,54 @@
   color: var(--color-body);
 }
 
+/* Landing choose: brick band ending after “Obje opcije uključuju” */
+.section--lp-choose-break.lp-choose {
+  background: var(--color-heading);
+  color: var(--color-bg-1);
+  padding-block: clamp(5.75rem, 11vw, 8.75rem);
+}
+
+.section--lp-choose-break .section-label {
+  color: rgba(241, 235, 228, 0.62);
+}
+
+.section--lp-choose-break .lp-option__num {
+  color: rgba(241, 235, 228, 0.55);
+}
+
+.section--lp-choose-break .lp-option__title,
+.section--lp-choose-break .lp-option__price,
+.section--lp-choose-break .lp-includes__label {
+  color: var(--color-bg-1);
+}
+
+.section--lp-choose-break .lp-option__copy,
+.section--lp-choose-break .lp-includes__text {
+  color: rgba(241, 235, 228, 0.86);
+}
+
+.section--lp-choose-break .lp-option__copy strong,
+.section--lp-choose-break .lp-includes__text strong {
+  color: var(--color-bg-1);
+  font-weight: 600;
+}
+
+.section--lp-choose-break .lp-option + .lp-option {
+  border-top-color: rgba(241, 235, 228, 0.22);
+}
+
+@media (min-width: 900px) {
+  .section--lp-choose-break .lp-option:first-child {
+    border-right-color: rgba(241, 235, 228, 0.22);
+  }
+}
+
+.lp-process-band.section {
+  padding-block: clamp(4.5rem, 8vw, 6.5rem);
+}
+
 .lp-process {
-  margin-top: clamp(3rem, 4.5vw, 3.5rem);
+  margin-top: 0;
   max-width: 47.5rem;
 }
 
