@@ -5178,6 +5178,18 @@ button {
   padding-block: clamp(5.75rem, 11vw, 8.75rem);
 }
 
+@media (min-width: 900px) {
+  /* Landing: tighten cream hero → brick choose transition */
+  .nl-hero:has(+ .section--lp-choose-break) {
+    padding-bottom: clamp(2.75rem, 3.5vw, 3.5rem);
+  }
+
+  .section--lp-choose-break.lp-choose {
+    padding-top: clamp(5rem, 6.5vw, 6.25rem); /* ~80–100px to eyebrow */
+    padding-bottom: clamp(5.75rem, 11vw, 8.75rem);
+  }
+}
+
 .section--lp-choose-break .section-label {
   color: rgba(241, 235, 228, 0.62);
 }
