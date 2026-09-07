@@ -3107,7 +3107,9 @@
 
 /* ========== O meni - editorial about ========== */
 .about-hero {
-  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+  background: var(--color-heading);
+  color: var(--color-bg-1);
+  padding: clamp(2rem, 4.5vw, 2.75rem) 0;
   overflow: hidden;
   border-bottom: 0;
 }
@@ -3129,6 +3131,7 @@
 
 .about-hero__eyebrow {
   margin: 0;
+  color: rgba(241, 235, 228, 0.62);
 }
 
 .about-hero__title {
@@ -3138,6 +3141,7 @@
   line-height: 1.08;
   letter-spacing: var(--tracking-tight);
   max-width: none;
+  color: var(--color-bg-1);
 }
 
 .about-hero__br {
@@ -3173,21 +3177,20 @@
 
 @media (min-width: 900px) {
   .about-hero {
-    padding-top: clamp(1.5rem, 2vw, 2rem);
-    padding-bottom: 0;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
   }
 
   .about-hero__stage {
     grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.3fr);
     column-gap: clamp(2.5rem, 5vw, 4rem);
-    align-items: end;
-    min-height: clamp(31.25rem, 38vw, 35rem);
+    align-items: center;
+    min-height: 0;
   }
 
   .about-hero__copy {
     max-width: 45rem;
-    align-self: start;
-    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    align-self: center;
+    padding-bottom: 0;
   }
 
   .about-hero__title {
@@ -3204,7 +3207,7 @@
     width: min(100%, 23.75rem);
     max-width: 23.75rem;
     justify-self: end;
-    align-self: end;
+    align-self: center;
     margin: 0;
   }
 
