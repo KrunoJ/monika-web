@@ -19,7 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/main.css?v=mobile-h3-bump" />
+    <link rel="stylesheet" href="../css/main.css?v=footer-restructure" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -664,9 +664,9 @@ koliko košta dizajn?
 
     <footer class="site-footer">
       <div class="container">
-        <div class="site-footer__grid">
-          <div>
-            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić">
+        <div class="site-footer__main">
+          <div class="site-footer__brand-block">
+            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić početna">
               <img
                 src="../assets/images/logo-monika-wordmark.webp"
                 alt="Monika Jagić — Analiza. Strategija. Implementacija."
@@ -674,17 +674,50 @@ koliko košta dizajn?
                 height="342"
               />
             </a>
+            <ul class="site-footer__social">
+              <li>
+                <a
+                  href="https://www.instagram.com/monika.jagic/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@monikajagic"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >YouTube</a
+                >
+              </li>
+            </ul>
           </div>
-          <nav aria-label="Podnožje">
-            <a href="../index.html">Početna</a>
-            <a href="../biznis-okvir/">Biznis okvir</a>
-            <a href="../newsletter-sustav/">Newsletter sustav</a>
-            <a href="./">Dizajn e-knjiga i digitalnih materijala</a>
-            <a href="../landing-stranice/">Landing stranice</a>
-            <a href="../o-meni/">O meni</a>
+          <nav class="site-footer__nav" aria-label="Podnožje">
+            <div class="site-footer__nav-col">
+              <a href="../biznis-okvir/">Biznis okvir</a>
+              <a href="../newsletter-sustav/">Newsletter sustav</a>
+              <a href="../dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
+            </div>
+            <div class="site-footer__nav-col">
+              <a href="../landing-stranice/">Landing stranice</a>
+              <a href="../o-meni/">O meni</a>
+              <a
+                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Pošalji upit</a
+              >
+            </div>
           </nav>
         </div>
-        <p class="site-footer__meta">© <span data-year></span> Monika Jagić</p>
+        <div class="site-footer__legal">
+          <p class="site-footer__copy">© <span data-year></span> Monika Jagić</p>
+          <nav class="site-footer__legal-nav" aria-label="Pravne informacije">
+            <a href="../podaci-o-poslovanju/">Podaci o poslovanju</a>
+            <a href="../privatnost/">Privatnost i kolačići</a>
+          </nav>
+        </div>
       </div>
     </footer>
 
