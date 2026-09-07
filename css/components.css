@@ -967,6 +967,8 @@
 .service-panel h3 {
   margin-top: var(--space-3);
   margin-bottom: 0;
+  font-size: clamp(1.75rem, 6vw, 2.05rem);
+  line-height: 1.12;
 }
 
 .service-panel .stack {
@@ -992,6 +994,10 @@
     padding: var(--space-5) 0 0;
     border: 0;
     min-height: 100%;
+  }
+
+  .service-panel h3 {
+    font-size: clamp(1.55rem, 2.1vw, 2rem);
   }
 
   .service-panel:first-child {
@@ -1102,7 +1108,7 @@
 
 .manifesto__item h3 {
   margin: 0;
-  font-size: clamp(1.55rem, 5.5vw, 1.85rem);
+  font-size: clamp(1.75rem, 6vw, 2rem);
   line-height: 1.15;
   max-width: 14ch;
 }
@@ -1490,6 +1496,8 @@
 
 .process--editorial .process__content h3 {
   margin-bottom: var(--space-2);
+  font-size: clamp(1.7rem, 5.8vw, 1.95rem);
+  line-height: 1.15;
 }
 
 @media (min-width: 900px) {
@@ -5117,7 +5125,7 @@
 
 .ek-jobs__title {
   margin: 0;
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.7rem, 5.8vw, 1.9rem);
   max-width: 16ch;
   line-height: 1.15;
 }
@@ -5163,7 +5171,7 @@
 
 .ek-uses__label {
   margin: 0;
-  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-size: clamp(1.7rem, 5.8vw, 2rem);
   max-width: 14ch;
   line-height: 1.12;
 }
