@@ -461,7 +461,7 @@ button {
 .logo__mark {
   display: block;
   width: auto;
-  height: 2.625rem;
+  height: 3.25rem;
 }
 
 .logo:hover {
@@ -675,7 +675,7 @@ button {
   }
 
   .logo__mark {
-    height: 2.75rem;
+    height: 3.5rem;
   }
 
   .nav-desktop {
@@ -709,7 +709,7 @@ button {
 }
 
 .site-footer__brand img {
-  width: min(12.5rem, 70vw);
+  width: min(16.5rem, 78vw);
   height: auto;
 }
 
