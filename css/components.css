@@ -5089,6 +5089,30 @@
   }
 }
 
+/* Ebook uses: brick band between light editorial sections */
+.section--ek-uses-break {
+  background: var(--color-heading);
+  color: var(--color-bg-1);
+  padding-block: clamp(5.75rem, 11vw, 8.75rem);
+}
+
+.section--ek-uses-break .section-label {
+  color: rgba(241, 235, 228, 0.62);
+}
+
+.section--ek-uses-break .ek-section-title,
+.section--ek-uses-break .ek-uses__label {
+  color: var(--color-bg-1);
+}
+
+.section--ek-uses-break .ek-uses__copy {
+  color: rgba(241, 235, 228, 0.86);
+}
+
+.section--ek-uses-break .ek-uses__row {
+  border-bottom-color: rgba(241, 235, 228, 0.22);
+}
+
 /* Scope (compact) */
 .ek-scope--compact {
   margin-top: 0;
