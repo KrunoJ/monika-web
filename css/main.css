@@ -1406,6 +1406,11 @@ button {
 }
 
 @media (min-width: 900px) {
+  .section--services-break {
+    padding-top: clamp(3.75rem, 5.5vw, 5rem);
+    padding-bottom: clamp(3.75rem, 5.5vw, 5.25rem);
+  }
+
   .section--services-break .service-split {
     gap: 0;
   }
