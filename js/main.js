@@ -142,10 +142,54 @@
       showFallback(root, root.getAttribute("data-bo-fallback"));
     };
 
+    const applyPreviewOffset = () => {
+      const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
+      const offset = Number.parseInt(raw, 10);
+      if (!Number.isFinite(offset) || offset === 0) {
+        root.classList.remove("is-offset-preview");
+        root.style.removeProperty("--preview-offset-y");
+        return;
+      }
+
+      root.style.setProperty("--preview-offset-y", `${offset}px`);
+      root.classList.add("is-offset-preview");
+
+      if (!(viewport instanceof HTMLElement)) return;
+
+      let veil = root.querySelector(".bo-browser__offset-veil");
+      if (!(veil instanceof HTMLButtonElement)) {
+        veil = document.createElement("button");
+        veil.type = "button";
+        veil.className = "bo-browser__offset-veil";
+        veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
+        viewport.appendChild(veil);
+      }
+
+      const clearOffset = () => {
+        root.classList.remove("is-offset-preview");
+        root.style.removeProperty("--preview-offset-y");
+        if (veil.isConnected) veil.remove();
+        viewport.scrollTop = 0;
+      };
+
+      veil.addEventListener("click", clearOffset, { once: true });
+      veil.addEventListener(
+        "keydown",
+        (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            clearOffset();
+          }
+        },
+        { once: true }
+      );
+    };
+
     const ok = () => {
       if (settled) return;
       settled = true;
-      if (viewport instanceof HTMLElement) {
+      applyPreviewOffset();
+      if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
         // Nudge so the scroll affordance is discoverable on touch devices.
         viewport.scrollTop = 1;
         window.requestAnimationFrame(() => {

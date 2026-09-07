@@ -2315,6 +2315,31 @@ button {
   display: none;
 }
 
+/* Idle crop for landing portfolio iframes with data-preview-offset-y */
+.bo-browser.is-offset-preview .bo-browser__viewport {
+  overflow: hidden;
+}
+
+.bo-browser.is-offset-preview .bo-browser__frame {
+  transform: translateY(var(--preview-offset-y, 0px));
+  will-change: transform;
+}
+
+.bo-browser__offset-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bo-browser:not(.is-offset-preview) .bo-browser__offset-veil {
+  display: none;
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .bo-impl-row--1,
   .bo-impl-row--2,
