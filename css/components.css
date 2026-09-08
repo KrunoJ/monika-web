@@ -5465,7 +5465,7 @@
 
 .ek-incl__heading {
   margin: 0 0 var(--space-4);
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.75rem, 4vw, 1.9rem);
 }
 
 .ek-incl__list {
