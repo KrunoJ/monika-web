@@ -5742,12 +5742,16 @@
    Business info — /podaci-o-poslovanju (editorial, not admin)
    ========================================================================== */
 
-.biz-info {
+.biz-info.section {
   padding-block: clamp(2rem, 4.5vw, 2.75rem) clamp(2.5rem, 5.5vw, 3.5rem);
 }
 
 .biz-info__inner {
   max-width: 52rem;
+}
+
+.biz-info .section-label {
+  margin-bottom: 0.45rem;
 }
 
 .biz-info__eyebrow {
