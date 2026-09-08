@@ -756,7 +756,7 @@ button {
 
 .site-footer__nav a {
   font-family: var(--font-body);
-  font-size: 1.0625rem; /* 17px */
+  font-size: 0.9375rem; /* same as Instagram / YouTube */
   font-weight: 500;
   color: var(--color-body);
   text-decoration: none;
@@ -822,7 +822,7 @@ button {
   }
 
   .site-footer__nav a {
-    font-size: 1rem; /* 16px desktop */
+    font-size: 0.9375rem; /* same as Instagram / YouTube */
   }
 
   .site-footer__legal {
@@ -4105,6 +4105,25 @@ button {
 .nl-hourglass-band .mh-embed {
   max-width: 100%;
   margin-inline: auto;
+}
+
+/* Tighten cream models section after brick hourglass band */
+.nl-hourglass-band + .section {
+  padding-top: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+.nl-hourglass-band + .section .section-label {
+  margin-bottom: 0.35rem;
+}
+
+.nl-hourglass-band + .section .nl-models {
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .nl-hourglass-band + .section .nl-models {
+    margin-top: var(--space-5);
+  }
 }
 
 .bo-hero__title {
