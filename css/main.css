@@ -5522,6 +5522,20 @@ button {
   width: 100%;
 }
 
+/* Force mobile layout inside portfolio iframes, then scale to card width */
+.lp-portfolio .bo-browser__frame {
+  width: 390px;
+  min-width: 390px;
+  height: 2200px;
+  transform-origin: top left;
+  transform: scale(var(--preview-scale, 1));
+}
+
+.lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
+  /* translate in mobile CSS px, then scale to card */
+  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
+}
+
 .lp-portfolio__item--tall .bo-browser__viewport {
   height: clamp(24rem, 55vw, 36rem);
 }
