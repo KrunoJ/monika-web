@@ -3992,7 +3992,12 @@ button {
 
 /* ========== Newsletter sustav ========== */
 .nl-hero {
-  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(2.5rem, 4vw, 3.25rem);
+  padding: clamp(2.5rem, 6vw, 4rem) 0 var(--section-space);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nl-hero:has(+ .nl-hourglass-band) {
+  padding-bottom: clamp(2.5rem, 4vw, 3.25rem);
   border-bottom: 0;
 }
 
