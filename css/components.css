@@ -3627,8 +3627,8 @@
 
 /* ========== Newsletter sustav ========== */
 .nl-hero {
-  padding: clamp(2.5rem, 6vw, 4rem) 0 var(--section-space);
-  border-bottom: 1px solid var(--color-border);
+  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(2.5rem, 4vw, 3.25rem);
+  border-bottom: 0;
 }
 
 .nl-hero__intro {
@@ -3704,6 +3704,37 @@
   .nl-hero__tool {
     margin-top: var(--space-5);
   }
+}
+
+/* Newsletter: Marketing Hourglass full-width brick band */
+.nl-hourglass-band {
+  background: #a45f43;
+  color: var(--color-bg-1);
+  padding-block: clamp(2.75rem, 5vw, 3.5rem); /* ~44–56px mobile → ~56px mid */
+}
+
+@media (min-width: 900px) {
+  .nl-hourglass-band {
+    padding-block: clamp(4.5rem, 5.5vw, 5.625rem); /* ~72–90px */
+  }
+}
+
+.nl-hourglass-band__inner {
+  display: grid;
+  justify-items: center;
+}
+
+.nl-hourglass-band__tool {
+  display: grid;
+  width: 100%;
+  max-width: 64rem; /* slight bump from 940px (~58.75rem) */
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.nl-hourglass-band .mh-embed {
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .bo-hero__title {
