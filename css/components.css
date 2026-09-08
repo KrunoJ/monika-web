@@ -367,7 +367,7 @@
 
 .site-footer__social a,
 .site-footer__social span {
-  font-size: var(--text-sm);
+  font-size: 0.9375rem; /* 15px */
   font-weight: 500;
   color: var(--color-muted);
   text-decoration: none;
@@ -390,7 +390,8 @@
 }
 
 .site-footer__nav a {
-  font-size: var(--text-ui);
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px */
   font-weight: 500;
   color: var(--color-body);
   text-decoration: none;
@@ -399,6 +400,12 @@
 
 .site-footer__nav a:hover {
   color: var(--color-heading);
+}
+
+@media (min-width: 900px) {
+  .site-footer__nav a {
+    font-size: 1rem; /* 16px desktop */
+  }
 }
 
 .site-footer__legal {
