@@ -3326,7 +3326,7 @@
 }
 
 .about-facts-section.section {
-  padding-top: var(--section-space);
+  padding-top: clamp(2.25rem, 3.5vw, 3rem);
 }
 
 .about-facts {
