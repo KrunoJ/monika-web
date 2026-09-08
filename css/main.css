@@ -5151,7 +5151,7 @@ button {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-size: clamp(1.75rem, 4.5vw, 1.9rem);
   color: var(--color-heading);
   line-height: 1.2;
 }
