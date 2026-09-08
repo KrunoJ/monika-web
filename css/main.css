@@ -732,7 +732,7 @@ button {
 
 .site-footer__social a,
 .site-footer__social span {
-  font-size: 0.9375rem; /* 15px */
+  font-size: var(--text-sm); /* same as legal / privatnost */
   font-weight: 500;
   color: var(--color-muted);
   text-decoration: none;
