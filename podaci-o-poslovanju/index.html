@@ -8,14 +8,14 @@
     <link rel="icon" type="image/png" href="../assets/images/favicon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png" />
     <title>Podaci o poslovanju - Monika Jagić</title>
-    <meta name="description" content="podaci o poslovanju" />
+    <meta name="description" content="Službeni podaci o poslovanju: Creatum, vl. Monika Jagić." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/main.css?v=footer-compact" />
+    <link rel="stylesheet" href="../css/main.css?v=biz-info-page" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -64,12 +64,45 @@
     </header>
 
     <main id="main">
-      <section class="section" aria-labelledby="legal-title">
-        <div class="container" style="max-width: 42rem">
-          <h1 id="legal-title">podaci o poslovanju</h1>
-          <div class="stack" style="margin-top: var(--space-6)">
-            <p>Ova stranica bit će dopunjena službenim podacima o poslovanju.</p><p>Za pitanja u međuvremenu koristi kontakt formu putem poveznice Pošalji upit.</p>
+      <section class="section biz-info" aria-labelledby="legal-title">
+        <div class="container biz-info__inner">
+          <div class="biz-info__intro reveal">
+            <p class="section-label">// podaci o poslovanju</p>
+            <h1 id="legal-title" class="biz-info__title">podaci o poslovanju</h1>
           </div>
+
+          <div class="biz-info__identity reveal">
+            <p class="biz-info__name">Creatum, vl. Monika Jagić</p>
+            <p class="biz-info__address">
+              Kombolova ulica 13<br />
+              10000 Zagreb, Hrvatska
+            </p>
+          </div>
+
+          <dl class="biz-info__grid reveal">
+            <div class="biz-info__item">
+              <dt>OIB</dt>
+              <dd>48382183594</dd>
+            </div>
+            <div class="biz-info__item">
+              <dt>MBS</dt>
+              <dd>98238795</dd>
+            </div>
+            <div class="biz-info__item">
+              <dt>Datum osnivanja</dt>
+              <dd>08.03.2021.</dd>
+            </div>
+            <div class="biz-info__item">
+              <dt>E-mail</dt>
+              <dd>
+                <a href="mailto:jagicmonika@gmail.com">jagicmonika@gmail.com</a>
+              </dd>
+            </div>
+            <div class="biz-info__item biz-info__item--iban">
+              <dt>IBAN</dt>
+              <dd>HR2924840081135194610</dd>
+            </div>
+          </dl>
         </div>
       </section>
     </main>

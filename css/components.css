@@ -5737,3 +5737,145 @@
 .bo-impl-caption__link:hover {
   color: var(--color-heading);
 }
+
+/* ==========================================================================
+   Business info — /podaci-o-poslovanju (editorial, not admin)
+   ========================================================================== */
+
+.biz-info {
+  padding-block: clamp(3rem, 8vw, 5.5rem) clamp(4rem, 10vw, 6.5rem);
+}
+
+.biz-info__inner {
+  max-width: 52rem;
+}
+
+.biz-info__eyebrow {
+  margin: 0 0 0.85rem;
+}
+
+.biz-info__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 7.5vw, 4.75rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+.biz-info__identity {
+  margin: clamp(2.75rem, 7vw, 4.25rem) 0 0;
+  padding-bottom: clamp(1.75rem, 4vw, 2.25rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+.biz-info__name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.biz-info__address {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
+}
+
+.biz-info__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.biz-info__item {
+  margin: 0;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.biz-info__item--iban {
+  margin-top: 0.35rem;
+  padding-top: 1.6rem;
+  border-bottom: none;
+}
+
+.biz-info__label {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-blue-gray);
+}
+
+.biz-info__value {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  word-break: break-word;
+}
+
+.biz-info__value a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+.biz-info__value a:hover {
+  color: var(--color-blue-gray);
+}
+
+.biz-info__value--iban {
+  font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+}
+
+@media (min-width: 720px) {
+  .biz-info__grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .biz-info__item {
+    padding: 1.5rem 0;
+  }
+
+  /* Row separators across both columns */
+  .biz-info__item:nth-child(1),
+  .biz-info__item:nth-child(2) {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  .biz-info__item:nth-child(3),
+  .biz-info__item:nth-child(4) {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  .biz-info__item--iban {
+    grid-column: 1 / -1;
+    margin-top: 0.15rem;
+    padding-top: 1.75rem;
+    border-bottom: none;
+  }
+}
