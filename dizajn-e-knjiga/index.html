@@ -13,6 +13,22 @@
       name="description"
       content="Dizajn e-knjiga, workbookova, priručnika i kataloga koji prenose duh brenda, jasno vode kroz sadržaj i pomažu predstaviti ili prodati ono što nudiš."
     />
+    <!-- [SEO HEAD] -->
+    <link rel="canonical" href="/dizajn-e-knjiga/" />
+    <meta property="og:url" content="__SITE_ORIGIN__/dizajn-e-knjiga/" />
+    <meta property="og:site_name" content="Monika Jagić" />
+    <meta property="og:title" content="Dizajn e-knjiga i digitalnih materijala - Monika Jagić" />
+    <meta property="og:description" content="Dizajn e-knjiga, workbookova, priručnika i kataloga koji prenose duh brenda, jasno vode kroz sadržaj i pomažu predstaviti ili prodati ono što nudiš." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dizajn e-knjiga i digitalnih materijala - Monika Jagić" />
+    <meta name="twitter:description" content="Dizajn e-knjiga, workbookova, priručnika i kataloga koji prenose duh brenda, jasno vode kroz sadržaj i pomažu predstaviti ili prodati ono što nudiš." />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <!-- [/SEO HEAD] -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -46,7 +62,7 @@
             <a class="nav-link" href="../o-meni/">O meni</a>
           </div>
           <a
-            class="nav-cta"
+            class="nav-cta" data-ga-event="cta_click" data-ga-location="nav"
             href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
             rel="noopener noreferrer"
             target="_blank"
@@ -76,7 +92,7 @@
         <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="../o-meni/">O meni</a>
         <a
-          class="nav-cta"
+          class="nav-cta" data-ga-event="cta_click" data-ga-location="nav"
           href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
           rel="noopener noreferrer"
           target="_blank"
@@ -703,7 +719,7 @@ koliko košta dizajn?
             <div class="site-footer__nav-col">
               <a href="../o-meni/">O meni</a>
               <a
-                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                data-ga-event="cta_click" data-ga-location="footer" href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
                 rel="noopener noreferrer"
                 target="_blank"
                 >Pošalji upit</a
@@ -722,5 +738,6 @@ koliko košta dizajn?
     </footer>
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/analytics.js" defer data-privacy-href="../privatnost/"></script>
   </body>
 </html>

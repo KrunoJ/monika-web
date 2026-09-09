@@ -13,14 +13,22 @@
       name="description"
       content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn."
     />
+    <!-- [SEO HEAD] -->
+    <link rel="canonical" href="/" />
+    <meta property="og:url" content="__SITE_ORIGIN__/" />
+    <meta property="og:site_name" content="Monika Jagić" />
     <meta property="og:title" content="Monika Jagić" />
-    <meta
-      property="og:description"
-      content="Povežimo što imaš i izgradimo što nedostaje"
-    />
+    <meta property="og:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- [SOCIAL IMAGE] -->
+    <meta name="twitter:title" content="Monika Jagić" />
+    <meta name="twitter:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <!-- [/SEO HEAD] -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -53,7 +61,7 @@
             <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="o-meni/">O meni</a>
           </div>
-          <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="#upitnik">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -71,7 +79,7 @@
         <a class="nav-link" href="biznis-okvir/">Biznis okvir</a>
         <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="o-meni/">O meni</a>
-        <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="#upitnik">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
@@ -354,7 +362,7 @@
             <div class="site-footer__nav-col">
               <a href="o-meni/">O meni</a>
               <a
-                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                data-ga-event="cta_click" data-ga-location="footer" href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
                 rel="noopener noreferrer"
                 target="_blank"
                 >Pošalji upit</a
@@ -373,5 +381,6 @@
     </footer>
 
     <script src="js/main.js?v=preview-live" defer></script>
+    <script src="js/analytics.js" defer data-privacy-href="privatnost/"></script>
   </body>
 </html>

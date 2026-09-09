@@ -1,0 +1,9 @@
+# Production site origin (no trailing slash), e.g. https://www.example.com
+# Used by sitemap.xml via __SITE_ORIGIN__ placeholder.
+# Root-relative canonical and og:url tags in HTML resolve automatically
+# once the site is served on the final domain — no HTML edit required.
+#
+# To bake an absolute origin into sitemap.xml:
+#   python3 scripts/apply-site-origin.py https://www.example.com
+#
+__SITE_ORIGIN__
