@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png" />
     <title>Landing stranice - Monika Jagić</title>
     <meta
       name="description"
@@ -14,7 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/main.css?v=lp-preview-live" />
+    <link rel="stylesheet" href="../css/main.css?v=lp-mobile-frame" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -29,18 +34,18 @@
             class="logo__mark"
             src="../assets/images/logo-monika.webp"
             alt=""
-            width="195"
-            height="180"
+            width="480"
+            height="659"
           />
         </a>
         <nav class="nav-desktop" aria-label="Glavna navigacija">
           <div class="nav-desktop__links">
             <a class="nav-link" href="../index.html">Početna</a>
             <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
-            <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+            <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="../o-meni/">O meni</a>
           </div>
-          <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -56,9 +61,9 @@
       <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
         <a class="nav-link" href="../index.html">Početna</a>
         <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
-        <a class="nav-link" href="../prodajni-lijevak/">Newsletter sustav</a>
+        <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="../o-meni/">O meni</a>
-        <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
@@ -84,7 +89,7 @@
               <div class="nl-hero__actions">
                 <a
                   class="btn btn--primary text-link--arrow"
-                  href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                  href="https://forms.gle/WAMU9b2FF1A3iKNC6"
                   rel="noopener noreferrer"
                   target="_blank"
                   >POŠALJI UPIT</a
@@ -95,14 +100,14 @@
         </div>
       </section>
 
-      <!-- 02 OPTIONS + PROCESS -->
-      <section class="section lp-choose" aria-labelledby="options-label">
+      <!-- 02 OPTIONS -->
+      <section class="section lp-choose section--lp-choose-break" aria-labelledby="options-label">
         <div class="container lp-choose__inner">
-          <div class="reveal">
+          <div>
             <p id="options-label" class="section-label">// odaberi svoj landing</p>
           </div>
 
-          <div class="lp-options reveal">
+          <div class="lp-options">
             <article class="lp-option">
               <p class="lp-option__num" aria-hidden="true">01</p>
               <h3 class="lp-option__title">landing za predstavljanje poslovanja</h3>
@@ -143,16 +148,21 @@
             </article>
           </div>
 
-          <div class="lp-includes reveal">
+          <div class="lp-includes">
             <p class="lp-includes__label">Obje opcije uključuju</p>
             <p class="lp-includes__text">
               uvodni call, smjernice za pripremu sadržaja, podršku za sadržajna i tehnička
               pitanja te dizajn i izradu u tvojem MailerLite računu.
             </p>
           </div>
+        </div>
+      </section>
 
+      <!-- 02b PROCESS -->
+      <section class="section lp-process-band" aria-labelledby="lp-process-title">
+        <div class="container lp-choose__inner">
           <div class="lp-process reveal">
-            <h3 class="lp-process__title">Kako izgleda suradnja?</h3>
+            <h3 id="lp-process-title" class="lp-process__title">Kako izgleda suradnja?</h3>
             <p class="lp-process__copy">
               Nakon uvodnog calla dobivaš smjernice za pripremu sadržaja i materijala, a
               zatim preuzimam dizajn i postavljanje stranice u tvojem MailerLite računu.
@@ -169,7 +179,7 @@
               <div class="lp-process__fact">
                 <p class="lp-process__fact-label">Izmjene</p>
                 <p class="lp-process__fact-value">
-                  do 30 min uključeno · nakon toga 15 €/h
+                  do 30 min uključeno · nakon toga 30 €/h
                 </p>
               </div>
             </div>
@@ -298,6 +308,7 @@
                 class="bo-browser"
                 data-bo-url="https://motivacijskekartice.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="0"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -337,6 +348,7 @@
                 class="bo-browser"
                 data-bo-url="https://samopouzdanaupospartumu.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-260"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -376,6 +388,7 @@
                 class="bo-browser"
                 data-bo-url="https://preview.mailerlite.io/preview/494176/sites/93017317687953172/boldsupersale"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-200"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -415,6 +428,7 @@
                 class="bo-browser"
                 data-bo-url="https://preview.mailerlite.io/preview/169021/sites/186537705286403155/beylasoul-od-ideje-do-uspjeha"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="0"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -454,6 +468,7 @@
                 class="bo-browser"
                 data-bo-url="https://mihaelamiholic.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-140"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -493,6 +508,7 @@
                 class="bo-browser"
                 data-bo-url="https://preview.mailerlite.io/preview/524893/sites/112053733447173527/mirjanabelavic-treningmentalneslobode"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-240"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -532,6 +548,7 @@
                 class="bo-browser"
                 data-bo-url="https://loradavidovicusluge.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-220"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -571,6 +588,7 @@
                 class="bo-browser"
                 data-bo-url="https://preview.mailerlite.io/preview/169021/sites/149968093828875396/beylasoul-retreat"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-280"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -610,6 +628,7 @@
                 class="bo-browser"
                 data-bo-url="https://pcelinjak-nikolinamihaljevic.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-100"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -649,6 +668,7 @@
                 class="bo-browser"
                 data-bo-url="https://cardetailigedukacija-sirkorii.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="-220"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -688,6 +708,7 @@
                 class="bo-browser"
                 data-bo-url="https://pspakademija.subscribepage.io/"
                 data-bo-fallback="../assets/images/impl/landing-fallback.svg"
+                data-preview-offset-y="0"
               >
                 <div class="bo-browser__chrome">
                   <span class="bo-browser__url" data-bo-url-label></span>
@@ -797,7 +818,7 @@
                 <p>
                   Ako ti treba širi sustav - newsletter, korisnički put, automatizacije i
                   povezane stranice - ima više smisla dogovoriti suradnju kroz
-                  <a class="text-link" href="../prodajni-lijevak/">Newsletter sustav</a>.
+                  <a class="text-link" href="../newsletter-sustav/">Newsletter sustav</a>.
                 </p>
               </div>
             </details>
@@ -815,7 +836,7 @@
           </p>
           <a
             class="btn btn--on-dark text-link--arrow"
-            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            href="https://forms.gle/WAMU9b2FF1A3iKNC6"
             rel="noopener noreferrer"
             target="_blank"
             >POŠALJI UPIT</a
@@ -826,31 +847,63 @@
 
     <footer class="site-footer">
       <div class="container">
-        <div class="site-footer__grid">
-          <div>
-            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić">
+        <div class="site-footer__main">
+          <div class="site-footer__brand-block">
+            <a class="site-footer__brand" href="../index.html" aria-label="Monika Jagić početna">
               <img
                 src="../assets/images/logo-monika-wordmark.webp"
-                alt="monika jagić"
-                width="329"
-                height="64"
+                alt="Monika Jagić — Analiza. Strategija. Implementacija."
+                width="1514"
+                height="342"
               />
             </a>
-            <p class="site-footer__tagline">Analiza. Strategija. Implementacija.</p>
+            <ul class="site-footer__social">
+              <li>
+                <a
+                  href="https://www.instagram.com/monika.jagic/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@monikajagic"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >YouTube</a
+                >
+              </li>
+            </ul>
           </div>
-          <nav aria-label="Podnožje">
-            <a href="../index.html">Početna</a>
-            <a href="../biznis-okvir/">Biznis okvir</a>
-            <a href="../prodajni-lijevak/">Newsletter sustav</a>
-            <a href="../dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
-            <a href="./">Landing stranice</a>
-            <a href="../o-meni/">O meni</a>
+          <nav class="site-footer__nav" aria-label="Podnožje">
+            <div class="site-footer__nav-col">
+              <a href="../biznis-okvir/">Biznis okvir</a>
+              <a href="../newsletter-sustav/">Newsletter sustav</a>
+              <a href="../dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
+              <a href="../landing-stranice/">Landing stranice</a>
+            </div>
+            <div class="site-footer__nav-col">
+              <a href="../o-meni/">O meni</a>
+              <a
+                href="https://forms.gle/RmpDKy6qMxSqG4WE8"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Pošalji upit</a
+              >
+            </div>
           </nav>
         </div>
-        <p class="site-footer__meta">© <span data-year></span> Monika Jagić</p>
+        <div class="site-footer__legal">
+          <p class="site-footer__copy">© <span data-year></span> Monika Jagić</p>
+          <nav class="site-footer__legal-nav" aria-label="Pravne informacije">
+            <a href="../podaci-o-poslovanju/">Podaci o poslovanju</a>
+            <a href="../privatnost/">Privatnost i kolačići</a>
+          </nav>
+        </div>
       </div>
     </footer>
 
-    <script src="../js/main.js?v=preview-live" defer></script>
+    <script src="../js/main.js?v=lp-mobile-frame" defer></script>
   </body>
 </html>

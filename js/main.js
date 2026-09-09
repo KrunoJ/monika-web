@@ -28,8 +28,8 @@
     if (path.includes("/biznis-okvir") || path.includes("/case-study")) {
       return "biznis-okvir";
     }
-    if (path.includes("/prodajni-lijevak")) {
-      return "prodajni-lijevak";
+    if (path.includes("/newsletter-sustav")) {
+      return "newsletter-sustav";
     }
     if (path.includes("/o-meni")) return "o-meni";
     return "home";
@@ -39,7 +39,7 @@
     try {
       const path = normalizePath(new URL(anchor.href, window.location.href).pathname);
       if (path.includes("/biznis-okvir")) return "biznis-okvir";
-      if (path.includes("/prodajni-lijevak")) return "prodajni-lijevak";
+      if (path.includes("/newsletter-sustav")) return "newsletter-sustav";
       if (path.includes("/o-meni")) return "o-meni";
       return "home";
     } catch (_) {
@@ -68,7 +68,7 @@
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.08, rootMargin: "120px 0px 0px 0px" }
     );
     revealEls.forEach((el) => io.observe(el));
   } else {
@@ -142,10 +142,63 @@
       showFallback(root, root.getAttribute("data-bo-fallback"));
     };
 
+    const applyPreviewOffset = () => {
+      const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
+      const offset = Number.parseInt(raw, 10);
+      if (!Number.isFinite(offset) || offset === 0) {
+        root.classList.remove("is-offset-preview");
+        root.style.removeProperty("--preview-offset-y");
+        return;
+      }
+
+      root.style.setProperty("--preview-offset-y", `${offset}px`);
+      root.classList.add("is-offset-preview");
+
+      if (!(viewport instanceof HTMLElement)) return;
+
+      let veil = root.querySelector(".bo-browser__offset-veil");
+      if (!(veil instanceof HTMLButtonElement)) {
+        veil = document.createElement("button");
+        veil.type = "button";
+        veil.className = "bo-browser__offset-veil";
+        veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
+        viewport.appendChild(veil);
+      }
+
+      const clearOffset = () => {
+        root.classList.remove("is-offset-preview");
+        root.style.removeProperty("--preview-offset-y");
+        if (veil.isConnected) veil.remove();
+        viewport.scrollTop = 0;
+      };
+
+      veil.addEventListener("click", clearOffset, { once: true });
+      veil.addEventListener(
+        "keydown",
+        (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            clearOffset();
+          }
+        },
+        { once: true }
+      );
+    };
+
+    const syncPortfolioMobileScale = () => {
+      if (!(viewport instanceof HTMLElement)) return;
+      if (!root.closest(".lp-portfolio")) return;
+      const mobileWidth = 390;
+      const scale = viewport.clientWidth / mobileWidth;
+      root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+    };
+
     const ok = () => {
       if (settled) return;
       settled = true;
-      if (viewport instanceof HTMLElement) {
+      syncPortfolioMobileScale();
+      applyPreviewOffset();
+      if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
         // Nudge so the scroll affordance is discoverable on touch devices.
         viewport.scrollTop = 1;
         window.requestAnimationFrame(() => {
@@ -159,6 +212,14 @@
     window.setTimeout(() => {
       if (!settled) ok();
     }, 6000);
+
+    if (typeof ResizeObserver !== "undefined" && viewport instanceof HTMLElement) {
+      const ro = new ResizeObserver(() => syncPortfolioMobileScale());
+      ro.observe(viewport);
+    } else {
+      window.addEventListener("resize", syncPortfolioMobileScale, { passive: true });
+    }
+    syncPortfolioMobileScale();
 
     iframe.src = url;
   };
