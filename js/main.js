@@ -189,16 +189,11 @@
       if (!(viewport instanceof HTMLElement)) return;
       if (!root.closest(".lp-portfolio")) return;
       const mobileWidth = 390;
-      /* Fit enough vertical page content that headlines stay readable. */
-      const fitContentHeight = 760;
       const vw = viewport.clientWidth;
-      const vh = viewport.clientHeight;
-      if (vw <= 0 || vh <= 0) return;
-      const scale = Math.min(vw / mobileWidth, vh / fitContentHeight);
-      const safeScale = scale > 0 ? scale : 1;
-      const nudgeX = Math.max(0, (vw - mobileWidth * safeScale) / 2);
-      root.style.setProperty("--preview-scale", String(safeScale));
-      root.style.setProperty("--preview-nudge-x", `${nudgeX}px`);
+      if (vw <= 0) return;
+      const scale = vw / mobileWidth;
+      root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      root.style.removeProperty("--preview-nudge-x");
     };
 
     const ok = () => {

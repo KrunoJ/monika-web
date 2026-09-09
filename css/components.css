@@ -5157,22 +5157,17 @@
   width: 100%;
 }
 
-/*
-  Force a phone-width layout inside portfolio iframes, then scale so BOTH
-  width and a target content height fit the card (avoids face/texture zooms).
-*/
+/* Force mobile layout inside portfolio iframes, then scale to card width */
 .lp-portfolio .bo-browser__frame {
   width: 390px;
   min-width: 390px;
   height: 2400px;
   transform-origin: top left;
-  transform: translateX(var(--preview-nudge-x, 0px)) scale(var(--preview-scale, 1))
-    translateY(var(--preview-offset-y, 0px));
+  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
 }
 
 .lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
-  transform: translateX(var(--preview-nudge-x, 0px)) scale(var(--preview-scale, 1))
-    translateY(var(--preview-offset-y, 0px));
+  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
 }
 
 .lp-portfolio__item--tall .bo-browser__viewport {
