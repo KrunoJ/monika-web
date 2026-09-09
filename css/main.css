@@ -3405,9 +3405,9 @@ button {
 
 /* Single editorial collage of the strategy document */
 .cs-doc-collage {
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
-  max-width: 72.5rem; /* ~1160px */
+  max-width: 40rem; /* ~640px — proportional, not oversized */
   border: 0;
   border-radius: 0;
   box-shadow: none;
