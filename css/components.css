@@ -5256,21 +5256,33 @@
   height: auto;
 }
 
-/* After click: live iframe scroll inside the frame */
-.lp-portfolio .bo-browser.is-interactive .bo-browser__viewport {
+/* Live portfolio: fixed card height + desktop-scaled iframe (no mobile poster look) */
+.lp-portfolio .bo-browser.is-interactive .bo-browser__viewport,
+.lp-portfolio .bo-browser.is-live .bo-browser__viewport {
   height: clamp(22rem, 48vw, 30rem);
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   overscroll-behavior: contain;
   touch-action: pan-y;
 }
 
-.lp-portfolio__item--mid .bo-browser.is-interactive .bo-browser__viewport {
+.lp-portfolio .bo-browser.is-scrollable .bo-browser__viewport {
+  overflow-y: auto;
+}
+
+.lp-portfolio__item--mid .bo-browser.is-interactive .bo-browser__viewport,
+.lp-portfolio__item--mid .bo-browser.is-live .bo-browser__viewport {
   height: clamp(20rem, 42vw, 26rem);
 }
 
-.lp-portfolio__item--short .bo-browser.is-interactive .bo-browser__viewport {
+.lp-portfolio__item--short .bo-browser.is-interactive .bo-browser__viewport,
+.lp-portfolio__item--short .bo-browser.is-live .bo-browser__viewport {
   height: clamp(18rem, 36vw, 22rem);
+}
+
+/* After click: live iframe scroll inside the frame */
+.lp-portfolio .bo-browser.is-interactive.is-scrollable .bo-browser__viewport {
+  overflow-y: auto;
 }
 
 .bo-browser__activate-veil {

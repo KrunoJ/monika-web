@@ -287,29 +287,57 @@
       }
 
       if (isPoster) {
-        /* Idle: static text-first crop. Click: load live iframe for in-frame scroll. */
+        /* Portfolio: load live desktop miniature as soon as visible.
+           Poster is only a temporary fallback until the iframe is ready.
+           Click-to-activate veil keeps page scroll working until interaction. */
         root.classList.add("is-poster");
         if (img) img.hidden = false;
-        if (!(viewport instanceof HTMLElement)) return;
-
-        let veil = root.querySelector(".bo-browser__activate-veil");
-        if (!(veil instanceof HTMLButtonElement)) {
-          veil = document.createElement("button");
-          veil.type = "button";
-          veil.className = "bo-browser__activate-veil";
-          veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
-          viewport.appendChild(veil);
+        if (!(viewport instanceof HTMLElement)) {
+          showLive(root, resolvedUrl);
+          return;
         }
 
-        const activate = () => {
-          if (root.classList.contains("is-interactive")) return;
+        const armInteractive = () => {
           root.classList.add("is-interactive");
           root.classList.remove("is-poster");
-          if (veil.isConnected) veil.remove();
+
+          let veil = root.querySelector(".bo-browser__activate-veil");
+          if (!(veil instanceof HTMLButtonElement)) {
+            veil = document.createElement("button");
+            veil.type = "button";
+            veil.className = "bo-browser__activate-veil";
+            veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
+            viewport.appendChild(veil);
+          }
+
+          const activate = () => {
+            if (veil.isConnected) veil.remove();
+            root.classList.add("is-scrollable");
+          };
+          veil.addEventListener("click", activate, { once: true });
+        };
+
+        const startLive = () => {
+          if (root.classList.contains("is-live") || root.dataset.boLiveStarted === "1") return;
+          root.dataset.boLiveStarted = "1";
+          armInteractive();
           showLive(root, resolvedUrl);
         };
 
-        veil.addEventListener("click", activate);
+        if (typeof IntersectionObserver !== "undefined") {
+          const io = new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                io.disconnect();
+                startLive();
+              }
+            },
+            { rootMargin: "240px 0px", threshold: 0.01 }
+          );
+          io.observe(viewport);
+        } else {
+          startLive();
+        }
         return;
       }
 
