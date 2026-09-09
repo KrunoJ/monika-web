@@ -289,7 +289,7 @@
       if (isPoster) {
         /* Portfolio: load live desktop miniature as soon as visible.
            Poster is only a temporary fallback until the iframe is ready.
-           Click-to-activate veil keeps page scroll working until interaction. */
+           Preview scrolls immediately on hover/touch — no click required. */
         root.classList.add("is-poster");
         if (img) img.hidden = false;
         if (!(viewport instanceof HTMLElement)) {
@@ -298,23 +298,14 @@
         }
 
         const armInteractive = () => {
-          root.classList.add("is-interactive");
+          /* Live desktop miniature is immediately scrollable — no click gate.
+             pointer-events:none on the iframe lets wheel/touch drive the viewport. */
+          root.classList.add("is-interactive", "is-scrollable");
           root.classList.remove("is-poster");
-
-          let veil = root.querySelector(".bo-browser__activate-veil");
-          if (!(veil instanceof HTMLButtonElement)) {
-            veil = document.createElement("button");
-            veil.type = "button";
-            veil.className = "bo-browser__activate-veil";
-            veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
-            viewport.appendChild(veil);
-          }
-
-          const activate = () => {
-            if (veil.isConnected) veil.remove();
-            root.classList.add("is-scrollable");
-          };
-          veil.addEventListener("click", activate, { once: true });
+          root.classList.remove("bo-browser--poster");
+          root.removeAttribute("data-bo-poster");
+          const staleVeil = root.querySelector(".bo-browser__activate-veil");
+          if (staleVeil) staleVeil.remove();
         };
 
         const startLive = () => {

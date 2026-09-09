@@ -2065,17 +2065,18 @@
 }
 
 /* Poster mode: show screenshot until user activates live scroll */
-.lp-portfolio .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio .bo-browser--poster.is-poster .bo-browser__fallback,
 .lp-portfolio .bo-browser.is-poster .bo-browser__fallback {
   display: block !important;
 }
 
-.lp-portfolio .bo-browser--poster .bo-browser__frame,
+.lp-portfolio .bo-browser--poster.is-poster .bo-browser__frame,
 .lp-portfolio .bo-browser.is-poster .bo-browser__frame {
   display: none !important;
 }
 
-.lp-portfolio .bo-browser.is-interactive.is-live .bo-browser__fallback {
+.lp-portfolio .bo-browser.is-interactive.is-live .bo-browser__fallback,
+.lp-portfolio .bo-browser.is-live:not(.is-poster) .bo-browser__fallback {
   display: none !important;
 }
 
@@ -5256,18 +5257,15 @@
   height: auto;
 }
 
-/* Live portfolio: fixed card height + desktop-scaled iframe (no mobile poster look) */
+/* Live portfolio: fixed card height + immediately scrollable desktop miniature */
 .lp-portfolio .bo-browser.is-interactive .bo-browser__viewport,
 .lp-portfolio .bo-browser.is-live .bo-browser__viewport {
   height: clamp(22rem, 48vw, 30rem);
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   touch-action: pan-y;
-}
-
-.lp-portfolio .bo-browser.is-scrollable .bo-browser__viewport {
-  overflow-y: auto;
 }
 
 .lp-portfolio__item--mid .bo-browser.is-interactive .bo-browser__viewport,
@@ -5280,20 +5278,10 @@
   height: clamp(18rem, 36vw, 22rem);
 }
 
-/* After click: live iframe scroll inside the frame */
-.lp-portfolio .bo-browser.is-interactive.is-scrollable .bo-browser__viewport {
-  overflow-y: auto;
-}
-
-.bo-browser__activate-veil {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
+/* Wheel/touch must hit the viewport, not the cross-origin iframe document */
+.lp-portfolio .bo-browser.is-live .bo-browser__frame {
+  pointer-events: none;
+  touch-action: none;
 }
 
 .lp-portfolio__frame {
