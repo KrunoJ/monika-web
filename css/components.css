@@ -5159,15 +5159,17 @@
   }
 }
 
+/* Portfolio: 3-up desktop 16:9 previews */
 .lp-portfolio {
   margin-top: var(--space-7);
-  columns: 1;
-  column-gap: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
 }
 
 .lp-portfolio__item {
-  break-inside: avoid;
-  margin: 0 0 var(--space-5);
+  margin: 0;
+  min-width: 0;
   display: grid;
   gap: 0;
 }
@@ -5177,35 +5179,38 @@
 }
 
 /*
- * Force desktop layout inside portfolio iframes (fixed ~1280px viewport),
- * then scale down to the card width so mobile/tablet never see the site's
- * own responsive/mobile breakpoints.
+ * Desktop 16:9 window: iframe at 1280×720, scaled to card width.
+ * Full landing scrolls inside the iframe (not a tall mobile strip).
  */
 .lp-portfolio .bo-browser__frame {
   --preview-frame-width: var(--preview-desktop-width, 1280px);
-  --preview-frame-height: 2400px;
+  --preview-frame-height: var(--preview-desktop-height, 720px);
   width: var(--preview-frame-width);
   min-width: var(--preview-frame-width);
   height: var(--preview-frame-height);
   transform-origin: top left;
   transform: scale(var(--preview-scale, 1));
-  /* Collapse unused layout box after scale so scroll height matches visual */
   margin-right: calc(var(--preview-frame-width) * (var(--preview-scale, 1) - 1));
   margin-bottom: calc(var(--preview-frame-height) * (var(--preview-scale, 1) - 1));
+  pointer-events: auto;
+  touch-action: pan-y;
 }
 
 .lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
   transform: scale(var(--preview-scale, 1));
 }
 
-/* Static/poster portfolio screenshots: reliable text-first crops */
 .lp-portfolio .bo-browser--static .bo-browser__viewport,
 .lp-portfolio .bo-browser--poster .bo-browser__viewport,
-.lp-portfolio .bo-browser.is-poster .bo-browser__viewport {
+.lp-portfolio .bo-browser.is-poster .bo-browser__viewport,
+.lp-portfolio .bo-browser.is-interactive .bo-browser__viewport,
+.lp-portfolio .bo-browser.is-live .bo-browser__viewport,
+.lp-portfolio__item .bo-browser__viewport {
+  aspect-ratio: 16 / 9;
   height: auto;
   overflow: hidden;
-  overscroll-behavior: auto;
-  touch-action: manipulation;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   background: var(--color-bg-2);
 }
 
@@ -5213,75 +5218,13 @@
 .lp-portfolio .bo-browser--poster .bo-browser__fallback,
 .lp-portfolio .bo-browser.is-poster .bo-browser__fallback {
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 0;
+  aspect-ratio: 16 / 9;
   display: block;
   object-fit: cover;
   object-position: top center;
   pointer-events: none;
-}
-
-.lp-portfolio__item--tall .bo-browser--static .bo-browser__fallback,
-.lp-portfolio__item--tall .bo-browser--poster .bo-browser__fallback,
-.lp-portfolio__item--tall .bo-browser.is-poster .bo-browser__fallback {
-  aspect-ratio: 390 / 780;
-}
-
-.lp-portfolio__item--mid .bo-browser--static .bo-browser__fallback,
-.lp-portfolio__item--mid .bo-browser--poster .bo-browser__fallback,
-.lp-portfolio__item--mid .bo-browser.is-poster .bo-browser__fallback {
-  aspect-ratio: 390 / 700;
-}
-
-.lp-portfolio__item--short .bo-browser--static .bo-browser__fallback,
-.lp-portfolio__item--short .bo-browser--poster .bo-browser__fallback,
-.lp-portfolio__item--short .bo-browser.is-poster .bo-browser__fallback {
-  aspect-ratio: 390 / 640;
-}
-
-.lp-portfolio__item--tall .bo-browser__viewport {
-  height: clamp(22rem, 48vw, 30rem);
-}
-
-.lp-portfolio__item--mid .bo-browser__viewport {
-  height: clamp(20rem, 42vw, 26rem);
-}
-
-.lp-portfolio__item--short .bo-browser__viewport {
-  height: clamp(18rem, 36vw, 22rem);
-}
-
-.lp-portfolio .bo-browser--static .bo-browser__viewport,
-.lp-portfolio .bo-browser--poster .bo-browser__viewport,
-.lp-portfolio .bo-browser.is-poster .bo-browser__viewport {
-  height: auto;
-}
-
-/* Live portfolio: fixed card height + immediately scrollable desktop miniature */
-.lp-portfolio .bo-browser.is-interactive .bo-browser__viewport,
-.lp-portfolio .bo-browser.is-live .bo-browser__viewport {
-  height: clamp(22rem, 48vw, 30rem);
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  touch-action: pan-y;
-}
-
-.lp-portfolio__item--mid .bo-browser.is-interactive .bo-browser__viewport,
-.lp-portfolio__item--mid .bo-browser.is-live .bo-browser__viewport {
-  height: clamp(20rem, 42vw, 26rem);
-}
-
-.lp-portfolio__item--short .bo-browser.is-interactive .bo-browser__viewport,
-.lp-portfolio__item--short .bo-browser.is-live .bo-browser__viewport {
-  height: clamp(18rem, 36vw, 22rem);
-}
-
-/* Wheel/touch must hit the viewport, not the cross-origin iframe document */
-.lp-portfolio .bo-browser.is-live .bo-browser__frame {
-  pointer-events: none;
-  touch-action: none;
 }
 
 .lp-portfolio__frame {
@@ -5291,21 +5234,7 @@
   background: var(--color-bg-2);
   border-radius: 0;
   box-shadow: none;
-}
-
-.lp-portfolio__item--tall .lp-portfolio__frame {
-  aspect-ratio: 9 / 18;
-  min-height: 22rem;
-}
-
-.lp-portfolio__item--mid .lp-portfolio__frame {
-  aspect-ratio: 9 / 15;
-  min-height: 18rem;
-}
-
-.lp-portfolio__item--short .lp-portfolio__frame {
-  aspect-ratio: 9 / 12;
-  min-height: 14rem;
+  aspect-ratio: 16 / 9;
 }
 
 .lp-portfolio__item figcaption {
@@ -5314,16 +5243,17 @@
   color: var(--color-muted);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 720px) {
   .lp-portfolio {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-6);
   }
 }
 
 @media (min-width: 1024px) {
   .lp-portfolio {
-    columns: 3;
-    column-gap: var(--space-7);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-7);
   }
 }
 

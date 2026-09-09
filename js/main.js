@@ -198,8 +198,9 @@
       );
     };
 
-    /* Always render the external page at a desktop width, then scale to fit. */
+    /* Desktop 16:9 window (1280×720), scaled to the card width. */
     const PREVIEW_DESKTOP_WIDTH = 1280;
+    const PREVIEW_DESKTOP_HEIGHT = Math.round((PREVIEW_DESKTOP_WIDTH * 9) / 16);
     const syncPortfolioDesktopScale = () => {
       if (!(viewport instanceof HTMLElement)) return;
       if (!root.closest(".lp-portfolio")) return;
@@ -208,14 +209,10 @@
       const scale = vw / PREVIEW_DESKTOP_WIDTH;
       root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
       root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
+      root.style.setProperty("--preview-desktop-height", `${PREVIEW_DESKTOP_HEIGHT}px`);
       root.style.removeProperty("--preview-nudge-x");
-      if (root.classList.contains("is-offset-preview")) {
-        const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
-        const offset = Number.parseInt(raw, 10);
-        if (Number.isFinite(offset) && offset !== 0) {
-          viewport.scrollTop = Math.abs(offset) * scale;
-        }
-      }
+      /* Outer viewport is a fixed 16:9 window; page scroll lives inside the iframe. */
+      viewport.scrollTop = 0;
     };
 
     const ok = () => {
