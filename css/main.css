@@ -2425,6 +2425,10 @@ button {
   display: none !important;
 }
 
+.lp-portfolio .bo-browser--static.is-live .bo-browser__fallback {
+  display: block !important;
+}
+
 .bo-browser.is-live .bo-browser__frame {
   display: block;
 }
@@ -5246,7 +5250,7 @@ button {
 .lp-options {
   display: grid;
   gap: 0;
-  margin-top: clamp(2.25rem, 3.5vw, 3rem);
+  margin-top: clamp(3.5rem, 5vw, 4rem);
 }
 
 .lp-option {
