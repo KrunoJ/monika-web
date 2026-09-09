@@ -68,7 +68,7 @@
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.08, rootMargin: "120px 0px 0px 0px" }
     );
     revealEls.forEach((el) => io.observe(el));
   } else {
