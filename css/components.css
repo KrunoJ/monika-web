@@ -5453,8 +5453,9 @@
   font-family: var(--font-body);
 }
 
-.cookie-banner__panel[hidden] {
-  display: none;
+.cookie-banner__panel[hidden],
+.cookie-banner__panel[data-cookie-panel][hidden] {
+  display: none !important;
 }
 
 .cookie-banner__title {
@@ -5626,7 +5627,7 @@
 }
 
 @media (min-width: 768px) {
-  .cookie-banner__panel[data-cookie-panel="notice"] {
+  .cookie-banner__panel[data-cookie-panel="notice"]:not([hidden]) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--space-6);
@@ -5640,7 +5641,7 @@
     min-width: 13.5rem;
   }
 
-  .cookie-banner__panel[data-cookie-panel="settings"] {
+  .cookie-banner__panel[data-cookie-panel="settings"]:not([hidden]) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--space-5) var(--space-8);
