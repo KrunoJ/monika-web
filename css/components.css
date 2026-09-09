@@ -701,8 +701,20 @@
   }
 
   .hero__rail--copy .hero__title {
-    border-left: 2px solid var(--color-primary);
+    position: relative;
     padding-left: var(--space-4);
+    border-left: 0;
+  }
+
+  .hero__rail--copy .hero__title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.08em;
+    bottom: 0.08em;
+    width: 2px;
+    background: var(--color-primary);
+    pointer-events: none;
   }
 
   .hero__rail--meta {
