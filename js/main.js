@@ -145,13 +145,13 @@
     const applyPreviewOffset = () => {
       const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
       const offset = Number.parseInt(raw, 10);
-      if (!Number.isFinite(offset) || offset === 0) {
+      const hasOffset = Number.isFinite(offset) && offset !== 0;
+      root.style.setProperty("--preview-offset-y", `${Number.isFinite(offset) ? offset : 0}px`);
+      if (!hasOffset) {
         root.classList.remove("is-offset-preview");
-        root.style.removeProperty("--preview-offset-y");
         return;
       }
 
-      root.style.setProperty("--preview-offset-y", `${offset}px`);
       root.classList.add("is-offset-preview");
 
       if (!(viewport instanceof HTMLElement)) return;
@@ -189,8 +189,16 @@
       if (!(viewport instanceof HTMLElement)) return;
       if (!root.closest(".lp-portfolio")) return;
       const mobileWidth = 390;
-      const scale = viewport.clientWidth / mobileWidth;
-      root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      /* Fit enough vertical page content that headlines stay readable. */
+      const fitContentHeight = 760;
+      const vw = viewport.clientWidth;
+      const vh = viewport.clientHeight;
+      if (vw <= 0 || vh <= 0) return;
+      const scale = Math.min(vw / mobileWidth, vh / fitContentHeight);
+      const safeScale = scale > 0 ? scale : 1;
+      const nudgeX = Math.max(0, (vw - mobileWidth * safeScale) / 2);
+      root.style.setProperty("--preview-scale", String(safeScale));
+      root.style.setProperty("--preview-nudge-x", `${nudgeX}px`);
     };
 
     const ok = () => {
