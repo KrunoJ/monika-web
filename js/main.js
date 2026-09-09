@@ -157,7 +157,10 @@
       root.classList.add("is-offset-preview");
       if (!(viewport instanceof HTMLElement)) return;
 
-      const scrollY = Math.abs(offset);
+      /* Offset is in unscaled iframe document px; map to scaled layout scroll. */
+      const scaleRaw = Number.parseFloat(root.style.getPropertyValue("--preview-scale"));
+      const scale = Number.isFinite(scaleRaw) && scaleRaw > 0 ? scaleRaw : 1;
+      const scrollY = Math.abs(offset) * scale;
       const syncScroll = () => {
         viewport.scrollTop = scrollY;
       };
@@ -195,28 +198,40 @@
       );
     };
 
-    const syncPortfolioMobileScale = () => {
+    /* Desktop 16:9 window (1280×720), scaled to the card width. */
+    const PREVIEW_DESKTOP_WIDTH = 1280;
+    const PREVIEW_DESKTOP_HEIGHT = Math.round((PREVIEW_DESKTOP_WIDTH * 9) / 16);
+    const isDesktopFramePreview = () =>
+      Boolean(root.closest(".lp-portfolio, .bo-impl-item--web"));
+
+    const syncDesktopPreviewScale = () => {
       if (!(viewport instanceof HTMLElement)) return;
-      if (!root.closest(".lp-portfolio")) return;
-      const mobileWidth = 390;
+      if (!isDesktopFramePreview()) return;
       const vw = viewport.clientWidth;
       if (vw <= 0) return;
-      const scale = vw / mobileWidth;
+      const scale = vw / PREVIEW_DESKTOP_WIDTH;
       root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
+      root.style.setProperty("--preview-desktop-height", `${PREVIEW_DESKTOP_HEIGHT}px`);
       root.style.removeProperty("--preview-nudge-x");
+      /* Fixed 16:9 window; page scroll lives inside the iframe. */
+      viewport.scrollTop = 0;
+      root.classList.remove("is-offset-preview");
+      root.style.removeProperty("--preview-offset-y");
     };
 
     const ok = () => {
       if (settled) return;
       settled = true;
-      syncPortfolioMobileScale();
-      applyPreviewOffset();
-      if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
-        // Nudge so the scroll affordance is discoverable on touch devices.
-        viewport.scrollTop = 1;
-        window.requestAnimationFrame(() => {
-          viewport.scrollTop = 0;
-        });
+      syncDesktopPreviewScale();
+      if (!isDesktopFramePreview()) {
+        applyPreviewOffset();
+        if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
+          viewport.scrollTop = 1;
+          window.requestAnimationFrame(() => {
+            viewport.scrollTop = 0;
+          });
+        }
       }
     };
 
@@ -227,12 +242,12 @@
     }, 6000);
 
     if (typeof ResizeObserver !== "undefined" && viewport instanceof HTMLElement) {
-      const ro = new ResizeObserver(() => syncPortfolioMobileScale());
+      const ro = new ResizeObserver(() => syncDesktopPreviewScale());
       ro.observe(viewport);
     } else {
-      window.addEventListener("resize", syncPortfolioMobileScale, { passive: true });
+      window.addEventListener("resize", syncDesktopPreviewScale, { passive: true });
     }
-    syncPortfolioMobileScale();
+    syncDesktopPreviewScale();
 
     iframe.src = url;
   };
@@ -275,29 +290,48 @@
       }
 
       if (isPoster) {
-        /* Idle: static text-first crop. Click: load live iframe for in-frame scroll. */
+        /* Portfolio: load live desktop miniature as soon as visible.
+           Poster is only a temporary fallback until the iframe is ready.
+           Preview scrolls immediately on hover/touch — no click required. */
         root.classList.add("is-poster");
         if (img) img.hidden = false;
-        if (!(viewport instanceof HTMLElement)) return;
-
-        let veil = root.querySelector(".bo-browser__activate-veil");
-        if (!(veil instanceof HTMLButtonElement)) {
-          veil = document.createElement("button");
-          veil.type = "button";
-          veil.className = "bo-browser__activate-veil";
-          veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
-          viewport.appendChild(veil);
+        if (!(viewport instanceof HTMLElement)) {
+          showLive(root, resolvedUrl);
+          return;
         }
 
-        const activate = () => {
-          if (root.classList.contains("is-interactive")) return;
-          root.classList.add("is-interactive");
+        const armInteractive = () => {
+          /* Live desktop miniature is immediately scrollable — no click gate.
+             pointer-events:none on the iframe lets wheel/touch drive the viewport. */
+          root.classList.add("is-interactive", "is-scrollable");
           root.classList.remove("is-poster");
-          if (veil.isConnected) veil.remove();
+          root.classList.remove("bo-browser--poster");
+          root.removeAttribute("data-bo-poster");
+          const staleVeil = root.querySelector(".bo-browser__activate-veil");
+          if (staleVeil) staleVeil.remove();
+        };
+
+        const startLive = () => {
+          if (root.classList.contains("is-live") || root.dataset.boLiveStarted === "1") return;
+          root.dataset.boLiveStarted = "1";
+          armInteractive();
           showLive(root, resolvedUrl);
         };
 
-        veil.addEventListener("click", activate);
+        if (typeof IntersectionObserver !== "undefined") {
+          const io = new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                io.disconnect();
+                startLive();
+              }
+            },
+            { rootMargin: "240px 0px", threshold: 0.01 }
+          );
+          io.observe(viewport);
+        } else {
+          startLive();
+        }
         return;
       }
 
