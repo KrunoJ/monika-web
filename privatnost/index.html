@@ -9,6 +9,22 @@
     <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png" />
     <title>Privatnost i kolačići - Monika Jagić</title>
     <meta name="description" content="privatnost i kolačići" />
+    <!-- [SEO HEAD] -->
+    <link rel="canonical" href="/privatnost/" />
+    <meta property="og:url" content="__SITE_ORIGIN__/privatnost/" />
+    <meta property="og:site_name" content="Monika Jagić" />
+    <meta property="og:title" content="Privatnost i kolačići - Monika Jagić" />
+    <meta property="og:description" content="privatnost i kolačići" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Privatnost i kolačići - Monika Jagić" />
+    <meta name="twitter:description" content="privatnost i kolačići" />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <!-- [/SEO HEAD] -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,7 +57,7 @@
             <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="../o-meni/">O meni</a>
           </div>
-          <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -59,7 +75,7 @@
         <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
         <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="../o-meni/">O meni</a>
-        <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
@@ -68,7 +84,32 @@
         <div class="container" style="max-width: 42rem">
           <h1 id="legal-title">privatnost i kolačići</h1>
           <div class="stack" style="margin-top: var(--space-6)">
-            <p>Ova stranica bit će dopunjena politikom privatnosti i informacijama o kolačićima.</p><p>Za pitanja u međuvremenu koristi kontakt formu putem poveznice Pošalji upit.</p>
+            <p>
+              Ova stranica objašnjava kako se na webu Monike Jagić koriste kolačići i
+              analitika.
+            </p>
+            <h2>Analitički kolačići</h2>
+            <p>
+              Koristimo Google Analytics 4 (mjerni ID G-D8HJQ28QG6) isključivo ako to
+              prihvatiš u banneru za kolačiće. Do prihvata se GA skripta ne učitava.
+            </p>
+            <p>
+              Analitika pomaže razumjeti koje se stranice pregledavaju i kako se koriste
+              glavni CTA-ovi. IP adresa se anonimizira gdje je to dostupno u postavkama.
+            </p>
+            <h2>Tvoj izbor</h2>
+            <p>
+              Možeš prihvatiti ili odbiti analitičke kolačiće. Odabir se sprema u
+              lokalnoj pohrani preglednika. Postavke možeš ponovno otvoriti bilo kada:
+            </p>
+            <p>
+              <button type="button" class="text-btn" data-cookie-settings>
+                Promijeni postavke kolačića
+              </button>
+            </p>
+            <p>
+              Za pitanja o privatnosti koristi kontakt formu putem poveznice Pošalji upit.
+            </p>
           </div>
         </div>
       </section>
@@ -115,7 +156,7 @@
             <div class="site-footer__nav-col">
               <a href="../o-meni/">O meni</a>
               <a
-                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                data-ga-event="cta_click" data-ga-location="footer" href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
                 rel="noopener noreferrer"
                 target="_blank"
                 >Pošalji upit</a
@@ -134,5 +175,6 @@
     </footer>
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/analytics.js" defer data-privacy-href="../privatnost/"></script>
   </body>
 </html>

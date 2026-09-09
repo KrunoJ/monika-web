@@ -13,6 +13,22 @@
       name="description"
       content="Volim jednostavne strategije i manje otvorenih tabova u glavi."
     />
+    <!-- [SEO HEAD] -->
+    <link rel="canonical" href="/o-meni/" />
+    <meta property="og:url" content="__SITE_ORIGIN__/o-meni/" />
+    <meta property="og:site_name" content="Monika Jagić" />
+    <meta property="og:title" content="O meni - Monika Jagić" />
+    <meta property="og:description" content="Volim jednostavne strategije i manje otvorenih tabova u glavi." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="O meni - Monika Jagić" />
+    <meta name="twitter:description" content="Volim jednostavne strategije i manje otvorenih tabova u glavi." />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/assets/images/monika-teaser.jpg" />
+    <!-- [/SEO HEAD] -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,7 +61,7 @@
             <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="./">O meni</a>
           </div>
-          <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -63,7 +79,7 @@
         <a class="nav-link" href="../biznis-okvir/">Biznis okvir</a>
         <a class="nav-link" href="../newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="./">O meni</a>
-        <a class="nav-cta" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" data-ga-event="cta_click" data-ga-location="nav" href="https://forms.gle/EWBwrHCYWipZ2Mwt5" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
@@ -81,6 +97,10 @@
           </div>
           <div class="about-hero__visual">
             <picture>
+              <source
+                srcset="../assets/images/monika-hero.webp"
+                type="image/webp"
+              />
               <img
                 src="../assets/images/monika-hero.jpg"
                 alt="Monika Jagić"
@@ -472,7 +492,7 @@
             <div class="site-footer__nav-col">
               <a href="../o-meni/">O meni</a>
               <a
-                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                data-ga-event="cta_click" data-ga-location="footer" href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
                 rel="noopener noreferrer"
                 target="_blank"
                 >Pošalji upit</a
@@ -491,5 +511,6 @@
     </footer>
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/analytics.js" defer data-privacy-href="../privatnost/"></script>
   </body>
 </html>

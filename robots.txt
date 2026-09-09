@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Embed-only asset — keep out of the index
+Disallow: /newsletter-sustav/marketing-hourglass.html
+
+Sitemap: __SITE_ORIGIN__/sitemap.xml
