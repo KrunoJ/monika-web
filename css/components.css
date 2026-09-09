@@ -2108,6 +2108,34 @@
   display: none;
 }
 
+/* Biznis okvir — web preview as 16:9 desktop window (matches landing portfolio) */
+.bo-impl-item--web .bo-browser__viewport {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scrollbar-gutter: auto;
+}
+
+.bo-impl-item--web .bo-browser__frame {
+  --preview-frame-width: var(--preview-desktop-width, 1280px);
+  --preview-frame-height: var(--preview-desktop-height, 720px);
+  width: var(--preview-frame-width);
+  min-width: var(--preview-frame-width);
+  height: var(--preview-frame-height);
+  transform-origin: top left;
+  transform: scale(var(--preview-scale, 1));
+  margin-right: calc(var(--preview-frame-width) * (var(--preview-scale, 1) - 1));
+  margin-bottom: calc(var(--preview-frame-height) * (var(--preview-scale, 1) - 1));
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+
+.bo-impl-item--web .bo-browser.is-live .bo-browser__fallback {
+  display: none !important;
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .bo-impl-row--1,
   .bo-impl-row--2,
@@ -2153,7 +2181,6 @@
     max-width: 42rem; /* ~672px */
   }
 
-  .bo-impl-item--web .bo-browser__viewport,
   .bo-impl-item--landing .bo-browser__viewport {
     height: clamp(26rem, 38vw, 36rem);
   }
@@ -2189,6 +2216,15 @@
 
   .bo-browser__frame {
     height: 1800px;
+  }
+
+  .bo-impl-item--web .bo-browser__viewport {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .bo-impl-item--web .bo-browser__frame {
+    height: var(--preview-desktop-height, 720px);
   }
 }
 

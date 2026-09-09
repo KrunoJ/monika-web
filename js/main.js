@@ -201,9 +201,12 @@
     /* Desktop 16:9 window (1280×720), scaled to the card width. */
     const PREVIEW_DESKTOP_WIDTH = 1280;
     const PREVIEW_DESKTOP_HEIGHT = Math.round((PREVIEW_DESKTOP_WIDTH * 9) / 16);
-    const syncPortfolioDesktopScale = () => {
+    const isDesktopFramePreview = () =>
+      Boolean(root.closest(".lp-portfolio, .bo-impl-item--web"));
+
+    const syncDesktopPreviewScale = () => {
       if (!(viewport instanceof HTMLElement)) return;
-      if (!root.closest(".lp-portfolio")) return;
+      if (!isDesktopFramePreview()) return;
       const vw = viewport.clientWidth;
       if (vw <= 0) return;
       const scale = vw / PREVIEW_DESKTOP_WIDTH;
@@ -211,21 +214,24 @@
       root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
       root.style.setProperty("--preview-desktop-height", `${PREVIEW_DESKTOP_HEIGHT}px`);
       root.style.removeProperty("--preview-nudge-x");
-      /* Outer viewport is a fixed 16:9 window; page scroll lives inside the iframe. */
+      /* Fixed 16:9 window; page scroll lives inside the iframe. */
       viewport.scrollTop = 0;
+      root.classList.remove("is-offset-preview");
+      root.style.removeProperty("--preview-offset-y");
     };
 
     const ok = () => {
       if (settled) return;
       settled = true;
-      syncPortfolioDesktopScale();
-      applyPreviewOffset();
-      if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
-        // Nudge so the scroll affordance is discoverable on touch devices.
-        viewport.scrollTop = 1;
-        window.requestAnimationFrame(() => {
-          viewport.scrollTop = 0;
-        });
+      syncDesktopPreviewScale();
+      if (!isDesktopFramePreview()) {
+        applyPreviewOffset();
+        if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
+          viewport.scrollTop = 1;
+          window.requestAnimationFrame(() => {
+            viewport.scrollTop = 0;
+          });
+        }
       }
     };
 
@@ -236,12 +242,12 @@
     }, 6000);
 
     if (typeof ResizeObserver !== "undefined" && viewport instanceof HTMLElement) {
-      const ro = new ResizeObserver(() => syncPortfolioDesktopScale());
+      const ro = new ResizeObserver(() => syncDesktopPreviewScale());
       ro.observe(viewport);
     } else {
-      window.addEventListener("resize", syncPortfolioDesktopScale, { passive: true });
+      window.addEventListener("resize", syncDesktopPreviewScale, { passive: true });
     }
-    syncPortfolioDesktopScale();
+    syncDesktopPreviewScale();
 
     iframe.src = url;
   };
