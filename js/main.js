@@ -210,7 +210,11 @@
       root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
       root.style.removeProperty("--preview-nudge-x");
       if (root.classList.contains("is-offset-preview")) {
-        applyPreviewOffset();
+        const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
+        const offset = Number.parseInt(raw, 10);
+        if (Number.isFinite(offset) && offset !== 0) {
+          viewport.scrollTop = Math.abs(offset) * scale;
+        }
       }
     };
 
