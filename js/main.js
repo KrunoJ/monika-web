@@ -146,15 +146,25 @@
       const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
       const offset = Number.parseInt(raw, 10);
       const hasOffset = Number.isFinite(offset) && offset !== 0;
-      root.style.setProperty("--preview-offset-y", `${Number.isFinite(offset) ? offset : 0}px`);
+      /* Prefer scrolling the viewport over translateY — more reliable with scaled iframes. */
+      root.style.setProperty("--preview-offset-y", "0px");
       if (!hasOffset) {
         root.classList.remove("is-offset-preview");
+        if (viewport instanceof HTMLElement) viewport.scrollTop = 0;
         return;
       }
 
       root.classList.add("is-offset-preview");
-
       if (!(viewport instanceof HTMLElement)) return;
+
+      const scrollY = Math.abs(offset);
+      const syncScroll = () => {
+        viewport.scrollTop = scrollY;
+      };
+      syncScroll();
+      window.requestAnimationFrame(syncScroll);
+      window.setTimeout(syncScroll, 50);
+      window.setTimeout(syncScroll, 300);
 
       let veil = root.querySelector(".bo-browser__offset-veil");
       if (!(veil instanceof HTMLButtonElement)) {
@@ -233,6 +243,7 @@
     const key = root.getAttribute("data-bo-preview");
     let resolvedUrl = (root.getAttribute("data-bo-url") || "").trim();
     let resolvedFallback = (root.getAttribute("data-bo-fallback") || "").trim();
+    const isStatic = root.getAttribute("data-bo-static") === "true" || root.classList.contains("bo-browser--static");
 
     if (key === "web") {
       if (BO_IMPL.WEB_URL) resolvedUrl = BO_IMPL.WEB_URL.trim();
@@ -243,7 +254,7 @@
     }
 
     root.setAttribute("data-bo-url", resolvedUrl);
-    root.setAttribute("data-bo-fallback", resolvedFallback);
+    if (resolvedFallback) root.setAttribute("data-bo-fallback", resolvedFallback);
 
     const label = root.querySelector("[data-bo-url-label]");
     const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
@@ -259,6 +270,11 @@
         if (!open.getAttribute("aria-label") && !open.textContent.trim()) {
           open.setAttribute("aria-label", "Otvori stranicu u novom prozoru");
         }
+      }
+      if (isStatic) {
+        root.classList.add("is-live");
+        if (img) img.hidden = false;
+        return;
       }
       // Always attempt live iframe on all viewports (incl. mobile).
       showLive(root, resolvedUrl);

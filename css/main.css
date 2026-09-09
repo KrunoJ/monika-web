@@ -2433,14 +2433,9 @@ button {
   display: none;
 }
 
-/* Idle crop for landing portfolio iframes with data-preview-offset-y */
+/* Idle crop: hide overflow while scrolled to data-preview-offset-y */
 .bo-browser.is-offset-preview .bo-browser__viewport {
   overflow: hidden;
-}
-
-.bo-browser.is-offset-preview .bo-browser__frame {
-  transform: translateY(var(--preview-offset-y, 0px));
-  will-change: transform;
 }
 
 .bo-browser__offset-veil {
@@ -5251,7 +5246,7 @@ button {
 .lp-options {
   display: grid;
   gap: 0;
-  margin-top: clamp(3.5rem, 5vw, 4rem);
+  margin-top: clamp(2.25rem, 3.5vw, 3rem);
 }
 
 .lp-option {
@@ -5378,18 +5373,22 @@ button {
 .section--lp-choose-break.lp-choose {
   background: var(--color-heading);
   color: var(--color-bg-1);
-  padding-block: clamp(5.75rem, 11vw, 8.75rem);
+  padding-block: clamp(3.25rem, 6vw, 4.75rem);
+}
+
+/* Landing: tighten cream hero → brick choose transition */
+.nl-hero:has(+ .section--lp-choose-break) {
+  padding-bottom: clamp(2rem, 3vw, 2.75rem);
 }
 
 @media (min-width: 900px) {
-  /* Landing: tighten cream hero → brick choose transition */
   .nl-hero:has(+ .section--lp-choose-break) {
-    padding-bottom: clamp(2.75rem, 3.5vw, 3.5rem);
+    padding-bottom: clamp(2rem, 2.6vw, 2.5rem);
   }
 
   .section--lp-choose-break.lp-choose {
-    padding-top: clamp(5rem, 6.5vw, 6.25rem); /* ~80–100px to eyebrow */
-    padding-bottom: clamp(5.75rem, 11vw, 8.75rem);
+    padding-top: clamp(3rem, 4vw, 3.75rem);
+    padding-bottom: clamp(3.25rem, 5vw, 4.5rem);
   }
 }
 
@@ -5513,7 +5512,7 @@ button {
 
 .lp-portfolio__item {
   break-inside: avoid;
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-5);
   display: grid;
   gap: 0;
 }
@@ -5528,11 +5527,39 @@ button {
   min-width: 390px;
   height: 2400px;
   transform-origin: top left;
-  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
+  transform: scale(var(--preview-scale, 1));
 }
 
 .lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
-  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
+  transform: scale(var(--preview-scale, 1));
+}
+
+/* Static portfolio screenshots: reliable text-first crops */
+.lp-portfolio .bo-browser--static .bo-browser__viewport {
+  height: auto;
+  overflow: hidden;
+  background: var(--color-bg-2);
+}
+
+.lp-portfolio .bo-browser--static .bo-browser__fallback {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.lp-portfolio__item--tall .bo-browser--static .bo-browser__fallback {
+  aspect-ratio: 390 / 780;
+}
+
+.lp-portfolio__item--mid .bo-browser--static .bo-browser__fallback {
+  aspect-ratio: 390 / 700;
+}
+
+.lp-portfolio__item--short .bo-browser--static .bo-browser__fallback {
+  aspect-ratio: 390 / 640;
 }
 
 .lp-portfolio__item--tall .bo-browser__viewport {
@@ -5545,6 +5572,11 @@ button {
 
 .lp-portfolio__item--short .bo-browser__viewport {
   height: clamp(18rem, 36vw, 22rem);
+}
+
+.lp-portfolio .bo-browser--static.bo-browser__viewport,
+.lp-portfolio .bo-browser--static .bo-browser__viewport {
+  height: auto;
 }
 
 .lp-portfolio__frame {
