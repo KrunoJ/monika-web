@@ -4076,6 +4076,36 @@ button {
   text-transform: none;
 }
 
+.bo-hero--brick {
+  background: #a45f43;
+  color: var(--color-bg-1);
+  border-bottom: 0;
+}
+
+.bo-hero--brick .section-label {
+  color: rgba(241, 235, 228, 0.62);
+}
+
+.bo-hero--brick .nl-hero__title,
+.bo-hero--brick .bo-hero__title {
+  color: var(--color-bg-1);
+}
+
+.bo-hero--brick .nl-hero__lede,
+.bo-hero--brick .nl-hero__lede p {
+  color: rgba(241, 235, 228, 0.86);
+}
+
+.bo-hero--brick .btn--primary {
+  background: var(--color-bg-1);
+  color: var(--color-ink);
+}
+
+.bo-hero--brick .btn--primary:hover {
+  background: var(--color-bg-2);
+  color: var(--color-ink);
+}
+
 .mh-embed {
   display: block;
   width: 100%;
