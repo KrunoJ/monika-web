@@ -756,7 +756,7 @@ button {
 
 .site-footer__nav a {
   font-family: var(--font-body);
-  font-size: 1.0625rem; /* 17px */
+  font-size: 0.9375rem; /* same as Instagram / YouTube */
   font-weight: 500;
   color: var(--color-body);
   text-decoration: none;
@@ -822,7 +822,7 @@ button {
   }
 
   .site-footer__nav a {
-    font-size: 1rem; /* 16px desktop */
+    font-size: 0.9375rem; /* same as Instagram / YouTube */
   }
 
   .site-footer__legal {
@@ -1066,8 +1066,20 @@ button {
   }
 
   .hero__rail--copy .hero__title {
-    border-left: 2px solid var(--color-primary);
+    position: relative;
     padding-left: var(--space-4);
+    border-left: 0;
+  }
+
+  .hero__rail--copy .hero__title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.08em;
+    bottom: 0.08em;
+    width: 2px;
+    background: var(--color-primary);
+    pointer-events: none;
   }
 
   .hero__rail--meta {
@@ -3691,7 +3703,7 @@ button {
 }
 
 .about-facts-section.section {
-  padding-top: var(--section-space);
+  padding-top: clamp(2.25rem, 3.5vw, 3rem);
 }
 
 .about-facts {
@@ -3862,7 +3874,7 @@ button {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.9rem; /* match testimonial pulls on mobile */
   line-height: 1.2;
   max-width: 14ch;
   color: var(--color-heading);
@@ -3938,8 +3950,8 @@ button {
   text-transform: lowercase;
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(1.7rem, 5.8vw, 1.9rem);
-  line-height: 1.25;
+  font-size: 1.9rem; /* match principle titles on mobile */
+  line-height: 1.2;
   letter-spacing: var(--tracking-tight);
   color: var(--color-heading);
   max-width: 34rem;
@@ -3994,6 +4006,11 @@ button {
 .nl-hero {
   padding: clamp(2.5rem, 6vw, 4rem) 0 var(--section-space);
   border-bottom: 1px solid var(--color-border);
+}
+
+.nl-hero:has(+ .nl-hourglass-band) {
+  padding-bottom: clamp(2.5rem, 4vw, 3.25rem);
+  border-bottom: 0;
 }
 
 .nl-hero__intro {
@@ -4071,9 +4088,90 @@ button {
   }
 }
 
+/* Newsletter: Marketing Hourglass full-width brick band */
+.nl-hourglass-band {
+  background: #a45f43;
+  color: var(--color-bg-1);
+  padding-block: clamp(2.75rem, 5vw, 3.5rem); /* ~44–56px mobile → ~56px mid */
+}
+
+@media (min-width: 900px) {
+  .nl-hourglass-band {
+    padding-block: clamp(4.5rem, 5.5vw, 5.625rem); /* ~72–90px */
+  }
+}
+
+.nl-hourglass-band__inner {
+  display: grid;
+  justify-items: center;
+}
+
+.nl-hourglass-band__tool {
+  display: grid;
+  width: 100%;
+  max-width: 64rem; /* slight bump from 940px (~58.75rem) */
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.nl-hourglass-band .mh-embed {
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+/* Tighten cream models section after brick hourglass band */
+.nl-hourglass-band + .section {
+  padding-top: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+.nl-hourglass-band + .section .section-label {
+  margin-bottom: 0.35rem;
+}
+
+.nl-hourglass-band + .section .nl-models {
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .nl-hourglass-band + .section .nl-models {
+    margin-top: var(--space-5);
+  }
+}
+
 .bo-hero__title {
   max-width: 15ch;
   text-transform: none;
+}
+
+/* Biznis okvir hero: brick band (page-scoped via --brick modifier) */
+.bo-hero--brick {
+  background: #a45f43;
+  color: var(--color-bg-1);
+  border-bottom: 0;
+}
+
+.bo-hero--brick .section-label {
+  color: rgba(241, 235, 228, 0.62);
+}
+
+.bo-hero--brick .nl-hero__title,
+.bo-hero--brick .bo-hero__title {
+  color: var(--color-bg-1);
+}
+
+.bo-hero--brick .nl-hero__lede,
+.bo-hero--brick .nl-hero__lede p {
+  color: rgba(241, 235, 228, 0.86);
+}
+
+.bo-hero--brick .btn--primary {
+  background: var(--color-bg-1);
+  color: var(--color-ink);
+}
+
+.bo-hero--brick .btn--primary:hover {
+  background: var(--color-bg-2);
+  color: var(--color-ink);
 }
 
 .mh-embed {
@@ -5084,7 +5182,7 @@ button {
   margin: 0;
   font-family: var(--font-display);
   text-transform: lowercase;
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-size: clamp(1.75rem, 4.5vw, 1.9rem);
   color: var(--color-heading);
   line-height: 1.2;
 }
@@ -5434,6 +5532,20 @@ button {
 
 .lp-portfolio__item .bo-browser {
   width: 100%;
+}
+
+/* Force mobile layout inside portfolio iframes, then scale to card width */
+.lp-portfolio .bo-browser__frame {
+  width: 390px;
+  min-width: 390px;
+  height: 2200px;
+  transform-origin: top left;
+  transform: scale(var(--preview-scale, 1));
+}
+
+.lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
+  /* translate in mobile CSS px, then scale to card */
+  transform: scale(var(--preview-scale, 1)) translateY(var(--preview-offset-y, 0px));
 }
 
 .lp-portfolio__item--tall .bo-browser__viewport {
@@ -5799,7 +5911,7 @@ button {
 
 .ek-incl__heading {
   margin: 0 0 var(--space-4);
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.75rem, 4vw, 1.9rem);
 }
 
 .ek-incl__list {
@@ -6131,8 +6243,19 @@ button {
   color: var(--color-ink);
 }
 
+.biz-info .section-label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
 .biz-info__identity {
-  margin: clamp(2.75rem, 7vw, 4.25rem) 0 0;
+  margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
   padding-bottom: clamp(1.75rem, 4vw, 2.25rem);
   border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
 }
