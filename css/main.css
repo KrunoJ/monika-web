@@ -3405,10 +3405,18 @@ button {
 
 .cs-outcome {
   display: grid;
-  gap: clamp(2.5rem, 4vw, 3.5rem);
-  align-items: start;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
   margin-top: 0;
   width: 100%;
+}
+
+@media (min-width: 900px) {
+  .cs-outcome {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+    column-gap: clamp(2rem, 4vw, 3.25rem);
+    align-items: center;
+  }
 }
 
 .cs-proof {
@@ -3458,7 +3466,8 @@ button {
 .cs-doc-collage {
   margin: 0;
   width: 100%;
-  max-width: 36rem; /* ~576px — proportional, not oversized */
+  max-width: 34rem;
+  justify-self: stretch;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -3475,7 +3484,15 @@ button {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  background: transparent;
   object-fit: contain;
+}
+
+@media (min-width: 900px) {
+  .cs-doc-collage {
+    max-width: none;
+    justify-self: end;
+  }
 }
 
 .cs-result {
