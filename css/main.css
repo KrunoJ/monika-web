@@ -5540,13 +5540,22 @@ button {
   width: 100%;
 }
 
-/* Force mobile layout inside portfolio iframes, then scale to card width */
+/*
+ * Force desktop layout inside portfolio iframes (fixed ~1280px viewport),
+ * then scale down to the card width so mobile/tablet never see the site's
+ * own responsive/mobile breakpoints.
+ */
 .lp-portfolio .bo-browser__frame {
-  width: 390px;
-  min-width: 390px;
-  height: 2400px;
+  --preview-frame-width: var(--preview-desktop-width, 1280px);
+  --preview-frame-height: 2400px;
+  width: var(--preview-frame-width);
+  min-width: var(--preview-frame-width);
+  height: var(--preview-frame-height);
   transform-origin: top left;
   transform: scale(var(--preview-scale, 1));
+  /* Collapse unused layout box after scale so scroll height matches visual */
+  margin-right: calc(var(--preview-frame-width) * (var(--preview-scale, 1) - 1));
+  margin-bottom: calc(var(--preview-frame-height) * (var(--preview-scale, 1) - 1));
 }
 
 .lp-portfolio .bo-browser.is-offset-preview .bo-browser__frame {
@@ -5615,7 +5624,8 @@ button {
 /* After click: live iframe scroll inside the frame */
 .lp-portfolio .bo-browser.is-interactive .bo-browser__viewport {
   height: clamp(22rem, 48vw, 30rem);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
   touch-action: pan-y;
 }

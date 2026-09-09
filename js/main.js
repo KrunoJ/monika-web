@@ -157,7 +157,10 @@
       root.classList.add("is-offset-preview");
       if (!(viewport instanceof HTMLElement)) return;
 
-      const scrollY = Math.abs(offset);
+      /* Offset is in unscaled iframe document px; map to scaled layout scroll. */
+      const scaleRaw = Number.parseFloat(root.style.getPropertyValue("--preview-scale"));
+      const scale = Number.isFinite(scaleRaw) && scaleRaw > 0 ? scaleRaw : 1;
+      const scrollY = Math.abs(offset) * scale;
       const syncScroll = () => {
         viewport.scrollTop = scrollY;
       };
@@ -195,21 +198,26 @@
       );
     };
 
-    const syncPortfolioMobileScale = () => {
+    /* Always render the external page at a desktop width, then scale to fit. */
+    const PREVIEW_DESKTOP_WIDTH = 1280;
+    const syncPortfolioDesktopScale = () => {
       if (!(viewport instanceof HTMLElement)) return;
       if (!root.closest(".lp-portfolio")) return;
-      const mobileWidth = 390;
       const vw = viewport.clientWidth;
       if (vw <= 0) return;
-      const scale = vw / mobileWidth;
+      const scale = vw / PREVIEW_DESKTOP_WIDTH;
       root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
       root.style.removeProperty("--preview-nudge-x");
+      if (root.classList.contains("is-offset-preview")) {
+        applyPreviewOffset();
+      }
     };
 
     const ok = () => {
       if (settled) return;
       settled = true;
-      syncPortfolioMobileScale();
+      syncPortfolioDesktopScale();
       applyPreviewOffset();
       if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
         // Nudge so the scroll affordance is discoverable on touch devices.
@@ -227,12 +235,12 @@
     }, 6000);
 
     if (typeof ResizeObserver !== "undefined" && viewport instanceof HTMLElement) {
-      const ro = new ResizeObserver(() => syncPortfolioMobileScale());
+      const ro = new ResizeObserver(() => syncPortfolioDesktopScale());
       ro.observe(viewport);
     } else {
-      window.addEventListener("resize", syncPortfolioMobileScale, { passive: true });
+      window.addEventListener("resize", syncPortfolioDesktopScale, { passive: true });
     }
-    syncPortfolioMobileScale();
+    syncPortfolioDesktopScale();
 
     iframe.src = url;
   };
