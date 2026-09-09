@@ -145,16 +145,26 @@
     const applyPreviewOffset = () => {
       const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
       const offset = Number.parseInt(raw, 10);
-      if (!Number.isFinite(offset) || offset === 0) {
+      const hasOffset = Number.isFinite(offset) && offset !== 0;
+      /* Prefer scrolling the viewport over translateY — more reliable with scaled iframes. */
+      root.style.setProperty("--preview-offset-y", "0px");
+      if (!hasOffset) {
         root.classList.remove("is-offset-preview");
-        root.style.removeProperty("--preview-offset-y");
+        if (viewport instanceof HTMLElement) viewport.scrollTop = 0;
         return;
       }
 
-      root.style.setProperty("--preview-offset-y", `${offset}px`);
       root.classList.add("is-offset-preview");
-
       if (!(viewport instanceof HTMLElement)) return;
+
+      const scrollY = Math.abs(offset);
+      const syncScroll = () => {
+        viewport.scrollTop = scrollY;
+      };
+      syncScroll();
+      window.requestAnimationFrame(syncScroll);
+      window.setTimeout(syncScroll, 50);
+      window.setTimeout(syncScroll, 300);
 
       let veil = root.querySelector(".bo-browser__offset-veil");
       if (!(veil instanceof HTMLButtonElement)) {
@@ -189,8 +199,11 @@
       if (!(viewport instanceof HTMLElement)) return;
       if (!root.closest(".lp-portfolio")) return;
       const mobileWidth = 390;
-      const scale = viewport.clientWidth / mobileWidth;
+      const vw = viewport.clientWidth;
+      if (vw <= 0) return;
+      const scale = vw / mobileWidth;
       root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      root.style.removeProperty("--preview-nudge-x");
     };
 
     const ok = () => {
@@ -230,6 +243,8 @@
     const key = root.getAttribute("data-bo-preview");
     let resolvedUrl = (root.getAttribute("data-bo-url") || "").trim();
     let resolvedFallback = (root.getAttribute("data-bo-fallback") || "").trim();
+    const isPoster =
+      root.getAttribute("data-bo-poster") === "true" || root.classList.contains("bo-browser--poster");
 
     if (key === "web") {
       if (BO_IMPL.WEB_URL) resolvedUrl = BO_IMPL.WEB_URL.trim();
@@ -240,11 +255,12 @@
     }
 
     root.setAttribute("data-bo-url", resolvedUrl);
-    root.setAttribute("data-bo-fallback", resolvedFallback);
+    if (resolvedFallback) root.setAttribute("data-bo-fallback", resolvedFallback);
 
     const label = root.querySelector("[data-bo-url-label]");
     const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
     const img = root.querySelector(".bo-browser__fallback");
+    const viewport = root.querySelector(".bo-browser__viewport");
 
     if (img && resolvedFallback) img.src = resolvedFallback;
 
@@ -257,6 +273,34 @@
           open.setAttribute("aria-label", "Otvori stranicu u novom prozoru");
         }
       }
+
+      if (isPoster) {
+        /* Idle: static text-first crop. Click: load live iframe for in-frame scroll. */
+        root.classList.add("is-poster");
+        if (img) img.hidden = false;
+        if (!(viewport instanceof HTMLElement)) return;
+
+        let veil = root.querySelector(".bo-browser__activate-veil");
+        if (!(veil instanceof HTMLButtonElement)) {
+          veil = document.createElement("button");
+          veil.type = "button";
+          veil.className = "bo-browser__activate-veil";
+          veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
+          viewport.appendChild(veil);
+        }
+
+        const activate = () => {
+          if (root.classList.contains("is-interactive")) return;
+          root.classList.add("is-interactive");
+          root.classList.remove("is-poster");
+          if (veil.isConnected) veil.remove();
+          showLive(root, resolvedUrl);
+        };
+
+        veil.addEventListener("click", activate);
+        return;
+      }
+
       // Always attempt live iframe on all viewports (incl. mobile).
       showLive(root, resolvedUrl);
     } else {
