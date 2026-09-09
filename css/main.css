@@ -2429,6 +2429,21 @@ button {
   display: block !important;
 }
 
+/* Poster mode: show screenshot until user activates live scroll */
+.lp-portfolio .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio .bo-browser.is-poster .bo-browser__fallback {
+  display: block !important;
+}
+
+.lp-portfolio .bo-browser--poster .bo-browser__frame,
+.lp-portfolio .bo-browser.is-poster .bo-browser__frame {
+  display: none !important;
+}
+
+.lp-portfolio .bo-browser.is-interactive.is-live .bo-browser__fallback {
+  display: none !important;
+}
+
 .bo-browser.is-live .bo-browser__frame {
   display: block;
 }
@@ -5538,31 +5553,44 @@ button {
   transform: scale(var(--preview-scale, 1));
 }
 
-/* Static portfolio screenshots: reliable text-first crops */
-.lp-portfolio .bo-browser--static .bo-browser__viewport {
+/* Static/poster portfolio screenshots: reliable text-first crops */
+.lp-portfolio .bo-browser--static .bo-browser__viewport,
+.lp-portfolio .bo-browser--poster .bo-browser__viewport,
+.lp-portfolio .bo-browser.is-poster .bo-browser__viewport {
   height: auto;
   overflow: hidden;
+  overscroll-behavior: auto;
+  touch-action: manipulation;
   background: var(--color-bg-2);
 }
 
-.lp-portfolio .bo-browser--static .bo-browser__fallback {
+.lp-portfolio .bo-browser--static .bo-browser__fallback,
+.lp-portfolio .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio .bo-browser.is-poster .bo-browser__fallback {
   width: 100%;
   height: auto;
   min-height: 0;
   display: block;
   object-fit: cover;
   object-position: top center;
+  pointer-events: none;
 }
 
-.lp-portfolio__item--tall .bo-browser--static .bo-browser__fallback {
+.lp-portfolio__item--tall .bo-browser--static .bo-browser__fallback,
+.lp-portfolio__item--tall .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio__item--tall .bo-browser.is-poster .bo-browser__fallback {
   aspect-ratio: 390 / 780;
 }
 
-.lp-portfolio__item--mid .bo-browser--static .bo-browser__fallback {
+.lp-portfolio__item--mid .bo-browser--static .bo-browser__fallback,
+.lp-portfolio__item--mid .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio__item--mid .bo-browser.is-poster .bo-browser__fallback {
   aspect-ratio: 390 / 700;
 }
 
-.lp-portfolio__item--short .bo-browser--static .bo-browser__fallback {
+.lp-portfolio__item--short .bo-browser--static .bo-browser__fallback,
+.lp-portfolio__item--short .bo-browser--poster .bo-browser__fallback,
+.lp-portfolio__item--short .bo-browser.is-poster .bo-browser__fallback {
   aspect-ratio: 390 / 640;
 }
 
@@ -5578,9 +5606,37 @@ button {
   height: clamp(18rem, 36vw, 22rem);
 }
 
-.lp-portfolio .bo-browser--static.bo-browser__viewport,
-.lp-portfolio .bo-browser--static .bo-browser__viewport {
+.lp-portfolio .bo-browser--static .bo-browser__viewport,
+.lp-portfolio .bo-browser--poster .bo-browser__viewport,
+.lp-portfolio .bo-browser.is-poster .bo-browser__viewport {
   height: auto;
+}
+
+/* After click: live iframe scroll inside the frame */
+.lp-portfolio .bo-browser.is-interactive .bo-browser__viewport {
+  height: clamp(22rem, 48vw, 30rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.lp-portfolio__item--mid .bo-browser.is-interactive .bo-browser__viewport {
+  height: clamp(20rem, 42vw, 26rem);
+}
+
+.lp-portfolio__item--short .bo-browser.is-interactive .bo-browser__viewport {
+  height: clamp(18rem, 36vw, 22rem);
+}
+
+.bo-browser__activate-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .lp-portfolio__frame {

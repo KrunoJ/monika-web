@@ -243,7 +243,8 @@
     const key = root.getAttribute("data-bo-preview");
     let resolvedUrl = (root.getAttribute("data-bo-url") || "").trim();
     let resolvedFallback = (root.getAttribute("data-bo-fallback") || "").trim();
-    const isStatic = root.getAttribute("data-bo-static") === "true" || root.classList.contains("bo-browser--static");
+    const isPoster =
+      root.getAttribute("data-bo-poster") === "true" || root.classList.contains("bo-browser--poster");
 
     if (key === "web") {
       if (BO_IMPL.WEB_URL) resolvedUrl = BO_IMPL.WEB_URL.trim();
@@ -259,6 +260,7 @@
     const label = root.querySelector("[data-bo-url-label]");
     const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
     const img = root.querySelector(".bo-browser__fallback");
+    const viewport = root.querySelector(".bo-browser__viewport");
 
     if (img && resolvedFallback) img.src = resolvedFallback;
 
@@ -271,11 +273,34 @@
           open.setAttribute("aria-label", "Otvori stranicu u novom prozoru");
         }
       }
-      if (isStatic) {
-        root.classList.add("is-live");
+
+      if (isPoster) {
+        /* Idle: static text-first crop. Click: load live iframe for in-frame scroll. */
+        root.classList.add("is-poster");
         if (img) img.hidden = false;
+        if (!(viewport instanceof HTMLElement)) return;
+
+        let veil = root.querySelector(".bo-browser__activate-veil");
+        if (!(veil instanceof HTMLButtonElement)) {
+          veil = document.createElement("button");
+          veil.type = "button";
+          veil.className = "bo-browser__activate-veil";
+          veil.setAttribute("aria-label", "Aktiviraj pregled i scrollaj landing");
+          viewport.appendChild(veil);
+        }
+
+        const activate = () => {
+          if (root.classList.contains("is-interactive")) return;
+          root.classList.add("is-interactive");
+          root.classList.remove("is-poster");
+          if (veil.isConnected) veil.remove();
+          showLive(root, resolvedUrl);
+        };
+
+        veil.addEventListener("click", activate);
         return;
       }
+
       // Always attempt live iframe on all viewports (incl. mobile).
       showLive(root, resolvedUrl);
     } else {
