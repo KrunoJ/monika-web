@@ -5469,28 +5469,28 @@
   }
 }
 
-/* Ebook uses: brick band between light editorial sections */
+/* Ebook uses: ink band (same as hero / final CTA) between light editorial sections */
 .section--ek-uses-break {
-  background: var(--color-heading);
-  color: var(--color-bg-1);
+  background: var(--color-ink);
+  color: var(--color-bg-2);
   padding-block: clamp(5.75rem, 11vw, 8.75rem);
 }
 
 .section--ek-uses-break .section-label {
-  color: rgba(241, 235, 228, 0.62);
+  color: rgba(242, 230, 213, 0.62);
 }
 
 .section--ek-uses-break .ek-section-title,
 .section--ek-uses-break .ek-uses__label {
-  color: var(--color-bg-1);
+  color: var(--color-bg-2);
 }
 
 .section--ek-uses-break .ek-uses__copy {
-  color: rgba(241, 235, 228, 0.86);
+  color: rgba(242, 230, 213, 0.86);
 }
 
 .section--ek-uses-break .ek-uses__row {
-  border-bottom-color: rgba(241, 235, 228, 0.22);
+  border-bottom-color: rgba(242, 230, 213, 0.22);
 }
 
 /* Scope (compact) */
