@@ -5094,6 +5094,13 @@ button {
   }
 }
 
+@media (min-width: 1100px) {
+  .nl-proof-videos {
+    max-width: 68rem;
+    grid-template-columns: repeat(3, minmax(0, 18rem));
+  }
+}
+
 @media (min-width: 900px) {
   .nl-proof-voices {
     grid-template-columns: 1fr 1fr;
