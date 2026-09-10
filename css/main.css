@@ -6822,13 +6822,17 @@ button {
 }
 
 .cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__btn--deny {
-  border-color: color-mix(in srgb, var(--cookie-brick) 55%, transparent);
+  padding: 0.55rem 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--cookie-brick) 55%, transparent);
   color: var(--color-heading);
+  text-decoration: none;
 }
 
-.cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__btn--deny:hover {
+.cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__btn--deny:hover,
+.cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__btn--deny:focus-visible {
   border-color: var(--cookie-brick);
   color: var(--color-ink);
+  text-decoration: none;
 }
 
 .footer-cookie-settings {
