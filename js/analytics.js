@@ -134,13 +134,13 @@
           <div class="cookie-banner__copy">
             <p id="cookie-banner-title" class="cookie-banner__title">nije kroasan iz Dubravice 🥐</p>
             <p id="cookie-banner-text" class="cookie-banner__text">
-              Ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako kažeš da može!
+              ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako odobriš!
             </p>
             ${privacyLinkHtml}
           </div>
           <div class="cookie-banner__actions">
             <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-deny>
-              Ne, hvala
+              Ne volim kolačiće
             </button>
             <button type="button" class="cookie-banner__btn cookie-banner__btn--text" data-cookie-settings-open>
               Postavke
