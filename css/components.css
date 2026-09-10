@@ -6321,14 +6321,19 @@
 }
 
 .cookie-banner__btn--deny {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.35rem;
   background: transparent;
-  border-color: var(--cookie-cream);
+  border: none;
   color: var(--cookie-cream);
   font-weight: 500;
+  text-decoration: none;
 }
 
-.cookie-banner__btn--deny:hover {
-  border-color: #fff;
+.cookie-banner__btn--deny:hover,
+.cookie-banner__btn--deny:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
   color: #fff;
 }
 
