@@ -4169,6 +4169,46 @@ button {
   color: var(--color-ink);
 }
 
+/* E-knjige hero: same ink band as final CTA */
+.bo-hero--ink {
+  background: var(--color-ink);
+  color: var(--color-bg-2);
+  border-bottom: 0;
+}
+
+.bo-hero--ink .section-label {
+  color: rgba(242, 230, 213, 0.62);
+}
+
+.bo-hero--ink .nl-hero__title,
+.bo-hero--ink .bo-hero__title,
+.bo-hero--ink .ek-hero__title {
+  color: var(--color-bg-2);
+}
+
+.bo-hero--ink .nl-hero__lede,
+.bo-hero--ink .nl-hero__lede p {
+  color: rgba(242, 230, 213, 0.9);
+}
+
+.bo-hero--ink .ek-hero__price {
+  color: var(--color-bg-2);
+}
+
+.bo-hero--ink .ek-hero__meta {
+  color: rgba(242, 230, 213, 0.72);
+}
+
+.bo-hero--ink .btn--primary {
+  background: var(--color-bg-2);
+  color: var(--color-ink);
+}
+
+.bo-hero--ink .btn--primary:hover {
+  background: var(--color-bg-1);
+  color: var(--color-ink);
+}
+
 .mh-embed {
   display: block;
   width: 100%;
