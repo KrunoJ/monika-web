@@ -6051,6 +6051,115 @@
   }
 }
 
+/* ========== Privacy / legal policy page ========== */
+.privacy-legal {
+  padding-block: clamp(3rem, 8vw, 5.5rem) clamp(4rem, 10vw, 6.5rem);
+}
+
+.privacy-legal__inner {
+  max-width: 56rem;
+}
+
+.privacy-legal .section-label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+.privacy-legal__title {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+  text-transform: lowercase;
+  color: var(--color-heading);
+}
+
+.privacy-legal__updated {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.privacy-legal__body {
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--font-body);
+  font-size: 1.03125rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.privacy-legal__body > * + * {
+  margin-top: 1.1rem;
+}
+
+.privacy-legal__body h2 {
+  margin: 2.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  text-transform: none;
+  color: var(--color-heading);
+}
+
+.privacy-legal__body h2 + * {
+  margin-top: 0.85rem;
+}
+
+.privacy-legal__body p,
+.privacy-legal__body ul {
+  max-width: 46rem;
+}
+
+.privacy-legal__body ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.privacy-legal__body li + li {
+  margin-top: 0.45rem;
+}
+
+.privacy-legal__body a {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.privacy-legal__body a:hover {
+  color: var(--color-ink);
+}
+
+.privacy-legal__cookie-settings {
+  appearance: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: pointer;
+}
+
+.privacy-legal__cookie-settings:hover,
+.privacy-legal__cookie-settings:focus-visible {
+  color: var(--color-ink);
+}
+
 /* ========== Cookie consent banner ========== */
 .cookie-banner {
   --cookie-brick: #a45f43;
