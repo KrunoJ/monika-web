@@ -367,8 +367,10 @@
 
 .site-footer__social a,
 .site-footer__social span {
-  font-size: 0.9375rem; /* 15px */
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--color-muted);
   text-decoration: none;
 }
