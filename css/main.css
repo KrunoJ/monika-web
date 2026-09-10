@@ -1939,10 +1939,6 @@ button {
   border-bottom: 1px solid var(--color-border);
 }
 
-.process--editorial .process__step:first-child {
-  border-top: 1px solid var(--color-border);
-}
-
 .process--editorial .process__step:last-child {
   border-bottom: 0;
 }
