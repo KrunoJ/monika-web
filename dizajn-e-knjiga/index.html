@@ -19,7 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/main.css?v=footer-nav-ig" />
+    <link rel="stylesheet" href="../css/main.css?v=ek-uses-ink" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -92,7 +92,7 @@
       -->
 
       <!-- 01 HERO -->
-      <section class="nl-hero bo-hero" aria-labelledby="ek-hero-title">
+      <section class="nl-hero bo-hero bo-hero--ink" aria-labelledby="ek-hero-title">
         <div class="container">
           <div class="nl-hero__intro">
             <div class="nl-hero__primary reveal">
@@ -714,11 +714,15 @@ koliko košta dizajn?
           <nav class="site-footer__legal-nav" aria-label="Pravne informacije">
             <a href="../podaci-o-poslovanju/">Podaci o poslovanju</a>
             <a href="../privatnost/">Privatnost i kolačići</a>
+            <button type="button" class="footer-cookie-settings" data-cookie-settings>
+              Postavke kolačića
+            </button>
           </nav>
         </div>
       </div>
     </footer>
 
     <script src="../js/main.js" defer></script>
+    <script src="../js/analytics.js" defer data-privacy-href="../privatnost/"></script>
   </body>
 </html>
