@@ -6324,17 +6324,19 @@
   }
 
   .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--accept {
+    order: 1;
     grid-column: 1 / -1;
     width: 100%;
   }
 
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--deny,
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--text {
+  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--deny {
+    order: 2;
     width: 100%;
-    justify-self: stretch;
   }
 
   .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--text {
+    order: 3;
+    width: 100%;
     text-align: center;
   }
 
