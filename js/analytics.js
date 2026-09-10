@@ -115,7 +115,7 @@
   };
 
   const privacyLinkHtml = privacyHref
-    ? `<a class="cookie-banner__link" href="${privacyHref}">Više u privatnosti</a>`
+    ? `<a class="cookie-banner__link" href="${privacyHref}">Više o privatnosti</a>`
     : "";
 
   const buildBanner = () => {
@@ -132,18 +132,17 @@
       <div class="cookie-banner__inner">
         <div class="cookie-banner__panel" data-cookie-panel="notice">
           <div class="cookie-banner__copy">
-            <p id="cookie-banner-title" class="cookie-banner__title">Nažalost, nije kroasan</p>
+            <p id="cookie-banner-title" class="cookie-banner__title">nije kroasan iz Dubravice 🥐</p>
             <p id="cookie-banner-text" class="cookie-banner__text">
-              Ali jest ova traka — koristim analitičke kolačiće (Google Analytics) samo ako ti to
-              odgovara, da vidim kako se web koristi. Nema prodajnih pixela ni trećih sustava.
-              ${privacyLinkHtml}
+              Ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako kažeš da može!
             </p>
+            ${privacyLinkHtml}
           </div>
           <div class="cookie-banner__actions">
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-deny>
-              Ne hvala
+            <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-deny>
+              Ne, hvala
             </button>
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-settings-open>
+            <button type="button" class="cookie-banner__btn cookie-banner__btn--text" data-cookie-settings-open>
               Postavke
             </button>
             <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>
@@ -155,28 +154,34 @@
         <div class="cookie-banner__panel" data-cookie-panel="settings" hidden>
           <div class="cookie-banner__copy">
             <p class="cookie-banner__title">Postavke kolačića</p>
-            <p class="cookie-banner__text cookie-banner__text--settings-lede">
-              Možeš uključiti ili isključiti analitičke kolačiće. Odluka se pamti u pregledniku.
-            </p>
           </div>
-          <div class="cookie-banner__setting">
-            <label class="cookie-banner__setting-label" for="cookie-analytics-toggle">
-              <span class="cookie-banner__setting-name">Analitički kolačići</span>
-              <span class="cookie-banner__setting-desc">Google Analytics — anonimizirana posjećenost stranica.</span>
-            </label>
-            <input
-              class="cookie-banner__toggle"
-              type="checkbox"
-              id="cookie-analytics-toggle"
-              data-cookie-analytics-toggle
-            />
+          <div class="cookie-banner__categories">
+            <div class="cookie-banner__setting cookie-banner__setting--locked">
+              <div class="cookie-banner__setting-label">
+                <span class="cookie-banner__setting-name">Nužni</span>
+                <span class="cookie-banner__setting-desc">Potrebni za osnovni rad weba.</span>
+              </div>
+              <span class="cookie-banner__setting-status">Uvijek uključeni</span>
+            </div>
+            <div class="cookie-banner__setting">
+              <label class="cookie-banner__setting-label" for="cookie-analytics-toggle">
+                <span class="cookie-banner__setting-name">Analitički</span>
+                <span class="cookie-banner__setting-desc">Google Analytics — anonimizirana posjećenost stranica.</span>
+              </label>
+              <input
+                class="cookie-banner__toggle"
+                type="checkbox"
+                id="cookie-analytics-toggle"
+                data-cookie-analytics-toggle
+              />
+            </div>
           </div>
           <div class="cookie-banner__actions cookie-banner__actions--settings">
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-settings-back>
-              Natrag
-            </button>
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-save>
+            <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-save>
               Spremi postavke
+            </button>
+            <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>
+              Prihvaćam analitičke
             </button>
           </div>
         </div>
@@ -184,10 +189,11 @@
     `;
     document.body.appendChild(root);
 
-    root.querySelector("[data-cookie-accept]")?.addEventListener("click", acceptAnalytics);
+    root.querySelectorAll("[data-cookie-accept]").forEach((btn) => {
+      btn.addEventListener("click", acceptAnalytics);
+    });
     root.querySelector("[data-cookie-deny]")?.addEventListener("click", denyAnalytics);
     root.querySelector("[data-cookie-settings-open]")?.addEventListener("click", showSettings);
-    root.querySelector("[data-cookie-settings-back]")?.addEventListener("click", showNotice);
     root.querySelector("[data-cookie-save]")?.addEventListener("click", saveSettings);
   };
 
