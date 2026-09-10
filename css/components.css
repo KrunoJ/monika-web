@@ -6233,13 +6233,16 @@
 
 .footer-cookie-settings {
   appearance: none;
+  margin: 0;
   padding: 0;
   border: 0;
   background: none;
-  font: inherit;
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: inherit;
+  color: var(--color-muted);
+  text-decoration: none;
   cursor: pointer;
 }
 
