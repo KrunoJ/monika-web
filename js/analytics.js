@@ -132,9 +132,9 @@
       <div class="cookie-banner__inner">
         <div class="cookie-banner__panel" data-cookie-panel="notice">
           <div class="cookie-banner__copy">
-            <p id="cookie-banner-title" class="cookie-banner__title">nije kroasan iz Dubravice 🥐</p>
+            <p id="cookie-banner-title" class="cookie-banner__title">Nažalost, nije kroasan iz Dubravice. 🥐</p>
             <p id="cookie-banner-text" class="cookie-banner__text">
-              Ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako kažeš da može!
+              Ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako kažeš da može.
             </p>
             ${privacyLinkHtml}
           </div>
