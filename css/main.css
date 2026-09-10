@@ -1444,6 +1444,14 @@ button {
   margin-top: var(--space-1);
 }
 
+/* Mobile only: service names dominate eyebrow + body in “gdje zapinješ?” */
+@media (max-width: 899px) {
+  #gdje-zapinjes .service-panel h3 {
+    font-size: clamp(2.2rem, 7.5vw, 2.6rem);
+    line-height: 1.1;
+  }
+}
+
 @media (min-width: 900px) {
   .service-split {
     grid-template-columns: 1fr 1fr;
