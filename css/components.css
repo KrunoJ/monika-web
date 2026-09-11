@@ -779,10 +779,13 @@
   }
 }
 
-/* Homepage hero: full-bleed photo background, same rail layout */
+/* Homepage hero: full-bleed photo cover (bg layer ≠ content max-width) */
 .hero--photo-bg {
-  background: #1c1612;
+  position: relative;
+  background: #1c1612; /* fallback only while image loads */
   overflow: hidden;
+  width: 100%;
+  max-width: none;
 }
 
 .hero--photo-bg .hero__backdrop {
@@ -790,18 +793,29 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
-.hero--photo-bg .hero__backdrop picture,
+.hero--photo-bg .hero__backdrop picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 .hero--photo-bg .hero__backdrop img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Full standing frame: keep head + torso through jeans waist */
-  object-position: center 30%;
+  max-width: none;
+  object-fit: cover; /* never contain — edge to edge */
+  object-position: center 18%;
 }
 
+/* Light scrim for cream type — keep sides photographic, not solid bars */
 .hero--photo-bg .hero__backdrop::after {
   content: "";
   position: absolute;
@@ -809,17 +823,17 @@
   background:
     linear-gradient(
       90deg,
-      rgba(22, 16, 12, 0.78) 0%,
-      rgba(22, 16, 12, 0.4) 22%,
-      rgba(22, 16, 12, 0.1) 50%,
-      rgba(22, 16, 12, 0.4) 78%,
-      rgba(22, 16, 12, 0.78) 100%
+      rgba(22, 16, 12, 0.32) 0%,
+      rgba(22, 16, 12, 0.12) 18%,
+      rgba(22, 16, 12, 0.04) 50%,
+      rgba(22, 16, 12, 0.12) 82%,
+      rgba(22, 16, 12, 0.32) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(22, 16, 12, 0.22) 0%,
-      rgba(22, 16, 12, 0.06) 40%,
-      rgba(22, 16, 12, 0.5) 100%
+      rgba(22, 16, 12, 0.14) 0%,
+      rgba(22, 16, 12, 0.03) 42%,
+      rgba(22, 16, 12, 0.36) 100%
     );
 }
 
@@ -850,6 +864,7 @@
 }
 
 @media (min-width: 960px) {
+  /* Existing compact height — not 100vh */
   .hero--photo-bg .hero__stage {
     height: clamp(42rem, 94svh, 58rem);
     min-height: clamp(42rem, 94svh, 58rem);
@@ -857,8 +872,8 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    /* Desktop asset is pre-framed: head under nav → hips */
-    object-position: center top;
+    /* Person-first: small air above head, open toward torso / laptop */
+    object-position: center 4%;
   }
 }
 
@@ -868,23 +883,23 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    /* Half-body crop on mobile — head through jeans */
-    object-position: center 26%;
+    /* Mobile: separate crop on full portrait */
+    object-position: center 22%;
   }
 
   .hero--photo-bg .hero__backdrop::after {
     background:
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.5) 0%,
-        rgba(22, 16, 12, 0.22) 40%,
-        rgba(22, 16, 12, 0.7) 100%
+        rgba(22, 16, 12, 0.38) 0%,
+        rgba(22, 16, 12, 0.14) 40%,
+        rgba(22, 16, 12, 0.55) 100%
       ),
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.48) 0%,
-        rgba(22, 16, 12, 0.14) 50%,
-        rgba(22, 16, 12, 0.48) 100%
+        rgba(22, 16, 12, 0.3) 0%,
+        rgba(22, 16, 12, 0.08) 50%,
+        rgba(22, 16, 12, 0.3) 100%
       );
   }
 
