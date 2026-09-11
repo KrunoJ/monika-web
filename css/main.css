@@ -1201,8 +1201,8 @@ button {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  /* Default / mobile: head + upper body, no full-leg framing */
-  object-position: center 28%;
+  /* Overridden per breakpoint: mobile full-body · desktop top-pin */
+  object-position: center center;
 }
 
 /*
@@ -1390,8 +1390,8 @@ button {
   }
 
   /*
-   * Mobile: separate crop. Tall viewports would otherwise show full body
-   * with cover — zoom past cover so framing stays head → upper torso.
+   * Mobile: dedicated full-body photo. Cover fills the locked viewport;
+   * no extra zoom — let the portrait read naturally (head → feet).
    */
   .hero--photo-bg .hero__backdrop-fill img {
     position: absolute;
@@ -1399,9 +1399,8 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 26%;
-    transform: scale(1.42);
-    transform-origin: center 18%;
+    object-position: center center;
+    transform: none;
   }
 
   .hero--photo-bg .hero__backdrop-shade {

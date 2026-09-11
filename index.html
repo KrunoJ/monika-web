@@ -28,7 +28,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/main.css?v=hero-hands-3" />
+    <link rel="stylesheet" href="css/main.css?v=hero-mobile-1" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -81,7 +81,7 @@
       <!-- 01 HERO -->
       <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
         <div class="hero__backdrop" aria-hidden="true">
-          <!-- Desktop: laptop portrait · Mobile: full source with mobile object-position -->
+          <!-- Desktop: laptop crop · Mobile: dedicated full-body office photo -->
           <picture class="hero__backdrop-fill">
             <source
               media="(min-width: 960px)"
@@ -93,12 +93,15 @@
               srcset="assets/images/monika-hero-office-desktop.jpg?v=hands-2"
               type="image/jpeg"
             />
-            <source srcset="assets/images/monika-hero-office-v2.webp?v=dual-1" type="image/webp" />
+            <source
+              srcset="assets/images/monika-hero-office-mobile.webp?v=mobile-1"
+              type="image/webp"
+            />
             <img
-              src="assets/images/monika-hero-office-v2.jpg?v=dual-1"
+              src="assets/images/monika-hero-office-mobile.jpg?v=mobile-1"
               alt=""
               width="1800"
-              height="2699"
+              height="2700"
               decoding="async"
               fetchpriority="high"
             />
