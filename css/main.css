@@ -1164,8 +1164,8 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* v2 crop starts at hair — pin to top, never cut the head */
-  object-position: center top;
+  /* Full standing frame: keep head + torso through jeans waist */
+  object-position: center 30%;
 }
 
 .hero--photo-bg .hero__backdrop::after {
@@ -1223,7 +1223,7 @@ button {
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center top;
+    object-position: center 28%;
   }
 }
 
@@ -1233,8 +1233,8 @@ button {
   }
 
   .hero--photo-bg .hero__backdrop img {
-    /* Raise Monika into upper third; crop empty window space above */
-    object-position: center 34%;
+    /* Half-body crop on mobile — head through jeans */
+    object-position: center 26%;
   }
 
   .hero--photo-bg .hero__backdrop::after {
