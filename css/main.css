@@ -1294,16 +1294,19 @@ button {
 }
 
 @media (min-width: 960px) {
-  /* Compact hero ~560–620px — not near-full viewport */
+  /*
+   * Desktop hero: taller so hands + most of the laptop read in-frame,
+   * while object-position:center top keeps the head under the nav.
+   */
   .hero--photo-bg .hero__stage {
-    height: clamp(35rem, 40vw, 38.75rem);
-    min-height: clamp(35rem, 40vw, 38.75rem);
-    max-height: 38.75rem;
+    height: clamp(41.25rem, 48vw, 46.25rem); /* ~660–740px */
+    min-height: clamp(41.25rem, 48vw, 46.25rem);
+    max-height: 46.25rem;
   }
 
   /*
-   * Desktop uses monika-hero-office-desktop (crown→torso crop).
-   * Pin to top so head sits just under the sticky nav.
+   * Desktop uses monika-hero-office-desktop.
+   * Pin to top so added height reveals more of the laptop below.
    */
   .hero--photo-bg .hero__backdrop-fill img {
     object-position: center top;
@@ -1317,10 +1320,10 @@ button {
         rgba(22, 16, 12, 0.14) 14%,
         rgba(22, 16, 12, 0.05) 28%,
         rgba(22, 16, 12, 0) 40%,
-        rgba(22, 16, 12, 0) 58%,
-        rgba(22, 16, 12, 0.05) 70%,
-        rgba(22, 16, 12, 0.14) 84%,
-        rgba(22, 16, 12, 0.24) 100%
+        rgba(22, 16, 12, 0) 56%,
+        rgba(22, 16, 12, 0.08) 68%,
+        rgba(22, 16, 12, 0.2) 84%,
+        rgba(22, 16, 12, 0.3) 100%
       ),
       linear-gradient(
         180deg,
@@ -1345,16 +1348,18 @@ button {
     );
   }
 
+  /* Stronger soft darken behind right copy / CTA / 110+ */
   .hero--photo-bg .hero__backdrop-shade::after {
-    width: min(40%, 28rem);
+    width: min(42%, 30rem);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     -webkit-mask-image: none;
     mask-image: none;
     background: linear-gradient(
       270deg,
-      rgba(22, 16, 12, 0.22) 0%,
-      rgba(22, 16, 12, 0.1) 48%,
+      rgba(22, 16, 12, 0.32) 0%,
+      rgba(22, 16, 12, 0.2) 42%,
+      rgba(22, 16, 12, 0.08) 72%,
       rgba(22, 16, 12, 0) 100%
     );
   }
