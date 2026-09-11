@@ -1248,6 +1248,7 @@ button {
 
   .hero--photo-bg .hero__backdrop-fill img {
     object-position: center top;
+    filter: brightness(1.05) saturate(1.02);
   }
 
   .hero--photo-bg .hero__backdrop-subject {
@@ -1262,8 +1263,8 @@ button {
     z-index: 1;
     margin: 0;
     /* Soft blend into full-bleed fill — avoids hard column / bar look */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
   }
 
   .hero--photo-bg .hero__backdrop-subject img {
