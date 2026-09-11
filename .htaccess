@@ -1,0 +1,9 @@
+# Clean URLs: hide index.html in the address bar
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /index.html → /
+  # /biznis-okvir/index.html → /biznis-okvir/
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+</IfModule>
