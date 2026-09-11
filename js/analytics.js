@@ -183,20 +183,22 @@
           <div class="cookie-banner__copy">
             <p id="cookie-banner-title" class="cookie-banner__title">nije kroasan iz Dubravice 🥐</p>
             <p id="cookie-banner-text" class="cookie-banner__text">
-              ali su kolačići koji mi pomažu vidjeti kako koristiš web i što mogu poboljšati. One koji nisu nužni uključit ću samo ako odobriš!
+              ali su kolačići koji mi pomažu razumjeti kako mogu poboljšati web iskustvo!
             </p>
             ${privacyLinkHtml}
           </div>
-          <div class="cookie-banner__actions">
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-deny>
-              Ne volim kolačiće
-            </button>
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--text" data-cookie-settings-open>
-              Postavke
-            </button>
+          <div class="cookie-banner__actions cookie-banner__actions--notice">
             <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>
-              Prihvaćam analitičke
+              Prihvaćam
             </button>
+            <div class="cookie-banner__secondary">
+              <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-deny>
+                Ne volim kolačiće
+              </button>
+              <button type="button" class="cookie-banner__btn cookie-banner__btn--text" data-cookie-settings-open>
+                Postavke
+              </button>
+            </div>
           </div>
         </div>
 

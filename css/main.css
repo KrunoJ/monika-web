@@ -2465,13 +2465,20 @@ button {
   }
 
   .process__doc {
-    max-width: none;
+    /* Keep questionnaire ~20% smaller even in the desktop grid */
+    max-width: 16.4rem;
     width: 100%;
     justify-self: end;
     /* Editorial bleed past the content rail */
     margin-right: clamp(-1.25rem, -2.5vw, -0.5rem);
     transform: rotate(1.4deg);
     transform-origin: 50% 20%;
+  }
+
+  .process__doc--collage {
+    max-width: min(22rem, 100%);
+    margin-right: 0;
+    transform: none;
   }
 }
 
@@ -7091,30 +7098,38 @@ button {
   margin-top: var(--space-6);
 }
 
-/* ========== Cookie consent banner ========== */
+/* ========== Cookie consent floating popup ========== */
 .cookie-banner {
   --cookie-brick: #a45f43;
   --cookie-slate: #7f92a6;
   --cookie-cream: var(--color-cream);
   position: fixed;
-  inset-inline: 0;
-  bottom: 0;
+  left: 24px;
+  bottom: 24px;
+  right: auto;
+  inset-inline: auto;
   z-index: 80;
+  width: min(25rem, calc(100vw - 48px)); /* ~400px */
+  max-width: calc(100vw - 48px);
+  margin: 0;
   padding: 0;
   pointer-events: none;
-  background: var(--cookie-slate);
-  border-top: 0;
+  background: transparent;
+  border: 0;
   box-shadow: none;
 }
 
 .cookie-banner__inner {
   pointer-events: auto;
   box-sizing: border-box;
-  width: min(100% - (var(--page-pad) * 2), var(--content-max));
-  margin-inline: auto;
-  padding: 1.25rem 0;
+  width: 100%;
+  margin: 0;
+  padding: 1.35rem 1.4rem;
   color: var(--cookie-cream);
   font-family: var(--font-body);
+  background: var(--cookie-slate);
+  border-radius: 4px;
+  box-shadow: none;
 }
 
 .cookie-banner__panel[hidden],
@@ -7125,7 +7140,7 @@ button {
 .cookie-banner__panel[data-cookie-panel="notice"]:not([hidden]) {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.95rem;
 }
 
 .cookie-banner__panel[data-cookie-panel="settings"]:not([hidden]) {
@@ -7141,9 +7156,9 @@ button {
 .cookie-banner__title {
   margin: 0 0 0.4rem;
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.125rem; /* 18px */
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: var(--tracking-tight);
   text-transform: none;
   color: var(--cookie-cream);
@@ -7151,18 +7166,18 @@ button {
 
 .cookie-banner__text {
   margin: 0;
-  max-width: 43.75rem;
+  max-width: none;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 0.875rem; /* 14px */
   line-height: 1.45;
   color: var(--cookie-cream);
 }
 
 .cookie-banner__link {
   display: inline-block;
-  margin-top: 0.25rem;
+  margin-top: 0.45rem;
   font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-size: 0.8125rem; /* 13px */
   font-weight: 400;
   line-height: 1.35;
   color: var(--cookie-cream);
@@ -7183,6 +7198,20 @@ button {
   gap: 0.55rem 0.85rem;
 }
 
+.cookie-banner__actions--notice {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.7rem;
+}
+
+.cookie-banner__secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
 .cookie-banner__actions--settings {
   margin-top: 0.25rem;
 }
@@ -7191,8 +7220,8 @@ button {
   appearance: none;
   box-sizing: border-box;
   margin: 0;
-  min-height: 2.75rem;
-  padding: 0.55rem 1.25rem;
+  min-height: 2.65rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 3px;
   border: 1px solid transparent;
   font-family: var(--font-body);
@@ -7205,6 +7234,7 @@ button {
 }
 
 .cookie-banner__btn--accept {
+  width: 100%;
   background: var(--cookie-brick);
   border-color: var(--cookie-brick);
   color: var(--cookie-cream);
@@ -7216,9 +7246,10 @@ button {
   border-color: var(--color-ink);
 }
 
-.cookie-banner__btn--deny {
-  min-height: 2.75rem;
-  padding: 0.55rem 0.35rem;
+.cookie-banner__btn--deny,
+.cookie-banner__btn--text {
+  min-height: 2.25rem;
+  padding: 0.35rem 0;
   background: transparent;
   border: none;
   color: var(--cookie-cream);
@@ -7227,22 +7258,7 @@ button {
 }
 
 .cookie-banner__btn--deny:hover,
-.cookie-banner__btn--deny:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 0.16em;
-  color: var(--color-cream);
-}
-
-.cookie-banner__btn--text {
-  min-height: 2.75rem;
-  padding: 0.55rem 0.35rem;
-  background: transparent;
-  border: none;
-  color: var(--cookie-cream);
-  font-weight: 500;
-  text-decoration: none;
-}
-
+.cookie-banner__btn--deny:focus-visible,
 .cookie-banner__btn--text:hover,
 .cookie-banner__btn--text:focus-visible {
   text-decoration: underline;
@@ -7339,12 +7355,9 @@ button {
   outline-offset: 2px;
 }
 
-/* Settings stays cream — separate functional panel */
-.cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) {
-  background: var(--cookie-cream);
-}
-
+/* Settings stays cream — same floating shell */
 .cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__inner {
+  background: var(--cookie-cream);
   color: var(--color-ink);
 }
 
@@ -7353,7 +7366,7 @@ button {
 }
 
 .cookie-banner:has([data-cookie-panel="settings"]:not([hidden])) .cookie-banner__btn--deny {
-  padding: 0.55rem 1.25rem;
+  padding: 0.55rem 1.15rem;
   border: 1px solid color-mix(in srgb, var(--cookie-brick) 55%, transparent);
   color: var(--color-heading);
   text-decoration: none;
@@ -7385,52 +7398,27 @@ button {
   color: var(--color-heading);
 }
 
-/* Mobile: primary full-width, deny + settings on one row below */
+/* Mobile floating inset — not full-bleed strip */
 @media (max-width: 767px) {
-  .cookie-banner__inner {
-    padding: 1.15rem 0;
+  .cookie-banner {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    max-width: none;
   }
 
-  .cookie-banner__panel[data-cookie-panel="notice"]:not([hidden]) {
-    gap: 0.7rem;
+  .cookie-banner__inner {
+    padding: 1.25rem 1.2rem;
   }
 
   .cookie-banner__title {
-    font-size: 1.3125rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.125rem;
   }
 
   .cookie-banner__text {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     line-height: 1.45;
-  }
-
-  .cookie-banner__link {
-    margin-top: 0.2rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.55rem 0.7rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--accept {
-    order: 1;
-    grid-column: 1 / -1;
-    width: 100%;
-    min-height: 3rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--deny {
-    order: 2;
-    width: 100%;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__btn--text {
-    order: 3;
-    width: 100%;
-    text-align: center;
   }
 
   .cookie-banner__actions--settings {
@@ -7442,48 +7430,8 @@ button {
   .cookie-banner__actions--settings .cookie-banner__btn {
     width: 100%;
   }
-}
 
-/* Desktop / tablet: compact horizontal strip */
-@media (min-width: 768px) {
-  .cookie-banner__inner {
-    padding: 1.4rem 0;
-  }
-
-  .cookie-banner__title {
-    font-size: 1.375rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .cookie-banner__text {
-    font-size: 0.9375rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"]:not([hidden]) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem 1.75rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__copy {
-    flex: 1 1 62%;
-    max-width: 64%;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="notice"] .cookie-banner__actions {
-    flex: 0 1 36%;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    margin-top: 0;
-    row-gap: 0.5rem;
-  }
-
-  .cookie-banner__panel[data-cookie-panel="settings"]:not([hidden]) {
-    max-width: 40rem;
-  }
-
-  .cookie-banner__actions--settings {
-    flex-wrap: wrap;
+  .cookie-banner__secondary {
+    gap: 0.45rem 0.85rem;
   }
 }
