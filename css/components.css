@@ -1743,6 +1743,12 @@
 .process--editorial {
   margin-top: var(--space-7);
   gap: 0;
+  overflow: visible;
+}
+
+.section--tint:has(.process--editorial),
+.section--tint:has(.process--editorial) .container {
+  overflow: visible;
 }
 
 .process--editorial .process__step {
@@ -1771,6 +1777,37 @@
   line-height: 1.15;
 }
 
+/* Step 01 — full A4 memorandum (no crop, no card, no shadow) */
+.process__step--with-doc .process__step-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.process__doc {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  max-width: 20.5rem;
+  width: 100%;
+}
+
+.process__doc picture {
+  display: block;
+}
+
+.process__doc img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  /* Full page visible — never cover-crop the memorandum */
+  object-fit: contain;
+  object-position: top center;
+}
+
 @media (min-width: 900px) {
   .process__step {
     grid-template-columns: 8rem 1fr minmax(10rem, 14rem);
@@ -1785,6 +1822,31 @@
 
   .process--editorial .process__content h3 {
     font-size: clamp(1.45rem, 2vw, 1.75rem);
+  }
+
+  .process__step--with-doc {
+    overflow: visible;
+  }
+
+  .process__step--with-doc .process__step-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 38%);
+    column-gap: clamp(1.5rem, 3vw, 2.75rem);
+    align-items: start;
+  }
+
+  .process__step--with-doc .process__content {
+    max-width: none;
+  }
+
+  .process__doc {
+    max-width: none;
+    width: 100%;
+    justify-self: end;
+    /* Editorial bleed past the content rail */
+    margin-right: clamp(-1.25rem, -2.5vw, -0.5rem);
+    transform: rotate(1.4deg);
+    transform-origin: 50% 20%;
   }
 }
 
