@@ -1476,8 +1476,6 @@ button {
   .bo-situations__media {
     max-width: none;
     justify-self: stretch;
-    position: sticky;
-    bottom: 0;
   }
 }
 
