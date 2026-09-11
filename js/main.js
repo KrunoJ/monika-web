@@ -75,6 +75,32 @@
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
+  /* Lock homepage photo-hero height once on mobile (avoids URL-bar zoom-on-scroll) */
+  const lockPhotoHeroHeight = () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (!hero) return;
+    const mobile = window.matchMedia("(max-width: 959px)");
+    if (!mobile.matches) {
+      hero.style.removeProperty("--hero-lock-h");
+      delete hero.dataset.heroHeightLocked;
+      return;
+    }
+    if (hero.dataset.heroHeightLocked === "1") return;
+    hero.style.setProperty("--hero-lock-h", `${Math.round(window.innerHeight)}px`);
+    hero.dataset.heroHeightLocked = "1";
+  };
+  lockPhotoHeroHeight();
+  window.addEventListener("orientationchange", () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (hero) delete hero.dataset.heroHeightLocked;
+    window.setTimeout(lockPhotoHeroHeight, 250);
+  });
+  window.matchMedia("(max-width: 959px)").addEventListener("change", () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (hero) delete hero.dataset.heroHeightLocked;
+    lockPhotoHeroHeight();
+  });
+
   /* ---------- Live browser previews (Biznis okvir + Landing portfolio) ---------- */
   const BO_IMPL = {
     WEB_URL: "https://www.poduzetnistvospovjerenjem.hr/",
