@@ -2383,7 +2383,7 @@ button {
   border: 0;
   background: none;
   /* Substantial process artifact — ~32–36% of the content rail on desktop */
-  max-width: min(20rem, 100%);
+  max-width: min(22rem, 100%);
   width: 100%;
 }
 
@@ -2509,15 +2509,15 @@ button {
   .process__step--with-doc .process__step-main {
     display: grid;
     /* ~60/40 text : visual weight */
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 34%);
-    column-gap: clamp(1.75rem, 3.5vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 35%);
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: start;
   }
 
   /* Strategy plane sits mid body text, a bit closer to copy */
   .process__step--with-doc:has(.process__doc--collage) .process__step-main {
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, 38%);
-    column-gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    grid-template-columns: minmax(0, 1fr) minmax(22rem, 38%);
+    column-gap: clamp(0.85rem, 1.8vw, 1.5rem);
     align-items: center;
   }
 
@@ -2526,7 +2526,7 @@ button {
   }
 
   .process__doc {
-    max-width: min(20rem, 100%);
+    max-width: min(22rem, 100%);
     width: 100%;
     justify-self: end;
     /* Editorial bleed toward the right edge */
@@ -2536,7 +2536,7 @@ button {
   }
 
   .process__doc--collage {
-    max-width: min(27rem, 100%);
+    max-width: min(28rem, 100%);
     width: 100%;
     margin-right: 0;
     margin-top: 0;
