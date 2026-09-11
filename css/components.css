@@ -1062,6 +1062,46 @@
   font-style: italic;
 }
 
+/* Homepage §02 — rotating ASI seal beside the problem section */
+.problem-section {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.problem-section__main {
+  min-width: 0;
+}
+
+.problem-section__seal {
+  margin: 0;
+  width: min(9.5rem, 42vw);
+  justify-self: center;
+  line-height: 0;
+}
+
+.problem-section__seal picture,
+.problem-section__seal-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+@media (min-width: 900px) {
+  .problem-section {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .problem-section__seal {
+    width: clamp(8.75rem, 12vw, 11.25rem);
+    justify-self: end;
+    margin-top: 0.35rem; /* sits beside the H2 */
+  }
+}
+
 .problem-list {
   list-style: none;
   margin-top: var(--space-6);
