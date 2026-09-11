@@ -799,47 +799,57 @@
   padding: 0;
 }
 
-.hero--photo-bg .hero__backdrop picture {
+/* Layer A — always full-bleed cover */
+.hero--photo-bg .hero__backdrop-fill {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   margin: 0;
 }
 
-.hero--photo-bg .hero__backdrop img {
+.hero--photo-bg .hero__backdrop-fill img {
   display: block;
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: cover; /* never contain — edge to edge */
-  object-position: center 18%;
+  object-fit: cover; /* never contain */
+  object-position: center 8%;
 }
 
-/* Light scrim for cream type — keep sides photographic, not solid bars */
+/* Layer B — desktop subject height-fit (head→hips) */
+.hero--photo-bg .hero__backdrop-subject {
+  display: none;
+}
+
+/* Light scrim for cream type — sides stay photographic */
 .hero--photo-bg .hero__backdrop::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   background:
     linear-gradient(
       90deg,
-      rgba(22, 16, 12, 0.32) 0%,
-      rgba(22, 16, 12, 0.12) 18%,
-      rgba(22, 16, 12, 0.04) 50%,
-      rgba(22, 16, 12, 0.12) 82%,
-      rgba(22, 16, 12, 0.32) 100%
+      rgba(22, 16, 12, 0.3) 0%,
+      rgba(22, 16, 12, 0.1) 18%,
+      rgba(22, 16, 12, 0.03) 50%,
+      rgba(22, 16, 12, 0.1) 82%,
+      rgba(22, 16, 12, 0.3) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(22, 16, 12, 0.14) 0%,
+      rgba(22, 16, 12, 0.12) 0%,
       rgba(22, 16, 12, 0.03) 42%,
-      rgba(22, 16, 12, 0.36) 100%
+      rgba(22, 16, 12, 0.34) 100%
     );
 }
 
 .hero--photo-bg .hero__stage {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero--photo-bg .hero__figure {
@@ -864,16 +874,38 @@
 }
 
 @media (min-width: 960px) {
-  /* Existing compact height — not 100vh */
   .hero--photo-bg .hero__stage {
     height: clamp(42rem, 94svh, 58rem);
     min-height: clamp(42rem, 94svh, 58rem);
     max-height: none;
   }
 
-  .hero--photo-bg .hero__backdrop img {
-    /* Person-first: small air above head, open toward torso / laptop */
-    object-position: center 4%;
+  .hero--photo-bg .hero__backdrop-fill img {
+    object-position: center top;
+  }
+
+  .hero--photo-bg .hero__backdrop-subject {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    max-width: none;
+    z-index: 1;
+    margin: 0;
+    /* Soft blend into full-bleed fill — avoids hard column / bar look */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .hero--photo-bg .hero__backdrop-subject img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: fill;
   }
 }
 
@@ -882,8 +914,11 @@
     display: none;
   }
 
-  .hero--photo-bg .hero__backdrop img {
-    /* Mobile: separate crop on full portrait */
+  .hero--photo-bg .hero__backdrop-subject {
+    display: none;
+  }
+
+  .hero--photo-bg .hero__backdrop-fill img {
     object-position: center 22%;
   }
 
@@ -903,7 +938,6 @@
       );
   }
 
-  /* Lock height on mobile: no svh/dvh (URL bar hide/show was "zooming" the photo) */
   .hero--photo-bg .hero__stage {
     height: var(--hero-lock-h, 40rem);
     min-height: var(--hero-lock-h, 40rem);
