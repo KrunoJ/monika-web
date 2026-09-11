@@ -798,8 +798,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Keep head→hips in frame (not just face crop) */
-  object-position: center 42%;
+  /* Asset is pre-cropped head → jeans waistband */
+  object-position: center 28%;
 }
 
 .hero--photo-bg .hero__backdrop::after {
@@ -837,12 +837,12 @@
 .hero--photo-bg .hero__lede,
 .hero--photo-bg .hero__proof-num,
 .hero--photo-bg .hero__proof-label {
-  color: var(--color-cream);
+  color: #eae6e2; /* cream, never white */
   text-shadow: 0 1px 2px rgba(22, 16, 12, 0.28);
 }
 
 .hero--photo-bg .hero__rail--copy .hero__title {
-  border-left-color: var(--color-cream);
+  border-left-color: #eae6e2;
 }
 
 .hero--photo-bg .hero__actions .btn--primary {
@@ -857,7 +857,7 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center 40%;
+    object-position: center 26%;
   }
 }
 
@@ -867,7 +867,7 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center 36%;
+    object-position: center 22%;
   }
 
   .hero--photo-bg .hero__backdrop::after {
