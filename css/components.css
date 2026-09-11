@@ -953,50 +953,50 @@
     background:
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.46) 0%,
-        rgba(22, 16, 12, 0.28) 12%,
-        rgba(22, 16, 12, 0.12) 26%,
+        rgba(22, 16, 12, 0.55) 0%,
+        rgba(22, 16, 12, 0.34) 12%,
+        rgba(22, 16, 12, 0.14) 26%,
         rgba(22, 16, 12, 0) 40%,
         rgba(22, 16, 12, 0) 56%,
-        rgba(22, 16, 12, 0.14) 70%,
-        rgba(22, 16, 12, 0.34) 86%,
-        rgba(22, 16, 12, 0.5) 100%
+        rgba(22, 16, 12, 0.16) 70%,
+        rgba(22, 16, 12, 0.4) 86%,
+        rgba(22, 16, 12, 0.58) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.1) 0%,
+        rgba(22, 16, 12, 0.12) 0%,
         rgba(22, 16, 12, 0) 45%,
-        rgba(22, 16, 12, 0.16) 100%
+        rgba(22, 16, 12, 0.18) 100%
       );
   }
 
   /* Soft local darken behind rails — no CSS blur */
   .hero--photo-bg .hero__backdrop-shade::before {
-    width: min(42%, 28rem);
+    width: min(44%, 30rem);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     -webkit-mask-image: none;
     mask-image: none;
     background: linear-gradient(
       90deg,
-      rgba(22, 16, 12, 0.4) 0%,
-      rgba(22, 16, 12, 0.2) 50%,
+      rgba(22, 16, 12, 0.48) 0%,
+      rgba(22, 16, 12, 0.24) 52%,
       rgba(22, 16, 12, 0) 100%
     );
   }
 
   /* Stronger soft darken behind right copy / CTA / 110+ */
   .hero--photo-bg .hero__backdrop-shade::after {
-    width: min(46%, 32rem);
+    width: min(48%, 34rem);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     -webkit-mask-image: none;
     mask-image: none;
     background: linear-gradient(
       270deg,
-      rgba(22, 16, 12, 0.5) 0%,
-      rgba(22, 16, 12, 0.32) 40%,
-      rgba(22, 16, 12, 0.14) 70%,
+      rgba(22, 16, 12, 0.58) 0%,
+      rgba(22, 16, 12, 0.36) 40%,
+      rgba(22, 16, 12, 0.16) 70%,
       rgba(22, 16, 12, 0) 100%
     );
   }
