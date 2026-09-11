@@ -839,7 +839,10 @@
   object-position: center 28%;
 }
 
-/* Side shade overlays — above photo, below copy; soft fade to center */
+/*
+ * Side readability overlays — soft local darken only (no CSS blur).
+ * Photo keeps its natural depth of field; center subject stays clear.
+ */
 .hero--photo-bg .hero__backdrop-shade {
   position: absolute;
   inset: 0;
@@ -848,46 +851,54 @@
   background:
     linear-gradient(
       90deg,
-      rgba(22, 16, 12, 0.34) 0%,
-      rgba(22, 16, 12, 0.18) 14%,
-      rgba(22, 16, 12, 0.06) 28%,
+      rgba(22, 16, 12, 0.22) 0%,
+      rgba(22, 16, 12, 0.12) 16%,
+      rgba(22, 16, 12, 0.04) 30%,
       rgba(22, 16, 12, 0) 42%,
       rgba(22, 16, 12, 0) 58%,
-      rgba(22, 16, 12, 0.06) 72%,
-      rgba(22, 16, 12, 0.18) 86%,
-      rgba(22, 16, 12, 0.34) 100%
+      rgba(22, 16, 12, 0.04) 70%,
+      rgba(22, 16, 12, 0.12) 84%,
+      rgba(22, 16, 12, 0.22) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(22, 16, 12, 0.1) 0%,
-      rgba(22, 16, 12, 0.02) 40%,
-      rgba(22, 16, 12, 0.28) 100%
+      rgba(22, 16, 12, 0.06) 0%,
+      rgba(22, 16, 12, 0) 42%,
+      rgba(22, 16, 12, 0.14) 100%
     );
 }
 
-/* Soft side blur only behind copy zones — center person stays sharp */
+/* Soft gradient washes behind copy rails — never blur the photo */
 .hero--photo-bg .hero__backdrop-shade::before,
 .hero--photo-bg .hero__backdrop-shade::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: min(32%, 22rem);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  width: min(36%, 24rem);
   pointer-events: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .hero--photo-bg .hero__backdrop-shade::before {
   left: 0;
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(22, 16, 12, 0.2) 0%,
+    rgba(22, 16, 12, 0.1) 45%,
+    rgba(22, 16, 12, 0) 100%
+  );
 }
 
 .hero--photo-bg .hero__backdrop-shade::after {
   right: 0;
-  -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 35%, transparent 100%);
-  mask-image: linear-gradient(270deg, #000 0%, #000 35%, transparent 100%);
+  background: linear-gradient(
+    270deg,
+    rgba(22, 16, 12, 0.2) 0%,
+    rgba(22, 16, 12, 0.1) 45%,
+    rgba(22, 16, 12, 0) 100%
+  );
 }
 
 .hero--photo-bg .hero__stage {
@@ -899,13 +910,13 @@
   visibility: hidden;
 }
 
-.hero--photo-bg .hero__title,
-.hero--photo-bg .hero__title-line,
-.hero--photo-bg .hero__lede,
-.hero--photo-bg .hero__proof-num,
-.hero--photo-bg .hero__proof-label {
+  .hero--photo-bg .hero__title,
+  .hero--photo-bg .hero__title-line,
+  .hero--photo-bg .hero__lede,
+  .hero--photo-bg .hero__proof-num,
+  .hero--photo-bg .hero__proof-label {
   color: #eae6e2; /* cream, never white */
-  text-shadow: 0 1px 2px rgba(22, 16, 12, 0.28);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
 }
 
 .hero--photo-bg .hero__rail--copy .hero__title {
@@ -936,39 +947,50 @@
     background:
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.38) 0%,
-        rgba(22, 16, 12, 0.22) 12%,
-        rgba(22, 16, 12, 0.08) 26%,
+        rgba(22, 16, 12, 0.24) 0%,
+        rgba(22, 16, 12, 0.14) 14%,
+        rgba(22, 16, 12, 0.05) 28%,
         rgba(22, 16, 12, 0) 40%,
-        rgba(22, 16, 12, 0) 52%,
-        rgba(22, 16, 12, 0.1) 68%,
-        rgba(22, 16, 12, 0.28) 84%,
-        rgba(22, 16, 12, 0.42) 100%
+        rgba(22, 16, 12, 0) 58%,
+        rgba(22, 16, 12, 0.05) 70%,
+        rgba(22, 16, 12, 0.14) 84%,
+        rgba(22, 16, 12, 0.24) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.08) 0%,
-        rgba(22, 16, 12, 0.02) 45%,
-        rgba(22, 16, 12, 0.22) 100%
+        rgba(22, 16, 12, 0.05) 0%,
+        rgba(22, 16, 12, 0) 45%,
+        rgba(22, 16, 12, 0.12) 100%
       );
   }
 
-  /* Left-side blur under title for readability */
+  /* Soft local darken behind rails — no CSS blur */
   .hero--photo-bg .hero__backdrop-shade::before {
     width: min(38%, 26rem);
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
-    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 100%);
-    mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    background: linear-gradient(
+      90deg,
+      rgba(22, 16, 12, 0.22) 0%,
+      rgba(22, 16, 12, 0.1) 48%,
+      rgba(22, 16, 12, 0) 100%
+    );
   }
 
-  /* Stronger right-side blur under meta copy for readability */
   .hero--photo-bg .hero__backdrop-shade::after {
     width: min(40%, 28rem);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 42%, transparent 100%);
-    mask-image: linear-gradient(270deg, #000 0%, #000 42%, transparent 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    background: linear-gradient(
+      270deg,
+      rgba(22, 16, 12, 0.22) 0%,
+      rgba(22, 16, 12, 0.1) 48%,
+      rgba(22, 16, 12, 0) 100%
+    );
   }
 
   /* Slightly larger left hero title on desktop photo hero */
@@ -1017,8 +1039,8 @@
   .hero--photo-bg .hero__backdrop-shade::before,
   .hero--photo-bg .hero__backdrop-shade::after {
     width: 42%;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .hero--photo-bg .hero__stage {
