@@ -1163,9 +1163,10 @@ button {
   max-width: none;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
-/* Layer A — always full-bleed cover */
+/* Single photographic layer — never contain */
 .hero--photo-bg .hero__backdrop-fill {
   position: absolute;
   inset: 0;
@@ -1174,6 +1175,7 @@ button {
   height: 100%;
   overflow: hidden;
   margin: 0;
+  z-index: 0;
 }
 
 .hero--photo-bg .hero__backdrop-fill img {
@@ -1181,36 +1183,60 @@ button {
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: cover; /* never contain */
-  object-position: center 8%;
+  object-fit: cover;
+  /* Default / mobile: head + upper body, no full-leg framing */
+  object-position: center 28%;
 }
 
-/* Layer B — desktop subject height-fit (head→hips) */
-.hero--photo-bg .hero__backdrop-subject {
-  display: none;
-}
-
-/* Light scrim for cream type — sides stay photographic */
-.hero--photo-bg .hero__backdrop::after {
-  content: "";
+/* Side shade overlays — above photo, below copy; soft fade to center */
+.hero--photo-bg .hero__backdrop-shade {
   position: absolute;
   inset: 0;
   z-index: 2;
+  pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(22, 16, 12, 0.3) 0%,
-      rgba(22, 16, 12, 0.1) 18%,
-      rgba(22, 16, 12, 0.03) 50%,
-      rgba(22, 16, 12, 0.1) 82%,
-      rgba(22, 16, 12, 0.3) 100%
+      rgba(22, 16, 12, 0.34) 0%,
+      rgba(22, 16, 12, 0.18) 14%,
+      rgba(22, 16, 12, 0.06) 28%,
+      rgba(22, 16, 12, 0) 42%,
+      rgba(22, 16, 12, 0) 58%,
+      rgba(22, 16, 12, 0.06) 72%,
+      rgba(22, 16, 12, 0.18) 86%,
+      rgba(22, 16, 12, 0.34) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(22, 16, 12, 0.12) 0%,
-      rgba(22, 16, 12, 0.03) 42%,
-      rgba(22, 16, 12, 0.34) 100%
+      rgba(22, 16, 12, 0.1) 0%,
+      rgba(22, 16, 12, 0.02) 40%,
+      rgba(22, 16, 12, 0.28) 100%
     );
+}
+
+/* Soft side blur only behind copy zones — center person stays sharp */
+.hero--photo-bg .hero__backdrop-shade::before,
+.hero--photo-bg .hero__backdrop-shade::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(32%, 22rem);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  pointer-events: none;
+}
+
+.hero--photo-bg .hero__backdrop-shade::before {
+  left: 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
+}
+
+.hero--photo-bg .hero__backdrop-shade::after {
+  right: 0;
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(270deg, #000 0%, #000 35%, transparent 100%);
 }
 
 .hero--photo-bg .hero__stage {
@@ -1240,39 +1266,40 @@ button {
 }
 
 @media (min-width: 960px) {
+  /* Compact hero ~560–620px — not near-full viewport */
   .hero--photo-bg .hero__stage {
-    height: clamp(42rem, 94svh, 58rem);
-    min-height: clamp(42rem, 94svh, 58rem);
-    max-height: none;
+    height: clamp(35rem, 40vw, 38.75rem);
+    min-height: clamp(35rem, 40vw, 38.75rem);
+    max-height: 38.75rem;
   }
 
+  /*
+   * Desktop crop: little air above crown → face → torso → ~hips/lower blazer.
+   * object-position ~30% maps to ~22%–50% of the source at 1440×600.
+   */
   .hero--photo-bg .hero__backdrop-fill img {
-    object-position: center top;
-    filter: brightness(1.05) saturate(1.02);
+    object-position: center 30%;
   }
 
-  .hero--photo-bg .hero__backdrop-subject {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-    width: auto;
-    max-width: none;
-    z-index: 1;
-    margin: 0;
-    /* Soft blend into full-bleed fill — avoids hard column / bar look */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  }
-
-  .hero--photo-bg .hero__backdrop-subject img {
-    display: block;
-    height: 100%;
-    width: auto;
-    max-width: none;
-    object-fit: fill;
+  .hero--photo-bg .hero__backdrop-shade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(22, 16, 12, 0.3) 0%,
+        rgba(22, 16, 12, 0.16) 12%,
+        rgba(22, 16, 12, 0.05) 26%,
+        rgba(22, 16, 12, 0) 40%,
+        rgba(22, 16, 12, 0) 60%,
+        rgba(22, 16, 12, 0.05) 74%,
+        rgba(22, 16, 12, 0.16) 88%,
+        rgba(22, 16, 12, 0.3) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(22, 16, 12, 0.08) 0%,
+        rgba(22, 16, 12, 0.02) 45%,
+        rgba(22, 16, 12, 0.22) 100%
+      );
   }
 }
 
@@ -1281,28 +1308,43 @@ button {
     display: none;
   }
 
-  .hero--photo-bg .hero__backdrop-subject {
-    display: none;
-  }
-
+  /*
+   * Mobile: separate crop. Tall viewports would otherwise show full body
+   * with cover — zoom past cover so framing stays head → upper torso.
+   */
   .hero--photo-bg .hero__backdrop-fill img {
-    object-position: center 22%;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 26%;
+    transform: scale(1.42);
+    transform-origin: center 18%;
   }
 
-  .hero--photo-bg .hero__backdrop::after {
+  .hero--photo-bg .hero__backdrop-shade {
     background:
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.38) 0%,
-        rgba(22, 16, 12, 0.14) 40%,
-        rgba(22, 16, 12, 0.55) 100%
+        rgba(22, 16, 12, 0.32) 0%,
+        rgba(22, 16, 12, 0.1) 36%,
+        rgba(22, 16, 12, 0.5) 100%
       ),
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.3) 0%,
-        rgba(22, 16, 12, 0.08) 50%,
-        rgba(22, 16, 12, 0.3) 100%
+        rgba(22, 16, 12, 0.26) 0%,
+        rgba(22, 16, 12, 0.06) 45%,
+        rgba(22, 16, 12, 0.06) 55%,
+        rgba(22, 16, 12, 0.26) 100%
       );
+  }
+
+  .hero--photo-bg .hero__backdrop-shade::before,
+  .hero--photo-bg .hero__backdrop-shade::after {
+    width: 42%;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   .hero--photo-bg .hero__stage {
