@@ -1301,11 +1301,11 @@ button {
   }
 
   /*
-   * Desktop crop: little air above crown → face → torso → ~hips/lower blazer.
-   * object-position ~30% maps to ~22%–50% of the source at 1440×600.
+   * Desktop uses monika-hero-office-desktop (already head→hips).
+   * Favor top so crown stays in frame without excess ceiling.
    */
   .hero--photo-bg .hero__backdrop-fill img {
-    object-position: center 30%;
+    object-position: center 12%;
   }
 
   .hero--photo-bg .hero__backdrop-shade {
