@@ -1233,7 +1233,8 @@ button {
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center top;
+    /* Raise Monika into upper third; crop empty window space above */
+    object-position: center 34%;
   }
 
   .hero--photo-bg .hero__backdrop::after {
