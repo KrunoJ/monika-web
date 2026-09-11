@@ -27,7 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=hero-desktop-head-12" />
+    <link rel="stylesheet" href="css/main.css?v=hero-desktop-hips-1" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -80,6 +80,16 @@
       <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
         <div class="hero__backdrop" aria-hidden="true">
           <picture>
+            <!-- Desktop: pre-framed medium shot (head under nav → hips), matches composition reference -->
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.webp?v=hips-1"
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.jpg?v=hips-1"
+            />
             <source srcset="assets/images/monika-hero-office-v2.webp?v=deskhead-1" type="image/webp" />
             <img
               src="assets/images/monika-hero-office-v2.jpg?v=deskhead-1"

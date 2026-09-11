@@ -857,8 +857,8 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    /* Head near top (blue-line mark); body reads down through jeans */
-    object-position: center 10%;
+    /* Desktop asset is pre-framed: head under nav → hips */
+    object-position: center top;
   }
 }
 
