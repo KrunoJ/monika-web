@@ -1024,8 +1024,8 @@
   }
 
   /*
-   * Mobile: dedicated full-body photo. Cover fills the locked viewport;
-   * no extra zoom — let the portrait read naturally (head → feet).
+   * Mobile: dedicated full-body photo with light zoom (much milder than
+   * the old 1.42×) so copy sits over mid/lower torso, not bright floor.
    */
   .hero--photo-bg .hero__backdrop-fill img {
     position: absolute;
@@ -1033,40 +1033,103 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: center 18%;
     transform: none;
   }
 
   .hero--photo-bg .hero__backdrop-shade {
     background:
+      /* Extra-strong bottom plate for copy over bright floor stripes */
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.18) 0%,
-        rgba(22, 16, 12, 0.06) 40%,
-        rgba(22, 16, 12, 0.28) 100%
+        rgba(22, 16, 12, 0.1) 0%,
+        rgba(22, 16, 12, 0.06) 28%,
+        rgba(22, 16, 12, 0.42) 52%,
+        rgba(22, 16, 12, 0.82) 76%,
+        rgba(22, 16, 12, 0.94) 100%
       ),
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.18) 0%,
-        rgba(22, 16, 12, 0.04) 45%,
-        rgba(22, 16, 12, 0.04) 55%,
-        rgba(22, 16, 12, 0.18) 100%
+        rgba(22, 16, 12, 0.3) 0%,
+        rgba(22, 16, 12, 0.1) 38%,
+        rgba(22, 16, 12, 0.1) 62%,
+        rgba(22, 16, 12, 0.3) 100%
       );
+  }
+
+  /* No boxed plate — full-bleed bottom wash behind all mobile copy */
+  .hero--photo-bg .hero__rail--meta {
+    max-width: none;
+    background: none;
+    padding: 0;
+  }
+
+  .hero--photo-bg .hero__rail--copy,
+  .hero--photo-bg .hero__rail--meta {
+    position: relative;
+    z-index: 2;
   }
 
   .hero--photo-bg .hero__backdrop-shade::before,
   .hero--photo-bg .hero__backdrop-shade::after {
-    width: 42%;
+    width: 48%;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 
+  .hero--photo-bg .hero__backdrop-shade::before {
+    background: linear-gradient(
+      90deg,
+      rgba(22, 16, 12, 0.28) 0%,
+      rgba(22, 16, 12, 0.1) 55%,
+      rgba(22, 16, 12, 0) 100%
+    );
+  }
+
+  .hero--photo-bg .hero__backdrop-shade::after {
+    background: linear-gradient(
+      270deg,
+      rgba(22, 16, 12, 0.28) 0%,
+      rgba(22, 16, 12, 0.1) 55%,
+      rgba(22, 16, 12, 0) 100%
+    );
+  }
+
+  .hero--photo-bg .hero__title,
+  .hero--photo-bg .hero__title-line,
+  .hero--photo-bg .hero__lede,
+  .hero--photo-bg .hero__proof-num,
+  .hero--photo-bg .hero__proof-label {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.45),
+      0 4px 18px rgba(0, 0, 0, 0.4);
+  }
+
   .hero--photo-bg .hero__stage {
+    position: relative;
     height: var(--hero-lock-h, 40rem);
     min-height: var(--hero-lock-h, 40rem);
     max-height: none;
     justify-content: flex-end;
     padding-bottom: var(--space-7);
+  }
+
+  .hero--photo-bg .hero__stage::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: min(58%, 26rem);
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(22, 16, 12, 0) 0%,
+      rgba(22, 16, 12, 0.5) 26%,
+      rgba(22, 16, 12, 0.82) 60%,
+      rgba(22, 16, 12, 0.94) 100%
+    );
   }
 }
 
