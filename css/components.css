@@ -798,8 +798,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Head near top, not cut off; more torso below */
-  object-position: center 3%;
+  /* v2 crop starts at hair — pin to top, never cut the head */
+  object-position: center top;
 }
 
 .hero--photo-bg .hero__backdrop::after {
@@ -851,13 +851,13 @@
 
 @media (min-width: 960px) {
   .hero--photo-bg .hero__stage {
-    height: clamp(38rem, 92svh, 54rem);
-    min-height: clamp(38rem, 92svh, 54rem);
+    height: clamp(42rem, 94svh, 58rem);
+    min-height: clamp(42rem, 94svh, 58rem);
     max-height: none;
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center 2%;
+    object-position: center top;
   }
 }
 
@@ -867,7 +867,7 @@
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center 4%;
+    object-position: center top;
   }
 
   .hero--photo-bg .hero__backdrop::after {
