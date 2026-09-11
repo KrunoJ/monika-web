@@ -27,7 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=home-asi-seal-2" />
+    <link rel="stylesheet" href="css/main.css?v=hero-head-hips-1" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -79,21 +79,11 @@
       <!-- 01 HERO -->
       <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
         <div class="hero__backdrop" aria-hidden="true">
-          <!-- Full-bleed photographic fill (cover, edge to edge) -->
+          <!-- Single full-bleed photo; crop via CSS object-fit/position only -->
           <picture class="hero__backdrop-fill">
-            <source
-              media="(min-width: 960px)"
-              srcset="assets/images/monika-hero-office-desktop.webp?v=cover-fix-4"
-              type="image/webp"
-            />
-            <source
-              media="(min-width: 960px)"
-              srcset="assets/images/monika-hero-office-desktop.jpg?v=cover-fix-4"
-              type="image/jpeg"
-            />
-            <source srcset="assets/images/monika-hero-office-v2.webp?v=cover-fix-4" type="image/webp" />
+            <source srcset="assets/images/monika-hero-office-v2.webp?v=head-hips-1" type="image/webp" />
             <img
-              src="assets/images/monika-hero-office-v2.jpg?v=cover-fix-4"
+              src="assets/images/monika-hero-office-v2.jpg?v=head-hips-1"
               alt=""
               width="1800"
               height="2699"
@@ -101,17 +91,8 @@
               fetchpriority="high"
             />
           </picture>
-          <!-- Desktop: height-fit medium band so head→hips stays intact -->
-          <picture class="hero__backdrop-subject">
-            <source srcset="assets/images/monika-hero-office-desktop.webp?v=cover-fix-4" type="image/webp" />
-            <img
-              src="assets/images/monika-hero-office-desktop.jpg?v=cover-fix-4"
-              alt=""
-              width="1800"
-              height="1570"
-              decoding="async"
-            />
-          </picture>
+          <!-- Side readability overlays (above photo, below copy) -->
+          <div class="hero__backdrop-shade"></div>
         </div>
         <div class="hero__stage">
           <div class="hero__figure" aria-hidden="true"></div>
