@@ -935,11 +935,11 @@
   }
 
   /*
-   * Desktop uses monika-hero-office-desktop (already head→hips).
-   * Favor top so crown stays in frame without excess ceiling.
+   * Desktop uses monika-hero-office-desktop (crown→torso crop).
+   * Pin to top so head sits just under the sticky nav.
    */
   .hero--photo-bg .hero__backdrop-fill img {
-    object-position: center 12%;
+    object-position: center top;
   }
 
   .hero--photo-bg .hero__backdrop-shade {
@@ -1976,8 +1976,8 @@
   padding: 0;
   border: 0;
   background: none;
-  /* 20% smaller than prior A4 preview */
-  max-width: 16.4rem;
+  /* Another −20% vs prior 16.4rem questionnaire preview */
+  max-width: 13.1rem;
   width: 100%;
 }
 
@@ -1997,12 +1997,15 @@
 
 .process__doc--collage {
   max-width: min(22rem, 100%);
+  background: none;
+  box-shadow: none;
 }
 
 .process__doc--collage img {
-  object-fit: cover;
-  object-position: center top;
-  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center center;
+  aspect-ratio: auto;
+  background: none;
 }
 
 /* Typewriter accent beside process step 03 (decorative; copy stays in prose) */
@@ -2079,7 +2082,9 @@
   .process--editorial .process__step--typewriter .process__typewriter {
     display: block;
     justify-self: start;
-    align-self: center;
+    /* Align with body text start (below h3), not mid-column */
+    align-self: start;
+    margin-top: calc(1.15 * clamp(1.45rem, 2vw, 1.75rem) + var(--space-2));
     max-width: 20rem;
   }
 
@@ -2094,13 +2099,17 @@
     align-items: start;
   }
 
+  /* Collage sits mid body text — no plate, no tilt */
+  .process__step--with-doc:has(.process__doc--collage) .process__step-main {
+    align-items: center;
+  }
+
   .process__step--with-doc .process__content {
     max-width: none;
   }
 
   .process__doc {
-    /* Keep questionnaire ~20% smaller even in the desktop grid */
-    max-width: 16.4rem;
+    max-width: 13.1rem;
     width: 100%;
     justify-self: end;
     /* Editorial bleed past the content rail */
@@ -2112,6 +2121,8 @@
   .process__doc--collage {
     max-width: min(22rem, 100%);
     margin-right: 0;
+    margin-top: 0;
+    align-self: center;
     transform: none;
   }
 }
