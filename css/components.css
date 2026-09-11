@@ -3391,24 +3391,25 @@
 .about-hero {
   background: var(--color-heading);
   color: var(--color-cream);
-  padding: clamp(2rem, 4.5vw, 2.75rem) 0;
+  padding: 0;
   overflow: hidden;
   border-bottom: 0;
 }
 
 .about-hero__stage {
-  width: min(100% - (var(--page-pad) * 2), var(--content-max));
-  margin-inline: auto;
+  width: 100%;
+  margin: 0;
   display: grid;
-  gap: var(--space-5);
-  align-items: start;
+  gap: 0;
+  align-items: stretch;
 }
 
 .about-hero__copy {
   display: grid;
   gap: var(--space-3);
-  align-content: start;
-  max-width: 43.75rem;
+  align-content: center;
+  max-width: none;
+  padding: clamp(2.5rem, 7vw, 4rem) var(--page-pad);
 }
 
 .about-hero__eyebrow {
@@ -3422,8 +3423,8 @@
   font-size: clamp(2.25rem, 7vw, 2.75rem);
   line-height: 1.08;
   letter-spacing: var(--tracking-tight);
-  max-width: none;
-  color: var(--color-cream);
+  max-width: 22ch;
+  color: #eae6e2;
 }
 
 .about-hero__br {
@@ -3431,10 +3432,11 @@
 }
 
 .about-hero__visual {
-  width: min(100%, 17.5rem);
+  width: 100%;
+  margin: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  margin: 0;
+  background: #1c1612;
 }
 
 .about-hero__visual picture {
@@ -3449,7 +3451,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 12%;
+  object-position: center 18%;
   min-height: 0;
   border: 0;
   border-radius: 0;
@@ -3458,27 +3460,21 @@
 }
 
 @media (min-width: 900px) {
-  .about-hero {
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-  }
-
   .about-hero__stage {
-    grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.3fr);
-    column-gap: clamp(2.5rem, 5vw, 4rem);
-    align-items: center;
-    min-height: 0;
+    grid-template-columns: 1fr 1fr;
+    min-height: clamp(36rem, 88svh, 52rem);
   }
 
   .about-hero__copy {
-    max-width: 45rem;
-    align-self: center;
-    padding-bottom: 0;
+    padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem);
+    max-width: none;
+    justify-items: start;
   }
 
   .about-hero__title {
-    max-width: 43.75rem;
-    font-size: clamp(3.375rem, 3.8vw, 3.625rem);
-    line-height: 1.08;
+    max-width: 14ch;
+    font-size: clamp(2.75rem, 4.2vw, 3.75rem);
+    line-height: 1.06;
   }
 
   .about-hero__br {
@@ -3486,15 +3482,17 @@
   }
 
   .about-hero__visual {
-    width: min(100%, 23.75rem);
-    max-width: 23.75rem;
-    justify-self: end;
-    align-self: center;
-    margin: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: 100%;
+    aspect-ratio: auto;
+    justify-self: stretch;
+    align-self: stretch;
   }
 
   .about-hero__visual img {
-    object-position: 50% 15%;
+    object-position: center 22%;
   }
 }
 
