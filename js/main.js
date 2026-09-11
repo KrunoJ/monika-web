@@ -377,4 +377,58 @@
   };
 
   document.querySelectorAll(".bo-browser").forEach(initBrowserPreview);
+
+  /* Looping typewriter beside Biznis okvir process step 03 */
+  const initTypewriters = () => {
+    const nodes = document.querySelectorAll("[data-typewriter]");
+    if (!nodes.length) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    nodes.forEach((root) => {
+      const target = root.querySelector(".process__typewriter-text");
+      const full = (root.getAttribute("data-typewriter-text") || "")
+        .replace(/&#10;/g, "\n")
+        .replace(/\\n/g, "\n");
+      if (!target || !full) return;
+
+      if (reduced) {
+        target.textContent = full;
+        return;
+      }
+
+      let i = 0;
+      let phase = "type"; // type | hold | clear
+
+      const tick = () => {
+        if (phase === "type") {
+          i += 1;
+          target.textContent = full.slice(0, i);
+          if (i >= full.length) {
+            phase = "hold";
+            window.setTimeout(tick, 2200);
+            return;
+          }
+          window.setTimeout(tick, 55);
+          return;
+        }
+
+        if (phase === "hold") {
+          phase = "clear";
+          window.setTimeout(tick, 280);
+          return;
+        }
+
+        // clear
+        i = 0;
+        target.textContent = "";
+        phase = "type";
+        window.setTimeout(tick, 420);
+      };
+
+      window.setTimeout(tick, 400);
+    });
+  };
+
+  initTypewriters();
 })();
