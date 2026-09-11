@@ -1498,15 +1498,15 @@ button {
   .problem-section {
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: clamp(1.75rem, 4vw, 3.25rem);
-    align-items: stretch;
+    align-items: start;
   }
 
   .problem-section__seal {
-    /* Larger, vertically centered with the list (~ around item 03) */
-    width: clamp(15rem, 20vw, 18.5rem);
+    /* Larger; sit beside list item 03 (below heading + 01–02) */
+    width: clamp(16rem, 22vw, 20rem);
     justify-self: end;
-    align-self: center;
-    margin-top: 0;
+    align-self: start;
+    margin-top: clamp(7.5rem, 14vw, 11.5rem);
   }
 }
 
