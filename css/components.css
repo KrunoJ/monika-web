@@ -910,11 +910,11 @@
   visibility: hidden;
 }
 
-  .hero--photo-bg .hero__title,
-  .hero--photo-bg .hero__title-line,
-  .hero--photo-bg .hero__lede,
-  .hero--photo-bg .hero__proof-num,
-  .hero--photo-bg .hero__proof-label {
+.hero--photo-bg .hero__title,
+.hero--photo-bg .hero__title-line,
+.hero--photo-bg .hero__lede,
+.hero--photo-bg .hero__proof-num,
+.hero--photo-bg .hero__proof-label {
   color: #eae6e2; /* cream, never white */
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
 }
@@ -1023,16 +1023,16 @@
     background:
       linear-gradient(
         180deg,
-        rgba(22, 16, 12, 0.32) 0%,
-        rgba(22, 16, 12, 0.1) 36%,
-        rgba(22, 16, 12, 0.5) 100%
+        rgba(22, 16, 12, 0.18) 0%,
+        rgba(22, 16, 12, 0.06) 40%,
+        rgba(22, 16, 12, 0.28) 100%
       ),
       linear-gradient(
         90deg,
-        rgba(22, 16, 12, 0.26) 0%,
-        rgba(22, 16, 12, 0.06) 45%,
-        rgba(22, 16, 12, 0.06) 55%,
-        rgba(22, 16, 12, 0.26) 100%
+        rgba(22, 16, 12, 0.18) 0%,
+        rgba(22, 16, 12, 0.04) 45%,
+        rgba(22, 16, 12, 0.04) 55%,
+        rgba(22, 16, 12, 0.18) 100%
       );
   }
 
