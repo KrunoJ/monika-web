@@ -931,6 +931,17 @@ button {
   margin-bottom: 1.25rem; /* ~20px to proof */
 }
 
+.hero__cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.hero__cta-row .hero__actions {
+  margin-bottom: 1.25rem;
+}
+
 .hero__actions .btn {
   text-align: left;
   white-space: normal;
@@ -1142,6 +1153,22 @@ button {
   .hero__stage {
     display: flex;
     flex-direction: column;
+  }
+
+  /* 110+ sits beside primary CTA on mobile */
+  .hero__cta-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem 1.1rem;
+  }
+
+  .hero__cta-row .hero__actions {
+    margin-bottom: 0;
+  }
+
+  .hero__cta-row .hero__proof {
+    margin: 0;
   }
 }
 
@@ -1483,42 +1510,27 @@ button {
 
 .problem-section__seal {
   margin: 0;
-  width: min(14rem, 68vw);
+  /* ~20% smaller than prior desktop/mobile sizes */
+  width: min(11.2rem, 54vw);
   justify-self: center;
   line-height: 0;
 }
 
-.problem-section__seal-stack {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-}
-
-.problem-section__seal-ring,
-.problem-section__seal-core {
-  position: absolute;
-  inset: 0;
+.problem-section__seal-spin {
   display: block;
+  width: 100%;
   margin: 0;
-}
-
-.problem-section__seal-ring img,
-.problem-section__seal-core img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Outer text ring spins; mj stays still */
-.problem-section__seal-ring {
   animation: problem-seal-spin 36s linear infinite;
   transform-origin: 50% 50%;
   will-change: transform;
 }
 
-.problem-section__seal-core {
-  z-index: 1;
+.problem-section__seal-spin img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
 }
 
 @keyframes problem-seal-spin {
@@ -1531,7 +1543,7 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .problem-section__seal-ring {
+  .problem-section__seal-spin {
     animation: none;
   }
 }
@@ -1544,8 +1556,8 @@ button {
   }
 
   .problem-section__seal {
-    /* Larger; sit beside list item 03 (below heading + 01–02) */
-    width: clamp(16rem, 22vw, 20rem);
+    /* 20% smaller; sit beside list item 03 */
+    width: clamp(12.8rem, 17.6vw, 16rem);
     justify-self: end;
     align-self: start;
     margin-top: clamp(7.5rem, 14vw, 11.5rem);
@@ -2330,7 +2342,8 @@ button {
   padding: 0;
   border: 0;
   background: none;
-  max-width: 20.5rem;
+  /* 20% smaller than prior A4 preview */
+  max-width: 16.4rem;
   width: 100%;
 }
 
@@ -2346,6 +2359,16 @@ button {
   /* Full page visible — never cover-crop the memorandum */
   object-fit: contain;
   object-position: top center;
+}
+
+.process__doc--collage {
+  max-width: min(22rem, 100%);
+}
+
+.process__doc--collage img {
+  object-fit: cover;
+  object-position: center top;
+  aspect-ratio: 3 / 2;
 }
 
 /* Typewriter accent beside process step 03 (decorative; copy stays in prose) */
@@ -2409,8 +2432,14 @@ button {
 
   .process--editorial .process__step--typewriter {
     grid-template-columns: 4.5rem minmax(0, 1fr) minmax(13rem, 20rem);
-    align-items: center;
+    align-items: start;
     column-gap: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .process--editorial .process__step--typewriter .process__step-index {
+    /* Keep 03 at the title row like 01/02 */
+    align-self: start;
+    padding-top: 0.15rem;
   }
 
   .process--editorial .process__step--typewriter .process__typewriter {
