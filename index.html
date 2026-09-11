@@ -3,26 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/images/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/images/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
     <title>Monika Jagić - Strategija i implementacija</title>
     <meta
       name="description"
-      content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, prodajni lijevak, sustavi i dizajn."
+      content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn."
     />
-    <meta property="og:title" content="Monika Jagić" />
-    <meta
-      property="og:description"
-      content="Povežimo što imaš i izgradimo što nedostaje"
-    />
+    <link rel="canonical" href="https://monikajagic.com/" />
+    <meta property="og:title" content="Monika Jagić - Strategija i implementacija" />
+    <meta property="og:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://monikajagic.com/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- [SOCIAL IMAGE] -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta name="twitter:title" content="Monika Jagić - Strategija i implementacija" />
+    <meta name="twitter:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=home-manifesto-flush" />
+    <link rel="stylesheet" href="css/main.css?v=home-asi-seal-css-4" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -32,23 +37,23 @@
 
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="logo" href="index.html" aria-label="Monika Jagić početna">
+        <a class="logo" href="/" aria-label="Monika Jagić početna">
           <img
             class="logo__mark"
             src="assets/images/logo-monika.webp"
             alt=""
-            width="195"
-            height="180"
+            width="480"
+            height="659"
           />
         </a>
         <nav class="nav-desktop" aria-label="Glavna navigacija">
           <div class="nav-desktop__links">
-            <a class="nav-link" href="index.html">Početna</a>
+            <a class="nav-link" href="/">Početna</a>
             <a class="nav-link" href="biznis-okvir/">Biznis okvir</a>
-            <a class="nav-link" href="prodajni-lijevak/">Newsletter sustav</a>
+            <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="o-meni/">O meni</a>
           </div>
-          <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -62,31 +67,54 @@
         </button>
       </div>
       <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
-        <a class="nav-link" href="index.html">Početna</a>
+        <a class="nav-link" href="/">Početna</a>
         <a class="nav-link" href="biznis-okvir/">Biznis okvir</a>
-        <a class="nav-link" href="prodajni-lijevak/">Newsletter sustav</a>
+        <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="o-meni/">O meni</a>
-        <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero hero--composition" aria-labelledby="hero-title">
+      <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
+        <div class="hero__backdrop" aria-hidden="true">
+          <!-- Full-bleed photographic fill (cover, edge to edge) -->
+          <picture class="hero__backdrop-fill">
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.webp?v=cover-fix-4"
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.jpg?v=cover-fix-4"
+              type="image/jpeg"
+            />
+            <source srcset="assets/images/monika-hero-office-v2.webp?v=cover-fix-4" type="image/webp" />
+            <img
+              src="assets/images/monika-hero-office-v2.jpg?v=cover-fix-4"
+              alt=""
+              width="1800"
+              height="2699"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <!-- Desktop: height-fit medium band so head→hips stays intact -->
+          <picture class="hero__backdrop-subject">
+            <source srcset="assets/images/monika-hero-office-desktop.webp?v=cover-fix-4" type="image/webp" />
+            <img
+              src="assets/images/monika-hero-office-desktop.jpg?v=cover-fix-4"
+              alt=""
+              width="1800"
+              height="1570"
+              decoding="async"
+            />
+          </picture>
+        </div>
         <div class="hero__stage">
-          <div class="hero__figure">
-            <picture>
-              <source srcset="assets/images/monika-hero.webp" type="image/webp" />
-              <img
-                src="assets/images/monika-hero.png"
-                alt="Monika Jagić"
-                width="1325"
-                height="945"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
-          </div>
+          <div class="hero__figure" aria-hidden="true"></div>
 
           <div class="hero__rail hero__rail--copy reveal">
             <h1 id="hero-title" class="hero__title">
@@ -116,44 +144,72 @@
 
       <!-- 02 PREPOZNAJEŠ LI SE? -->
       <section class="section section--border" aria-labelledby="problem-title">
-        <div class="container">
-          <div class="reveal measure-wide">
-            <h2 id="problem-title">
-              sjediš na puno znanja, a ne postaje lakše
-            </h2>
+        <div class="container problem-section">
+          <div class="problem-section__main">
+            <div class="reveal measure-wide">
+              <h2 id="problem-title">
+                sjediš na puno znanja, a ne postaje lakše
+              </h2>
+            </div>
+            <ol class="problem-list problem-list--numbered problem-list--flush reveal">
+              <li>
+                imaš hrpu iskustva, reputaciju i dobre ponude, ali se gubiš u vođenju
+                svega
+              </li>
+              <li>
+                vidiš 100 mogućnosti za dalje, ali ne znaš kojim redom krenuti
+              </li>
+              <li>
+                publika, sadržaj i ponude su tu, ali premalo ljudi dolazi od „pratim te” do
+                „kupujem od tebe”
+              </li>
+              <li>
+                newsletter, web, automatizacije ili neki drugi sustav već dugo želiš
+                prekrižiti s to-do liste, ali ne da ti se time baviti samostalno
+              </li>
+              <li>
+                malo dosta ti je tuđih „provjerenih rješenja” jer konačno shvaćaš da želiš
+                sustave prilagođavati sebi, a ne obrnuto
+              </li>
+            </ol>
+            <div class="closing-note closing-note--editorial reveal">
+              <p class="closing-note__lead">možda ti stvarno nešto nedostaje</p>
+              <p class="closing-note__body">
+                A možda već imaš sve što ti treba - samo to treba bolje povezati.
+              </p>
+            </div>
           </div>
-          <ol class="problem-list problem-list--numbered problem-list--flush reveal">
-            <li>
-              imaš hrpu iskustva, reputaciju i dobre ponude, ali se gubiš u vođenju
-              svega
-            </li>
-            <li>
-              vidiš 100 mogućnosti za dalje, ali ne znaš kojim redom krenuti
-            </li>
-            <li>
-              publika, sadržaj i ponude su tu, ali premalo ljudi dolazi od „pratim te” do
-              „kupujem od tebe”
-            </li>
-            <li>
-              newsletter, web, automatizacije ili neki drugi sustav već dugo želiš
-              prekrižiti s to-do liste, ali ne da ti se time baviti samostalno
-            </li>
-            <li>
-              dosta ti je tuđih „provjerenih rješenja” jer si konačno shvatila da želiš
-              sustave prilagođavati sebi, a ne obrnuto
-            </li>
-          </ol>
-          <div class="closing-note closing-note--editorial reveal">
-            <p class="closing-note__lead">možda ti stvarno nešto nedostaje</p>
-            <p class="closing-note__body">
-              A možda već imaš sve što ti treba - samo to treba bolje povezati.
-            </p>
+          <div class="problem-section__seal reveal" aria-hidden="true">
+            <div class="problem-section__seal-stack">
+              <picture class="problem-section__seal-ring">
+                <source srcset="assets/images/seal-asi-ring.webp?v=css-spin-3" type="image/webp" />
+                <img
+                  src="assets/images/seal-asi-ring.png?v=css-spin-3"
+                  alt=""
+                  width="570"
+                  height="570"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+              <picture class="problem-section__seal-core">
+                <source srcset="assets/images/seal-asi-core.webp?v=css-spin-3" type="image/webp" />
+                <img
+                  src="assets/images/seal-asi-core.png?v=css-spin-3"
+                  alt=""
+                  width="570"
+                  height="570"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- 03 USLUGE -->
-      <section id="gdje-zapinjes" class="section" aria-labelledby="split-title">
+      <section id="gdje-zapinjes" class="section section--services-break" aria-labelledby="split-title">
         <div class="container">
           <div class="reveal">
             <h2 id="split-title">gdje zapinješ?</h2>
@@ -203,7 +259,7 @@
               </div>
               <a
                 class="text-link text-link--arrow"
-                href="prodajni-lijevak/"
+                href="newsletter-sustav/"
                 >Istraži Newsletter sustav</a
               >
             </article>
@@ -263,8 +319,8 @@
           <div class="reveal stack">
             <p id="teaser-label" class="section-label">// o meni</p>
             <p>
-              Ekonomistica i dizajnerica koja voli tuđe tabove u glavi i „ne znam
-              otkud krenuti” misli pretvarati u strateški okvir, sustave i
+              Ekonomistica i dizajnerica koja voli pretvarati tuđe tabove u glavi i „ne znam
+              otkud krenuti” misli u strateški okvir, sustave i
               konkretna rješenja.
             </p>
             <p>
@@ -298,7 +354,7 @@
           </div>
           <a
             class="btn btn--on-dark text-link--arrow"
-            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            href="https://forms.gle/RmpDKy6qMxSqG4WE8"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -310,36 +366,67 @@
 
     <footer class="site-footer">
       <div class="container">
-        <div class="site-footer__grid">
-          <div>
-            <a class="site-footer__brand" href="index.html" aria-label="Monika Jagić">
+        <div class="site-footer__main">
+          <div class="site-footer__brand-block">
+            <a class="site-footer__brand" href="/" aria-label="Monika Jagić početna">
               <img
                 src="assets/images/logo-monika-wordmark.webp"
-                alt="monika jagić"
-                width="329"
-                height="64"
+                alt="Monika Jagić — Analiza. Strategija. Implementacija."
+                width="1514"
+                height="342"
               />
             </a>
-            <p class="site-footer__tagline">Analiza. Strategija. Implementacija.</p>
+            <ul class="site-footer__social">
+              <li>
+                <a
+                  href="https://www.instagram.com/monika.jagic/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@monikajagic"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >YouTube</a
+                >
+              </li>
+            </ul>
           </div>
-          <nav aria-label="Podnožje">
-            <a href="index.html">Početna</a>
-            <a href="biznis-okvir/">Biznis okvir</a>
-            <a href="prodajni-lijevak/">Newsletter sustav</a>
-            <a href="dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
-            <a href="landing-stranice/">Landing stranice</a>
-            <a href="o-meni/">O meni</a>
-            <a href="#upitnik">Upitnik</a>
+          <nav class="site-footer__nav" aria-label="Podnožje">
+            <div class="site-footer__nav-col">
+              <a href="biznis-okvir/">Biznis okvir</a>
+              <a href="newsletter-sustav/">Newsletter sustav</a>
+              <a href="dizajn-e-knjiga/">Dizajn e-knjiga i digitalnih materijala</a>
+              <a href="landing-stranice/">Landing stranice</a>
+            </div>
+            <div class="site-footer__nav-col">
+              <a href="o-meni/">O meni</a>
+              <a
+                href="https://forms.gle/RmpDKy6qMxSqG4WE8"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Pošalji upit</a
+              >
+            </div>
           </nav>
         </div>
-        <p class="site-footer__meta">
-          © <span data-year></span> Monika Jagić ·
-          <span class="ph">[cookie consent]</span> ·
-          <span class="ph">[analytics]</span>
-        </p>
+        <div class="site-footer__legal">
+          <p class="site-footer__copy">© <span data-year></span> Monika Jagić</p>
+          <nav class="site-footer__legal-nav" aria-label="Pravne informacije">
+            <a href="podaci-o-poslovanju/">Podaci o poslovanju</a>
+            <a href="privatnost/">Politika privatnosti</a>
+            <button type="button" class="footer-cookie-settings" data-cookie-settings>
+              Postavke kolačića
+            </button>
+          </nav>
+        </div>
       </div>
     </footer>
 
-    <script src="js/main.js?v=preview-live" defer></script>
+    <script src="js/main.js?v=hero-mobile-lock-4" defer></script>
+    <script src="js/analytics.js?v=consent-persist-1" defer data-privacy-href="privatnost/"></script>
   </body>
 </html>
