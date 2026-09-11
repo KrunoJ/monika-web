@@ -1,8 +1,10 @@
 (() => {
   const MEASUREMENT_ID = "G-D8HJQ28QG6";
   const STORAGE_KEY = "mj_analytics_consent";
+  const COOKIE_NAME = "mj_analytics_consent";
   const ACCEPTED = "granted";
   const DENIED = "denied";
+  const CONSENT_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
   const privacyHref = (() => {
     const script = document.currentScript;
@@ -13,12 +15,54 @@
 
   let gaReady = false;
 
+  const isValidConsent = (value) => value === ACCEPTED || value === DENIED;
+
+  const cookieDomain = () => {
+    const host = window.location.hostname;
+    if (host === "monikajagic.com" || host.endsWith(".monikajagic.com")) {
+      return "; Domain=.monikajagic.com";
+    }
+    return "";
+  };
+
+  const readConsentCookie = () => {
+    const parts = String(document.cookie || "").split(";");
+    for (const part of parts) {
+      const trimmed = part.trim();
+      if (!trimmed.startsWith(`${COOKIE_NAME}=`)) continue;
+      const value = decodeURIComponent(trimmed.slice(COOKIE_NAME.length + 1));
+      return isValidConsent(value) ? value : null;
+    }
+    return null;
+  };
+
+  const writeConsentCookie = (value) => {
+    const secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie =
+      `${COOKIE_NAME}=${encodeURIComponent(value)}; Path=/; Max-Age=${CONSENT_MAX_AGE}; SameSite=Lax` +
+      cookieDomain() +
+      secure;
+  };
+
   const readConsent = () => {
     try {
-      return localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (isValidConsent(stored)) return stored;
     } catch (_) {
-      return null;
+      /* private mode / blocked storage */
     }
+
+    const fromCookie = readConsentCookie();
+    if (fromCookie) {
+      try {
+        localStorage.setItem(STORAGE_KEY, fromCookie);
+      } catch (_) {
+        /* ignore */
+      }
+      return fromCookie;
+    }
+
+    return null;
   };
 
   const writeConsent = (value) => {
@@ -26,6 +70,11 @@
       localStorage.setItem(STORAGE_KEY, value);
     } catch (_) {
       /* ignore quota / private mode */
+    }
+    try {
+      writeConsentCookie(value);
+    } catch (_) {
+      /* ignore cookie write failures */
     }
   };
 

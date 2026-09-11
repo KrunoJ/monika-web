@@ -1,6 +1,10 @@
-# Clean URLs: hide index.html in the address bar
+# Clean URLs + one canonical host so cookie consent is remembered
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # www → apex (same site, one localStorage / cookie origin)
+  RewriteCond %{HTTP_HOST} ^www\.monikajagic\.com$ [NC]
+  RewriteRule ^ https://monikajagic.com%{REQUEST_URI} [R=301,L]
 
   # /index.html → /
   # /biznis-okvir/index.html → /biznis-okvir/
