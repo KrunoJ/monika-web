@@ -27,7 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=footer-social-sm" />
+    <link rel="stylesheet" href="css/main.css?v=hero-photo-bg-1" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -77,21 +77,22 @@
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero hero--composition" aria-labelledby="hero-title">
+      <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
+        <div class="hero__backdrop" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/monika-hero-office.webp" type="image/webp" />
+            <img
+              src="assets/images/monika-hero-office.jpg"
+              alt=""
+              width="1800"
+              height="2699"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
         <div class="hero__stage">
-          <div class="hero__figure">
-            <picture>
-              <source srcset="assets/images/monika-hero.webp" type="image/webp" />
-              <img
-                src="assets/images/monika-hero.png"
-                alt="Monika Jagić"
-                width="1325"
-                height="945"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
-          </div>
+          <div class="hero__figure" aria-hidden="true"></div>
 
           <div class="hero__rail hero__rail--copy reveal">
             <h1 id="hero-title" class="hero__title">
