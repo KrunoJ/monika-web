@@ -228,11 +228,8 @@
             </div>
           </div>
           <div class="cookie-banner__actions cookie-banner__actions--settings">
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--deny" data-cookie-save>
+            <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-save>
               Spremi postavke
-            </button>
-            <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>
-              Prihvaćam analitičke
             </button>
           </div>
         </div>
