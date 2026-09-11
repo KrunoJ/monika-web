@@ -1428,7 +1428,7 @@ button {
   font-style: italic;
 }
 
-/* Homepage §02 — rotating ASI seal beside the problem section */
+/* Homepage §02 — ASI seal beside problem list, mid-section ~ item 03 */
 .problem-section {
   display: grid;
   gap: var(--space-6);
@@ -1441,30 +1441,72 @@ button {
 
 .problem-section__seal {
   margin: 0;
-  width: min(9.5rem, 42vw);
+  width: min(14rem, 68vw);
   justify-self: center;
   line-height: 0;
 }
 
-.problem-section__seal picture,
-.problem-section__seal-img {
+.problem-section__seal-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.problem-section__seal-ring,
+.problem-section__seal-core {
+  position: absolute;
+  inset: 0;
+  display: block;
+  margin: 0;
+}
+
+.problem-section__seal-ring img,
+.problem-section__seal-core img {
   display: block;
   width: 100%;
-  height: auto;
-  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Outer text ring spins; mj stays still */
+.problem-section__seal-ring {
+  animation: problem-seal-spin 36s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.problem-section__seal-core {
+  z-index: 1;
+}
+
+@keyframes problem-seal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem-section__seal-ring {
+    animation: none;
+  }
 }
 
 @media (min-width: 900px) {
   .problem-section {
     grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: start;
+    column-gap: clamp(1.75rem, 4vw, 3.25rem);
+    align-items: stretch;
   }
 
   .problem-section__seal {
-    width: clamp(8.75rem, 12vw, 11.25rem);
+    /* Larger, vertically centered with the list (~ around item 03) */
+    width: clamp(15rem, 20vw, 18.5rem);
     justify-self: end;
-    margin-top: 0.35rem; /* sits beside the H2 */
+    align-self: center;
+    margin-top: 0;
   }
 }
 

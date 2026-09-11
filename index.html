@@ -27,7 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=home-asi-seal-2" />
+    <link rel="stylesheet" href="css/main.css?v=home-asi-seal-css-3" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -180,22 +180,30 @@
             </div>
           </div>
           <div class="problem-section__seal reveal" aria-hidden="true">
-            <picture>
-              <source
-                srcset="assets/images/seal-asi.png?v=gif-1"
-                type="image/png"
-                media="(prefers-reduced-motion: reduce)"
-              />
-              <img
-                class="problem-section__seal-img"
-                src="assets/images/seal-asi.gif?v=gif-1"
-                alt=""
-                width="320"
-                height="320"
-                decoding="async"
-                loading="lazy"
-              />
-            </picture>
+            <div class="problem-section__seal-stack">
+              <picture class="problem-section__seal-ring">
+                <source srcset="assets/images/seal-asi-ring.webp?v=css-spin-3" type="image/webp" />
+                <img
+                  src="assets/images/seal-asi-ring.png?v=css-spin-3"
+                  alt=""
+                  width="570"
+                  height="570"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+              <picture class="problem-section__seal-core">
+                <source srcset="assets/images/seal-asi-core.webp?v=css-spin-3" type="image/webp" />
+                <img
+                  src="assets/images/seal-asi-core.png?v=css-spin-3"
+                  alt=""
+                  width="570"
+                  height="570"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
           </div>
         </div>
       </section>
