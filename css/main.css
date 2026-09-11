@@ -1427,6 +1427,60 @@ button {
   border-bottom: 0;
 }
 
+/* Biznis okvir: situations list + portrait */
+.bo-situations {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.bo-situations__copy {
+  display: grid;
+  gap: var(--space-7);
+  min-width: 0;
+}
+
+.bo-situations__copy h2 {
+  margin: 0;
+}
+
+.bo-situations__list {
+  margin: 0;
+}
+
+.bo-situations__list li {
+  max-width: none;
+}
+
+.bo-situations__media {
+  margin: 0;
+  width: 100%;
+  max-width: 28rem;
+  justify-self: center;
+}
+
+.bo-situations__media picture,
+.bo-situations__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .bo-situations {
+    grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.85fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: end;
+  }
+
+  .bo-situations__media {
+    max-width: none;
+    justify-self: stretch;
+    position: sticky;
+    bottom: 0;
+  }
+}
+
 @media (min-width: 768px) {
   .problem-list li {
     grid-template-columns: 2.5rem 1fr;
