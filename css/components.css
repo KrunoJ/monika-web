@@ -3411,37 +3411,11 @@
   align-items: stretch;
 }
 
-.about-hero__copy {
-  display: grid;
-  gap: var(--space-3);
-  align-content: center;
-  max-width: none;
-  padding: clamp(2.5rem, 7vw, 4rem) var(--page-pad);
-}
-
-.about-hero__eyebrow {
-  margin: 0;
-  color: rgba(234, 230, 226, 0.62);
-}
-
-.about-hero__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 7vw, 2.75rem);
-  line-height: 1.08;
-  letter-spacing: var(--tracking-tight);
-  max-width: 22ch;
-  color: #eae6e2;
-}
-
-.about-hero__br {
-  display: none;
-}
-
 .about-hero__visual {
   width: 100%;
+  /* Mobile: controlled crop height — photo never sets section height */
+  height: clamp(16rem, 52vw, 20rem);
   margin: 0;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: #1c1612;
 }
@@ -3458,7 +3432,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: 60% 28%;
   min-height: 0;
   border: 0;
   border-radius: 0;
@@ -3466,21 +3440,84 @@
   background: transparent;
 }
 
-@media (min-width: 900px) {
+.about-hero__copy {
+  display: grid;
+  gap: var(--space-3);
+  align-content: center;
+  max-width: none;
+  padding: clamp(2rem, 6vw, 3rem) var(--page-pad);
+}
+
+.about-hero__eyebrow {
+  margin: 0;
+  color: rgba(234, 230, 226, 0.62);
+}
+
+.about-hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 7vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-tight);
+  max-width: 22ch;
+  color: #eae6e2;
+}
+
+.about-hero__br {
+  display: none;
+}
+
+@media (min-width: 700px) and (max-width: 899px) {
   .about-hero__stage {
     grid-template-columns: 1fr 1fr;
-    min-height: clamp(36rem, 88svh, 52rem);
+    /* Compact tablet split — still not viewport-tall */
+    height: clamp(28rem, 52vh, 34rem);
+  }
+
+  .about-hero__visual {
+    height: 100%;
   }
 
   .about-hero__copy {
-    padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem);
-    max-width: none;
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .about-hero__title {
+    max-width: 14ch;
+    font-size: clamp(1.85rem, 3.4vw, 2.35rem);
+  }
+
+  .about-hero__br {
+    display: revert;
+  }
+
+  .about-hero__visual img {
+    object-position: 58% 30%;
+  }
+}
+
+@media (min-width: 900px) {
+  .about-hero__stage {
+    grid-template-columns: 1fr 1fr;
+    /* Hero sets height; photo fills — ~552–620px */
+    height: clamp(34.5rem, 58vh, 38.75rem);
+    min-height: 0;
+    max-height: 38.75rem;
+  }
+
+  .about-hero__visual {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .about-hero__copy {
+    padding: clamp(2.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4.5rem);
     justify-items: start;
   }
 
   .about-hero__title {
     max-width: 14ch;
-    font-size: clamp(2.75rem, 4.2vw, 3.75rem);
+    font-size: clamp(2.35rem, 3.4vw, 3.1rem);
     line-height: 1.06;
   }
 
@@ -3488,18 +3525,8 @@
     display: revert;
   }
 
-  .about-hero__visual {
-    width: 100%;
-    max-width: none;
-    height: 100%;
-    min-height: 100%;
-    aspect-ratio: auto;
-    justify-self: stretch;
-    align-self: stretch;
-  }
-
   .about-hero__visual img {
-    object-position: center 32%;
+    object-position: 62% 30%;
   }
 }
 
