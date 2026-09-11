@@ -1223,7 +1223,8 @@ button {
   }
 
   .hero--photo-bg .hero__backdrop img {
-    object-position: center 28%;
+    /* Head near top (blue-line mark); body reads down through jeans */
+    object-position: center 10%;
   }
 }
 
