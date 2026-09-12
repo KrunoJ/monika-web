@@ -86,7 +86,16 @@
       return;
     }
     if (hero.dataset.heroHeightLocked === "1") return;
-    hero.style.setProperty("--hero-lock-h", `${Math.round(window.innerHeight)}px`);
+    // Visible viewport minus sticky header so CTA stays on-screen
+    // (hero sits below .site-header, not under it).
+    const visibleH =
+      window.visualViewport && window.visualViewport.height
+        ? window.visualViewport.height
+        : window.innerHeight;
+    const header = document.querySelector(".site-header");
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const lockH = Math.max(320, Math.round(visibleH - headerH));
+    hero.style.setProperty("--hero-lock-h", `${lockH}px`);
     hero.dataset.heroHeightLocked = "1";
   };
   lockPhotoHeroHeight();
