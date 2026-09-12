@@ -68,12 +68,47 @@
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.08, rootMargin: "120px 0px 0px 0px" }
     );
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
+
+  /* Lock homepage photo-hero height once on mobile (avoids URL-bar zoom-on-scroll) */
+  const lockPhotoHeroHeight = () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (!hero) return;
+    const mobile = window.matchMedia("(max-width: 959px)");
+    if (!mobile.matches) {
+      hero.style.removeProperty("--hero-lock-h");
+      delete hero.dataset.heroHeightLocked;
+      return;
+    }
+    if (hero.dataset.heroHeightLocked === "1") return;
+    // Visible viewport minus sticky header so CTA stays on-screen
+    // (hero sits below .site-header, not under it).
+    const visibleH =
+      window.visualViewport && window.visualViewport.height
+        ? window.visualViewport.height
+        : window.innerHeight;
+    const header = document.querySelector(".site-header");
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const lockH = Math.max(320, Math.round(visibleH - headerH));
+    hero.style.setProperty("--hero-lock-h", `${lockH}px`);
+    hero.dataset.heroHeightLocked = "1";
+  };
+  lockPhotoHeroHeight();
+  window.addEventListener("orientationchange", () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (hero) delete hero.dataset.heroHeightLocked;
+    window.setTimeout(lockPhotoHeroHeight, 250);
+  });
+  window.matchMedia("(max-width: 959px)").addEventListener("change", () => {
+    const hero = document.querySelector(".hero--photo-bg");
+    if (hero) delete hero.dataset.heroHeightLocked;
+    lockPhotoHeroHeight();
+  });
 
   /* ---------- Live browser previews (Biznis okvir + Landing portfolio) ---------- */
   const BO_IMPL = {
@@ -145,16 +180,29 @@
     const applyPreviewOffset = () => {
       const raw = (root.getAttribute("data-preview-offset-y") || "0").trim();
       const offset = Number.parseInt(raw, 10);
-      if (!Number.isFinite(offset) || offset === 0) {
+      const hasOffset = Number.isFinite(offset) && offset !== 0;
+      /* Prefer scrolling the viewport over translateY — more reliable with scaled iframes. */
+      root.style.setProperty("--preview-offset-y", "0px");
+      if (!hasOffset) {
         root.classList.remove("is-offset-preview");
-        root.style.removeProperty("--preview-offset-y");
+        if (viewport instanceof HTMLElement) viewport.scrollTop = 0;
         return;
       }
 
-      root.style.setProperty("--preview-offset-y", `${offset}px`);
       root.classList.add("is-offset-preview");
-
       if (!(viewport instanceof HTMLElement)) return;
+
+      /* Offset is in unscaled iframe document px; map to scaled layout scroll. */
+      const scaleRaw = Number.parseFloat(root.style.getPropertyValue("--preview-scale"));
+      const scale = Number.isFinite(scaleRaw) && scaleRaw > 0 ? scaleRaw : 1;
+      const scrollY = Math.abs(offset) * scale;
+      const syncScroll = () => {
+        viewport.scrollTop = scrollY;
+      };
+      syncScroll();
+      window.requestAnimationFrame(syncScroll);
+      window.setTimeout(syncScroll, 50);
+      window.setTimeout(syncScroll, 300);
 
       let veil = root.querySelector(".bo-browser__offset-veil");
       if (!(veil instanceof HTMLButtonElement)) {
@@ -185,16 +233,40 @@
       );
     };
 
+    /* Desktop 16:9 window (1280×720), scaled to the card width. */
+    const PREVIEW_DESKTOP_WIDTH = 1280;
+    const PREVIEW_DESKTOP_HEIGHT = Math.round((PREVIEW_DESKTOP_WIDTH * 9) / 16);
+    const isDesktopFramePreview = () =>
+      Boolean(root.closest(".lp-portfolio, .bo-impl-item--web"));
+
+    const syncDesktopPreviewScale = () => {
+      if (!(viewport instanceof HTMLElement)) return;
+      if (!isDesktopFramePreview()) return;
+      const vw = viewport.clientWidth;
+      if (vw <= 0) return;
+      const scale = vw / PREVIEW_DESKTOP_WIDTH;
+      root.style.setProperty("--preview-scale", String(scale > 0 ? scale : 1));
+      root.style.setProperty("--preview-desktop-width", `${PREVIEW_DESKTOP_WIDTH}px`);
+      root.style.setProperty("--preview-desktop-height", `${PREVIEW_DESKTOP_HEIGHT}px`);
+      root.style.removeProperty("--preview-nudge-x");
+      /* Fixed 16:9 window; page scroll lives inside the iframe. */
+      viewport.scrollTop = 0;
+      root.classList.remove("is-offset-preview");
+      root.style.removeProperty("--preview-offset-y");
+    };
+
     const ok = () => {
       if (settled) return;
       settled = true;
-      applyPreviewOffset();
-      if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
-        // Nudge so the scroll affordance is discoverable on touch devices.
-        viewport.scrollTop = 1;
-        window.requestAnimationFrame(() => {
-          viewport.scrollTop = 0;
-        });
+      syncDesktopPreviewScale();
+      if (!isDesktopFramePreview()) {
+        applyPreviewOffset();
+        if (viewport instanceof HTMLElement && !root.classList.contains("is-offset-preview")) {
+          viewport.scrollTop = 1;
+          window.requestAnimationFrame(() => {
+            viewport.scrollTop = 0;
+          });
+        }
       }
     };
 
@@ -203,6 +275,14 @@
     window.setTimeout(() => {
       if (!settled) ok();
     }, 6000);
+
+    if (typeof ResizeObserver !== "undefined" && viewport instanceof HTMLElement) {
+      const ro = new ResizeObserver(() => syncDesktopPreviewScale());
+      ro.observe(viewport);
+    } else {
+      window.addEventListener("resize", syncDesktopPreviewScale, { passive: true });
+    }
+    syncDesktopPreviewScale();
 
     iframe.src = url;
   };
@@ -213,6 +293,8 @@
     const key = root.getAttribute("data-bo-preview");
     let resolvedUrl = (root.getAttribute("data-bo-url") || "").trim();
     let resolvedFallback = (root.getAttribute("data-bo-fallback") || "").trim();
+    const isPoster =
+      root.getAttribute("data-bo-poster") === "true" || root.classList.contains("bo-browser--poster");
 
     if (key === "web") {
       if (BO_IMPL.WEB_URL) resolvedUrl = BO_IMPL.WEB_URL.trim();
@@ -223,11 +305,12 @@
     }
 
     root.setAttribute("data-bo-url", resolvedUrl);
-    root.setAttribute("data-bo-fallback", resolvedFallback);
+    if (resolvedFallback) root.setAttribute("data-bo-fallback", resolvedFallback);
 
     const label = root.querySelector("[data-bo-url-label]");
     const open = root.querySelector(".bo-browser__open, .bo-browser__ext");
     const img = root.querySelector(".bo-browser__fallback");
+    const viewport = root.querySelector(".bo-browser__viewport");
 
     if (img && resolvedFallback) img.src = resolvedFallback;
 
@@ -240,6 +323,53 @@
           open.setAttribute("aria-label", "Otvori stranicu u novom prozoru");
         }
       }
+
+      if (isPoster) {
+        /* Portfolio: load live desktop miniature as soon as visible.
+           Poster is only a temporary fallback until the iframe is ready.
+           Preview scrolls immediately on hover/touch — no click required. */
+        root.classList.add("is-poster");
+        if (img) img.hidden = false;
+        if (!(viewport instanceof HTMLElement)) {
+          showLive(root, resolvedUrl);
+          return;
+        }
+
+        const armInteractive = () => {
+          /* Live desktop miniature is immediately scrollable — no click gate.
+             pointer-events:none on the iframe lets wheel/touch drive the viewport. */
+          root.classList.add("is-interactive", "is-scrollable");
+          root.classList.remove("is-poster");
+          root.classList.remove("bo-browser--poster");
+          root.removeAttribute("data-bo-poster");
+          const staleVeil = root.querySelector(".bo-browser__activate-veil");
+          if (staleVeil) staleVeil.remove();
+        };
+
+        const startLive = () => {
+          if (root.classList.contains("is-live") || root.dataset.boLiveStarted === "1") return;
+          root.dataset.boLiveStarted = "1";
+          armInteractive();
+          showLive(root, resolvedUrl);
+        };
+
+        if (typeof IntersectionObserver !== "undefined") {
+          const io = new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                io.disconnect();
+                startLive();
+              }
+            },
+            { rootMargin: "240px 0px", threshold: 0.01 }
+          );
+          io.observe(viewport);
+        } else {
+          startLive();
+        }
+        return;
+      }
+
       // Always attempt live iframe on all viewports (incl. mobile).
       showLive(root, resolvedUrl);
     } else {
@@ -256,4 +386,58 @@
   };
 
   document.querySelectorAll(".bo-browser").forEach(initBrowserPreview);
+
+  /* Looping typewriter beside Biznis okvir process step 03 */
+  const initTypewriters = () => {
+    const nodes = document.querySelectorAll("[data-typewriter]");
+    if (!nodes.length) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    nodes.forEach((root) => {
+      const target = root.querySelector(".process__typewriter-text");
+      const full = (root.getAttribute("data-typewriter-text") || "")
+        .replace(/&#10;/g, "\n")
+        .replace(/\\n/g, "\n");
+      if (!target || !full) return;
+
+      if (reduced) {
+        target.textContent = full;
+        return;
+      }
+
+      let i = 0;
+      let phase = "type"; // type | hold | clear
+
+      const tick = () => {
+        if (phase === "type") {
+          i += 1;
+          target.textContent = full.slice(0, i);
+          if (i >= full.length) {
+            phase = "hold";
+            window.setTimeout(tick, 2200);
+            return;
+          }
+          window.setTimeout(tick, 55);
+          return;
+        }
+
+        if (phase === "hold") {
+          phase = "clear";
+          window.setTimeout(tick, 280);
+          return;
+        }
+
+        // clear
+        i = 0;
+        target.textContent = "";
+        phase = "type";
+        window.setTimeout(tick, 420);
+      };
+
+      window.setTimeout(tick, 400);
+    });
+  };
+
+  initTypewriters();
 })();

@@ -13,21 +13,23 @@
       name="description"
       content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn."
     />
-    <meta property="og:title" content="Monika Jagić" />
-    <meta
-      property="og:description"
-      content="Povežimo što imaš i izgradimo što nedostaje"
-    />
+    <link rel="canonical" href="https://monikajagic.com/" />
+    <meta property="og:title" content="Monika Jagić - Strategija i implementacija" />
+    <meta property="og:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://monikajagic.com/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- [SOCIAL IMAGE] -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta name="twitter:title" content="Monika Jagić - Strategija i implementacija" />
+    <meta name="twitter:description" content="Strategija i implementacija za iskusne poduzetnice. Biznis okvir, newsletter sustav, sustavi i dizajn." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=footer-compact" />
+
+    <link rel="stylesheet" href="css/main.css?v=hero-mobile-crop-6" />
+
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -37,7 +39,7 @@
 
     <header class="site-header">
       <div class="container site-header__inner">
-        <a class="logo" href="index.html" aria-label="Monika Jagić početna">
+        <a class="logo" href="/" aria-label="Monika Jagić početna">
           <img
             class="logo__mark"
             src="assets/images/logo-monika.webp"
@@ -48,12 +50,12 @@
         </a>
         <nav class="nav-desktop" aria-label="Glavna navigacija">
           <div class="nav-desktop__links">
-            <a class="nav-link" href="index.html">Početna</a>
+            <a class="nav-link" href="/">Početna</a>
             <a class="nav-link" href="biznis-okvir/">Biznis okvir</a>
             <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
             <a class="nav-link" href="o-meni/">O meni</a>
           </div>
-          <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+          <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
         </nav>
         <button
           class="nav-toggle"
@@ -67,31 +69,45 @@
         </button>
       </div>
       <nav id="mobile-nav" class="nav-mobile" data-nav-mobile hidden aria-label="Mobilna navigacija">
-        <a class="nav-link" href="index.html">Početna</a>
+        <a class="nav-link" href="/">Početna</a>
         <a class="nav-link" href="biznis-okvir/">Biznis okvir</a>
         <a class="nav-link" href="newsletter-sustav/">Newsletter sustav</a>
         <a class="nav-link" href="o-meni/">O meni</a>
-        <a class="nav-cta" href="#upitnik">Krenimo od tvoje situacije</a>
+        <a class="nav-cta" href="https://forms.gle/RmpDKy6qMxSqG4WE8" rel="noopener noreferrer" target="_blank">Krenimo od tvoje situacije</a>
       </nav>
     </header>
 
     <main id="main">
       <!-- 01 HERO -->
-      <section class="hero hero--composition" aria-labelledby="hero-title">
+      <section class="hero hero--composition hero--photo-bg" aria-labelledby="hero-title">
+        <div class="hero__backdrop" aria-hidden="true">
+          <!-- Desktop: laptop portrait · Mobile: full source with mobile object-position -->
+          <picture class="hero__backdrop-fill">
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.webp?v=hands-2"
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 960px)"
+              srcset="assets/images/monika-hero-office-desktop.jpg?v=hands-2"
+              type="image/jpeg"
+            />
+            <source srcset="assets/images/monika-hero-office-v2.webp?v=dual-1" type="image/webp" />
+            <img
+              src="assets/images/monika-hero-office-v2.jpg?v=dual-1"
+              alt=""
+              width="1800"
+              height="2699"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <!-- Side readability overlays (above photo, below copy) -->
+          <div class="hero__backdrop-shade"></div>
+        </div>
         <div class="hero__stage">
-          <div class="hero__figure">
-            <picture>
-              <source srcset="assets/images/monika-hero.webp" type="image/webp" />
-              <img
-                src="assets/images/monika-hero.png"
-                alt="Monika Jagić"
-                width="1325"
-                height="945"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
-          </div>
+          <div class="hero__figure" aria-hidden="true"></div>
 
           <div class="hero__rail hero__rail--copy reveal">
             <h1 id="hero-title" class="hero__title">
@@ -106,53 +122,70 @@
               Analiza, strategija i implementacija za iskusne poduzetnice koje posao
               rasteže na sto strana.
             </p>
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="#gdje-zapinjes"
-                >Istraži usluge</a
-              >
+            <div class="hero__cta-row">
+              <div class="hero__actions">
+                <a class="btn btn--primary" href="#gdje-zapinjes"
+                  >Istraži usluge</a
+                >
+              </div>
+              <p class="hero__proof" aria-label="Trust signali">
+                <strong class="hero__proof-num">110+</strong>
+                <span class="hero__proof-label">suradnji</span>
+              </p>
             </div>
-            <p class="hero__proof" aria-label="Trust signali">
-              <strong class="hero__proof-num">110+</strong>
-              <span class="hero__proof-label">suradnji</span>
-            </p>
           </div>
         </div>
       </section>
 
       <!-- 02 PREPOZNAJEŠ LI SE? -->
       <section class="section section--border" aria-labelledby="problem-title">
-        <div class="container">
-          <div class="reveal measure-wide">
-            <h2 id="problem-title">
-              sjediš na puno znanja, a ne postaje lakše
-            </h2>
+        <div class="container problem-section">
+          <div class="problem-section__main">
+            <div class="reveal measure-wide">
+              <h2 id="problem-title">
+                sjediš na puno znanja, a ne postaje lakše
+              </h2>
+            </div>
+            <ol class="problem-list problem-list--numbered problem-list--flush reveal">
+              <li>
+                imaš hrpu iskustva, reputaciju i dobre ponude, ali se gubiš u vođenju
+                svega
+              </li>
+              <li>
+                vidiš 100 mogućnosti za dalje, ali ne znaš kojim redom krenuti
+              </li>
+              <li>
+                publika, sadržaj i ponude su tu, ali premalo ljudi dolazi od „pratim te” do
+                „kupujem od tebe”
+              </li>
+              <li>
+                newsletter, web, automatizacije ili neki drugi sustav već dugo želiš
+                prekrižiti s to-do liste, ali ne da ti se time baviti samostalno
+              </li>
+              <li>
+                malo dosta ti je tuđih „provjerenih rješenja” jer konačno shvaćaš da želiš
+                sustave prilagođavati sebi, a ne obrnuto
+              </li>
+            </ol>
+            <div class="closing-note closing-note--editorial reveal">
+              <p class="closing-note__lead">možda ti stvarno nešto nedostaje</p>
+              <p class="closing-note__body">
+                A možda već imaš sve što ti treba - samo to treba bolje povezati.
+              </p>
+            </div>
           </div>
-          <ol class="problem-list problem-list--numbered problem-list--flush reveal">
-            <li>
-              imaš hrpu iskustva, reputaciju i dobre ponude, ali se gubiš u vođenju
-              svega
-            </li>
-            <li>
-              vidiš 100 mogućnosti za dalje, ali ne znaš kojim redom krenuti
-            </li>
-            <li>
-              publika, sadržaj i ponude su tu, ali premalo ljudi dolazi od „pratim te” do
-              „kupujem od tebe”
-            </li>
-            <li>
-              newsletter, web, automatizacije ili neki drugi sustav već dugo želiš
-              prekrižiti s to-do liste, ali ne da ti se time baviti samostalno
-            </li>
-            <li>
-              dosta ti je tuđih „provjerenih rješenja” jer si konačno shvatila da želiš
-              sustave prilagođavati sebi, a ne obrnuto
-            </li>
-          </ol>
-          <div class="closing-note closing-note--editorial reveal">
-            <p class="closing-note__lead">možda ti stvarno nešto nedostaje</p>
-            <p class="closing-note__body">
-              A možda već imaš sve što ti treba - samo to treba bolje povezati.
-            </p>
+          <div class="problem-section__seal reveal" aria-hidden="true">
+            <picture class="problem-section__seal-spin">
+              <source srcset="assets/images/seal-asi.webp?v=spin-full-1" type="image/webp" />
+              <img
+                src="assets/images/seal-asi.png?v=spin-full-1"
+                alt=""
+                width="570"
+                height="570"
+                decoding="async"
+                loading="lazy"
+              />
+            </picture>
           </div>
         </div>
       </section>
@@ -268,8 +301,8 @@
           <div class="reveal stack">
             <p id="teaser-label" class="section-label">// o meni</p>
             <p>
-              Ekonomistica i dizajnerica koja voli tuđe tabove u glavi i „ne znam
-              otkud krenuti” misli pretvarati u strateški okvir, sustave i
+              Ekonomistica i dizajnerica koja voli pretvarati tuđe tabove u glavi i „ne znam
+              otkud krenuti” misli u strateški okvir, sustave i
               konkretna rješenja.
             </p>
             <p>
@@ -303,7 +336,7 @@
           </div>
           <a
             class="btn btn--on-dark text-link--arrow"
-            href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+            href="https://forms.gle/RmpDKy6qMxSqG4WE8"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -317,7 +350,7 @@
       <div class="container">
         <div class="site-footer__main">
           <div class="site-footer__brand-block">
-            <a class="site-footer__brand" href="index.html" aria-label="Monika Jagić početna">
+            <a class="site-footer__brand" href="/" aria-label="Monika Jagić početna">
               <img
                 src="assets/images/logo-monika-wordmark.webp"
                 alt="Monika Jagić — Analiza. Strategija. Implementacija."
@@ -354,7 +387,7 @@
             <div class="site-footer__nav-col">
               <a href="o-meni/">O meni</a>
               <a
-                href="https://forms.gle/EWBwrHCYWipZ2Mwt5"
+                href="https://forms.gle/RmpDKy6qMxSqG4WE8"
                 rel="noopener noreferrer"
                 target="_blank"
                 >Pošalji upit</a
@@ -366,12 +399,16 @@
           <p class="site-footer__copy">© <span data-year></span> Monika Jagić</p>
           <nav class="site-footer__legal-nav" aria-label="Pravne informacije">
             <a href="podaci-o-poslovanju/">Podaci o poslovanju</a>
-            <a href="privatnost/">Privatnost i kolačići</a>
+            <a href="privatnost/">Politika privatnosti</a>
+            <button type="button" class="footer-cookie-settings" data-cookie-settings>
+              Postavke kolačića
+            </button>
           </nav>
         </div>
       </div>
     </footer>
 
-    <script src="js/main.js?v=preview-live" defer></script>
+    <script src="js/main.js?v=hero-mobile-crop-2" defer></script>
+    <script src="js/analytics.js?v=cookie-ui-1" defer data-privacy-href="privatnost/"></script>
   </body>
 </html>

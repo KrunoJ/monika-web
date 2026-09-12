@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Utility iframe tool — keep out of search results
+Disallow: /newsletter-sustav/marketing-hourglass.html
+
+Sitemap: https://monikajagic.com/sitemap.xml
