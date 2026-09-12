@@ -2071,19 +2071,21 @@
   transform: none;
 }
 
-/* Typewriter accent beside process step 03 (decorative; copy stays in prose) */
+/* Typewriter accent for process step 03 (decorative; copy stays in prose).
+   Visible on mobile under the copy; desktop places it in the side column. */
 .process__typewriter {
-  display: none;
-  margin: 0;
+  display: block;
+  margin: var(--space-4) 0 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+  font-size: clamp(1.55rem, 6.2vw, 1.95rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-transform: lowercase;
   color: var(--color-primary);
   white-space: pre-line;
   min-height: 3.6em;
+  max-width: 18rem;
 }
 
 .process__typewriter-caret {
@@ -2143,12 +2145,12 @@
   }
 
   .process--editorial .process__step--typewriter .process__typewriter {
-    display: block;
     justify-self: start;
     /* Align with body text start (below h3), not mid-column */
     align-self: start;
     margin-top: calc(1.15 * clamp(1.45rem, 2vw, 1.75rem) + var(--space-2));
     max-width: 20rem;
+    font-size: clamp(1.45rem, 2.4vw, 1.95rem);
   }
 
   .process__step--with-doc {
