@@ -277,7 +277,7 @@
 
 .meetup-picture__hourglass {
   width: 100%;
-  max-width: min(100%, 28rem);
+  max-width: min(100%, 21rem); /* ~25% smaller than prior 28rem */
   margin-inline: auto;
   background: transparent;
 }
@@ -288,6 +288,36 @@
 
 .meetup-picture__hourglass .mh-hourglass-svg {
   max-height: none;
+}
+
+/* Larger axis labels + arrow for readability on the scaled meetup visual */
+.meetup-picture__hourglass .mh-funnel-row {
+  gap: 0.55rem;
+}
+
+.meetup-picture__hourglass .mh-axis {
+  width: 5rem;
+  padding: 0.35rem 0;
+}
+
+.meetup-picture__hourglass .mh-axis-label {
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  font-weight: 600;
+  max-width: 5rem;
+  letter-spacing: 0.01em;
+}
+
+.meetup-picture__hourglass .mh-axis-arrow {
+  width: 1.35rem;
+  max-width: 1.35rem;
+  min-height: 4rem;
+  opacity: 0.9;
+}
+
+.meetup-picture__hourglass .mh-axis-arrow line,
+.meetup-picture__hourglass .mh-axis-arrow path {
+  stroke-width: 2.25;
 }
 
 .meetup-picture__bridge,
@@ -343,8 +373,22 @@
   }
 
   .meetup-picture__hourglass {
-    max-width: min(100%, 32rem);
+    max-width: min(100%, 24rem); /* ~25% smaller than prior 32rem */
     margin-inline: 0 0;
-    justify-self: stretch;
+    justify-self: start;
+  }
+
+  .meetup-picture__hourglass .mh-axis {
+    width: 5.25rem;
+  }
+
+  .meetup-picture__hourglass .mh-axis-label {
+    font-size: 0.875rem;
+    max-width: 5.25rem;
+  }
+
+  .meetup-picture__hourglass .mh-axis-arrow {
+    width: 1.5rem;
+    max-width: 1.5rem;
   }
 }
