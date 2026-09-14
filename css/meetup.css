@@ -577,6 +577,26 @@
   color: var(--color-body);
 }
 
+.meetup-program__bio--moderator {
+  max-width: 34rem;
+}
+
+.meetup-program__bio--story {
+  max-width: 30rem;
+}
+
+.meetup-program__story .meetup-program__role {
+  margin-top: 0.35rem;
+}
+
+.meetup-program__story .meetup-program__bio--story {
+  margin-top: var(--space-3);
+}
+
+.meetup-program__story .meetup-program__story-title {
+  margin-top: var(--space-5);
+}
+
 .meetup-program__moderator {
   margin-top: clamp(2.75rem, 6vw, 4rem);
   padding-top: clamp(2.25rem, 5vw, 3.25rem);
@@ -597,6 +617,10 @@
   max-width: 28rem;
   font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   line-height: 1.45;
+}
+
+.meetup-program__moderator-copy .meetup-program__bio--moderator {
+  margin-top: var(--space-4);
 }
 
 .meetup-program__stories {
