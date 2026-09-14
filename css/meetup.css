@@ -649,7 +649,7 @@
     align-items: start;
   }
 
-  .meetup-program__photo {
+  .meetup-program__panelists .meetup-program__photo {
     max-width: none;
   }
 
