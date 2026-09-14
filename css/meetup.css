@@ -221,11 +221,18 @@
 .meetup-picture__inner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-.meetup-picture__header {
-  max-width: 42rem;
+.meetup-picture__split {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+  width: 100%;
+}
+
+.meetup-picture__content {
+  min-width: 0;
 }
 
 .meetup-picture__label {
@@ -237,7 +244,7 @@
   margin: 0;
   max-width: 18ch;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.5vw, 3.35rem);
+  font-size: clamp(2rem, 5.5vw, 3.15rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.025em;
@@ -247,7 +254,7 @@
 
 .meetup-picture__lede {
   margin-top: var(--space-6);
-  max-width: var(--measure-wide);
+  max-width: 34rem;
 }
 
 .meetup-picture__lede p {
@@ -261,6 +268,26 @@
   margin-top: var(--space-4);
 }
 
+.meetup-picture__visual {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.meetup-picture__visual picture {
+  display: block;
+  width: 100%;
+}
+
+.meetup-picture__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
 .meetup-picture__bridge,
 .meetup-picture__close {
   margin: var(--space-7) 0 0;
@@ -272,79 +299,6 @@
 
 .meetup-picture__actions {
   margin-top: var(--space-7);
-}
-
-/* Hourglass — editorial flow, not cards */
-
-.meetup-hourglass {
-  width: 100%;
-  margin-top: clamp(2.75rem, 6vw, 4.5rem);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border);
-}
-
-.meetup-hourglass__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.meetup-hourglass__stage {
-  position: relative;
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: var(--space-4);
-  row-gap: 0.15rem;
-  padding: var(--space-5) 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.meetup-hourglass__stage:last-child {
-  border-bottom: 0;
-}
-
-.meetup-hourglass__index {
-  grid-row: 1 / span 2;
-  align-self: start;
-  padding-top: 0.35em;
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--color-accent);
-}
-
-.meetup-hourglass__name {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.2vw, 1.7rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: none;
-  color: var(--color-heading);
-}
-
-.meetup-hourglass__desc {
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
-  color: var(--color-muted);
-}
-
-.meetup-hourglass__stage--pivot {
-  margin-block: var(--space-2);
-  padding-block: var(--space-6);
-  border-top: 1px solid var(--color-border-strong);
-  border-bottom: 1px solid var(--color-border-strong);
-  background: rgba(164, 96, 67, 0.05);
-}
-
-.meetup-hourglass__stage--pivot .meetup-hourglass__index {
-  color: var(--color-heading);
-}
-
-.meetup-hourglass__stage--pivot .meetup-hourglass__name {
-  font-size: clamp(1.5rem, 3.5vw, 1.9rem);
 }
 
 /* Status chips */
@@ -375,163 +329,14 @@
   color: var(--color-body);
 }
 
-/* Tablet: 2×3 grid with path line */
-@media (min-width: 720px) and (max-width: 959px) {
-  .meetup-hourglass__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-6) var(--space-5);
-    position: relative;
-    padding-top: var(--space-5);
+@media (min-width: 900px) {
+  .meetup-picture__split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
   }
 
-  .meetup-hourglass__list::before {
-    content: "";
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    top: 0.45rem;
-    height: 1px;
-    background: var(--color-border-strong);
-    pointer-events: none;
-  }
-
-  .meetup-hourglass__stage {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: var(--space-2);
-    padding: 1.65rem 0 0;
-    border-bottom: 0;
-    margin: 0;
-    background: transparent;
-  }
-
-  .meetup-hourglass__stage--pivot {
-    border: 0;
-    background: transparent;
-  }
-
-  .meetup-hourglass__index {
-    grid-row: auto;
-    padding-top: 0;
-  }
-
-  .meetup-hourglass__stage::before {
-    content: "";
-    position: absolute;
-    top: 0.2rem;
-    left: 0;
-    width: 0.5rem;
-    height: 0.5rem;
-    border: 1.5px solid var(--color-heading);
-    border-radius: 50%;
-    background: var(--color-bg-2);
-  }
-
-  .meetup-hourglass__stage--pivot::before {
-    background: var(--color-heading);
-  }
-
-  /* Row break after pivot for hourglass reading: 1 2 3 / 4 5 6 */
-  .meetup-hourglass__stage--pivot {
-    grid-column: 1;
-  }
-}
-
-/* Desktop: true hourglass composition */
-@media (min-width: 960px) {
-  .meetup-hourglass {
-    position: relative;
-    padding-block: var(--space-7) var(--space-4);
-  }
-
-  .meetup-hourglass__list {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "a a a a b b b b c c c c"
-      ". . . d d d d d d . . ."
-      ". e e e e . . f f f f .";
-    column-gap: 0;
-    row-gap: clamp(1.75rem, 3vw, 2.75rem);
-    position: relative;
-    isolation: isolate;
-  }
-
-  /* Hourglass outline — thin data-viz path */
-  .meetup-hourglass__list::before {
-    content: "";
-    position: absolute;
-    inset: 0.75rem 10% 15%;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 0;
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      58% 42%,
-      58% 58%,
-      100% 100%,
-      0% 100%,
-      42% 58%,
-      42% 42%
-    );
-    opacity: 0.55;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .meetup-hourglass__stage:nth-child(1) {
-    grid-area: a;
-  }
-
-  .meetup-hourglass__stage:nth-child(2) {
-    grid-area: b;
-  }
-
-  .meetup-hourglass__stage:nth-child(3) {
-    grid-area: c;
-  }
-
-  .meetup-hourglass__stage:nth-child(4) {
-    grid-area: d;
-  }
-
-  .meetup-hourglass__stage:nth-child(5) {
-    grid-area: e;
-  }
-
-  .meetup-hourglass__stage:nth-child(6) {
-    grid-area: f;
-  }
-
-  .meetup-hourglass__stage {
-    z-index: 1;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: var(--space-2);
-    padding: var(--space-4) var(--space-3);
-    border: 0;
-    margin: 0;
-    background: transparent;
-  }
-
-  .meetup-hourglass__index {
-    grid-row: auto;
-    padding-top: 0;
-  }
-
-  .meetup-hourglass__stage--pivot {
-    justify-self: center;
-    width: 100%;
-    max-width: 16rem;
-    padding: var(--space-5) var(--space-5);
-    border: 1px solid var(--color-border-strong);
-    background: var(--color-bg-1);
-    text-align: left;
-  }
-
-  .meetup-hourglass__stage--pivot .meetup-hourglass__name {
-    font-size: clamp(1.55rem, 2.2vw, 1.9rem);
+  .meetup-picture__title {
+    max-width: 14ch;
   }
 }
