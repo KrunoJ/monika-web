@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=14" />
+    <link rel="stylesheet" href="../css/meetup.css?v=15" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -207,33 +207,48 @@
 
       <section class="meetup-program" aria-labelledby="meetup-program-title">
         <div class="container meetup-program__inner">
-          <p class="section-label meetup-program__label">// program</p>
-          <h2 id="meetup-program-title" class="meetup-program__title">Što te čeka?</h2>
-
-          <div class="meetup-program__panel">
-            <p class="meetup-program__eyebrow">Panel razgovor</p>
-            <h3 class="meetup-program__panel-title">Što zapravo znači ostati u kontaktu?</h3>
-
-            <div class="meetup-program__panel-lede">
-              <p>
-                Što se događa od prvog kontakta do kupnje, zašto neki odnosi s publikom traju
-                godinama, a drugi se putem izgube — i kakvu ulogu u svemu tome može imati email
-                marketing?
-              </p>
-              <p>
-                Bez unaprijed ispeglanih odgovora. Otvaramo teme iz različitih iskustava,
-                uspoređujemo što funkcionira u stvarnom poslovanju i pričamo i o onome što se
-                često događa između dobre strategije i njezine provedbe.
-              </p>
+          <div class="meetup-program__intro">
+            <div class="meetup-program__intro-lead">
+              <p class="section-label meetup-program__label">// program</p>
+              <h2 id="meetup-program-title" class="meetup-program__title">Što te čeka?</h2>
             </div>
 
+            <div class="meetup-program__intro-panel">
+              <p class="meetup-program__eyebrow">PANEL RAZGOVOR</p>
+              <h3 class="meetup-program__panel-title">Što zapravo znači ostati u kontaktu?</h3>
+              <div class="meetup-program__panel-lede">
+                <p>
+                  Što se događa od prvog kontakta do kupnje, zašto neki odnosi s publikom traju
+                  godinama, a drugi se putem izgube — i kakvu ulogu u svemu tome može imati email
+                  marketing?
+                </p>
+                <p>
+                  Bez ispeglanih odgovora — kroz različita iskustva, stvarne poslovne situacije i
+                  ono što se događa između dobre strategije i njezine provedbe.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="meetup-program__panel">
             <ul class="meetup-program__panelists">
               <li class="meetup-program__person">
-                <div
-                  class="meetup-program__photo"
-                  data-speaker-photo="monika-jagic"
-                  aria-hidden="true"
-                ></div>
+                <div class="meetup-program__photo">
+                  <picture>
+                    <source
+                      srcset="../assets/images/meetup/monika-jagic.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="../assets/images/meetup/monika-jagic.jpg"
+                      alt="Monika Jagić"
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
                 <h4 class="meetup-program__name">Monika Jagić</h4>
                 <p class="meetup-program__role">Email marketing strategija i implementacija</p>
                 <p class="meetup-program__bio">
@@ -244,11 +259,48 @@
               </li>
 
               <li class="meetup-program__person">
-                <div
-                  class="meetup-program__photo"
-                  data-speaker-photo="lana-matica"
-                  aria-hidden="true"
-                ></div>
+                <div class="meetup-program__photo">
+                  <picture>
+                    <source
+                      srcset="../assets/images/meetup/nikolina-mamic.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="../assets/images/meetup/nikolina-mamic.jpg"
+                      alt="Nikolina Mamić"
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+                <h4 class="meetup-program__name">Nikolina Mamić</h4>
+                <p class="meetup-program__role">Business &amp; mindset coach</p>
+                <p class="meetup-program__bio">
+                  Radi s poduzetnicama upravo na onome što se događa između „znam što trebam” i
+                  stvarne provedbe — od perfekcionizma i straha od prodaje do kontinuiteta,
+                  odgovornosti i održivog marketinga.
+                </p>
+              </li>
+
+              <li class="meetup-program__person">
+                <div class="meetup-program__photo">
+                  <picture>
+                    <source
+                      srcset="../assets/images/meetup/lana-matica.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="../assets/images/meetup/lana-matica.jpg"
+                      alt="Lana Matica"
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
                 <h4 class="meetup-program__name">Lana Matica</h4>
                 <p class="meetup-program__role">Content creator i poduzetnica</p>
                 <p class="meetup-program__bio">
@@ -258,37 +310,33 @@
                   stvaranja još jednog content posla.
                 </p>
               </li>
-
-              <li class="meetup-program__person">
-                <div
-                  class="meetup-program__photo"
-                  data-speaker-photo="nikolina-mamic"
-                  aria-hidden="true"
-                ></div>
-                <h4 class="meetup-program__name">Nikolina Mamić</h4>
-                <p class="meetup-program__role">Business &amp; mindset coach</p>
-                <p class="meetup-program__bio">
-                  Radi s poduzetnicama upravo na onome što se događa između „znam što trebam” i
-                  stvarne provedbe — od perfekcionizma i straha od prodaje do kontinuiteta,
-                  odgovornosti i održivog marketinga.
-                </p>
-              </li>
             </ul>
 
             <div class="meetup-program__moderator">
-              <p class="meetup-program__moderator-label">Razgovor moderira</p>
-              <div class="meetup-program__moderator-row">
-                <div
-                  class="meetup-program__photo meetup-program__photo--sm"
-                  data-speaker-photo="ana-adric"
-                  aria-hidden="true"
-                ></div>
-                <div class="meetup-program__moderator-copy">
-                  <h4 class="meetup-program__name meetup-program__name--sm">Ana Adrić</h4>
-                  <p class="meetup-program__role">
-                    Grafička dizajnerica, kreativna direktorica i suvoditeljica PSP podcasta
-                  </p>
+              <div class="meetup-program__moderator-media">
+                <div class="meetup-program__photo meetup-program__photo--moderator">
+                  <picture>
+                    <source
+                      srcset="../assets/images/meetup/ana-adric.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="../assets/images/meetup/ana-adric.jpg"
+                      alt="Ana Adrić"
+                      width="1000"
+                      height="1250"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
+              </div>
+              <div class="meetup-program__moderator-copy">
+                <p class="meetup-program__eyebrow">RAZGOVOR MODERIRA</p>
+                <h4 class="meetup-program__name meetup-program__name--moderator">Ana Adrić</h4>
+                <p class="meetup-program__role">
+                  Grafička dizajnerica, kreativna direktorica i suvoditeljica PSP podcasta
+                </p>
               </div>
             </div>
           </div>
@@ -322,11 +370,22 @@
               </article>
 
               <article class="meetup-program__story" data-story="nikolina-kamenovic">
-                <div
-                  class="meetup-program__photo meetup-program__photo--story"
-                  data-speaker-photo="nikolina-kamenovic"
-                  aria-hidden="true"
-                ></div>
+                <div class="meetup-program__photo meetup-program__photo--story">
+                  <picture>
+                    <source
+                      srcset="../assets/images/meetup/nikolina-kamenovic.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="../assets/images/meetup/nikolina-kamenovic.jpg"
+                      alt="Nikolina Kamenović"
+                      width="800"
+                      height="960"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
                 <p class="meetup-program__name meetup-program__name--sm">Nikolina Kamenović</p>
                 <p class="meetup-program__brand">Guš Beauty Boutique</p>
                 <h4 class="meetup-program__story-title" data-story-field="title">
