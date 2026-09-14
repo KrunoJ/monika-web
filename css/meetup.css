@@ -272,20 +272,22 @@
   margin: 0;
   width: 100%;
   min-width: 0;
-}
-
-.meetup-picture__visual picture {
-  display: block;
-  width: 100%;
-}
-
-.meetup-picture__visual img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 0;
-  border-radius: 0;
   background: transparent;
+}
+
+.meetup-picture__hourglass {
+  width: 100%;
+  max-width: min(100%, 28rem);
+  margin-inline: auto;
+  background: transparent;
+}
+
+.meetup-picture__hourglass .mh-visual {
+  width: 100%;
+}
+
+.meetup-picture__hourglass .mh-hourglass-svg {
+  max-height: none;
 }
 
 .meetup-picture__bridge,
@@ -338,5 +340,11 @@
 
   .meetup-picture__title {
     max-width: 14ch;
+  }
+
+  .meetup-picture__hourglass {
+    max-width: min(100%, 32rem);
+    margin-inline: 0 0;
+    justify-self: stretch;
   }
 }

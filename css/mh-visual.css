@@ -1,0 +1,161 @@
+/* Shared Marketing Hourglass funnel visual styles
+   Source of truth for proportions/colors matches newsletter-sustav/marketing-hourglass.html */
+
+.mh-visual {
+  --mh-brown: #763317;
+  --mh-terracotta: #a45f43;
+  --mh-sage: #7f92a6;
+  --mh-text: #3b2418;
+  width: 100%;
+  min-width: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: var(--mh-text);
+  line-height: 1.5;
+  background: transparent;
+}
+
+.mh-funnel-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+  min-height: 0;
+  width: 100%;
+}
+
+.mh-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 3.5rem;
+  flex-shrink: 0;
+  padding: 0.75rem 0;
+}
+
+.mh-axis-label {
+  font-size: 0.58rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--mh-brown);
+  max-width: 3.5rem;
+}
+
+.mh-axis-arrow {
+  width: 0.95rem;
+  max-width: 0.95rem;
+  flex: 1;
+  min-height: 3.5rem;
+  color: var(--mh-brown);
+  opacity: 0.75;
+  display: block;
+}
+
+.mh-glass {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.mh-hourglass-svg {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 280 / 400;
+  display: block;
+  overflow: visible;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+.mh-glass-stroke {
+  fill: none !important;
+  stroke: rgba(118, 51, 23, 0.14);
+  stroke-width: 1.2;
+  pointer-events: none;
+}
+
+.mh-seg-hit {
+  cursor: pointer;
+}
+
+.mh-seg-shape {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: all;
+  transition: fill 0.28s ease, stroke 0.28s ease;
+}
+
+.mh-seg-hit:hover .mh-seg-shape {
+  fill: rgba(59, 36, 24, 0.04);
+}
+
+.mh-seg-hit[aria-selected="true"] .mh-seg-shape {
+  fill: rgba(118, 51, 23, 0.08);
+  stroke: var(--mh-brown);
+}
+
+.mh-seg-hit:focus {
+  outline: none;
+}
+
+.mh-seg-hit:focus-visible .mh-seg-shape {
+  stroke: var(--mh-brown);
+}
+
+.mh-svg-name {
+  fill: var(--mh-text);
+  font-size: 12px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.mh-svg-desc {
+  fill: var(--mh-text);
+  font-size: 9px;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.mh-svg-desc--sm {
+  font-size: 8px;
+}
+
+/* Static / non-interactive (meetup) */
+.mh-visual--static .mh-seg-hit,
+.mh-visual--static .mh-seg-hit:hover,
+.mh-visual--static .mh-seg-hit:focus,
+.mh-visual--static .mh-seg-hit:focus-visible {
+  cursor: default;
+  pointer-events: none;
+}
+
+.mh-visual--static .mh-seg-shape {
+  pointer-events: none;
+  transition: none;
+}
+
+.mh-visual--static .mh-seg-hit:hover .mh-seg-shape,
+.mh-visual--static .mh-seg-hit[aria-selected="true"] .mh-seg-shape,
+.mh-visual--static .mh-seg-hit:focus-visible .mh-seg-shape {
+  fill: transparent;
+  stroke: transparent;
+}
+
+@media (max-width: 860px) {
+  .mh-funnel-row {
+    gap: 0.35rem;
+  }
+
+  .mh-axis {
+    width: 3.25rem;
+    padding: 0.6rem 0;
+  }
+
+  .mh-axis-label {
+    font-size: 0.55rem;
+  }
+}

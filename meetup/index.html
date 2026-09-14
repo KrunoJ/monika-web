@@ -37,7 +37,8 @@
     />
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=4" />
+    <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
+    <link rel="stylesheet" href="../css/meetup.css?v=5" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -183,20 +184,13 @@
             </div>
 
             <figure class="meetup-picture__visual">
-              <picture>
-                <source
-                  srcset="../assets/images/meetup/marketing-hourglass.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="../assets/images/meetup/marketing-hourglass.jpg"
-                  alt="Marketing Hourglass: od vidljivosti i znatiželje do kupnje, zadržavanja i preporuka"
-                  width="1536"
-                  height="1024"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
+              <div
+                class="meetup-picture__hourglass"
+                data-mh-visual-mount
+                data-mh-static
+                data-mh-src="../newsletter-sustav/mh-funnel-visual.html"
+                aria-label="Marketing Hourglass"
+              ></div>
             </figure>
           </div>
 
@@ -291,6 +285,7 @@
     </footer>
 
     <script src="../js/main.js?v=polish-1" defer></script>
+    <script src="../js/mh-visual.js?v=1" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer
