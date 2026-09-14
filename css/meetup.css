@@ -268,6 +268,11 @@
   margin-top: var(--space-4);
 }
 
+.meetup-picture__lede-accent {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
 .meetup-picture__visual {
   margin: 0;
   width: 100%;
@@ -346,38 +351,9 @@
   color: var(--color-heading);
 }
 
-.meetup-picture__phases {
-  list-style: none;
-  margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
-  padding: 0;
-  width: 100%;
-  max-width: 46rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
-  justify-items: center;
-}
-
-.meetup-picture__phases li {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.35;
-  color: var(--color-body);
-  text-align: center;
-  cursor: default;
-}
-
 .meetup-picture__closing-text {
   margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
-  max-width: min(50rem, 800px);
+  max-width: min(46rem, 750px);
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--color-body);
@@ -385,52 +361,6 @@
 
 .meetup-picture__actions {
   margin-top: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-@media (min-width: 640px) {
-  .meetup-picture__phases {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2.25rem;
-    row-gap: 1rem;
-    max-width: 40rem;
-  }
-
-  .meetup-picture__phases li:nth-child(odd) {
-    justify-self: end;
-    text-align: right;
-    padding-right: 1.15rem;
-    border-right: 1px solid color-mix(in srgb, var(--color-body) 22%, transparent);
-  }
-
-  .meetup-picture__phases li:nth-child(even) {
-    justify-self: start;
-    text-align: left;
-    padding-left: 1.15rem;
-  }
-}
-
-@media (min-width: 1100px) {
-  .meetup-picture__phases {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    max-width: none;
-  }
-
-  .meetup-picture__phases li,
-  .meetup-picture__phases li:nth-child(odd),
-  .meetup-picture__phases li:nth-child(even) {
-    justify-self: auto;
-    text-align: center;
-    padding: 0 1.15rem;
-    border: 0;
-  }
-
-  .meetup-picture__phases li + li {
-    border-left: 1px solid color-mix(in srgb, var(--color-body) 22%, transparent);
-  }
 }
 
 @media (min-width: 900px) {
@@ -441,7 +371,7 @@
   }
 
   .meetup-picture__title {
-    max-width: 14ch;
+    max-width: 16ch;
   }
 
   .meetup-picture__hourglass {
