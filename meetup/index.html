@@ -37,7 +37,7 @@
     />
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=2" />
+    <link rel="stylesheet" href="../css/meetup.css?v=3" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -106,34 +106,55 @@
 
     <main id="main">
       <section class="meetup-hero" aria-labelledby="meetup-hero-title">
-        <div class="container meetup-hero__layout">
-          <p class="section-label meetup-hero__label">// email marketing meetup</p>
-
-          <h1 id="meetup-hero-title" class="meetup-hero__title">OSTANI U KONTAKTU.</h1>
-
-          <p class="meetup-hero__subhead">
-            Poveži sve što se događa od vidljivosti do kupnje — i nakon nje.
-          </p>
-
-          <p class="meetup-hero__meta">
-            <time datetime="2026-11-04">4.11.2026.</time>
-            <span class="meetup-hero__meta-sep" aria-hidden="true">·</span>
-            <span>Salon 6</span>
-            <span class="meetup-hero__meta-sep" aria-hidden="true">·</span>
-            <span>Zagreb</span>
-          </p>
-
-          <div class="meetup-hero__intro">
-            <p>
-              Newsletter je samo jedan dio email marketinga. Dođi po širu sliku, konkretna
-              iskustva i ideje kako email marketing povezati s ostatkom svog poslovanja — i
-              ostani zbog razgovora, novih kontakata i ljudi koji razumiju što znači graditi
-              svoj biznis.
-            </p>
+        <div class="meetup-hero__stage">
+          <div class="meetup-hero__visual">
+            <picture>
+              <source
+                srcset="../assets/images/meetup/salon-6.webp"
+                type="image/webp"
+              />
+              <img
+                src="../assets/images/meetup/salon-6.jpg"
+                alt="Salon 6 — prostor za Email Marketing Meetup"
+                width="2400"
+                height="1800"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
           </div>
 
-          <div class="meetup-hero__actions">
-            <a class="btn btn--primary" href="#prijava">ŽELIM SVOJE MJESTO</a>
+          <div class="meetup-hero__copy">
+            <p class="section-label meetup-hero__label">// email marketing meetup</p>
+
+            <h1 id="meetup-hero-title" class="meetup-hero__title">Ostani u kontaktu.</h1>
+
+            <p class="meetup-hero__subhead">
+              Poveži sve što se događa od vidljivosti do kupnje — i nakon nje.
+            </p>
+
+            <p class="meetup-hero__meta">
+              <time datetime="2026-11-04">4.11.2026.</time>
+              <span class="meetup-hero__meta-sep" aria-hidden="true">·</span>
+              <span>Salon 6</span>
+              <span class="meetup-hero__meta-sep" aria-hidden="true">·</span>
+              <span>Zagreb</span>
+            </p>
+
+            <div class="meetup-hero__intro">
+              <p>
+                Newsletter je samo jedan dio email marketinga.
+              </p>
+              <p>
+                Dođi po širu sliku, konkretna iskustva i ideje kako email marketing povezati
+                s ostatkom svog poslovanja — i ostani zbog razgovora, novih kontakata i ljudi
+                koji razumiju što znači graditi svoj biznis.
+              </p>
+            </div>
+
+            <div class="meetup-hero__actions">
+              <a class="btn meetup-hero__cta" href="#prijava">Želim svoje mjesto</a>
+            </div>
           </div>
         </div>
       </section>
