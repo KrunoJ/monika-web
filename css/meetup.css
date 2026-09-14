@@ -447,7 +447,7 @@
 }
 
 .meetup-program__panel {
-  margin-top: clamp(1.85rem, 4.5vw, 2.75rem);
+  margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
 .meetup-program__panel-title {
