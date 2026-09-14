@@ -1,0 +1,402 @@
+/* Meetup landing — page-scoped only (.page-meetup). Not part of main.css. */
+
+.page-meetup {
+  background: var(--color-bg-1);
+}
+
+/* ——— Hero: 50/50 photo + brick (mirrors O meni about-hero) ——— */
+
+.meetup-hero {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-heading);
+  color: var(--color-cream);
+  border-bottom: 0;
+}
+
+.meetup-hero__stage {
+  width: 100%;
+  margin: 0;
+  display: grid;
+  gap: 0;
+  align-items: stretch;
+}
+
+.meetup-hero__visual {
+  width: 100%;
+  height: clamp(16rem, 58vw, 22rem);
+  margin: 0;
+  overflow: hidden;
+  background: #1c1612;
+}
+
+.meetup-hero__visual picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.meetup-hero__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.meetup-hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  padding: clamp(2rem, 6vw, 3rem) var(--page-pad);
+  background: var(--color-heading);
+  color: var(--color-cream);
+}
+
+.meetup-hero__label {
+  margin: 0 0 var(--space-4);
+  color: rgba(234, 230, 226, 0.62);
+}
+
+.meetup-hero__title {
+  margin: 0;
+  max-width: 11ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 8vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  color: var(--color-cream);
+}
+
+.meetup-hero__subhead {
+  margin: var(--space-4) 0 0;
+  max-width: 28rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  color: rgba(234, 230, 226, 0.92);
+}
+
+.meetup-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin: var(--space-5) 0 0;
+  padding-block: var(--space-3);
+  border-block: 1px solid rgba(234, 230, 226, 0.22);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(234, 230, 226, 0.82);
+}
+
+.meetup-hero__meta-sep {
+  color: rgba(234, 230, 226, 0.5);
+}
+
+.meetup-hero__intro {
+  margin-top: var(--space-5);
+  max-width: 32rem;
+}
+
+.meetup-hero__intro p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: rgba(234, 230, 226, 0.78);
+}
+
+.meetup-hero__intro p + p {
+  margin-top: var(--space-3);
+}
+
+.meetup-hero__actions {
+  margin-top: var(--space-6);
+}
+
+.meetup-hero__cta {
+  min-height: 2.85rem;
+  padding-inline: 1.25rem;
+  border: 1px solid var(--color-cream);
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.meetup-hero__cta:hover {
+  background: transparent;
+  color: var(--color-cream);
+  transform: translateY(-1px);
+}
+
+.meetup-picture__actions .btn--primary {
+  min-height: 2.85rem;
+  padding-inline: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 720px) and (max-width: 899px) {
+  .meetup-hero__stage {
+    grid-template-columns: 1fr 1fr;
+    height: clamp(34rem, 62vh, 40rem);
+  }
+
+  .meetup-hero__visual {
+    height: 100%;
+  }
+
+  .meetup-hero__copy {
+    padding: clamp(1.75rem, 3.5vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .meetup-hero__title {
+    font-size: clamp(2rem, 3.6vw, 2.6rem);
+    max-width: 10ch;
+  }
+
+  .meetup-hero__intro {
+    max-width: none;
+  }
+
+  .meetup-hero__visual img {
+    object-position: center 45%;
+  }
+}
+
+@media (min-width: 900px) {
+  .meetup-hero__stage {
+    grid-template-columns: 1fr 1fr;
+    height: clamp(36rem, 72vh, 44rem);
+    min-height: 0;
+    max-height: 46rem;
+  }
+
+  .meetup-hero__visual {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .meetup-hero__copy {
+    padding: clamp(2.5rem, 4.5vw, 4rem) clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .meetup-hero__title {
+    max-width: 10ch;
+    font-size: clamp(2.75rem, 4vw, 3.85rem);
+  }
+
+  .meetup-hero__subhead {
+    max-width: 26rem;
+  }
+
+  .meetup-hero__visual img {
+    object-position: center 42%;
+  }
+}
+
+/* ——— Section 2: Šira slika ——— */
+
+.meetup-picture {
+  padding-block: clamp(4rem, 10vw, 7.5rem);
+  background: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.meetup-picture__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.meetup-picture__split {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+  width: 100%;
+}
+
+.meetup-picture__content {
+  min-width: 0;
+}
+
+.meetup-picture__label {
+  margin-bottom: var(--space-5);
+  color: var(--color-heading);
+}
+
+.meetup-picture__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  color: var(--color-heading);
+}
+
+.meetup-picture__lede {
+  margin-top: var(--space-6);
+  max-width: 34rem;
+}
+
+.meetup-picture__lede p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.meetup-picture__lede p + p {
+  margin-top: var(--space-4);
+}
+
+.meetup-picture__visual {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+}
+
+.meetup-picture__hourglass {
+  width: 100%;
+  max-width: min(100%, 21rem); /* ~25% smaller than prior 28rem */
+  margin-inline: auto;
+  background: transparent;
+}
+
+.meetup-picture__hourglass .mh-visual {
+  width: 100%;
+}
+
+.meetup-picture__hourglass .mh-hourglass-svg {
+  max-height: none;
+}
+
+/* Larger, centered axis labels + shorter arrow (meetup only) */
+.meetup-picture__hourglass .mh-funnel-row {
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.meetup-picture__hourglass .mh-axis {
+  width: 5.75rem;
+  align-self: center;
+  justify-content: center;
+  gap: 0.7rem;
+  height: auto;
+  padding: 0;
+}
+
+.meetup-picture__hourglass .mh-axis-label {
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  font-weight: 700;
+  max-width: 5.75rem;
+  letter-spacing: 0.01em;
+}
+
+.meetup-picture__hourglass .mh-axis-arrow {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  max-width: 1.35rem;
+  height: 7.5rem;
+  min-height: 0;
+  opacity: 0.95;
+}
+
+.meetup-picture__hourglass .mh-axis-arrow line,
+.meetup-picture__hourglass .mh-axis-arrow path {
+  stroke-width: 2.5;
+}
+
+.meetup-picture__bridge,
+.meetup-picture__close {
+  margin: var(--space-7) 0 0;
+  max-width: var(--measure);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-muted);
+}
+
+.meetup-picture__actions {
+  margin-top: var(--space-7);
+}
+
+/* Status chips */
+
+.meetup-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  max-width: 42rem;
+}
+
+.meetup-status__tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--color-body);
+}
+
+@media (min-width: 900px) {
+  .meetup-picture__split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .meetup-picture__title {
+    max-width: 14ch;
+  }
+
+  .meetup-picture__hourglass {
+    max-width: min(100%, 24rem); /* ~25% smaller than prior 32rem */
+    margin-inline: 0 0;
+    justify-self: start;
+  }
+
+  .meetup-picture__hourglass .mh-axis {
+    width: 6rem;
+  }
+
+  .meetup-picture__hourglass .mh-axis-label {
+    font-size: 1rem;
+    max-width: 6rem;
+  }
+
+  .meetup-picture__hourglass .mh-axis-arrow {
+    width: 1.45rem;
+    max-width: 1.45rem;
+    height: 9rem;
+  }
+}
