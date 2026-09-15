@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=17" />
+    <link rel="stylesheet" href="../css/meetup.css?v=18" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -237,7 +237,7 @@
           <div class="meetup-program__panel">
             <ul class="meetup-program__panelists">
               <li class="meetup-program__person">
-                <div class="meetup-program__photo">
+                <div class="meetup-program__photo meetup-program__photo--panelist meetup-program__photo--monika">
                   <picture>
                     <source
                       srcset="../assets/images/meetup/monika-jagic.webp"
@@ -250,7 +250,6 @@
                       height="1066"
                       loading="lazy"
                       decoding="async"
-                      style="object-position: center 20%"
                     />
                   </picture>
                 </div>
@@ -269,7 +268,7 @@
               </li>
 
               <li class="meetup-program__person">
-                <div class="meetup-program__photo">
+                <div class="meetup-program__photo meetup-program__photo--panelist meetup-program__photo--nikolina">
                   <picture>
                     <source
                       srcset="../assets/images/meetup/nikolina-mamic.webp"
@@ -300,7 +299,7 @@
               </li>
 
               <li class="meetup-program__person">
-                <div class="meetup-program__photo">
+                <div class="meetup-program__photo meetup-program__photo--panelist meetup-program__photo--lana">
                   <picture>
                     <source
                       srcset="../assets/images/meetup/lana-matica.webp"
@@ -379,75 +378,89 @@
 
             <div class="meetup-program__story-grid">
               <article class="meetup-program__story" data-story="anita-kandera">
-                <div class="meetup-program__photo meetup-program__photo--story">
-                  <picture>
-                    <source
-                      srcset="../assets/images/meetup/anita-kandera.webp"
-                      type="image/webp"
-                    />
-                    <img
-                      src="../assets/images/meetup/anita-kandera.jpg"
-                      alt="Anita Kanđera"
-                      width="800"
-                      height="1200"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                <div class="meetup-program__story-media">
+                  <div class="meetup-program__photo meetup-program__photo--story">
+                    <picture>
+                      <source
+                        srcset="../assets/images/meetup/anita-kandera.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/meetup/anita-kandera.jpg"
+                        alt="Anita Kanđera"
+                        width="800"
+                        height="1200"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
                 </div>
-                <p class="meetup-program__name meetup-program__name--sm">Anita Kanđera</p>
-                <p class="meetup-program__role">
-                  Poduzetnica, poslovna savjetnica i mentorica
-                </p>
-                <p class="meetup-program__bio meetup-program__bio--story" data-story-field="person">
-                  Anita iza sebe ima više od desetljeća iskustva u prodaji, marketingu i
-                  poslovanju na inozemnim tržištima, a danas uz vlastiti obrt vodi marketing
-                  konferencijskih projekata GLS-a u Hrvatskoj i Europi. U vlastitom je
-                  newsletteru kroz godine mijenjala ritam, formate i pristup — od dužih i kraćih
-                  izdanja do audio sadržaja, serijala i tematskih mjeseci.
-                </p>
-                <h4 class="meetup-program__story-title" data-story-field="title">
-                  Postoji li sloboda u organizaciji?
-                </h4>
-                <p class="meetup-program__story-body" data-story-field="description">
-                  Kroz vlastito iskustvo pokazat će kako organizacija ne mora značiti kruti
-                  raspored, nego može postati okvir koji daje dovoljno strukture da ostanemo
-                  dosljedni i dovoljno slobode da mijenjamo način na koji komuniciramo.
-                </p>
+                <div class="meetup-program__story-copy">
+                  <p class="meetup-program__name meetup-program__name--sm">Anita Kanđera</p>
+                  <p class="meetup-program__role">
+                    Poduzetnica, poslovna savjetnica i mentorica
+                  </p>
+                  <p
+                    class="meetup-program__bio meetup-program__bio--story"
+                    data-story-field="person"
+                  >
+                    Anita iza sebe ima više od desetljeća iskustva u prodaji, marketingu i
+                    poslovanju na inozemnim tržištima, a danas uz vlastiti obrt vodi marketing
+                    konferencijskih projekata GLS-a u Hrvatskoj i Europi. U vlastitom je
+                    newsletteru kroz godine mijenjala ritam, formate i pristup — od dužih i kraćih
+                    izdanja do audio sadržaja, serijala i tematskih mjeseci.
+                  </p>
+                  <h4 class="meetup-program__story-title" data-story-field="title">
+                    Postoji li sloboda u organizaciji?
+                  </h4>
+                  <p class="meetup-program__story-body" data-story-field="description">
+                    Kroz vlastito iskustvo pokazat će kako organizacija ne mora značiti kruti
+                    raspored, nego može postati okvir koji daje dovoljno strukture da ostanemo
+                    dosljedni i dovoljno slobode da mijenjamo način na koji komuniciramo.
+                  </p>
+                </div>
               </article>
 
               <article class="meetup-program__story" data-story="nikolina-kamenovic">
-                <div class="meetup-program__photo meetup-program__photo--story">
-                  <picture>
-                    <source
-                      srcset="../assets/images/meetup/nikolina-kamenovic.webp"
-                      type="image/webp"
-                    />
-                    <img
-                      src="../assets/images/meetup/nikolina-kamenovic.jpg"
-                      alt="Nikolina Kamenović"
-                      width="800"
-                      height="960"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                <div class="meetup-program__story-media">
+                  <div class="meetup-program__photo meetup-program__photo--story">
+                    <picture>
+                      <source
+                        srcset="../assets/images/meetup/nikolina-kamenovic.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/meetup/nikolina-kamenovic.jpg"
+                        alt="Nikolina Kamenović"
+                        width="800"
+                        height="960"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
                 </div>
-                <p class="meetup-program__name meetup-program__name--sm">Nikolina Kamenović</p>
-                <p class="meetup-program__role">Osnivačica platforme Gušt</p>
-                <p class="meetup-program__bio meetup-program__bio--story" data-story-field="person">
-                  Nikolina je osnivačica Gušta, platforme koja okuplja i predstavlja male
-                  hrvatske beauty i design brendove. Kao vlasnica proizvodnog biznisa i
-                  webshopa donosi perspektivu email marketinga iz svijeta u kojem odnos s
-                  kupcem ne mora završiti prvom narudžbom.
-                </p>
-                <h4 class="meetup-program__story-title" data-story-field="title">
-                  Što se događa nakon „Dodaj u košaricu”?
-                </h4>
-                <p class="meetup-program__story-body" data-story-field="description">
-                  Kako email može imati ulogu u webshopu prije i nakon kupnje — od interesa za
-                  proizvod do odnosa s kupcem koji se nastavlja i nakon potvrde narudžbe.
-                </p>
+                <div class="meetup-program__story-copy">
+                  <p class="meetup-program__name meetup-program__name--sm">Nikolina Kamenović</p>
+                  <p class="meetup-program__role">Osnivačica platforme Gušt</p>
+                  <p
+                    class="meetup-program__bio meetup-program__bio--story"
+                    data-story-field="person"
+                  >
+                    Nikolina je osnivačica Gušta, platforme koja okuplja i predstavlja male
+                    hrvatske beauty i design brendove. Kao vlasnica proizvodnog biznisa i
+                    webshopa donosi perspektivu email marketinga iz svijeta u kojem odnos s
+                    kupcem ne mora završiti prvom narudžbom.
+                  </p>
+                  <h4 class="meetup-program__story-title" data-story-field="title">
+                    Što se događa nakon „Dodaj u košaricu”?
+                  </h4>
+                  <p class="meetup-program__story-body" data-story-field="description">
+                    Kako email može imati ulogu u webshopu prije i nakon kupnje — od interesa za
+                    proizvod do odnosa s kupcem koji se nastavlja i nakon potvrde narudžbe.
+                  </p>
+                </div>
               </article>
             </div>
           </div>
