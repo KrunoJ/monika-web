@@ -543,7 +543,11 @@
 }
 
 .meetup-program__photo--story img {
-  object-position: center 18%;
+  object-position: center 16%;
+}
+
+.meetup-program__story[data-story="nikolina-kamenovic"] .meetup-program__photo--story img {
+  object-position: center 22%;
 }
 
 .meetup-program__photo--moderator {
