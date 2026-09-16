@@ -1012,6 +1012,10 @@
     justify-content: center;
   }
 
+  .meetup-experience__intro-media {
+    min-height: 20rem;
+  }
+
   .meetup-experience__intro-media img {
     aspect-ratio: auto;
     min-height: 100%;
@@ -1043,7 +1047,7 @@
   }
 
   .meetup-experience__intro-media {
-    min-height: 22rem;
+    min-height: 26rem;
   }
 
   .meetup-experience__title {
