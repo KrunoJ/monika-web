@@ -57,3 +57,5 @@ curl -s -X POST http://127.0.0.1:8765/api/meetup/create-checkout \
   -H 'Content-Type: application/json' \
   -d '{"quantity":1}'
 ```
+
+See `TEST.md` for the full go-live checklist.
