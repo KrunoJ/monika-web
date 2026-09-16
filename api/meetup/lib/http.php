@@ -34,7 +34,7 @@ function meetup_api_stripe_request(string $secretKey, string $path, array $param
         CURLOPT_POSTFIELDS => http_build_query($params),
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/x-www-form-urlencoded',
-            'Stripe-Version: 2025-03-31.basil',
+            'Stripe-Version: 2026-07-29.dahlia',
         ],
     ]);
 
