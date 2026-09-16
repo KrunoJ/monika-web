@@ -84,10 +84,10 @@ try {
     }
 
     $code = (int) $e->getCode();
+    error_log('meetup create-checkout stripe error: ' . $e->getMessage());
     if ($code >= 400 && $code < 600) {
         meetup_api_json_response([
             'error' => 'stripe_error',
-            'message' => $e->getMessage(),
         ], $code);
     }
     meetup_api_json_response(['error' => 'checkout_failed'], 500);

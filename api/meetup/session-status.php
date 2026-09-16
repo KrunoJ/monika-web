@@ -52,6 +52,7 @@ try {
     ]);
 } catch (Throwable $e) {
     $code = (int) $e->getCode();
+    error_log('meetup session-status stripe error: ' . $e->getMessage());
     if ($code === 404) {
         meetup_api_json_response([
             'ok' => false,
@@ -64,7 +65,6 @@ try {
             'ok' => false,
             'paid' => false,
             'error' => 'stripe_error',
-            'message' => $e->getMessage(),
         ], $code);
     }
     meetup_api_json_response([
