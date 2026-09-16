@@ -20,23 +20,38 @@ function meetup_api_read_json_body(): array
     return is_array($data) ? $data : [];
 }
 
-function meetup_api_stripe_request(string $secretKey, string $path, array $params): array
-{
-    $ch = curl_init('https://api.stripe.com/v1/' . ltrim($path, '/'));
+function meetup_api_stripe_request(
+    string $secretKey,
+    string $path,
+    array $params = [],
+    string $method = 'POST'
+): array {
+    $method = strtoupper($method);
+    $url = 'https://api.stripe.com/v1/' . ltrim($path, '/');
+    if ($method === 'GET' && $params !== []) {
+        $url .= (str_contains($url, '?') ? '&' : '?') . http_build_query($params);
+    }
+
+    $ch = curl_init($url);
     if ($ch === false) {
         throw new RuntimeException('curl_init failed');
     }
 
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
+    $opts = [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_USERPWD => $secretKey . ':',
-        CURLOPT_POSTFIELDS => http_build_query($params),
         CURLOPT_HTTPHEADER => [
-            'Content-Type: application/x-www-form-urlencoded',
             'Stripe-Version: 2026-07-29.dahlia',
         ],
-    ]);
+        CURLOPT_CUSTOMREQUEST => $method,
+    ];
+
+    if ($method === 'POST' || $method === 'DELETE') {
+        $opts[CURLOPT_HTTPHEADER][] = 'Content-Type: application/x-www-form-urlencoded';
+        $opts[CURLOPT_POSTFIELDS] = http_build_query($params);
+    }
+
+    curl_setopt_array($ch, $opts);
 
     $body = curl_exec($ch);
     $errno = curl_errno($ch);

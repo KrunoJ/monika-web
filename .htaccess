@@ -9,6 +9,7 @@
   # Meetup ticket API (Embedded Checkout)
   RewriteRule ^api/meetup/ticket-status/?$ api/meetup/ticket-status.php [L,QSA]
   RewriteRule ^api/meetup/create-checkout/?$ api/meetup/create-checkout.php [L,QSA]
+  RewriteRule ^api/meetup/session-status/?$ api/meetup/session-status.php [L,QSA]
   RewriteRule ^api/meetup/webhook/?$ api/meetup/webhook.php [L,QSA]
 
   # /index.html → /

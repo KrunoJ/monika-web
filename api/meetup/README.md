@@ -7,6 +7,7 @@ Same-origin PHP endpoints for `/meetup` ticket purchase.
 | Method | Path | Purpose |
 | --- | --- | --- |
 | `GET` | `/api/meetup/ticket-status` | Current tier, price, early-bird availability |
+| `GET` | `/api/meetup/session-status?session_id=` | Verify Checkout Session paid state before thank-you |
 | `POST` | `/api/meetup/create-checkout` | Create Stripe Embedded Checkout Session (`quantity: 1`) |
 | `POST` | `/api/meetup/webhook` | Stripe webhook - sync inventory on `checkout.session.completed` |
 

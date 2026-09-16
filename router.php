@@ -17,6 +17,11 @@ if ($uri === '/api/meetup/create-checkout' || $uri === '/api/meetup/create-check
     return true;
 }
 
+if ($uri === '/api/meetup/session-status' || $uri === '/api/meetup/session-status/') {
+    require __DIR__ . '/api/meetup/session-status.php';
+    return true;
+}
+
 if ($uri === '/api/meetup/webhook' || $uri === '/api/meetup/webhook/') {
     require __DIR__ . '/api/meetup/webhook.php';
     return true;

@@ -4,6 +4,7 @@
 
   const STATUS_URL = "/api/meetup/ticket-status";
   const CHECKOUT_URL = "/api/meetup/create-checkout";
+  const SESSION_STATUS_URL = "/api/meetup/session-status";
   const STRIPE_JS_URL = "https://js.stripe.com/v3/";
 
   // Used only when GET /api/meetup/ticket-status fails (network / API down).
@@ -222,9 +223,26 @@
         fromMock: false,
       };
     } catch (_) {
-      // Fallback only when the live API is unreachable.
       return { ...MOCK_STATUS, fromMock: true };
     }
+  };
+
+  const verifyPaidSession = async (sessionId) => {
+    const url = `${SESSION_STATUS_URL}?session_id=${encodeURIComponent(sessionId)}`;
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      const err = new Error(`session ${res.status}`);
+      err.status = res.status;
+      throw err;
+    }
+    const data = await res.json();
+    if (!data || data.ok !== true) {
+      throw new Error("session not ok");
+    }
+    return data;
   };
 
   const loadStripe = () =>
@@ -265,6 +283,23 @@
     els.checkout?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
 
+  const markSoldOutFromServer = async () => {
+    const next = await fetchStatus();
+    applyStatus(next);
+    if (status.currentTier !== "sold_out") {
+      applyStatus({
+        ...status,
+        currentTier: "sold_out",
+        earlyBirdAvailable: 0,
+        unitAmount: status.unitAmount || 4500,
+        fromMock: status.fromMock,
+      });
+    }
+    setMessage("Ulaznice su trenutačno rasprodane.");
+    destroyCheckout();
+    setCtaIdle();
+  };
+
   const openCheckout = async () => {
     if (opening || purchaseComplete) return;
     if (status.currentTier === "sold_out") return;
@@ -283,8 +318,19 @@
         body: JSON.stringify({ quantity: 1 }),
       });
 
+      let data = null;
+      try {
+        data = await res.json();
+      } catch (_) {
+        data = null;
+      }
+
+      if (res.status === 409 || (data && data.error === "sold_out")) {
+        await markSoldOutFromServer();
+        return;
+      }
+
       if (!res.ok) throw new Error(`checkout ${res.status}`);
-      const data = await res.json();
       const clientSecret = data && data.clientSecret;
       const publishableKey =
         (data && data.publishableKey) || status.publishableKey || "";
@@ -293,7 +339,6 @@
 
       await mountEmbeddedCheckout(clientSecret, publishableKey);
       setMessage("");
-      // Keep CTA enabled so the guest can reopen if they dismiss the embed.
       setCtaIdle();
     } catch (_) {
       setMessage(
@@ -324,7 +369,10 @@
     }
   };
 
-  const handleReturnState = () => {
+  /**
+   * @returns {Promise<boolean>} true when purchase is confirmed paid
+   */
+  const handleReturnState = async () => {
     const params = new URLSearchParams(window.location.search);
     const checkoutFlag = (params.get("checkout") || "").toLowerCase();
     const sessionId = params.get("session_id");
@@ -335,20 +383,47 @@
       return false;
     }
 
-    if (checkoutFlag === "success" || sessionId) {
-      showThanks();
+    const looksLikeReturn = checkoutFlag === "success" || Boolean(sessionId);
+    if (!looksLikeReturn) return false;
+
+    if (!sessionId) {
+      // Never trust checkout=success alone.
+      setMessage(
+        "Potvrda plaćanja nije dostupna. Ako si platila, provjeri e-mail ili pokušaj ponovno za trenutak."
+      );
       cleanReturnParams();
-      return true;
+      return false;
     }
 
-    return false;
+    try {
+      const result = await verifyPaidSession(sessionId);
+      if (result.paid === true) {
+        showThanks();
+        cleanReturnParams();
+        return true;
+      }
+
+      setMessage(
+        "Plaćanje još nije potvrđeno. Ako si upravo platila, osvježi stranicu za trenutak."
+      );
+      cleanReturnParams();
+      return false;
+    } catch (_) {
+      setMessage(
+        "Potvrda ulaznice trenutačno nije dostupna. Ako si platila, provjeri e-mail s potvrdom."
+      );
+      // Keep session_id briefly? Prompt: verify before cleaning; on error we still clean
+      // to avoid loops, message already explains.
+      cleanReturnParams();
+      return false;
+    }
   };
 
   const init = async () => {
-    const completed = handleReturnState();
+    const completed = await handleReturnState();
     const next = await fetchStatus();
     applyStatus(next);
-    // Success return must keep thank-you state and must not reopen checkout.
+
     if (completed) {
       purchaseComplete = true;
       setHidden(els.checkout, true);
