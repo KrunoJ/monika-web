@@ -1262,7 +1262,7 @@
   cursor: pointer;
 }
 
-.meetup-tickets__cta:hover {
+.meetup-tickets__cta:hover:not(:disabled) {
   background: transparent;
   color: var(--color-cream);
 }
@@ -1270,6 +1270,11 @@
 .meetup-tickets__cta:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.meetup-tickets__cta.is-loading {
+  opacity: 0.82;
+  letter-spacing: 0.08em;
 }
 
 .meetup-tickets__capacity {

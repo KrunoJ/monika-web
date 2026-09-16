@@ -102,8 +102,23 @@
     setHidden(els.checkout, true);
   };
 
+  const clearCtaLoading = () => {
+    if (!els.openBtn) return;
+    els.openBtn.removeAttribute("aria-busy");
+    els.openBtn.classList.remove("is-loading");
+  };
+
+  const setCtaLoading = () => {
+    if (!els.openBtn) return;
+    els.openBtn.disabled = true;
+    els.openBtn.setAttribute("aria-busy", "true");
+    els.openBtn.classList.add("is-loading");
+    els.openBtn.textContent = "UČITAVAM…";
+  };
+
   const setCtaIdle = () => {
     if (!els.openBtn || purchaseComplete) return;
+    clearCtaLoading();
     if (status.currentTier === "sold_out") {
       els.openBtn.disabled = true;
       els.openBtn.textContent = "RASPRODANO";
@@ -116,6 +131,7 @@
 
   const setCtaComplete = () => {
     if (!els.openBtn) return;
+    clearCtaLoading();
     els.openBtn.disabled = true;
     els.openBtn.setAttribute("aria-disabled", "true");
     els.openBtn.textContent = "ULAZNICA REZERVIRANA";
@@ -306,7 +322,7 @@
 
     opening = true;
     setMessage("");
-    if (els.openBtn) els.openBtn.disabled = true;
+    setCtaLoading();
 
     try {
       const res = await fetch(CHECKOUT_URL, {
@@ -348,6 +364,7 @@
       setCtaIdle();
     } finally {
       opening = false;
+      if (!purchaseComplete) clearCtaLoading();
     }
   };
 
