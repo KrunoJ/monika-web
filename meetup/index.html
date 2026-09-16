@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=25" />
+    <link rel="stylesheet" href="../css/meetup.css?v=26" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -758,22 +758,25 @@
             </p>
           </header>
 
-          <div class="meetup-tickets__offer">
-            <p class="meetup-tickets__price-label">EARLY BIRD</p>
+          <div class="meetup-tickets__offer" data-meetup-offer>
+            <p class="meetup-tickets__price-label" data-meetup-price-label>EARLY BIRD</p>
             <p class="meetup-tickets__price">
-              <span class="meetup-tickets__price-value">29</span>
+              <span class="meetup-tickets__price-value" data-meetup-price-value>29</span>
               <span class="meetup-tickets__price-currency">€</span>
             </p>
-            <p class="meetup-tickets__price-note">Prvih 10 ulaznica. Nakon toga 45 €.</p>
+            <p class="meetup-tickets__price-note" data-meetup-price-note>
+              Prvih 10 ulaznica. Nakon toga 45 €.
+            </p>
 
             <!--
-              MOCK / PLACEHOLDER — early bird availability.
+              MOCK / PLACEHOLDER - early bird availability.
               data-early-bird-available="7" is temporary fake data for visual review only.
               Replace later with a live count derived from Stripe ticket sales
               (available = 10 - sold). No Stripe/API wiring yet.
             -->
             <div
               class="meetup-tickets__availability"
+              data-meetup-availability
               data-early-bird-mock="true"
             >
               <p class="meetup-tickets__availability-text">
@@ -787,18 +790,44 @@
                 aria-valuemax="10"
                 aria-valuenow="7"
                 aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
+                data-meetup-meter
               >
                 <div
                   class="meetup-tickets__meter-fill"
                   style="width: 70%"
                   data-early-bird-fill="mock"
+                  data-meetup-meter-fill
                 ></div>
               </div>
             </div>
 
             <div class="meetup-tickets__actions">
-              <a class="btn meetup-tickets__cta" href="#prijava">ŽELIM SVOJE MJESTO</a>
-              <p class="meetup-tickets__capacity">Ukupno je dostupno 30 mjesta.</p>
+              <button
+                type="button"
+                class="btn meetup-tickets__cta"
+                data-meetup-checkout-open
+              >
+                ŽELIM SVOJE MJESTO
+              </button>
+              <p class="meetup-tickets__capacity" data-meetup-capacity>
+                Ukupno je dostupno 30 mjesta.
+              </p>
+            </div>
+
+            <div
+              id="meetup-checkout"
+              class="meetup-tickets__checkout"
+              hidden
+              data-meetup-checkout
+            ></div>
+
+            <div class="meetup-tickets__thanks" hidden data-meetup-thanks>
+              <h3 class="meetup-tickets__thanks-title" tabindex="-1">
+                Mjesto ti je rezervirano
+              </h3>
+              <p class="meetup-tickets__thanks-text">
+                Hvala. Potvrdu ulaznice i detalje događaja poslat ćemo ti e-mailom.
+              </p>
             </div>
           </div>
         </div>
