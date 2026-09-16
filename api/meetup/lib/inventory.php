@@ -1,9 +1,10 @@
 <?php
 /**
- * Meetup ticket inventory store (mock until Stripe webhook sync).
+ * Meetup ticket inventory store.
  *
- * TODO(B3): replace seed-driven updates with idempotent webhook handling
- * from checkout.session.completed so earlyBirdSold/totalSold follow Stripe.
+ * Seed values below are MOCK until go-live. After real sales start, reset
+ * earlyBirdSold/totalSold to match Stripe (or 0) and let webhooks own updates.
+ * Do not treat mock seed as live ticket sales.
  */
 
 declare(strict_types=1);
@@ -17,13 +18,24 @@ function meetup_inventory_default(): array
 {
     return [
         'earlyBirdTotal' => 10,
+        // MOCK seed - replace/reset at go-live before trusting counts
         'earlyBirdSold' => 3,
         'capacityTotal' => 30,
         'totalSold' => 3,
         'currency' => 'eur',
         'updatedAt' => gmdate('c'),
         'source' => 'mock-placeholder',
+        'processedSessionIds' => [],
     ];
+}
+
+function meetup_inventory_normalize(array $data): array
+{
+    $merged = array_merge(meetup_inventory_default(), $data);
+    if (!isset($merged['processedSessionIds']) || !is_array($merged['processedSessionIds'])) {
+        $merged['processedSessionIds'] = [];
+    }
+    return $merged;
 }
 
 function meetup_inventory_read(): array
@@ -41,7 +53,7 @@ function meetup_inventory_read(): array
         return meetup_inventory_default();
     }
 
-    return array_merge(meetup_inventory_default(), $data);
+    return meetup_inventory_normalize($data);
 }
 
 function meetup_inventory_write(array $data): void
@@ -52,6 +64,7 @@ function meetup_inventory_write(array $data): void
         mkdir($dir, 0755, true);
     }
 
+    $data = meetup_inventory_normalize($data);
     $data['updatedAt'] = gmdate('c');
     $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     if ($json === false) {
@@ -63,6 +76,98 @@ function meetup_inventory_write(array $data): void
         throw new RuntimeException('Failed to write inventory');
     }
     rename($tmp, $path);
+}
+
+/**
+ * Idempotently record one paid checkout session.
+ *
+ * @return array{applied: bool, duplicate: bool, inventory: array}
+ */
+function meetup_inventory_apply_sale(string $sessionId, string $tier, int $quantity = 1): array
+{
+    $sessionId = trim($sessionId);
+    $tier = trim($tier);
+    $quantity = max(1, $quantity);
+
+    if ($sessionId === '') {
+        throw new InvalidArgumentException('missing_session_id');
+    }
+
+    $path = meetup_inventory_path();
+    $dir = dirname($path);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+    if (!is_file($path)) {
+        meetup_inventory_write(meetup_inventory_default());
+    }
+
+    $fh = fopen($path, 'c+');
+    if ($fh === false) {
+        throw new RuntimeException('Failed to open inventory');
+    }
+
+    try {
+        if (!flock($fh, LOCK_EX)) {
+            throw new RuntimeException('Failed to lock inventory');
+        }
+
+        rewind($fh);
+        $raw = stream_get_contents($fh);
+        $data = is_string($raw) && $raw !== '' ? json_decode($raw, true) : null;
+        $inventory = is_array($data) ? meetup_inventory_normalize($data) : meetup_inventory_default();
+
+        $processed = $inventory['processedSessionIds'];
+        if (in_array($sessionId, $processed, true)) {
+            return [
+                'applied' => false,
+                'duplicate' => true,
+                'inventory' => $inventory,
+            ];
+        }
+
+        $earlyTotal = max(0, (int) $inventory['earlyBirdTotal']);
+        $capacityTotal = max(0, (int) $inventory['capacityTotal']);
+        $earlySold = max(0, (int) $inventory['earlyBirdSold']);
+        $totalSold = max(0, (int) $inventory['totalSold']);
+
+        if ($tier === 'early_bird') {
+            $earlySold = min($earlyTotal, $earlySold + $quantity);
+        }
+
+        $totalSold = min($capacityTotal, $totalSold + $quantity);
+        $processed[] = $sessionId;
+
+        // Keep processed list bounded
+        if (count($processed) > 500) {
+            $processed = array_slice($processed, -500);
+        }
+
+        $inventory['earlyBirdSold'] = $earlySold;
+        $inventory['totalSold'] = $totalSold;
+        $inventory['processedSessionIds'] = array_values($processed);
+        $inventory['source'] = 'stripe-webhook';
+        $inventory['updatedAt'] = gmdate('c');
+
+        $json = json_encode($inventory, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        if ($json === false) {
+            throw new RuntimeException('Failed to encode inventory');
+        }
+
+        ftruncate($fh, 0);
+        rewind($fh);
+        fwrite($fh, $json . "\n");
+        fflush($fh);
+
+        return [
+            'applied' => true,
+            'duplicate' => false,
+            'inventory' => $inventory,
+        ];
+    } finally {
+        flock($fh, LOCK_UN);
+        fclose($fh);
+    }
 }
 
 /**

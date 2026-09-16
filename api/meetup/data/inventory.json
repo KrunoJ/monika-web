@@ -5,5 +5,6 @@
   "totalSold": 3,
   "currency": "eur",
   "updatedAt": "2026-09-16T00:00:00+00:00",
-  "source": "mock-placeholder"
+  "source": "mock-placeholder",
+  "processedSessionIds": []
 }
