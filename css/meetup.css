@@ -1292,12 +1292,16 @@
 }
 
 .meetup-tickets__checkout {
-  margin-top: var(--space-6);
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
   width: 100%;
-  max-width: 28rem;
-  padding: clamp(1rem, 2.5vw, 1.35rem);
+  max-width: none;
+  min-height: 12rem;
+  padding: clamp(1.15rem, 3.5vw, 1.75rem);
   background: var(--color-cream);
   color: var(--color-ink);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .meetup-tickets__checkout[hidden],
@@ -1305,9 +1309,21 @@
   display: none;
 }
 
+.meetup-tickets__checkout:not([hidden]) {
+  display: block;
+}
+
+/* Stripe Embedded Checkout mounts an iframe; keep it full-bleed inside the cream panel */
+.meetup-tickets__checkout iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+}
+
 .meetup-tickets__thanks {
-  margin-top: var(--space-6);
-  max-width: 24rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  max-width: 26rem;
 }
 
 .meetup-tickets__thanks-title {
@@ -1337,6 +1353,27 @@
   opacity: 0.72;
 }
 
+@media (max-width: 859px) {
+  .meetup-tickets__offer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .meetup-tickets__price {
+    margin-top: var(--space-2);
+  }
+
+  .meetup-tickets__actions {
+    margin-top: var(--space-5);
+  }
+
+  .meetup-tickets__checkout {
+    margin-inline: 0;
+    padding: clamp(1rem, 4vw, 1.35rem);
+  }
+}
+
 @media (min-width: 860px) {
   .meetup-tickets__inner {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -1348,8 +1385,14 @@
     width: 100%;
   }
 
+  /* Give the embed more room once open, without changing the closed ticket layout */
+  .meetup-tickets__inner:has(.meetup-tickets__checkout:not([hidden])) {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
   .meetup-tickets__checkout {
-    max-width: none;
+    min-height: 16rem;
+    padding: clamp(1.35rem, 2.5vw, 1.85rem);
   }
 }
 
