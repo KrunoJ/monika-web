@@ -1279,6 +1279,18 @@
   color: rgba(234, 230, 226, 0.68);
 }
 
+.meetup-tickets__message {
+  margin: var(--space-3) 0 0;
+  max-width: 24rem;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: rgba(234, 230, 226, 0.86);
+}
+
+.meetup-tickets__message[hidden] {
+  display: none;
+}
+
 .meetup-tickets__checkout {
   margin-top: var(--space-6);
   width: 100%;
