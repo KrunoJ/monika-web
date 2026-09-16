@@ -1318,6 +1318,12 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--color-cream);
+  outline: none;
+}
+
+.meetup-tickets__thanks-title:focus-visible {
+  outline: 2px solid rgba(234, 230, 226, 0.7);
+  outline-offset: 0.25rem;
 }
 
 .meetup-tickets__thanks-text {
@@ -1325,6 +1331,10 @@
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: rgba(234, 230, 226, 0.82);
+}
+
+.meetup-tickets[data-meetup-purchase="complete"] .meetup-tickets__cta {
+  opacity: 0.72;
 }
 
 @media (min-width: 860px) {
