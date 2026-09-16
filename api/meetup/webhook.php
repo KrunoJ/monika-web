@@ -77,25 +77,39 @@ if (!is_array($event) || !isset($event['type'])) {
 }
 
 $type = (string) $event['type'];
+$session = $event['data']['object'] ?? null;
+if (!is_array($session)) {
+    // Some ignored event types may still lack an object; acknowledge safely.
+    if ($type !== 'checkout.session.completed' && $type !== 'checkout.session.expired') {
+        meetup_api_json_response(['received' => true, 'handled' => 'ignored']);
+    }
+    meetup_api_json_response(['error' => 'missing_session'], 400);
+}
 
-// Expired sessions do not change inventory.
+$sessionId = (string) ($session['id'] ?? '');
+$metadata = is_array($session['metadata'] ?? null) ? $session['metadata'] : [];
+$reservationId = (string) ($metadata['reservation_id'] ?? '');
+$tier = (string) ($metadata['tier'] ?? '');
+
+// Expired / abandoned checkouts free the reservation without incrementing sold.
 if ($type === 'checkout.session.expired') {
-    meetup_api_json_response(['received' => true, 'handled' => 'ignored_expired']);
+    $released = meetup_inventory_release_reservation(
+        $reservationId !== '' ? $reservationId : null,
+        $sessionId !== '' ? $sessionId : null
+    );
+    meetup_api_json_response([
+        'received' => true,
+        'handled' => $released ? 'reservation_released' : 'ignored_expired',
+        'session_id' => $sessionId,
+        'reservation_id' => $reservationId !== '' ? $reservationId : null,
+    ]);
 }
 
 if ($type !== 'checkout.session.completed') {
     meetup_api_json_response(['received' => true, 'handled' => 'ignored']);
 }
 
-$session = $event['data']['object'] ?? null;
-if (!is_array($session)) {
-    meetup_api_json_response(['error' => 'missing_session'], 400);
-}
-
-$sessionId = (string) ($session['id'] ?? '');
 $paymentStatus = (string) ($session['payment_status'] ?? '');
-$metadata = is_array($session['metadata'] ?? null) ? $session['metadata'] : [];
-$tier = (string) ($metadata['tier'] ?? '');
 
 // Only count paid (or no_payment_required) sessions.
 if ($paymentStatus !== 'paid' && $paymentStatus !== 'no_payment_required') {
@@ -107,14 +121,18 @@ if ($paymentStatus !== 'paid' && $paymentStatus !== 'no_payment_required') {
 }
 
 if ($tier !== 'early_bird' && $tier !== 'standard') {
-    // Fallback: if metadata missing, infer from remaining early-bird capacity.
     $inventory = meetup_inventory_read();
     $status = meetup_inventory_status($inventory, $config);
     $tier = $status['earlyBirdAvailable'] > 0 ? 'early_bird' : 'standard';
 }
 
 try {
-    $result = meetup_inventory_apply_sale($sessionId, $tier, 1);
+    $result = meetup_inventory_apply_sale(
+        $sessionId,
+        $tier,
+        1,
+        $reservationId !== '' ? $reservationId : null
+    );
     $status = meetup_inventory_status($result['inventory'], $config);
 
     meetup_api_json_response([
@@ -122,6 +140,7 @@ try {
         'handled' => $result['duplicate'] ? 'duplicate' : 'sale_recorded',
         'tier' => $tier,
         'session_id' => $sessionId,
+        'reservation_id' => $reservationId !== '' ? $reservationId : null,
         'earlyBirdAvailable' => $status['earlyBirdAvailable'],
         'currentTier' => $status['currentTier'],
         'totalSold' => $status['totalSold'],

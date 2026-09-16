@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     meetup_api_json_response(['error' => 'method_not_allowed'], 405);
 }
 
+$reservationId = null;
+
 try {
     $config = meetup_api_load_config();
     $body = meetup_api_read_json_body();
@@ -22,20 +24,16 @@ try {
         meetup_api_json_response(['error' => 'quantity_must_be_1'], 400);
     }
 
-    $inventory = meetup_inventory_read();
-    $selection = meetup_inventory_select_price($inventory, $config);
+    if (!meetup_api_stripe_configured($config)) {
+        meetup_api_json_response(['error' => 'checkout_unavailable'], 503);
+    }
+
+    // Reserve under lock before creating the Stripe session to reduce oversell.
+    $selection = meetup_inventory_reserve_seat($config);
     if ($selection === null) {
         meetup_api_json_response(['error' => 'sold_out'], 409);
     }
-
-    if (!meetup_api_stripe_configured($config)) {
-        // Frontend shows a discreet offline message on non-OK responses.
-        meetup_api_json_response(['error' => 'checkout_unavailable'], 503);
-    }
-
-    if ($selection['priceId'] === '') {
-        meetup_api_json_response(['error' => 'checkout_unavailable'], 503);
-    }
+    $reservationId = (string) $selection['reservationId'];
 
     $origin = meetup_api_request_origin($config);
     $returnUrl = $origin . '/meetup/?checkout=success&session_id={CHECKOUT_SESSION_ID}#prijava';
@@ -53,22 +51,38 @@ try {
         'metadata' => [
             'meetup' => 'ostani-u-kontaktu',
             'tier' => $selection['tier'],
+            'reservation_id' => $reservationId,
         ],
         // Do not pass payment_method_types - use Dashboard dynamic methods.
     ]);
 
     $clientSecret = (string) ($session['client_secret'] ?? '');
-    if ($clientSecret === '') {
+    $sessionId = (string) ($session['id'] ?? '');
+    if ($clientSecret === '' || $sessionId === '') {
+        if ($reservationId !== null) {
+            meetup_inventory_release_reservation($reservationId, null);
+        }
         meetup_api_json_response(['error' => 'missing_client_secret'], 502);
     }
+
+    meetup_inventory_attach_session($reservationId, $sessionId);
 
     meetup_api_json_response([
         'clientSecret' => $clientSecret,
         'publishableKey' => (string) $config['stripe_publishable_key'],
         'tier' => $selection['tier'],
         'unitAmount' => $selection['unitAmount'],
+        'reservationId' => $reservationId,
     ]);
 } catch (Throwable $e) {
+    if (is_string($reservationId) && $reservationId !== '') {
+        try {
+            meetup_inventory_release_reservation($reservationId, null);
+        } catch (Throwable $ignored) {
+            /* ignore release errors */
+        }
+    }
+
     $code = (int) $e->getCode();
     if ($code >= 400 && $code < 600) {
         meetup_api_json_response([
