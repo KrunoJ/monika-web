@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=23" />
+    <link rel="stylesheet" href="../css/meetup.css?v=24" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -736,8 +736,74 @@
         </div>
       </section>
 
-      <!-- Daljnje sekcije dolaze u sljedećim iteracijama -->
-      <div id="prijava" class="meetup-placeholder" hidden></div>
+      <section
+        id="prijava"
+        class="meetup-tickets"
+        aria-labelledby="meetup-tickets-title"
+        data-early-bird-total="10"
+        data-early-bird-available="7"
+        data-early-bird-source="mock-placeholder"
+      >
+        <div class="container meetup-tickets__inner">
+          <header class="meetup-tickets__header">
+            <p class="section-label meetup-tickets__label">// TVOJE MJESTO</p>
+            <h2 id="meetup-tickets-title" class="meetup-tickets__title">Vidimo se 4.11.?</h2>
+
+            <div class="meetup-tickets__facts">
+              <p>4.11.2026. · Salon 6, Zagreb</p>
+              <p>Dolazak od 17:30 · program počinje u 18:00</p>
+            </div>
+
+            <p class="meetup-tickets__support">
+              Uz cijeli program čekaju te i networking, catering i piće te goody bag.
+            </p>
+          </header>
+
+          <div class="meetup-tickets__offer">
+            <p class="meetup-tickets__price-label">EARLY BIRD</p>
+            <p class="meetup-tickets__price">
+              <span class="meetup-tickets__price-value">29</span>
+              <span class="meetup-tickets__price-currency">€</span>
+            </p>
+            <p class="meetup-tickets__price-note">Prvih 10 ulaznica. Nakon toga 45 €.</p>
+
+            <!--
+              MOCK / PLACEHOLDER — early bird availability.
+              data-early-bird-available="7" is temporary fake data for visual review only.
+              Replace later with a live count derived from Stripe ticket sales
+              (available = 10 - sold). No Stripe/API wiring yet.
+            -->
+            <div
+              class="meetup-tickets__availability"
+              data-early-bird-mock="true"
+            >
+              <p class="meetup-tickets__availability-text">
+                <span data-early-bird-available-label>7</span> od
+                <span data-early-bird-total-label>10</span> early bird ulaznica još je dostupno
+              </p>
+              <div
+                class="meetup-tickets__meter"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="7"
+                aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
+              >
+                <div
+                  class="meetup-tickets__meter-fill"
+                  style="width: 70%"
+                  data-early-bird-fill="mock"
+                ></div>
+              </div>
+            </div>
+
+            <div class="meetup-tickets__actions">
+              <a class="btn meetup-tickets__cta" href="#prijava">ŽELIM SVOJE MJESTO</a>
+              <p class="meetup-tickets__capacity">Ukupno je dostupno oko 30 mjesta.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
