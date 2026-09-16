@@ -6,6 +6,7 @@
   const CHECKOUT_URL = "/api/meetup/create-checkout";
   const STRIPE_JS_URL = "https://js.stripe.com/v3/";
 
+  // Used only when GET /api/meetup/ticket-status fails (network / API down).
   const MOCK_STATUS = {
     currency: "eur",
     capacityTotal: 30,
@@ -14,6 +15,8 @@
     earlyBirdSold: 3,
     currentTier: "early_bird",
     unitAmount: 2900,
+    publishableKey: "",
+    fromMock: true,
   };
 
   const els = {
@@ -55,6 +58,34 @@
     }
     els.message.textContent = text;
     setHidden(els.message, false);
+  };
+
+  const markStatusSource = (fromMock) => {
+    section.setAttribute(
+      "data-early-bird-source",
+      fromMock ? "mock-placeholder" : "live"
+    );
+
+    if (els.availability) {
+      if (fromMock) els.availability.setAttribute("data-early-bird-mock", "true");
+      else els.availability.removeAttribute("data-early-bird-mock");
+    }
+
+    if (els.meterFill) {
+      els.meterFill.setAttribute(
+        "data-early-bird-fill",
+        fromMock ? "mock" : "live"
+      );
+    }
+
+    if (els.meter) {
+      els.meter.setAttribute(
+        "aria-label",
+        fromMock
+          ? "Dostupnost early bird ulaznica (privremeni prikaz)"
+          : "Dostupnost early bird ulaznica"
+      );
+    }
   };
 
   const destroyCheckout = () => {
@@ -115,6 +146,9 @@
 
   const applyStatus = (next) => {
     status = next;
+    const fromMock = Boolean(next.fromMock);
+    markStatusSource(fromMock);
+
     const tier = next.currentTier || "early_bird";
     const earlyTotal = Number(next.earlyBirdTotal) || 10;
     const earlyAvailable = Math.max(0, Number(next.earlyBirdAvailable) || 0);
@@ -126,11 +160,14 @@
       els.capacity.textContent = `Ukupno je dostupno ${capacityTotal} mjesta.`;
     }
 
+    section.setAttribute("data-meetup-tier", tier);
+
     if (tier === "sold_out") {
       if (els.priceLabel) els.priceLabel.textContent = "RASPRODANO";
       if (els.priceNote) els.priceNote.textContent = "Sve ulaznice su trenutačno rasprodane.";
       setHidden(els.availability, true);
-      if (!purchaseComplete) setCtaIdle();
+      if (purchaseComplete) setCtaComplete();
+      else setCtaIdle();
       return;
     }
 
@@ -166,16 +203,27 @@
     try {
       const res = await fetch(STATUS_URL, {
         headers: { Accept: "application/json" },
+        cache: "no-store",
       });
       if (!res.ok) throw new Error(`status ${res.status}`);
       const data = await res.json();
       if (!data || typeof data !== "object") throw new Error("bad payload");
+      if (!data.currentTier) throw new Error("missing tier");
+
       return {
-        ...MOCK_STATUS,
-        ...data,
+        currency: data.currency || "eur",
+        capacityTotal: Number(data.capacityTotal) || 30,
+        earlyBirdTotal: Number(data.earlyBirdTotal) || 10,
+        earlyBirdAvailable: Math.max(0, Number(data.earlyBirdAvailable) || 0),
+        earlyBirdSold: Math.max(0, Number(data.earlyBirdSold) || 0),
+        currentTier: data.currentTier,
+        unitAmount: Number(data.unitAmount) || 2900,
+        publishableKey: data.publishableKey || "",
+        fromMock: false,
       };
     } catch (_) {
-      return { ...MOCK_STATUS };
+      // Fallback only when the live API is unreachable.
+      return { ...MOCK_STATUS, fromMock: true };
     }
   };
 
@@ -300,7 +348,13 @@
     const completed = handleReturnState();
     const next = await fetchStatus();
     applyStatus(next);
-    if (completed) setCtaComplete();
+    // Success return must keep thank-you state and must not reopen checkout.
+    if (completed) {
+      purchaseComplete = true;
+      setHidden(els.checkout, true);
+      setHidden(els.thanks, false);
+      setCtaComplete();
+    }
 
     if (els.openBtn) {
       els.openBtn.addEventListener("click", (event) => {

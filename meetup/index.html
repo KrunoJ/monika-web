@@ -769,10 +769,8 @@
             </p>
 
             <!--
-              MOCK / PLACEHOLDER - early bird availability.
-              data-early-bird-available="7" is temporary fake data for visual review only.
-              Replace later with a live count derived from Stripe ticket sales
-              (available = 10 - sold). No Stripe/API wiring yet.
+              Early bird numbers are filled from GET /api/meetup/ticket-status.
+              Markup values below are initial/fallback only when the API is unreachable.
             -->
             <div
               class="meetup-tickets__availability"
@@ -930,7 +928,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=2" defer></script>
+    <script src="../js/meetup-tickets.js?v=3" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer
