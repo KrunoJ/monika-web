@@ -8,8 +8,8 @@ Same-origin PHP endpoints for `/meetup` ticket purchase.
 | --- | --- | --- |
 | `GET` | `/api/meetup/ticket-status` | Current tier, price, early-bird availability |
 | `GET` | `/api/meetup/session-status?session_id=` | Verify Checkout Session paid state before thank-you |
-| `POST` | `/api/meetup/create-checkout` | Create Stripe Embedded Checkout Session (`quantity: 1`) |
-| `POST` | `/api/meetup/webhook` | Stripe webhook - sync inventory on `checkout.session.completed` |
+| `POST` | `/api/meetup/create-checkout` | Reserve a seat, then create Embedded Checkout Session (`quantity: 1`) |
+| `POST` | `/api/meetup/webhook` | Sync inventory on paid / expired Checkout Sessions |
 
 ## Environment / config
 
@@ -24,16 +24,17 @@ Set host env vars **or** copy `config.example.php` → `config.local.php`:
 
 Never commit `config.local.php` or secret keys.
 
-## Inventory
+## Inventory + reservations
 
-`data/inventory.json` stores sold counts:
+`data/inventory.json` stores sold counts and short-lived checkout reservations:
 
 - Seed (mock UI only): `earlyBirdSold=3` → **7 of 10** early bird still available
 - After go-live: reset `earlyBirdSold` / `totalSold` to real Stripe totals (or `0`) before trusting the meter
-- Webhook `checkout.session.completed` increments counts idempotently via `processedSessionIds`
-- `currentTier`: `early_bird` while early bird remains, then `standard`, then `sold_out` at 30
-
-`create-checkout` chooses Early bird vs Standard from inventory but does **not** increment sold counts (webhook does).
+- `create-checkout` **reserves** one seat under file lock (30 min TTL) before creating the Stripe session
+- `ticket-status` subtracts active reservations from availability / tier
+- Webhook `checkout.session.completed` increments sold counts idempotently and consumes the reservation
+- Webhook `checkout.session.expired` releases the reservation without incrementing sold
+- `currentTier`: `early_bird` while early bird remains (sold + reserved), then `standard`, then `sold_out` at 30
 
 Without Stripe keys configured, `create-checkout` returns **503** `{ "error": "checkout_unavailable" }`.
 
@@ -42,7 +43,9 @@ Without `stripe_webhook_secret`, webhook returns **503**.
 ## Stripe webhook destination
 
 - URL: `https://monikajagic.com/api/meetup/webhook`
-- Event: `checkout.session.completed`
+- Events:
+  - `checkout.session.completed`
+  - `checkout.session.expired` (needed to free reservations)
 - Paste signing secret into `stripe_webhook_secret`
 
 ## Apache
