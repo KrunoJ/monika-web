@@ -614,6 +614,59 @@
   max-width: 30rem;
 }
 
+.meetup-program__channels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.meetup-program__channels > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.meetup-program__channels > li + li::before {
+  content: "·";
+  color: color-mix(in srgb, var(--color-heading) 55%, transparent);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.meetup-program__channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-heading);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  text-decoration: none;
+  opacity: 0.82;
+}
+
+.meetup-program__channel:hover,
+.meetup-program__channel:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.meetup-program__channel-icon {
+  width: 0.95em;
+  height: 0.95em;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.meetup-program__story .meetup-program__channels {
+  margin-top: var(--space-3);
+  margin-bottom: 0;
+}
+
 .meetup-program__story .meetup-program__role {
   margin-top: 0.35rem;
 }
