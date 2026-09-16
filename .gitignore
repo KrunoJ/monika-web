@@ -3,3 +3,5 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+api/meetup/config.local.php
+api/meetup/data/inventory.json.tmp

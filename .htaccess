@@ -6,6 +6,10 @@
   RewriteCond %{HTTP_HOST} ^www\.monikajagic\.com$ [NC]
   RewriteRule ^ https://monikajagic.com%{REQUEST_URI} [R=301,L]
 
+  # Meetup ticket API (Embedded Checkout)
+  RewriteRule ^api/meetup/ticket-status/?$ api/meetup/ticket-status.php [L,QSA]
+  RewriteRule ^api/meetup/create-checkout/?$ api/meetup/create-checkout.php [L,QSA]
+
   # /index.html → /
   # /biznis-okvir/index.html → /biznis-okvir/
   RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
