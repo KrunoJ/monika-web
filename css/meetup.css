@@ -1385,7 +1385,161 @@
   }
 
   .meetup-tickets__checkout {
-    max-width: 26.5rem; /* ~424px — slightly tighter so the embed feels denser */
+    max-width: 26.5rem; /* ~424px - slightly tighter so the embed feels denser */
+  }
+}
+
+.meetup-tickets__legal {
+  margin: var(--space-4) 0 0;
+  max-width: 26.5rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: rgba(234, 230, 226, 0.68);
+}
+
+.meetup-tickets__legal a {
+  color: rgba(234, 230, 226, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.meetup-tickets__legal a:hover,
+.meetup-tickets__legal a:focus-visible {
+  color: var(--color-cream);
+}
+
+/* ——— Meetup legal documents ——— */
+
+.meetup-legal {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+  background: var(--color-bg-1);
+  color: var(--color-body);
+}
+
+.meetup-legal__inner {
+  max-width: min(100%, 51rem); /* ~816px reading width */
+}
+
+.meetup-legal__eyebrow {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+}
+
+.meetup-legal__back {
+  margin: 0 0 clamp(1.5rem, 4vw, 2.25rem);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.meetup-legal__back a {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.meetup-legal__back a:hover,
+.meetup-legal__back a:focus-visible {
+  color: var(--color-body);
+}
+
+.meetup-legal__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.meetup-legal__lede {
+  margin: var(--space-4) 0 0;
+  max-width: 36rem;
+  font-size: var(--text-md);
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.meetup-legal__meta {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.meetup-legal__meta p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.meetup-legal__body {
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.meetup-legal__body > * + * {
+  margin-top: var(--space-4);
+}
+
+.meetup-legal__body h2 {
+  margin: clamp(2rem, 5vw, 2.75rem) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.meetup-legal__body h2 + * {
+  margin-top: var(--space-3);
+}
+
+.meetup-legal__body p,
+.meetup-legal__body ul {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.meetup-legal__body ul {
+  padding-left: 1.15rem;
+}
+
+.meetup-legal__body li + li {
+  margin-top: 0.35rem;
+}
+
+.meetup-legal__body a {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.meetup-legal__body a:hover,
+.meetup-legal__body a:focus-visible {
+  color: var(--color-body);
+}
+
+.meetup-legal__updated {
+  margin-top: clamp(2rem, 5vw, 2.75rem) !important;
+  font-size: var(--text-sm) !important;
+  color: var(--color-muted) !important;
+}
+
+@media (max-width: 859px) {
+  .meetup-tickets__legal {
+    max-width: none;
+  }
+
+  .meetup-legal {
+    padding-block: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .meetup-legal__title {
+    max-width: none;
   }
 }
 
