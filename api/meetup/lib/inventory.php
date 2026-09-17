@@ -1,9 +1,9 @@
 <?php
 /**
- * Meetup ticket inventory store with short-lived checkout reservations.
+ * Meetup ticket inventory store (paid sales only).
  *
- * Default seed starts at zero sold. Reservations reduce early-bird / capacity
- * oversell while Embedded Checkout sessions are open.
+ * Default seed starts at zero sold. Soft-hold reservations are not used;
+ * availability is derived from paid webhook increments.
  */
 
 declare(strict_types=1);

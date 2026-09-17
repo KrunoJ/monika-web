@@ -32,9 +32,8 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 - [ ] Page load updates price / early-bird meter from `ticket-status` (`data-early-bird-source="live"` when API works)
 - [ ] Embedded Checkout auto-mounts in `#meetup-checkout` (no ticket-section CTA)
 - [ ] Pay with a real card (live) or Stripe test card (if using test keys)
-- [ ] Return to `/meetup/?checkout=success&session_id=...#prijava` verifies session is paid, then shows thank-you
-- [ ] Fake `?checkout=success` without valid paid `session_id` does **not** show thank-you
-- [ ] After paid return, checkout panel is hidden and thank-you is shown
+- [ ] Return to `/meetup/hvala/?session_id=...` verifies session is paid, then shows thank-you
+- [ ] Fake `/meetup/hvala/` without valid paid `session_id` does **not** show thank-you
 - [ ] When tickets are sold out, checkout stays hidden and price shows **RASPRODANO**
 
 ## Webhook + inventory
