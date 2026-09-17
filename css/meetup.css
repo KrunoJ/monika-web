@@ -1320,6 +1320,41 @@
   max-width: 26.5rem;
 }
 
+.meetup-tickets__start {
+  margin: 0;
+}
+
+.meetup-tickets__start[hidden] {
+  display: none;
+}
+
+.meetup-tickets__start-btn {
+  width: 100%;
+  min-height: 2.85rem;
+  padding-inline: 1.25rem;
+  border: 1px solid var(--color-cream);
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.meetup-tickets__start-btn:hover:not(:disabled) {
+  background: transparent;
+  color: var(--color-cream);
+  transform: translateY(-1px);
+}
+
+.meetup-tickets__start-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .meetup-tickets__checkout {
   width: 100%;
   max-width: none;

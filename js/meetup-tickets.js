@@ -33,6 +33,8 @@
     meter: section.querySelector("[data-meetup-meter]"),
     meterFill: section.querySelector("[data-meetup-meter-fill]"),
     capacity: section.querySelector("[data-meetup-capacity]"),
+    start: section.querySelector("[data-meetup-start]"),
+    startBtn: section.querySelector("[data-meetup-start-checkout]"),
     checkout: section.querySelector("[data-meetup-checkout]"),
     thanks: section.querySelector("[data-meetup-thanks]"),
     thanksTitle: section.querySelector(".meetup-tickets__thanks-title"),
@@ -72,6 +74,25 @@
       return;
     }
     els.checkout.removeAttribute("aria-busy");
+  };
+
+  const showStartPanel = () => {
+    if (purchaseComplete) {
+      setHidden(els.start, true);
+      if (els.startBtn) els.startBtn.disabled = true;
+      return;
+    }
+    if (status.currentTier === "sold_out") {
+      setHidden(els.start, true);
+      if (els.startBtn) els.startBtn.disabled = true;
+      return;
+    }
+    setHidden(els.start, false);
+    if (els.startBtn) els.startBtn.disabled = false;
+  };
+
+  const hideStartPanel = () => {
+    setHidden(els.start, true);
   };
 
   const markStatusSource = (fromMock) => {
@@ -125,6 +146,7 @@
   const showThanks = () => {
     purchaseComplete = true;
     section.setAttribute("data-meetup-purchase", "complete");
+    hideStartPanel();
     hideCheckoutPanel();
     setHidden(els.thanks, false);
     setMessage("");
@@ -141,7 +163,8 @@
   const restoreAfterCancel = () => {
     if (purchaseComplete) return;
     setMessage("");
-    setCheckoutLoading(true);
+    hideCheckoutPanel();
+    showStartPanel();
   };
 
   const applyStatus = (next) => {
@@ -168,6 +191,7 @@
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
       setHidden(els.availability, true);
+      if (!checkoutInstance && !mounting) showStartPanel();
       return;
     }
 
@@ -204,6 +228,8 @@
         els.meterFill.style.width = `${pct}%`;
       }
     }
+
+    if (!checkoutInstance && !mounting) showStartPanel();
   };
 
   const fetchStatus = async () => {
@@ -309,19 +335,23 @@
     }
     setMessage("Ulaznice su trenutačno rasprodane.");
     hideCheckoutPanel();
+    hideStartPanel();
   };
 
   const mountCheckoutInline = async () => {
     if (mounting || purchaseComplete) return;
     if (status.currentTier === "sold_out") {
       hideCheckoutPanel();
+      hideStartPanel();
       setMessage("Ulaznice su trenutačno rasprodane.");
       return;
     }
 
     mounting = true;
+    hideStartPanel();
     setMessage("");
     setCheckoutLoading(true);
+    if (els.startBtn) els.startBtn.disabled = true;
 
     try {
       const res = await fetch(CHECKOUT_URL, {
@@ -354,16 +384,16 @@
 
       await mountEmbeddedCheckout(clientSecret, publishableKey);
       setMessage("");
+
+      // Refresh availability so this seat hold is reflected in the meter.
+      const refreshed = await fetchStatus();
+      applyStatus(refreshed);
     } catch (_) {
       setMessage(
         "Plaćanje još nije povezano. Checkout API trenutačno nije dostupan - pokušaj malo kasnije."
       );
-      setCheckoutLoading(false);
-      if (els.checkout) {
-        els.checkout.innerHTML =
-          '<p class="meetup-tickets__checkout-loading">Plaćanje trenutačno nije dostupno.</p>';
-        setHidden(els.checkout, false);
-      }
+      hideCheckoutPanel();
+      showStartPanel();
     } finally {
       mounting = false;
     }
@@ -428,7 +458,15 @@
 
     const next = await fetchStatus();
     applyStatus(next);
-    await mountCheckoutInline();
+    // Do not create-checkout / reserve on page load - wait for explicit CTA click.
+    hideCheckoutPanel();
+    showStartPanel();
+
+    if (els.startBtn) {
+      els.startBtn.addEventListener("click", () => {
+        mountCheckoutInline();
+      });
+    }
   };
 
   init();

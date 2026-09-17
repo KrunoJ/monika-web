@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=36" />
+    <link rel="stylesheet" href="../css/meetup.css?v=37" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -824,14 +824,22 @@
           </div>
 
           <div class="meetup-tickets__purchase">
+            <div class="meetup-tickets__start" data-meetup-start>
+              <button
+                type="button"
+                class="btn meetup-tickets__start-btn"
+                data-meetup-start-checkout
+              >
+                Želim ulaznicu
+              </button>
+            </div>
+
             <div
               id="meetup-checkout"
               class="meetup-tickets__checkout"
               data-meetup-checkout
-              aria-busy="true"
-            >
-              <p class="meetup-tickets__checkout-loading">Učitavam plaćanje…</p>
-            </div>
+              hidden
+            ></div>
 
             <p class="meetup-tickets__legal">
               Kupnjom ulaznice potvrđuješ da prihvaćaš
@@ -943,7 +951,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=8" defer></script>
+    <script src="../js/meetup-tickets.js?v=9" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer
