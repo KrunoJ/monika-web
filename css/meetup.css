@@ -1350,6 +1350,48 @@
   color: rgba(28, 25, 23, 0.62);
 }
 
+.meetup-tickets__expired {
+  padding: 1.1rem 0.95rem 1.25rem;
+}
+
+.meetup-tickets__expired-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.meetup-tickets__expired-text {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: rgba(28, 25, 23, 0.72);
+}
+
+.meetup-tickets__expired-btn {
+  margin-top: var(--space-4);
+  min-height: 2.5rem;
+  padding-inline: 1.1rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-heading);
+  color: var(--color-cream);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.meetup-tickets__expired-btn:hover {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  transform: translateY(-1px);
+}
+
 /* Stripe Embedded Checkout mounts an iframe; keep it full-bleed inside the cream panel */
 .meetup-tickets__checkout iframe {
   display: block;

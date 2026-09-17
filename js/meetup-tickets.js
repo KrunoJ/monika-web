@@ -43,6 +43,7 @@
   let checkoutInstance = null;
   let mounting = false;
   let purchaseComplete = false;
+  let expiryTimerId = null;
 
   const euroFromCents = (cents) => String(Math.round(Number(cents) / 100));
 
@@ -50,6 +51,13 @@
     if (!el) return;
     if (hidden) el.setAttribute("hidden", "");
     else el.removeAttribute("hidden");
+  };
+
+  const clearExpiryTimer = () => {
+    if (expiryTimerId !== null) {
+      window.clearTimeout(expiryTimerId);
+      expiryTimerId = null;
+    }
   };
 
   const setMessage = (text) => {
@@ -72,6 +80,46 @@
       return;
     }
     els.checkout.removeAttribute("aria-busy");
+  };
+
+  const showSessionExpired = () => {
+    if (purchaseComplete) return;
+    clearExpiryTimer();
+    destroyCheckout();
+    if (!els.checkout) return;
+
+    els.checkout.innerHTML = `
+      <div class="meetup-tickets__expired">
+        <p class="meetup-tickets__expired-title">Checkout session je istekao</p>
+        <p class="meetup-tickets__expired-text">
+          Osvježi stranicu kako bi dobila trenutnu cijenu i novo plaćanje.
+        </p>
+        <button type="button" class="btn meetup-tickets__expired-btn" data-meetup-refresh>
+          Osvježi stranicu
+        </button>
+      </div>
+    `;
+    setHidden(els.checkout, false);
+    els.checkout.removeAttribute("aria-busy");
+
+    const refreshBtn = els.checkout.querySelector("[data-meetup-refresh]");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", () => {
+        window.location.reload();
+      });
+    }
+  };
+
+  const scheduleSessionExpiry = (expiresAtSec) => {
+    clearExpiryTimer();
+    const expiresMs = Number(expiresAtSec) * 1000;
+    if (!Number.isFinite(expiresMs) || expiresMs <= 0) return;
+
+    // Fire slightly before Stripe expiry so our UI replaces a dead iframe.
+    const delayMs = Math.max(0, expiresMs - Date.now() - 1500);
+    expiryTimerId = window.setTimeout(() => {
+      showSessionExpired();
+    }, delayMs);
   };
 
   const markStatusSource = (fromMock) => {
@@ -103,6 +151,7 @@
   };
 
   const destroyCheckout = () => {
+    clearExpiryTimer();
     if (checkoutInstance && typeof checkoutInstance.destroy === "function") {
       try {
         checkoutInstance.destroy();
@@ -271,7 +320,7 @@
       document.head.appendChild(script);
     });
 
-  const mountEmbeddedCheckout = async (clientSecret, publishableKey) => {
+  const mountEmbeddedCheckout = async (clientSecret, publishableKey, expiresAt) => {
     if (!clientSecret) throw new Error("missing clientSecret");
     if (!publishableKey) throw new Error("missing publishableKey");
 
@@ -293,6 +342,7 @@
     els.checkout.removeAttribute("aria-busy");
     checkout.mount("#meetup-checkout");
     checkoutInstance = checkout;
+    scheduleSessionExpiry(expiresAt);
   };
 
   const markSoldOutFromServer = async () => {
@@ -352,7 +402,10 @@
 
       if (!clientSecret) throw new Error("no clientSecret");
 
-      await mountEmbeddedCheckout(clientSecret, publishableKey);
+      const expiresAt =
+        Number(data && data.expiresAt) || Math.floor(Date.now() / 1000) + 30 * 60;
+
+      await mountEmbeddedCheckout(clientSecret, publishableKey, expiresAt);
       setMessage("");
     } catch (_) {
       setMessage(

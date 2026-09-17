@@ -34,11 +34,14 @@ try {
 
     $origin = meetup_api_request_origin($config);
     $returnUrl = $origin . '/meetup/hvala/?session_id={CHECKOUT_SESSION_ID}';
+    // Stripe minimum expires_at is 30 minutes from creation.
+    $expiresAt = time() + (30 * 60);
 
     $session = meetup_api_stripe_request($config['stripe_secret_key'], 'checkout/sessions', [
         'mode' => 'payment',
         'ui_mode' => 'embedded_page',
         'return_url' => $returnUrl,
+        'expires_at' => $expiresAt,
         'line_items' => [
             [
                 'price' => $selection['priceId'],
@@ -74,11 +77,14 @@ try {
         meetup_api_json_response(['error' => 'missing_client_secret'], 502);
     }
 
+    $sessionExpiresAt = (int) ($session['expires_at'] ?? $expiresAt);
+
     meetup_api_json_response([
         'clientSecret' => $clientSecret,
         'publishableKey' => (string) $config['stripe_publishable_key'],
         'tier' => $selection['tier'],
         'unitAmount' => $selection['unitAmount'],
+        'expiresAt' => $sessionExpiresAt,
     ]);
 } catch (Throwable $e) {
     $code = (int) $e->getCode();

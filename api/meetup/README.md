@@ -32,6 +32,7 @@ Never commit `config.local.php` or secret keys.
 
 - Initial state: `earlyBirdSold=0`, `totalSold=0` → **10 of 10** early bird available
 - `create-checkout` picks the current tier from sold counts (no soft-hold reservation)
+- Checkout Sessions expire after **30 minutes** (`expires_at`); stale tabs must refresh for a new price
 - Webhook `checkout.session.completed` increments sold counts idempotently
 - `currentTier`: `early_bird` while early bird remains, then `standard`, then `sold_out` at 30
 
