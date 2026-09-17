@@ -6,6 +6,7 @@
   const CHECKOUT_URL = "/api/meetup/create-checkout";
   const SESSION_STATUS_URL = "/api/meetup/session-status";
   const STRIPE_JS_URL = "https://js.stripe.com/v3/";
+  const SESSION_RE = /^cs_[A-Za-z0-9_]+$/;
 
   // Used only when GET /api/meetup/ticket-status fails (network / API down).
   const MOCK_STATUS = {
@@ -373,12 +374,15 @@
   };
 
   /**
-   * @returns {Promise<boolean>} true when purchase is confirmed paid
+   * Legacy /meetup/?checkout=success&session_id=… return URLs redirect to
+   * /meetup/hvala/ where session-status must confirm paid before thank-you UI.
+   * Never treat checkout=success alone as paid.
+   * @returns {Promise<boolean>} true when navigating away to thank-you page
    */
   const handleReturnState = async () => {
     const params = new URLSearchParams(window.location.search);
     const checkoutFlag = (params.get("checkout") || "").toLowerCase();
-    const sessionId = params.get("session_id");
+    const sessionId = (params.get("session_id") || "").trim();
 
     if (checkoutFlag === "cancel") {
       restoreAfterCancel();
@@ -389,7 +393,7 @@
     const looksLikeReturn = checkoutFlag === "success" || Boolean(sessionId);
     if (!looksLikeReturn) return false;
 
-    if (!sessionId) {
+    if (!sessionId || !SESSION_RE.test(sessionId)) {
       setMessage(
         "Potvrda plaćanja nije dostupna. Ako si platila, provjeri e-mail ili pokušaj ponovno za trenutak."
       );
@@ -397,40 +401,19 @@
       return false;
     }
 
-    try {
-      const result = await verifyPaidSession(sessionId);
-      if (result.paid === true) {
-        showThanks();
-        cleanReturnParams();
-        return true;
-      }
-
-      setMessage(
-        "Plaćanje još nije potvrđeno. Ako si upravo platila, osvježi stranicu za trenutak."
-      );
-      cleanReturnParams();
-      return false;
-    } catch (_) {
-      setMessage(
-        "Potvrda ulaznice trenutačno nije dostupna. Ako si platila, provjeri e-mail s potvrdom."
-      );
-      cleanReturnParams();
-      return false;
-    }
+    // Hand off to thank-you page; paid verification happens there via session-status.
+    window.location.replace(
+      `/meetup/hvala/?session_id=${encodeURIComponent(sessionId)}`
+    );
+    return true;
   };
 
   const init = async () => {
-    const completed = await handleReturnState();
+    const redirectingToThanks = await handleReturnState();
+    if (redirectingToThanks) return;
+
     const next = await fetchStatus();
     applyStatus(next);
-
-    if (completed) {
-      purchaseComplete = true;
-      hideCheckoutPanel();
-      setHidden(els.thanks, false);
-      return;
-    }
-
     await mountCheckoutInline();
   };
 

@@ -36,7 +36,7 @@ try {
     $reservationId = (string) $selection['reservationId'];
 
     $origin = meetup_api_request_origin($config);
-    $returnUrl = $origin . '/meetup/?checkout=success&session_id={CHECKOUT_SESSION_ID}#prijava';
+    $returnUrl = $origin . '/meetup/hvala/?session_id={CHECKOUT_SESSION_ID}';
 
     $session = meetup_api_stripe_request($config['stripe_secret_key'], 'checkout/sessions', [
         'mode' => 'payment',
