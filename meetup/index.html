@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=30" />
+    <link rel="stylesheet" href="../css/meetup.css?v=31" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -740,7 +740,7 @@
         class="meetup-tickets"
         aria-labelledby="meetup-tickets-title"
         data-early-bird-total="10"
-        data-early-bird-available="7"
+        data-early-bird-available="10"
         data-early-bird-source="mock-placeholder"
       >
         <div class="container meetup-tickets__inner">
@@ -778,7 +778,7 @@
               data-early-bird-mock="true"
             >
               <p class="meetup-tickets__availability-text">
-                <span data-early-bird-available-label>7</span> od
+                <span data-early-bird-available-label>10</span> od
                 <span data-early-bird-total-label>10</span> early bird ulaznica još je dostupno
               </p>
               <div
@@ -786,27 +786,20 @@
                 role="progressbar"
                 aria-valuemin="0"
                 aria-valuemax="10"
-                aria-valuenow="7"
+                aria-valuenow="10"
                 aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
                 data-meetup-meter
               >
                 <div
                   class="meetup-tickets__meter-fill"
-                  style="width: 70%"
+                  style="width: 100%"
                   data-early-bird-fill="mock"
                   data-meetup-meter-fill
                 ></div>
               </div>
             </div>
 
-            <div class="meetup-tickets__actions">
-              <button
-                type="button"
-                class="btn meetup-tickets__cta"
-                data-meetup-checkout-open
-              >
-                ŽELIM SVOJE MJESTO
-              </button>
+            <div class="meetup-tickets__meta">
               <p class="meetup-tickets__capacity" data-meetup-capacity>
                 Ukupno je dostupno 30 mjesta.
               </p>
@@ -821,9 +814,11 @@
             <div
               id="meetup-checkout"
               class="meetup-tickets__checkout"
-              hidden
               data-meetup-checkout
-            ></div>
+              aria-busy="true"
+            >
+              <p class="meetup-tickets__checkout-loading">Učitavam plaćanje…</p>
+            </div>
 
             <div class="meetup-tickets__thanks" hidden data-meetup-thanks>
               <h3 class="meetup-tickets__thanks-title" tabindex="-1">
@@ -928,7 +923,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=5" defer></script>
+    <script src="../js/meetup-tickets.js?v=6" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer

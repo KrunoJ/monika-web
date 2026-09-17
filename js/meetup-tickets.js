@@ -30,7 +30,6 @@
     meter: section.querySelector("[data-meetup-meter]"),
     meterFill: section.querySelector("[data-meetup-meter-fill]"),
     capacity: section.querySelector("[data-meetup-capacity]"),
-    openBtn: section.querySelector("[data-meetup-checkout-open]"),
     checkout: section.querySelector("[data-meetup-checkout]"),
     thanks: section.querySelector("[data-meetup-thanks]"),
     thanksTitle: section.querySelector(".meetup-tickets__thanks-title"),
@@ -39,7 +38,7 @@
 
   let status = { ...MOCK_STATUS };
   let checkoutInstance = null;
-  let opening = false;
+  let mounting = false;
   let purchaseComplete = false;
 
   const euroFromCents = (cents) => String(Math.round(Number(cents) / 100));
@@ -59,6 +58,17 @@
     }
     els.message.textContent = text;
     setHidden(els.message, false);
+  };
+
+  const setCheckoutLoading = (loading, label = "Učitavam plaćanje…") => {
+    if (!els.checkout) return;
+    if (loading) {
+      els.checkout.setAttribute("aria-busy", "true");
+      els.checkout.innerHTML = `<p class="meetup-tickets__checkout-loading">${label}</p>`;
+      setHidden(els.checkout, false);
+      return;
+    }
+    els.checkout.removeAttribute("aria-busy");
   };
 
   const markStatusSource = (fromMock) => {
@@ -98,52 +108,23 @@
       }
     }
     checkoutInstance = null;
-    if (els.checkout) els.checkout.innerHTML = "";
-    setHidden(els.checkout, true);
-  };
-
-  const clearCtaLoading = () => {
-    if (!els.openBtn) return;
-    els.openBtn.removeAttribute("aria-busy");
-    els.openBtn.classList.remove("is-loading");
-  };
-
-  const setCtaLoading = () => {
-    if (!els.openBtn) return;
-    els.openBtn.disabled = true;
-    els.openBtn.setAttribute("aria-busy", "true");
-    els.openBtn.classList.add("is-loading");
-    els.openBtn.textContent = "UČITAVAM…";
-  };
-
-  const setCtaIdle = () => {
-    if (!els.openBtn || purchaseComplete) return;
-    clearCtaLoading();
-    if (status.currentTier === "sold_out") {
-      els.openBtn.disabled = true;
-      els.openBtn.textContent = "RASPRODANO";
-      return;
+    if (els.checkout) {
+      els.checkout.innerHTML = "";
+      els.checkout.removeAttribute("aria-busy");
     }
-    els.openBtn.disabled = false;
-    els.openBtn.textContent = "ŽELIM SVOJE MJESTO";
-    els.openBtn.removeAttribute("aria-disabled");
   };
 
-  const setCtaComplete = () => {
-    if (!els.openBtn) return;
-    clearCtaLoading();
-    els.openBtn.disabled = true;
-    els.openBtn.setAttribute("aria-disabled", "true");
-    els.openBtn.textContent = "ULAZNICA REZERVIRANA";
+  const hideCheckoutPanel = () => {
+    destroyCheckout();
+    setHidden(els.checkout, true);
   };
 
   const showThanks = () => {
     purchaseComplete = true;
     section.setAttribute("data-meetup-purchase", "complete");
-    destroyCheckout();
+    hideCheckoutPanel();
     setHidden(els.thanks, false);
     setMessage("");
-    setCtaComplete();
 
     const title = els.thanksTitle;
     if (title) {
@@ -156,9 +137,8 @@
 
   const restoreAfterCancel = () => {
     if (purchaseComplete) return;
-    destroyCheckout();
     setMessage("");
-    setCtaIdle();
+    setCheckoutLoading(true);
   };
 
   const applyStatus = (next) => {
@@ -183,8 +163,6 @@
       if (els.priceLabel) els.priceLabel.textContent = "RASPRODANO";
       if (els.priceNote) els.priceNote.textContent = "Sve ulaznice su trenutačno rasprodane.";
       setHidden(els.availability, true);
-      if (purchaseComplete) setCtaComplete();
-      else setCtaIdle();
       return;
     }
 
@@ -211,9 +189,6 @@
         els.meterFill.style.width = `${pct}%`;
       }
     }
-
-    if (purchaseComplete) setCtaComplete();
-    else setCtaIdle();
   };
 
   const fetchStatus = async () => {
@@ -299,9 +274,10 @@
     const checkout = await initCheckout({ clientSecret });
     setHidden(els.thanks, true);
     setHidden(els.checkout, false);
+    els.checkout.innerHTML = "";
+    els.checkout.removeAttribute("aria-busy");
     checkout.mount("#meetup-checkout");
     checkoutInstance = checkout;
-    els.checkout?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
 
   const markSoldOutFromServer = async () => {
@@ -317,17 +293,20 @@
       });
     }
     setMessage("Ulaznice su trenutačno rasprodane.");
-    destroyCheckout();
-    setCtaIdle();
+    hideCheckoutPanel();
   };
 
-  const openCheckout = async () => {
-    if (opening || purchaseComplete) return;
-    if (status.currentTier === "sold_out") return;
+  const mountCheckoutInline = async () => {
+    if (mounting || purchaseComplete) return;
+    if (status.currentTier === "sold_out") {
+      hideCheckoutPanel();
+      setMessage("Ulaznice su trenutačno rasprodane.");
+      return;
+    }
 
-    opening = true;
+    mounting = true;
     setMessage("");
-    setCtaLoading();
+    setCheckoutLoading(true);
 
     try {
       const res = await fetch(CHECKOUT_URL, {
@@ -360,16 +339,18 @@
 
       await mountEmbeddedCheckout(clientSecret, publishableKey);
       setMessage("");
-      setCtaIdle();
     } catch (_) {
       setMessage(
         "Plaćanje još nije povezano. Checkout API trenutačno nije dostupan - pokušaj malo kasnije."
       );
-      destroyCheckout();
-      setCtaIdle();
+      setCheckoutLoading(false);
+      if (els.checkout) {
+        els.checkout.innerHTML =
+          '<p class="meetup-tickets__checkout-loading">Plaćanje trenutačno nije dostupno.</p>';
+        setHidden(els.checkout, false);
+      }
     } finally {
-      opening = false;
-      if (!purchaseComplete) clearCtaLoading();
+      mounting = false;
     }
   };
 
@@ -409,7 +390,6 @@
     if (!looksLikeReturn) return false;
 
     if (!sessionId) {
-      // Never trust checkout=success alone.
       setMessage(
         "Potvrda plaćanja nije dostupna. Ako si platila, provjeri e-mail ili pokušaj ponovno za trenutak."
       );
@@ -434,8 +414,6 @@
       setMessage(
         "Potvrda ulaznice trenutačno nije dostupna. Ako si platila, provjeri e-mail s potvrdom."
       );
-      // Keep session_id briefly? Prompt: verify before cleaning; on error we still clean
-      // to avoid loops, message already explains.
       cleanReturnParams();
       return false;
     }
@@ -448,18 +426,12 @@
 
     if (completed) {
       purchaseComplete = true;
-      setHidden(els.checkout, true);
+      hideCheckoutPanel();
       setHidden(els.thanks, false);
-      setCtaComplete();
+      return;
     }
 
-    if (els.openBtn) {
-      els.openBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        if (purchaseComplete) return;
-        openCheckout();
-      });
-    }
+    await mountCheckoutInline();
   };
 
   init();
