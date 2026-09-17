@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=35" />
+    <link rel="stylesheet" href="../css/meetup.css?v=36" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -761,12 +761,21 @@
 
             <div class="meetup-tickets__offer" data-meetup-offer>
               <p class="meetup-tickets__price-label" data-meetup-price-label>EARLY BIRD</p>
-              <p class="meetup-tickets__price">
-                <span class="meetup-tickets__price-value" data-meetup-price-value>29</span>
-                <span class="meetup-tickets__price-currency">€</span>
-              </p>
+
+              <div class="meetup-tickets__price-row">
+                <p class="meetup-tickets__price">
+                  <span class="meetup-tickets__price-value" data-meetup-price-value>29</span>
+                  <span class="meetup-tickets__price-currency">€</span>
+                </p>
+                <p class="meetup-tickets__price-was" data-meetup-price-was>
+                  <span data-meetup-price-was-value>45</span>&nbsp;€
+                </p>
+                <span class="meetup-tickets__price-save" data-meetup-price-save>-36%</span>
+              </div>
+
               <p class="meetup-tickets__price-note" data-meetup-price-note>
-                Prvih 10 ulaznica. Nakon toga 45 €.
+                Prvih 10 mjesta po early bird cijeni.<br />
+                Nakon toga ulaznica je 45 €.
               </p>
 
               <!--
@@ -780,7 +789,7 @@
               >
                 <p class="meetup-tickets__availability-text">
                   <span data-early-bird-available-label>10</span> od
-                  <span data-early-bird-total-label>10</span> early bird ulaznica još je dostupno
+                  <span data-early-bird-total-label>10</span> early bird mjesta još je dostupno
                 </p>
                 <div
                   class="meetup-tickets__meter"
@@ -788,7 +797,7 @@
                   aria-valuemin="0"
                   aria-valuemax="10"
                   aria-valuenow="10"
-                  aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
+                  aria-label="Dostupnost early bird mjesta (privremeni prikaz)"
                   data-meetup-meter
                 >
                   <div
@@ -802,7 +811,7 @@
 
               <div class="meetup-tickets__meta">
                 <p class="meetup-tickets__capacity" data-meetup-capacity>
-                  Ukupno je dostupno 30 mjesta.
+                  Ukupno 30 mjesta.
                 </p>
                 <p
                   class="meetup-tickets__message"
@@ -934,7 +943,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=7" defer></script>
+    <script src="../js/meetup-tickets.js?v=8" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer

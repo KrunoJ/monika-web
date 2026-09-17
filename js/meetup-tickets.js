@@ -24,6 +24,8 @@
   const els = {
     priceLabel: section.querySelector("[data-meetup-price-label]"),
     priceValue: section.querySelector("[data-meetup-price-value]"),
+    priceWas: section.querySelector("[data-meetup-price-was]"),
+    priceSave: section.querySelector("[data-meetup-price-save]"),
     priceNote: section.querySelector("[data-meetup-price-note]"),
     availability: section.querySelector("[data-meetup-availability]"),
     availableLabel: section.querySelector("[data-early-bird-available-label]"),
@@ -155,7 +157,7 @@
 
     if (els.priceValue) els.priceValue.textContent = euroFromCents(amount);
     if (els.capacity) {
-      els.capacity.textContent = `Ukupno je dostupno ${capacityTotal} mjesta.`;
+      els.capacity.textContent = `Ukupno ${capacityTotal} mjesta.`;
     }
 
     section.setAttribute("data-meetup-tier", tier);
@@ -163,6 +165,8 @@
     if (tier === "sold_out") {
       if (els.priceLabel) els.priceLabel.textContent = "RASPRODANO";
       if (els.priceNote) els.priceNote.textContent = "Sve ulaznice su trenutačno rasprodane.";
+      setHidden(els.priceWas, true);
+      setHidden(els.priceSave, true);
       setHidden(els.availability, true);
       return;
     }
@@ -172,12 +176,22 @@
       if (els.priceNote) {
         els.priceNote.textContent = "Early bird je rasprodan. Cijena ulaznice je 45 €.";
       }
+      setHidden(els.priceWas, true);
+      setHidden(els.priceSave, true);
       setHidden(els.availability, true);
     } else {
       if (els.priceLabel) els.priceLabel.textContent = "EARLY BIRD";
       if (els.priceNote) {
-        els.priceNote.textContent = `Prvih ${earlyTotal} ulaznica. Nakon toga 45 €.`;
+        els.priceNote.replaceChildren(
+          document.createTextNode(
+            `Prvih ${earlyTotal} mjesta po early bird cijeni.`
+          ),
+          document.createElement("br"),
+          document.createTextNode("Nakon toga ulaznica je 45 €.")
+        );
       }
+      setHidden(els.priceWas, false);
+      setHidden(els.priceSave, false);
       setHidden(els.availability, false);
       if (els.availableLabel) els.availableLabel.textContent = String(earlyAvailable);
       if (els.totalLabel) els.totalLabel.textContent = String(earlyTotal);

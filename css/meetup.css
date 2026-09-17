@@ -1181,7 +1181,7 @@
 
 .meetup-tickets__offer {
   margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
-  max-width: 22rem;
+  max-width: 24rem;
 }
 
 .meetup-tickets__price-label {
@@ -1193,8 +1193,16 @@
   color: rgba(234, 230, 226, 0.7);
 }
 
+.meetup-tickets__price-row {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.75rem;
+}
+
 .meetup-tickets__price {
-  margin: var(--space-2) 0 0;
+  margin: 0;
   display: flex;
   align-items: baseline;
   gap: 0.18em;
@@ -1214,10 +1222,43 @@
   letter-spacing: -0.02em;
 }
 
+.meetup-tickets__price-was {
+  margin: 0;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: rgba(234, 230, 226, 0.5);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+
+.meetup-tickets__price-was[hidden],
+.meetup-tickets__price-save[hidden] {
+  display: none;
+}
+
+.meetup-tickets__price-save {
+  display: inline-block;
+  margin: 0 0 0.1rem;
+  padding: 0.18em 0.55em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(234, 230, 226, 0.78);
+  border: 1px solid rgba(234, 230, 226, 0.28);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
 .meetup-tickets__price-note {
-  margin: var(--space-3) 0 0;
+  margin: var(--space-4) 0 0;
+  max-width: 22rem;
   font-size: var(--text-sm);
-  line-height: 1.45;
+  line-height: 1.5;
   color: rgba(234, 230, 226, 0.78);
 }
 
@@ -1247,7 +1288,7 @@
 }
 
 .meetup-tickets__meta {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .meetup-tickets__capacity {
@@ -1270,13 +1311,18 @@
 }
 
 .meetup-tickets__purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
   min-width: 0;
   width: 100%;
+  max-width: 26.5rem;
 }
 
 .meetup-tickets__checkout {
   width: 100%;
-  max-width: 30rem;
+  max-width: none;
   min-height: 12rem;
   margin: 0;
   padding: 0.35rem;
@@ -1362,7 +1408,15 @@
     font-size: clamp(1.2rem, 5vw, 1.5rem);
   }
 
+  .meetup-tickets__price-was {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+  }
+
   .meetup-tickets__offer {
+    max-width: none;
+  }
+
+  .meetup-tickets__purchase {
     max-width: none;
   }
 
@@ -1380,18 +1434,14 @@
   }
 
   .meetup-tickets__purchase {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .meetup-tickets__checkout {
-    max-width: 26.5rem; /* ~424px - slightly tighter so the embed feels denser */
+    justify-self: start;
   }
 }
 
 .meetup-tickets__legal {
   margin: var(--space-4) 0 0;
-  max-width: 26.5rem;
+  width: 100%;
+  max-width: none;
   font-size: var(--text-sm);
   line-height: 1.5;
   color: rgba(234, 230, 226, 0.68);
