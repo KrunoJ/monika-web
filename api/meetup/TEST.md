@@ -30,13 +30,12 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 ## On-page flow (`/meetup` ticket section)
 
 - [ ] Page load updates price / early-bird meter from `ticket-status` (`data-early-bird-source="live"` when API works)
-- [ ] CTA **ŽELIM SVOJE MJESTO** mounts Embedded Checkout in `#meetup-checkout`
+- [ ] Embedded Checkout auto-mounts in `#meetup-checkout` (no ticket-section CTA)
 - [ ] Pay with a real card (live) or Stripe test card (if using test keys)
 - [ ] Return to `/meetup/?checkout=success&session_id=...#prijava` verifies session is paid, then shows thank-you
 - [ ] Fake `?checkout=success` without valid paid `session_id` does **not** show thank-you
-- [ ] CTA becomes **ULAZNICA REZERVIRANA** and does not reopen checkout
-- [ ] Dismissing/cancelling embed keeps the ticket UI usable (CTA can reopen)
-- [ ] When tickets are sold out, CTA shows **RASPRODANO** (not the offline payment message)
+- [ ] After paid return, checkout panel is hidden and thank-you is shown
+- [ ] When tickets are sold out, checkout stays hidden and price shows **RASPRODANO**
 
 ## Webhook + inventory
 
@@ -55,7 +54,7 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 
 ## Mobile
 
-- [ ] Price, early-bird status, CTA, and checkout stack clearly on a phone-width screen
+- [ ] Price, early-bird status, and inline checkout stack clearly on a phone-width screen
 - [ ] Thank-you state remains readable on mobile
 
 ## Done when
