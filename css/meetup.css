@@ -4,6 +4,35 @@
   background: var(--color-bg-1);
 }
 
+/* Tan Ashford / display type on meetup is always lowercase */
+.page-meetup :is(
+  .meetup-hero__title,
+  .meetup-picture__title,
+  .meetup-picture__closing-title,
+  .meetup-program__title,
+  .meetup-program__panel-title,
+  .meetup-program__name,
+  .meetup-program__stories-title,
+  .meetup-program__story-title,
+  .meetup-program__story-quote,
+  .meetup-experience__title,
+  .meetup-experience__punch,
+  .meetup-experience__moment-title,
+  .meetup-experience__bingo,
+  .meetup-experience__goody-title,
+  .meetup-experience__goody-text,
+  .meetup-tickets__title,
+  .meetup-tickets__thanks-title,
+  .meetup-legal__title,
+  .meetup-legal__body h2,
+  .meetup-thanks__title,
+  .meetup-thanks__lead,
+  .meetup-thanks__calendar-title,
+  .meetup-supporters__mark
+) {
+  text-transform: lowercase;
+}
+
 /* ——— Hero: 50/50 photo + brick (mirrors O meni about-hero) ——— */
 
 .meetup-hero {
