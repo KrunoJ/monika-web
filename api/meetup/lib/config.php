@@ -17,6 +17,8 @@ function meetup_api_load_config(): array
         'stripe_price_early_bird' => '',
         'stripe_price_standard' => '',
         'site_origin' => '',
+        'mailer_lite_api_token' => '',
+        'mailer_lite_group_id' => '',
         'currency' => 'eur',
         'early_bird_amount' => 2900,
         'standard_amount' => 4500,
@@ -38,6 +40,8 @@ function meetup_api_load_config(): array
         'stripe_price_early_bird' => 'STRIPE_PRICE_EARLY_BIRD',
         'stripe_price_standard' => 'STRIPE_PRICE_STANDARD',
         'site_origin' => 'SITE_ORIGIN',
+        'mailer_lite_api_token' => 'MAILER_LITE_API_TOKEN',
+        'mailer_lite_group_id' => 'MAILER_LITE_GROUP_ID',
     ];
 
     $config = array_merge($defaults, $local);

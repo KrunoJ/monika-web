@@ -21,6 +21,8 @@ Set host env vars **or** copy `config.example.php` → `config.local.php`:
 - `STRIPE_PRICE_EARLY_BIRD`
 - `STRIPE_PRICE_STANDARD`
 - `SITE_ORIGIN` (optional, e.g. `https://monikajagic.com`)
+- `MAILER_LITE_API_TOKEN` (optional until go-live; meetup attendees sync)
+- `MAILER_LITE_GROUP_ID` (meetup attendees group)
 
 Never commit `config.local.php` or secret keys.
 

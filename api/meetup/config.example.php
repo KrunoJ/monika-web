@@ -17,4 +17,8 @@ return [
 
     // Optional hard-coded origin for return_url (otherwise derived from request)
     'site_origin' => 'https://monikajagic.com',
+
+    // MailerLite — meetup attendees group only (not the regular newsletter)
+    'mailer_lite_api_token' => '',
+    'mailer_lite_group_id' => '198801508107551922',
 ];

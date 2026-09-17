@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/lib/config.php';
 require __DIR__ . '/lib/inventory.php';
 require __DIR__ . '/lib/http.php';
+require __DIR__ . '/lib/mailerlite.php';
 
 /**
  * Verify Stripe-Signature header (webhook signing secret).
@@ -135,6 +136,31 @@ try {
     );
     $status = meetup_inventory_status($result['inventory'], $config);
 
+    // Secondary: sync attendee to MailerLite meetup group.
+    // Runs after inventory (incl. duplicate retries) so Stripe remains source of truth.
+    // MailerLite upsert is non-destructive and safe to repeat for the same email/group.
+    $customerDetails = is_array($session['customer_details'] ?? null)
+        ? $session['customer_details']
+        : [];
+    $email = trim((string) ($customerDetails['email'] ?? ''));
+    $individualName = trim((string) ($customerDetails['individual_name'] ?? ''));
+    $mailerlite = ['ok' => false, 'skipped' => true, 'reason' => 'missing_email'];
+    if ($email !== '') {
+        try {
+            $mailerlite = meetup_mailerlite_sync_attendee(
+                $config,
+                $email,
+                $individualName !== '' ? $individualName : null
+            );
+        } catch (Throwable $mlError) {
+            error_log(
+                'meetup mailerlite sync exception for session ' . $sessionId
+                . ': ' . $mlError->getMessage()
+            );
+            $mailerlite = ['ok' => false, 'reason' => 'exception'];
+        }
+    }
+
     meetup_api_json_response([
         'received' => true,
         'handled' => $result['duplicate'] ? 'duplicate' : 'sale_recorded',
@@ -144,6 +170,11 @@ try {
         'earlyBirdAvailable' => $status['earlyBirdAvailable'],
         'currentTier' => $status['currentTier'],
         'totalSold' => $status['totalSold'],
+        'mailerlite' => [
+            'ok' => (bool) ($mailerlite['ok'] ?? false),
+            'skipped' => (bool) ($mailerlite['skipped'] ?? false),
+            'reason' => $mailerlite['reason'] ?? null,
+        ],
     ]);
 } catch (Throwable $e) {
     meetup_api_json_response(['error' => 'inventory_update_failed'], 500);
