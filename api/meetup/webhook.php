@@ -92,17 +92,19 @@ $metadata = is_array($session['metadata'] ?? null) ? $session['metadata'] : [];
 $reservationId = (string) ($metadata['reservation_id'] ?? '');
 $tier = (string) ($metadata['tier'] ?? '');
 
-// Expired / abandoned checkouts free the reservation without incrementing sold.
+// Expired / abandoned checkouts: no soft-hold to release (legacy rows cleaned if present).
 if ($type === 'checkout.session.expired') {
-    $released = meetup_inventory_release_reservation(
-        $reservationId !== '' ? $reservationId : null,
-        $sessionId !== '' ? $sessionId : null
-    );
+    $released = false;
+    if ($reservationId !== '' || $sessionId !== '') {
+        $released = meetup_inventory_release_reservation(
+            $reservationId !== '' ? $reservationId : null,
+            $sessionId !== '' ? $sessionId : null
+        );
+    }
     meetup_api_json_response([
         'received' => true,
         'handled' => $released ? 'reservation_released' : 'ignored_expired',
         'session_id' => $sessionId,
-        'reservation_id' => $reservationId !== '' ? $reservationId : null,
     ]);
 }
 

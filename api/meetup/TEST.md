@@ -39,18 +39,17 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 
 ## Webhook + inventory
 
-- [ ] Stripe Dashboard → Webhooks includes `checkout.session.completed` **and** `checkout.session.expired`
+- [ ] Stripe Dashboard → Webhooks includes `checkout.session.completed`
 - [ ] Successful paid delivery increments `totalSold` (and `earlyBirdSold` for early-bird tier)
 - [ ] Same `session_id` delivered twice does not double-count (`processedSessionIds`)
-- [ ] Expired/abandoned checkout releases reservation (reserved counters drop)
-- [ ] `ticket-status` reflects availability after webhook / reservation changes
+- [ ] Opening `/meetup` or create-checkout does **not** reduce early-bird availability
+- [ ] `ticket-status` reflects availability only after paid webhook / sold counts change
 
-## Tier switch / oversell guard
+## Tier switch
 
-- [ ] Near the last early-bird seat, overlapping `create-checkout` calls cannot both select early bird
-- [ ] After **10** paid early-bird sales (+ no active early reservations): tier `standard`, UI **45 €**
+- [ ] After **10** paid early-bird sales: tier `standard`, UI **45 €**
 - [ ] Next `create-checkout` uses the standard price ID
-- [ ] After capacity exhausted by sold + active reservations: `409 sold_out`
+- [ ] After `totalSold` reaches capacity: `409 sold_out`
 
 ## Mobile
 

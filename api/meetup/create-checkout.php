@@ -14,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     meetup_api_json_response(['error' => 'method_not_allowed'], 405);
 }
 
-$reservationId = null;
-
 try {
     $config = meetup_api_load_config();
     $body = meetup_api_read_json_body();
@@ -28,12 +26,11 @@ try {
         meetup_api_json_response(['error' => 'checkout_unavailable'], 503);
     }
 
-    // Reserve under lock before creating the Stripe session to reduce oversell.
-    $selection = meetup_inventory_reserve_seat($config);
+    // Sold-only inventory: no soft-hold. Seat counts increase on paid webhook.
+    $selection = meetup_inventory_select_offer($config);
     if ($selection === null) {
         meetup_api_json_response(['error' => 'sold_out'], 409);
     }
-    $reservationId = (string) $selection['reservationId'];
 
     $origin = meetup_api_request_origin($config);
     $returnUrl = $origin . '/meetup/hvala/?session_id={CHECKOUT_SESSION_ID}';
@@ -51,7 +48,6 @@ try {
         'metadata' => [
             'meetup' => 'ostani-u-kontaktu',
             'tier' => $selection['tier'],
-            'reservation_id' => $reservationId,
         ],
         // Required attendee/buyer full name (native Stripe field, not a custom field).
         // Booleans as strings: http_build_query would otherwise send 1/0, which Stripe rejects.
@@ -75,30 +71,16 @@ try {
     $clientSecret = (string) ($session['client_secret'] ?? '');
     $sessionId = (string) ($session['id'] ?? '');
     if ($clientSecret === '' || $sessionId === '') {
-        if ($reservationId !== null) {
-            meetup_inventory_release_reservation($reservationId, null);
-        }
         meetup_api_json_response(['error' => 'missing_client_secret'], 502);
     }
-
-    meetup_inventory_attach_session($reservationId, $sessionId);
 
     meetup_api_json_response([
         'clientSecret' => $clientSecret,
         'publishableKey' => (string) $config['stripe_publishable_key'],
         'tier' => $selection['tier'],
         'unitAmount' => $selection['unitAmount'],
-        'reservationId' => $reservationId,
     ]);
 } catch (Throwable $e) {
-    if (is_string($reservationId) && $reservationId !== '') {
-        try {
-            meetup_inventory_release_reservation($reservationId, null);
-        } catch (Throwable $ignored) {
-            /* ignore release errors */
-        }
-    }
-
     $code = (int) $e->getCode();
     error_log('meetup create-checkout stripe error: ' . $e->getMessage());
     if ($code >= 400 && $code < 600) {

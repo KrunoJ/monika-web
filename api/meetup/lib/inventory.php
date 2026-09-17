@@ -201,7 +201,7 @@ function meetup_inventory_reserved_counts(array $inventory): array
 
 /**
  * Derive public ticket status from inventory + config amounts.
- * Availability subtracts active (non-expired) reservations.
+ * Availability is sold-only (no soft-hold reservations).
  */
 function meetup_inventory_status(array $inventory, array $config): array
 {
@@ -210,7 +210,6 @@ function meetup_inventory_status(array $inventory, array $config): array
     $earlySold = max(0, (int) ($inventory['earlyBirdSold'] ?? 0));
     $capacityTotal = max(0, (int) ($inventory['capacityTotal'] ?? 30));
     $totalSold = max(0, (int) ($inventory['totalSold'] ?? 0));
-    $reserved = meetup_inventory_reserved_counts($inventory);
 
     if ($earlySold > $earlyTotal) {
         $earlySold = $earlyTotal;
@@ -219,8 +218,8 @@ function meetup_inventory_status(array $inventory, array $config): array
         $totalSold = $capacityTotal;
     }
 
-    $earlyAvailable = max(0, $earlyTotal - $earlySold - $reserved['early']);
-    $totalAvailable = max(0, $capacityTotal - $totalSold - $reserved['all']);
+    $earlyAvailable = max(0, $earlyTotal - $earlySold);
+    $totalAvailable = max(0, $capacityTotal - $totalSold);
     $earlyAmount = (int) ($config['early_bird_amount'] ?? 2900);
     $standardAmount = (int) ($config['standard_amount'] ?? 4500);
 
@@ -246,53 +245,51 @@ function meetup_inventory_status(array $inventory, array $config): array
         'unitAmount' => $unitAmount,
         'publishableKey' => (string) ($config['stripe_publishable_key'] ?? ''),
         'totalSold' => $totalSold,
-        'reservedEarlyBird' => $reserved['early'],
-        'reservedStandard' => $reserved['standard'],
+        'reservedEarlyBird' => 0,
+        'reservedStandard' => 0,
     ];
 }
 
 /**
- * Atomically choose tier and create a reservation before Stripe session create.
+ * Choose current tier + Stripe Price ID from sold inventory (no seat soft-hold).
  *
- * @return array{tier:string,priceId:string,unitAmount:int,reservationId:string}|null
+ * @return array{tier:string,priceId:string,unitAmount:int}|null
+ */
+function meetup_inventory_select_offer(array $config): ?array
+{
+    $inventory = meetup_inventory_read();
+    $status = meetup_inventory_status($inventory, $config);
+    if ($status['currentTier'] === 'sold_out') {
+        return null;
+    }
+
+    $tier = $status['currentTier'];
+    $priceId = $tier === 'early_bird'
+        ? (string) $config['stripe_price_early_bird']
+        : (string) $config['stripe_price_standard'];
+
+    if ($priceId === '') {
+        return null;
+    }
+
+    return [
+        'tier' => $tier,
+        'priceId' => $priceId,
+        'unitAmount' => $status['unitAmount'],
+    ];
+}
+
+/**
+ * @deprecated Soft-hold reservations are no longer used; kept for webhook cleanup of legacy rows.
  */
 function meetup_inventory_reserve_seat(array $config): ?array
 {
-    return meetup_inventory_with_lock(function (array $inventory) use ($config) {
-        $status = meetup_inventory_status($inventory, $config);
-        if ($status['currentTier'] === 'sold_out') {
-            return [null, $inventory];
-        }
-
-        $tier = $status['currentTier'];
-        $priceId = $tier === 'early_bird'
-            ? (string) $config['stripe_price_early_bird']
-            : (string) $config['stripe_price_standard'];
-
-        if ($priceId === '') {
-            return [null, $inventory];
-        }
-
-        $now = time();
-        $reservationId = 'rsv_' . bin2hex(random_bytes(8));
-        $inventory['reservations'][] = [
-            'id' => $reservationId,
-            'tier' => $tier,
-            'sessionId' => null,
-            'createdAt' => $now,
-            'expiresAt' => $now + meetup_inventory_reservation_ttl_seconds(),
-        ];
-        $inventory = meetup_inventory_recompute_reserved($inventory);
-
-        $selection = [
-            'tier' => $tier,
-            'priceId' => $priceId,
-            'unitAmount' => $status['unitAmount'],
-            'reservationId' => $reservationId,
-        ];
-
-        return [$selection, $inventory];
-    });
+    $offer = meetup_inventory_select_offer($config);
+    if ($offer === null) {
+        return null;
+    }
+    $offer['reservationId'] = '';
+    return $offer;
 }
 
 function meetup_inventory_attach_session(string $reservationId, string $sessionId): void

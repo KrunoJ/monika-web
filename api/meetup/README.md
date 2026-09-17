@@ -26,16 +26,14 @@ Set host env vars **or** copy `config.example.php` → `config.local.php`:
 
 Never commit `config.local.php` or secret keys.
 
-## Inventory + reservations
+## Inventory
 
-`data/inventory.json` stores sold counts and short-lived checkout reservations:
+`data/inventory.json` stores paid sold counts only:
 
 - Initial state: `earlyBirdSold=0`, `totalSold=0` → **10 of 10** early bird available
-- `create-checkout` **reserves** one seat under file lock (30 min TTL) before creating the Stripe session
-- `ticket-status` subtracts active reservations from availability / tier
-- Webhook `checkout.session.completed` increments sold counts idempotently and consumes the reservation
-- Webhook `checkout.session.expired` releases the reservation without incrementing sold
-- `currentTier`: `early_bird` while early bird remains (sold + reserved), then `standard`, then `sold_out` at 30
+- `create-checkout` picks the current tier from sold counts (no soft-hold reservation)
+- Webhook `checkout.session.completed` increments sold counts idempotently
+- `currentTier`: `early_bird` while early bird remains, then `standard`, then `sold_out` at 30
 
 Without Stripe keys configured, `create-checkout` returns **503** `{ "error": "checkout_unavailable" }`.
 
@@ -45,8 +43,8 @@ Without `stripe_webhook_secret`, webhook returns **503**.
 
 - URL: `https://monikajagic.com/api/meetup/webhook`
 - Events:
-  - `checkout.session.completed`
-  - `checkout.session.expired` (needed to free reservations)
+  - `checkout.session.completed` (required - this is when a seat is counted as sold)
+  - `checkout.session.expired` (optional; harmless if present)
 - Paste signing secret into `stripe_webhook_secret`
 
 ## Apache
