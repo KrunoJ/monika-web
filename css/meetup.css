@@ -564,7 +564,7 @@
 .meetup-program__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-size: clamp(1.55rem, 3.2vw, 1.85rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.015em;
@@ -572,7 +572,7 @@
 }
 
 .meetup-program__name--sm {
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-size: clamp(1.45rem, 3vw, 1.7rem);
 }
 
 .meetup-program__name--moderator {
@@ -759,7 +759,7 @@
   margin: var(--space-5) 0 0;
   max-width: 22ch;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 3vw, 2.05rem);
+  font-size: clamp(1.75rem, 4vw, 2.15rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -775,7 +775,7 @@
 }
 
 .meetup-program__story-copy .meetup-program__name--sm {
-  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-size: clamp(1.55rem, 3.4vw, 1.9rem);
 }
 
 .meetup-program__story-copy .meetup-program__bio--story {
@@ -902,7 +902,7 @@
   margin: var(--space-5) 0 0;
   max-width: 32rem;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.55rem, 3.6vw, 1.95rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.015em;
@@ -965,7 +965,7 @@
   margin: var(--space-5) 0 0;
   max-width: 28rem;
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(1.35rem, 3.2vw, 1.55rem);
   font-weight: 700;
   font-style: italic;
   line-height: 1.35;
@@ -1029,7 +1029,7 @@
 .meetup-experience__goody-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+  font-size: clamp(1.65rem, 3.4vw, 2rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -1039,7 +1039,7 @@
 .meetup-experience__goody-text {
   margin: var(--space-3) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-size: clamp(1.3rem, 2.8vw, 1.5rem);
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -1798,7 +1798,7 @@
 .meetup-supporters__mark {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-size: clamp(1.45rem, 3.2vw, 1.75rem);
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -1817,6 +1817,74 @@
   .meetup-supporters__list {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.9rem;
+    gap: 1.1rem;
+  }
+
+  .meetup-supporters__mark {
+    font-size: clamp(1.55rem, 7vw, 1.85rem);
+  }
+}
+
+/* ——— Mobile type scale: names, themes, punch lines ——— */
+@media (max-width: 859px) {
+  .meetup-picture__title {
+    font-size: clamp(2.15rem, 9vw, 2.7rem);
+    max-width: none;
+  }
+
+  .meetup-program__title {
+    font-size: clamp(2.15rem, 9vw, 2.7rem);
+  }
+
+  .meetup-program__panel-title {
+    font-size: clamp(1.55rem, 5.5vw, 1.85rem);
+  }
+
+  .meetup-program__name {
+    font-size: clamp(1.7rem, 6.5vw, 2rem);
+  }
+
+  .meetup-program__name--sm,
+  .meetup-program__story-copy .meetup-program__name--sm {
+    font-size: clamp(1.7rem, 6.8vw, 2.05rem);
+  }
+
+  .meetup-program__name--moderator {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .meetup-program__story-title {
+    font-size: clamp(1.85rem, 7.2vw, 2.25rem);
+    max-width: none;
+  }
+
+  .meetup-program__role,
+  .meetup-program__brand {
+    font-size: var(--text-base);
+  }
+
+  .meetup-experience__title {
+    font-size: clamp(2.25rem, 9.5vw, 2.85rem);
+    max-width: none;
+  }
+
+  .meetup-experience__punch {
+    font-size: clamp(1.65rem, 6.5vw, 1.95rem);
+  }
+
+  .meetup-experience__bingo {
+    font-size: clamp(1.45rem, 5.8vw, 1.7rem);
+  }
+
+  .meetup-experience__moment-title {
+    font-size: clamp(1.7rem, 6.5vw, 2rem);
+  }
+
+  .meetup-experience__goody-title {
+    font-size: clamp(1.75rem, 7vw, 2.1rem);
+  }
+
+  .meetup-experience__goody-text {
+    font-size: clamp(1.4rem, 5.5vw, 1.65rem);
   }
 }
