@@ -53,6 +53,14 @@ try {
             'tier' => $selection['tier'],
             'reservation_id' => $reservationId,
         ],
+        // Session branding for embedded_page (Brick/cream meetup offer).
+        // Stripe accepts only these fields — not text color, font size, or spacing.
+        'branding_settings' => [
+            'background_color' => '#f2e5d5',
+            'button_color' => '#a45f43',
+            'font_family' => 'inter',
+            'border_style' => 'rounded',
+        ],
         // Do not pass payment_method_types - use Dashboard dynamic methods.
     ]);
 
