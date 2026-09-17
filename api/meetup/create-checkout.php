@@ -53,6 +53,14 @@ try {
             'tier' => $selection['tier'],
             'reservation_id' => $reservationId,
         ],
+        // Required attendee/buyer full name (native Stripe field, not a custom field).
+        // Booleans as strings: http_build_query would otherwise send 1/0, which Stripe rejects.
+        'name_collection' => [
+            'individual' => [
+                'enabled' => 'true',
+                'optional' => 'false',
+            ],
+        ],
         // Session branding for embedded_page (Brick/cream meetup offer).
         // Stripe accepts only these fields — not text color, font size, or spacing.
         'branding_settings' => [
