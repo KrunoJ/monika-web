@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="../css/main.css?v=meetup-hero-1" />
     <link rel="stylesheet" href="../css/mh-visual.css?v=1" />
-    <link rel="stylesheet" href="../css/meetup.css?v=31" />
+    <link rel="stylesheet" href="../css/meetup.css?v=32" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -744,73 +744,77 @@
         data-early-bird-source="mock-placeholder"
       >
         <div class="container meetup-tickets__inner">
-          <header class="meetup-tickets__header">
-            <p class="section-label meetup-tickets__label">// TVOJE MJESTO</p>
-            <h2 id="meetup-tickets-title" class="meetup-tickets__title">Vidimo se 4.11.?</h2>
+          <div class="meetup-tickets__info">
+            <header class="meetup-tickets__header">
+              <p class="section-label meetup-tickets__label">// TVOJE MJESTO</p>
+              <h2 id="meetup-tickets-title" class="meetup-tickets__title">Vidimo se 4.11.?</h2>
 
-            <div class="meetup-tickets__facts">
-              <p>4.11.2026. · Salon 6, Zagreb</p>
-              <p>Dolazak od 17:30 · program počinje u 18:00</p>
-            </div>
+              <div class="meetup-tickets__facts">
+                <p>4.11.2026. · Salon 6, Zagreb</p>
+                <p>Dolazak od 17:30 · program počinje u 18:00</p>
+              </div>
 
-            <p class="meetup-tickets__support">
-              Uz cijeli program čekaju te i networking, catering i piće te goody bag.
-            </p>
-          </header>
-
-          <div class="meetup-tickets__offer" data-meetup-offer>
-            <p class="meetup-tickets__price-label" data-meetup-price-label>EARLY BIRD</p>
-            <p class="meetup-tickets__price">
-              <span class="meetup-tickets__price-value" data-meetup-price-value>29</span>
-              <span class="meetup-tickets__price-currency">€</span>
-            </p>
-            <p class="meetup-tickets__price-note" data-meetup-price-note>
-              Prvih 10 ulaznica. Nakon toga 45 €.
-            </p>
-
-            <!--
-              Early bird numbers are filled from GET /api/meetup/ticket-status.
-              Markup values below are initial/fallback only when the API is unreachable.
-            -->
-            <div
-              class="meetup-tickets__availability"
-              data-meetup-availability
-              data-early-bird-mock="true"
-            >
-              <p class="meetup-tickets__availability-text">
-                <span data-early-bird-available-label>10</span> od
-                <span data-early-bird-total-label>10</span> early bird ulaznica još je dostupno
+              <p class="meetup-tickets__support">
+                Uz cijeli program čekaju te i networking, catering i piće te goody bag.
               </p>
+            </header>
+
+            <div class="meetup-tickets__offer" data-meetup-offer>
+              <p class="meetup-tickets__price-label" data-meetup-price-label>EARLY BIRD</p>
+              <p class="meetup-tickets__price">
+                <span class="meetup-tickets__price-value" data-meetup-price-value>29</span>
+                <span class="meetup-tickets__price-currency">€</span>
+              </p>
+              <p class="meetup-tickets__price-note" data-meetup-price-note>
+                Prvih 10 ulaznica. Nakon toga 45 €.
+              </p>
+
+              <!--
+                Early bird numbers are filled from GET /api/meetup/ticket-status.
+                Markup values below are initial/fallback only when the API is unreachable.
+              -->
               <div
-                class="meetup-tickets__meter"
-                role="progressbar"
-                aria-valuemin="0"
-                aria-valuemax="10"
-                aria-valuenow="10"
-                aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
-                data-meetup-meter
+                class="meetup-tickets__availability"
+                data-meetup-availability
+                data-early-bird-mock="true"
               >
+                <p class="meetup-tickets__availability-text">
+                  <span data-early-bird-available-label>10</span> od
+                  <span data-early-bird-total-label>10</span> early bird ulaznica još je dostupno
+                </p>
                 <div
-                  class="meetup-tickets__meter-fill"
-                  style="width: 100%"
-                  data-early-bird-fill="mock"
-                  data-meetup-meter-fill
-                ></div>
+                  class="meetup-tickets__meter"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="10"
+                  aria-valuenow="10"
+                  aria-label="Dostupnost early bird ulaznica (privremeni prikaz)"
+                  data-meetup-meter
+                >
+                  <div
+                    class="meetup-tickets__meter-fill"
+                    style="width: 100%"
+                    data-early-bird-fill="mock"
+                    data-meetup-meter-fill
+                  ></div>
+                </div>
+              </div>
+
+              <div class="meetup-tickets__meta">
+                <p class="meetup-tickets__capacity" data-meetup-capacity>
+                  Ukupno je dostupno 30 mjesta.
+                </p>
+                <p
+                  class="meetup-tickets__message"
+                  data-meetup-checkout-message
+                  role="status"
+                  hidden
+                ></p>
               </div>
             </div>
+          </div>
 
-            <div class="meetup-tickets__meta">
-              <p class="meetup-tickets__capacity" data-meetup-capacity>
-                Ukupno je dostupno 30 mjesta.
-              </p>
-              <p
-                class="meetup-tickets__message"
-                data-meetup-checkout-message
-                role="status"
-                hidden
-              ></p>
-            </div>
-
+          <div class="meetup-tickets__purchase">
             <div
               id="meetup-checkout"
               class="meetup-tickets__checkout"
