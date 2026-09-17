@@ -12,8 +12,8 @@
     currency: "eur",
     capacityTotal: 30,
     earlyBirdTotal: 10,
-    earlyBirdAvailable: 7,
-    earlyBirdSold: 3,
+    earlyBirdAvailable: 10,
+    earlyBirdSold: 0,
     currentTier: "early_bird",
     unitAmount: 2900,
     publishableKey: "",
@@ -291,7 +291,12 @@
     destroyCheckout();
 
     const stripe = StripeCtor(publishableKey);
-    const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+    // Dahlia API: initEmbeddedCheckout renamed to createEmbeddedCheckoutPage
+    const initCheckout =
+      typeof stripe.createEmbeddedCheckoutPage === "function"
+        ? stripe.createEmbeddedCheckoutPage.bind(stripe)
+        : stripe.initEmbeddedCheckout.bind(stripe);
+    const checkout = await initCheckout({ clientSecret });
     setHidden(els.thanks, true);
     setHidden(els.checkout, false);
     checkout.mount("#meetup-checkout");

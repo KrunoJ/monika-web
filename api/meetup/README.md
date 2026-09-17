@@ -28,8 +28,7 @@ Never commit `config.local.php` or secret keys.
 
 `data/inventory.json` stores sold counts and short-lived checkout reservations:
 
-- Seed (mock UI only): `earlyBirdSold=3` → **7 of 10** early bird still available
-- After go-live: reset `earlyBirdSold` / `totalSold` to real Stripe totals (or `0`) before trusting the meter
+- Initial state: `earlyBirdSold=0`, `totalSold=0` → **10 of 10** early bird available
 - `create-checkout` **reserves** one seat under file lock (30 min TTL) before creating the Stripe session
 - `ticket-status` subtracts active reservations from availability / tier
 - Webhook `checkout.session.completed` increments sold counts idempotently and consumes the reservation

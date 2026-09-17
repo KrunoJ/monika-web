@@ -1,13 +1,13 @@
 {
-  "earlyBirdTotal": 10,
-  "earlyBirdSold": 3,
-  "capacityTotal": 30,
-  "totalSold": 3,
-  "currency": "eur",
-  "updatedAt": "2026-09-16T00:00:00+00:00",
-  "source": "mock-placeholder",
-  "processedSessionIds": [],
-  "reservations": [],
-  "reservedEarlyBird": 0,
-  "reservedStandard": 0
+    "earlyBirdTotal": 10,
+    "earlyBirdSold": 0,
+    "capacityTotal": 30,
+    "totalSold": 0,
+    "currency": "eur",
+    "updatedAt": "2026-09-17T08:15:18+00:00",
+    "source": "live-ready",
+    "processedSessionIds": [],
+    "reservations": [],
+    "reservedEarlyBird": 0,
+    "reservedStandard": 0
 }

@@ -2,9 +2,8 @@
 /**
  * Meetup ticket inventory store with short-lived checkout reservations.
  *
- * Seed sold counts below are MOCK until go-live. Reset earlyBirdSold/totalSold
- * before trusting the meter. Reservations reduce early-bird / capacity oversell
- * while Embedded Checkout sessions are open.
+ * Default seed starts at zero sold. Reservations reduce early-bird / capacity
+ * oversell while Embedded Checkout sessions are open.
  */
 
 declare(strict_types=1);
@@ -23,13 +22,12 @@ function meetup_inventory_default(): array
 {
     return [
         'earlyBirdTotal' => 10,
-        // MOCK seed - replace/reset at go-live before trusting counts
-        'earlyBirdSold' => 3,
+        'earlyBirdSold' => 0,
         'capacityTotal' => 30,
-        'totalSold' => 3,
+        'totalSold' => 0,
         'currency' => 'eur',
         'updatedAt' => gmdate('c'),
-        'source' => 'mock-placeholder',
+        'source' => 'live-ready',
         'processedSessionIds' => [],
         'reservations' => [],
         'reservedEarlyBird' => 0,

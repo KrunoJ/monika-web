@@ -40,7 +40,7 @@ try {
 
     $session = meetup_api_stripe_request($config['stripe_secret_key'], 'checkout/sessions', [
         'mode' => 'payment',
-        'ui_mode' => 'embedded',
+        'ui_mode' => 'embedded_page',
         'return_url' => $returnUrl,
         'line_items' => [
             [

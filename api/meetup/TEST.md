@@ -11,7 +11,7 @@ No secrets in this file. Use `api/meetup/config.local.php` (gitignored) for keys
 - [ ] API + `/meetup` files are deployed to the same host as the webhook URL
 - [ ] Stripe webhook destination points to `https://monikajagic.com/api/meetup/webhook`
 - [ ] Event enabled: `checkout.session.completed`
-- [ ] At go-live, reset `data/inventory.json` sold counts to real totals (or `0`) if the mock seed (`earlyBirdSold: 3`) should not remain
+- [ ] `data/inventory.json` starts at `earlyBirdSold: 0` / `totalSold: 0` (no mock sold counts)
 
 ## API smoke checks
 
@@ -23,7 +23,7 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 ```
 
 - [ ] `ticket-status` returns JSON with `currentTier`, `earlyBirdAvailable`, `unitAmount`, `publishableKey`
-- [ ] With mock/default seed: early bird available is `7` of `10`, `unitAmount` `2900`, tier `early_bird`
+- [ ] With initial seed: early bird available is `10` of `10`, `unitAmount` `2900`, tier `early_bird`
 - [ ] `create-checkout` returns `{ "clientSecret": "...", "publishableKey": "pk_..." }` when keys + prices are set
 - [ ] Without keys/prices: `create-checkout` returns `503` `{ "error": "checkout_unavailable" }`
 
