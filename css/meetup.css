@@ -1120,7 +1120,7 @@
 /* ——— Tickets / purchase (closing) ——— */
 
 .meetup-tickets {
-  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
   background: var(--color-heading);
   color: var(--color-cream);
   border-bottom: 0;
@@ -1180,7 +1180,7 @@
 }
 
 .meetup-tickets__offer {
-  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
   max-width: 22rem;
 }
 
@@ -1279,7 +1279,7 @@
   max-width: 30rem;
   min-height: 12rem;
   margin: 0;
-  padding: 0.65rem;
+  padding: 0.35rem;
   background: #f2e5d5;
   color: var(--color-ink);
   border: 0;
@@ -1376,7 +1376,7 @@
   .meetup-tickets__inner {
     grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
     column-gap: clamp(4rem, 5.5vw, 5rem);
-    align-items: center;
+    align-items: start;
   }
 
   .meetup-tickets__purchase {
@@ -1385,7 +1385,7 @@
   }
 
   .meetup-tickets__checkout {
-    max-width: 28.5rem; /* ~456px useful checkout width */
+    max-width: 26.5rem; /* ~424px — slightly tighter so the embed feels denser */
   }
 }
 
