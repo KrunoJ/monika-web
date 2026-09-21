@@ -356,32 +356,45 @@
   .meetup-picture__split {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(2rem, 4vw, 3.5rem);
-    align-items: start;
+    /* Center the full Hourglass unit against the left copy column */
+    align-items: center;
   }
 
   .meetup-picture__title {
     max-width: 16ch;
   }
 
+  .meetup-picture__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+  }
+
+  /* ~17% larger than prior 24rem desktop size; still leaves generous whitespace */
   .meetup-picture__hourglass {
-    max-width: min(100%, 24rem); /* ~25% smaller than prior 32rem */
-    margin-inline: 0 0;
-    justify-self: start;
+    max-width: min(100%, 28rem);
+    margin-inline: auto;
+  }
+
+  .meetup-picture__hourglass .mh-funnel-row {
+    gap: 0.75rem;
   }
 
   .meetup-picture__hourglass .mh-axis {
-    width: 6rem;
+    width: 7rem;
+    gap: 0.8rem;
   }
 
   .meetup-picture__hourglass .mh-axis-label {
-    font-size: 1rem;
-    max-width: 6rem;
+    font-size: 1.15rem;
+    max-width: 7rem;
   }
 
   .meetup-picture__hourglass .mh-axis-arrow {
-    width: 1.45rem;
-    max-width: 1.45rem;
-    height: 9rem;
+    width: 1.7rem;
+    max-width: 1.7rem;
+    height: 10.5rem;
   }
 }
 
