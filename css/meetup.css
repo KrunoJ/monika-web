@@ -8,6 +8,7 @@
 .page-meetup :is(
   .meetup-hero__title,
   .meetup-picture__title,
+  .meetup-picture__note .closing-note__lead,
   .meetup-program__title,
   .meetup-program__panel-title,
   .meetup-program__name,
@@ -395,6 +396,23 @@
     width: 1.7rem;
     max-width: 1.7rem;
     height: 10.5rem;
+  }
+}
+
+/* Editorial closing note below the split (reuses .closing-note--editorial) */
+.meetup-picture__note {
+  margin-top: clamp(2.5rem, 6vw, 3.75rem);
+  margin-bottom: 0;
+  max-width: min(46rem, 100%);
+}
+
+@media (max-width: 699px) {
+  .meetup-picture__note {
+    margin-top: clamp(1.85rem, 5vw, 2.5rem);
+  }
+
+  .meetup-picture__note .closing-note__lead {
+    font-size: clamp(1.45rem, 6.2vw, 1.7rem);
   }
 }
 
