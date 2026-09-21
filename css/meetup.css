@@ -27,6 +27,7 @@
   .meetup-legal__body h2,
   .meetup-thanks__title,
   .meetup-thanks__calendar-title,
+  .meetup-thanks__lead,
   .meetup-supporters__mark
 ) {
   text-transform: lowercase;
@@ -1792,10 +1793,11 @@
 
 .meetup-thanks__lead {
   margin: 0;
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
-  font-weight: 500;
-  line-height: 1.4;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
   color: var(--color-heading);
 }
 
