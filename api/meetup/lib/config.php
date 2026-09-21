@@ -22,6 +22,15 @@ function meetup_api_load_config(): array
         'currency' => 'eur',
         'early_bird_amount' => 2900,
         'standard_amount' => 4500,
+        // Organizer sale notify (authenticated SMTP; host-only secrets)
+        'organizer_notify_to' => '',
+        'organizer_notify_from' => '',
+        'organizer_notify_from_name' => 'OSTANI U KONTAKTU.',
+        'smtp_host' => '',
+        'smtp_port' => 465,
+        'smtp_username' => '',
+        'smtp_password' => '',
+        'smtp_encryption' => 'ssl',
     ];
 
     $localFile = __DIR__ . '/../config.local.php';
@@ -42,13 +51,25 @@ function meetup_api_load_config(): array
         'site_origin' => 'SITE_ORIGIN',
         'mailer_lite_api_token' => 'MAILER_LITE_API_TOKEN',
         'mailer_lite_group_id' => 'MAILER_LITE_GROUP_ID',
+        'organizer_notify_to' => 'MEETUP_ORGANIZER_NOTIFY_TO',
+        'organizer_notify_from' => 'MEETUP_ORGANIZER_NOTIFY_FROM',
+        'organizer_notify_from_name' => 'MEETUP_ORGANIZER_NOTIFY_FROM_NAME',
+        'smtp_host' => 'MEETUP_SMTP_HOST',
+        'smtp_port' => 'MEETUP_SMTP_PORT',
+        'smtp_username' => 'MEETUP_SMTP_USERNAME',
+        'smtp_password' => 'MEETUP_SMTP_PASSWORD',
+        'smtp_encryption' => 'MEETUP_SMTP_ENCRYPTION',
     ];
 
     $config = array_merge($defaults, $local);
     foreach ($envMap as $key => $envName) {
         $value = getenv($envName);
         if (is_string($value) && $value !== '') {
-            $config[$key] = $value;
+            if ($key === 'smtp_port') {
+                $config[$key] = (int) $value;
+            } else {
+                $config[$key] = $value;
+            }
         }
     }
 

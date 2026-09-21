@@ -5,6 +5,7 @@ require __DIR__ . '/lib/config.php';
 require __DIR__ . '/lib/inventory.php';
 require __DIR__ . '/lib/http.php';
 require __DIR__ . '/lib/mailerlite.php';
+require __DIR__ . '/lib/notify.php';
 
 /**
  * Verify Stripe-Signature header (webhook signing secret).
@@ -163,6 +164,32 @@ try {
         }
     }
 
+    // Tertiary: organizer email for newly applied paid sales only (never on Stripe retries).
+    // Non-critical: failures are logged and never fail inventory or MailerLite.
+    $notify = ['ok' => false, 'skipped' => true, 'reason' => 'not_new_sale'];
+    if (!empty($result['applied'])) {
+        try {
+            $amountTotal = (int) ($session['amount_total'] ?? 0);
+            $notify = meetup_notify_organizer_sale($config, [
+                'buyer_name' => $individualName,
+                'buyer_email' => $email,
+                'tier' => $tier,
+                'amount_total' => $amountTotal,
+                'total_sold' => (int) ($status['totalSold'] ?? 0),
+                'capacity_total' => (int) ($status['capacityTotal'] ?? 30),
+                'early_bird_sold' => (int) ($status['earlyBirdSold'] ?? 0),
+                'early_bird_total' => (int) ($status['earlyBirdTotal'] ?? 10),
+                'session_id' => $sessionId,
+            ]);
+        } catch (Throwable $notifyError) {
+            error_log(
+                'meetup organizer notify exception for session ' . $sessionId
+                . ': ' . $notifyError->getMessage()
+            );
+            $notify = ['ok' => false, 'reason' => 'exception'];
+        }
+    }
+
     meetup_api_json_response([
         'received' => true,
         'handled' => $result['duplicate'] ? 'duplicate' : 'sale_recorded',
@@ -176,6 +203,11 @@ try {
             'ok' => (bool) ($mailerlite['ok'] ?? false),
             'skipped' => (bool) ($mailerlite['skipped'] ?? false),
             'reason' => $mailerlite['reason'] ?? null,
+        ],
+        'organizer_notify' => [
+            'ok' => (bool) ($notify['ok'] ?? false),
+            'skipped' => (bool) ($notify['skipped'] ?? false),
+            'reason' => $notify['reason'] ?? null,
         ],
     ]);
 } catch (Throwable $e) {
