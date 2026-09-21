@@ -1767,7 +1767,7 @@
 }
 
 .meetup-thanks__legal {
-  margin: clamp(1.35rem, 3.5vw, 1.85rem) 0 0;
+  margin: clamp(2.25rem, 5.5vw, 3rem) 0 0;
   font-family: var(--font-body);
   font-size: var(--text-sm);
   line-height: 1.45;
@@ -1836,7 +1836,7 @@
 }
 
 .meetup-thanks__venue-note {
-  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
+  margin: 0 0 clamp(0.65rem, 1.8vw, 0.9rem);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -1848,7 +1848,7 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
 }

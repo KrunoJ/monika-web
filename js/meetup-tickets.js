@@ -143,28 +143,38 @@
     }
   };
 
-  const setMeter = (available, total, label) => {
+  const setMeter = (value, total, label) => {
+    const safeTotal = Math.max(0, Number(total) || 0);
+    const safeValue = Math.max(0, Math.min(safeTotal, Number(value) || 0));
     if (els.meter) {
-      els.meter.setAttribute("aria-valuemax", String(total));
-      els.meter.setAttribute("aria-valuenow", String(available));
+      els.meter.setAttribute("aria-valuemax", String(safeTotal));
+      els.meter.setAttribute("aria-valuenow", String(safeValue));
       els.meter.setAttribute("aria-label", label);
     }
     if (els.meterFill) {
-      const pct = total > 0 ? Math.round((available / total) * 100) : 0;
+      const pct = safeTotal > 0 ? Math.round((safeValue / safeTotal) * 100) : 0;
       els.meterFill.style.width = `${pct}%`;
     }
   };
 
-  const setAvailabilityCopy = (available, total, kind) => {
+  const earlyBirdAvailabilityCopy = (available, total) =>
+    `${available} od ${total} early bird mjesta još je dostupno`;
+
+  const regularAvailabilityCopy = (available, total) => {
+    if (available <= 0) return "Sva mjesta su popunjena.";
+    const verb = available === 1 ? "je dostupno" : "su dostupna";
+    return `Još ${available} od ${total} mjesta ${verb}.`;
+  };
+
+  const setAvailabilityCopy = (text) => {
     if (els.availabilityText) {
-      if (kind === "early_bird") {
-        els.availabilityText.textContent = `${available} od ${total} early bird mjesta još je dostupno`;
-      } else {
-        els.availabilityText.textContent = `${available} od ${total} mjesta još je dostupno`;
-      }
-    } else {
-      if (els.availableLabel) els.availableLabel.textContent = String(available);
-      if (els.totalLabel) els.totalLabel.textContent = String(total);
+      els.availabilityText.textContent = text;
+      return;
+    }
+    if (els.availableLabel || els.totalLabel) {
+      // Fallback markup without the combined text node.
+      if (els.availableLabel) els.availableLabel.textContent = "";
+      if (els.totalLabel) els.totalLabel.textContent = "";
     }
   };
 
@@ -234,29 +244,39 @@
 
     if (tier === "sold_out") {
       if (els.priceLabel) els.priceLabel.textContent = "RASPRODANO";
-      if (els.priceNote) els.priceNote.textContent = "Sve ulaznice su trenutačno rasprodane.";
+      setHidden(els.priceLabel, false);
+      if (els.priceNote) els.priceNote.textContent = "";
+      setHidden(els.priceNote, true);
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
-      setHidden(els.availability, true);
+      setHidden(els.availability, false);
+      setAvailabilityCopy("Sva mjesta su popunjena.");
+      setMeter(
+        capacityTotal,
+        capacityTotal,
+        `Popunjenost meetupa${mockSuffix}`
+      );
       return;
     }
 
     if (tier === "standard") {
-      if (els.priceLabel) els.priceLabel.textContent = "STANDARD";
-      if (els.priceNote) {
-        els.priceNote.textContent = "Early bird je rasprodan. Cijena ulaznice je 45 €.";
-      }
+      setHidden(els.priceLabel, true);
+      if (els.priceNote) els.priceNote.textContent = "";
+      setHidden(els.priceNote, true);
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
       setHidden(els.availability, false);
-      setAvailabilityCopy(totalAvailable, capacityTotal, "standard");
+      setAvailabilityCopy(regularAvailabilityCopy(totalAvailable, capacityTotal));
+      // Progress = sold / total capacity (continues after Early Bird, no empty reset).
       setMeter(
-        totalAvailable,
+        totalSold,
         capacityTotal,
-        `Dostupnost ulaznica${mockSuffix}`
+        `Popunjenost meetupa${mockSuffix}`
       );
     } else {
       if (els.priceLabel) els.priceLabel.textContent = "EARLY BIRD";
+      setHidden(els.priceLabel, false);
+      setHidden(els.priceNote, false);
       if (els.priceNote) {
         els.priceNote.replaceChildren(
           document.createTextNode(
@@ -269,7 +289,7 @@
       setHidden(els.priceWas, false);
       setHidden(els.priceSave, false);
       setHidden(els.availability, false);
-      setAvailabilityCopy(earlyAvailable, earlyTotal, "early_bird");
+      setAvailabilityCopy(earlyBirdAvailabilityCopy(earlyAvailable, earlyTotal));
       setMeter(
         earlyAvailable,
         earlyTotal,
