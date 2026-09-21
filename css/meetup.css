@@ -1982,6 +1982,12 @@
   letter-spacing: -0.01em;
   line-height: 1.2;
   color: color-mix(in srgb, var(--color-heading) 78%, transparent);
+  text-decoration: none;
+}
+
+a.meetup-supporters__mark:hover,
+a.meetup-supporters__mark:focus-visible {
+  color: var(--color-heading);
 }
 
 .meetup-supporters__mark img {
