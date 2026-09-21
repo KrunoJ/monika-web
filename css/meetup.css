@@ -1037,6 +1037,10 @@
   color: var(--color-heading);
 }
 
+.meetup-experience__bingo-word {
+  text-transform: none;
+}
+
 .meetup-experience__attribution {
   margin: var(--space-4) 0 0;
   font-size: var(--text-sm);
