@@ -26,7 +26,6 @@
   .meetup-legal__title,
   .meetup-legal__body h2,
   .meetup-thanks__title,
-  .meetup-thanks__lead,
   .meetup-thanks__calendar-title,
   .meetup-supporters__mark
 ) {
@@ -1684,29 +1683,61 @@
   max-width: min(100%, 40rem);
 }
 
-.meetup-thanks__eyebrow {
-  margin: 0 0 var(--space-3);
-  color: var(--color-muted);
+.meetup-thanks__nav {
+  margin: 0 0 clamp(1.25rem, 3.5vw, 1.75rem);
+}
+
+.meetup-thanks__back-link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+.meetup-thanks__back-link:hover,
+.meetup-thanks__back-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
 }
 
 .meetup-thanks__title {
   margin: 0;
   max-width: 18ch;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.5vw, 2.75rem);
+  font-size: clamp(2.45rem, 7vw, 3.5rem);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--color-heading);
 }
 
+.meetup-thanks__heart {
+  display: inline-block;
+  font-size: 0.2em;
+  line-height: 1;
+  vertical-align: 0.55em;
+  margin-left: 0.15em;
+}
+
+.meetup-thanks__event {
+  margin: clamp(0.85rem, 2.5vw, 1.15rem) 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.85rem, 5.5vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+  text-transform: lowercase;
+}
+
 .meetup-thanks__lead {
-  margin: clamp(1rem, 3vw, 1.35rem) 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.6vw, 1.35rem);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  margin: clamp(0.55rem, 1.8vw, 0.75rem) 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--color-heading);
 }
 
@@ -1726,8 +1757,32 @@
   margin-top: var(--space-3);
 }
 
+.meetup-thanks__legal {
+  margin: clamp(1.5rem, 4vw, 2rem) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.meetup-thanks__legal a {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.meetup-thanks__legal a:hover,
+.meetup-thanks__legal a:focus-visible {
+  color: var(--color-body);
+}
+
+.meetup-thanks__legal-sep {
+  margin-inline: 0.45em;
+  color: var(--color-muted);
+}
+
 .meetup-thanks__calendar {
-  margin-top: clamp(2rem, 5vw, 2.75rem);
+  margin-top: clamp(1.5rem, 4vw, 2rem);
   padding-top: clamp(1.35rem, 3.5vw, 1.75rem);
   border-top: 1px solid var(--color-border);
 }
@@ -1735,9 +1790,9 @@
 .meetup-thanks__calendar-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.8vw, 1.45rem);
+  font-size: clamp(1.45rem, 3.8vw, 1.95rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-heading);
 }
@@ -1765,6 +1820,21 @@
   color: var(--color-heading);
 }
 
+.meetup-thanks__venue {
+  margin: clamp(1.75rem, 4.5vw, 2.5rem) 0 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.meetup-thanks__venue img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
 .meetup-thanks__back {
   margin: clamp(1.5rem, 4vw, 2rem) 0 0;
 }
@@ -1782,6 +1852,15 @@
 
   .meetup-thanks__title {
     max-width: none;
+    font-size: clamp(2.35rem, 9.5vw, 2.85rem);
+  }
+
+  .meetup-thanks__event {
+    font-size: clamp(1.75rem, 8vw, 2.15rem);
+  }
+
+  .meetup-thanks__calendar-title {
+    font-size: clamp(1.4rem, 6.5vw, 1.7rem);
   }
 
   .meetup-thanks__calendar-actions {
