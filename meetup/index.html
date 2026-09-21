@@ -195,8 +195,9 @@
               ovaj meetup je za tebe ako već gradiš svoj biznis
             </p>
             <p class="closing-note__body">
-              i želiš bolje razumjeti gdje email može imati svoje mjesto u njemu. Ne trebaš pritom
-              već imati newsletter ni razrađen email marketing sustav.
+              i želiš bolje razumjeti kako email povezati s ostatkom poslovanja i odnosom koji
+              gradiš s publikom i kupcima. Nije važno tek razmišljaš li o newsletteru ili ga već
+              koristiš kao dio svog poslovanja.
             </p>
           </div>
         </div>
@@ -692,14 +693,13 @@
 
           <div class="meetup-experience__catering">
             <figure class="meetup-experience__catering-media">
-              <!-- catering image: Adorable -->
               <picture>
                 <source
-                  srcset="../assets/images/meetup/adorable-catering-wide.webp?v=2"
+                  srcset="../assets/images/meetup/meetup-catering-wide.webp?v=1"
                   type="image/webp"
                 />
                 <img
-                  src="../assets/images/meetup/adorable-catering-wide.jpg?v=2"
+                  src="../assets/images/meetup/meetup-catering-wide.jpg?v=1"
                   alt="Catering by Adorable"
                   width="1920"
                   height="1080"
@@ -772,7 +772,8 @@
               </p>
 
               <!--
-                Early bird numbers are filled from GET /api/meetup/ticket-status.
+                Availability numbers are filled from GET /api/meetup/ticket-status
+                (early bird remaining / total capacity remaining after early bird).
                 Markup values below are initial/fallback only when the API is unreachable.
               -->
               <div
@@ -780,7 +781,7 @@
                 data-meetup-availability
                 data-early-bird-mock="true"
               >
-                <p class="meetup-tickets__availability-text">
+                <p class="meetup-tickets__availability-text" data-meetup-availability-text>
                   <span data-early-bird-available-label>10</span> od
                   <span data-early-bird-total-label>10</span> early bird mjesta još je dostupno
                 </p>
@@ -936,7 +937,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=9" defer></script>
+    <script src="../js/meetup-tickets.js?v=11" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer

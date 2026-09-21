@@ -15,6 +15,7 @@
     earlyBirdTotal: 10,
     earlyBirdAvailable: 10,
     earlyBirdSold: 0,
+    totalSold: 0,
     currentTier: "early_bird",
     unitAmount: 2900,
     publishableKey: "",
@@ -28,6 +29,7 @@
     priceSave: section.querySelector("[data-meetup-price-save]"),
     priceNote: section.querySelector("[data-meetup-price-note]"),
     availability: section.querySelector("[data-meetup-availability]"),
+    availabilityText: section.querySelector("[data-meetup-availability-text]"),
     availableLabel: section.querySelector("[data-early-bird-available-label]"),
     totalLabel: section.querySelector("[data-early-bird-total-label]"),
     meter: section.querySelector("[data-meetup-meter]"),
@@ -139,14 +141,40 @@
         fromMock ? "mock" : "live"
       );
     }
+  };
 
+  const setMeter = (value, total, label) => {
+    const safeTotal = Math.max(0, Number(total) || 0);
+    const safeValue = Math.max(0, Math.min(safeTotal, Number(value) || 0));
     if (els.meter) {
-      els.meter.setAttribute(
-        "aria-label",
-        fromMock
-          ? "Dostupnost early bird ulaznica (privremeni prikaz)"
-          : "Dostupnost early bird ulaznica"
-      );
+      els.meter.setAttribute("aria-valuemax", String(safeTotal));
+      els.meter.setAttribute("aria-valuenow", String(safeValue));
+      els.meter.setAttribute("aria-label", label);
+    }
+    if (els.meterFill) {
+      const pct = safeTotal > 0 ? Math.round((safeValue / safeTotal) * 100) : 0;
+      els.meterFill.style.width = `${pct}%`;
+    }
+  };
+
+  const earlyBirdAvailabilityCopy = (available, total) =>
+    `${available} od ${total} early bird mjesta još je dostupno`;
+
+  const regularAvailabilityCopy = (available, total) => {
+    if (available <= 0) return "Sva mjesta su popunjena.";
+    const verb = available === 1 ? "je dostupno" : "su dostupna";
+    return `Još ${available} od ${total} mjesta ${verb}.`;
+  };
+
+  const setAvailabilityCopy = (text) => {
+    if (els.availabilityText) {
+      els.availabilityText.textContent = text;
+      return;
+    }
+    if (els.availableLabel || els.totalLabel) {
+      // Fallback markup without the combined text node.
+      if (els.availableLabel) els.availableLabel.textContent = "";
+      if (els.totalLabel) els.totalLabel.textContent = "";
     }
   };
 
@@ -202,7 +230,10 @@
     const earlyTotal = Number(next.earlyBirdTotal) || 10;
     const earlyAvailable = Math.max(0, Number(next.earlyBirdAvailable) || 0);
     const capacityTotal = Number(next.capacityTotal) || 30;
+    const totalSold = Math.max(0, Number(next.totalSold) || 0);
+    const totalAvailable = Math.max(0, capacityTotal - totalSold);
     const amount = Number(next.unitAmount) || (tier === "standard" ? 4500 : 2900);
+    const mockSuffix = fromMock ? " (privremeni prikaz)" : "";
 
     if (els.priceValue) els.priceValue.textContent = euroFromCents(amount);
     if (els.capacity) {
@@ -213,23 +244,39 @@
 
     if (tier === "sold_out") {
       if (els.priceLabel) els.priceLabel.textContent = "RASPRODANO";
-      if (els.priceNote) els.priceNote.textContent = "Sve ulaznice su trenutačno rasprodane.";
+      setHidden(els.priceLabel, false);
+      if (els.priceNote) els.priceNote.textContent = "";
+      setHidden(els.priceNote, true);
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
-      setHidden(els.availability, true);
+      setHidden(els.availability, false);
+      setAvailabilityCopy("Sva mjesta su popunjena.");
+      setMeter(
+        capacityTotal,
+        capacityTotal,
+        `Popunjenost meetupa${mockSuffix}`
+      );
       return;
     }
 
     if (tier === "standard") {
-      if (els.priceLabel) els.priceLabel.textContent = "STANDARD";
-      if (els.priceNote) {
-        els.priceNote.textContent = "Early bird je rasprodan. Cijena ulaznice je 45 €.";
-      }
+      setHidden(els.priceLabel, true);
+      if (els.priceNote) els.priceNote.textContent = "";
+      setHidden(els.priceNote, true);
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
-      setHidden(els.availability, true);
+      setHidden(els.availability, false);
+      setAvailabilityCopy(regularAvailabilityCopy(totalAvailable, capacityTotal));
+      // Progress = sold / total capacity (continues after Early Bird, no empty reset).
+      setMeter(
+        totalSold,
+        capacityTotal,
+        `Popunjenost meetupa${mockSuffix}`
+      );
     } else {
       if (els.priceLabel) els.priceLabel.textContent = "EARLY BIRD";
+      setHidden(els.priceLabel, false);
+      setHidden(els.priceNote, false);
       if (els.priceNote) {
         els.priceNote.replaceChildren(
           document.createTextNode(
@@ -242,16 +289,12 @@
       setHidden(els.priceWas, false);
       setHidden(els.priceSave, false);
       setHidden(els.availability, false);
-      if (els.availableLabel) els.availableLabel.textContent = String(earlyAvailable);
-      if (els.totalLabel) els.totalLabel.textContent = String(earlyTotal);
-      if (els.meter) {
-        els.meter.setAttribute("aria-valuemax", String(earlyTotal));
-        els.meter.setAttribute("aria-valuenow", String(earlyAvailable));
-      }
-      if (els.meterFill) {
-        const pct = earlyTotal > 0 ? Math.round((earlyAvailable / earlyTotal) * 100) : 0;
-        els.meterFill.style.width = `${pct}%`;
-      }
+      setAvailabilityCopy(earlyBirdAvailabilityCopy(earlyAvailable, earlyTotal));
+      setMeter(
+        earlyAvailable,
+        earlyTotal,
+        `Dostupnost early bird ulaznica${mockSuffix}`
+      );
     }
   };
 
@@ -272,6 +315,7 @@
         earlyBirdTotal: Number(data.earlyBirdTotal) || 10,
         earlyBirdAvailable: Math.max(0, Number(data.earlyBirdAvailable) || 0),
         earlyBirdSold: Math.max(0, Number(data.earlyBirdSold) || 0),
+        totalSold: Math.max(0, Number(data.totalSold) || 0),
         currentTier: data.currentTier,
         unitAmount: Number(data.unitAmount) || 2900,
         publishableKey: data.publishableKey || "",
