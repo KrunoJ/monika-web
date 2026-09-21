@@ -1724,10 +1724,10 @@
 
 .meetup-thanks__heart {
   display: inline-block;
-  font-size: 0.42em;
+  font-size: 0.2em;
   line-height: 1;
-  vertical-align: 0.18em;
-  margin-left: 0.08em;
+  vertical-align: 0.55em;
+  margin-left: 0.15em;
 }
 
 .meetup-thanks__event {
