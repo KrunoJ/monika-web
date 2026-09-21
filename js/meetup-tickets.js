@@ -15,6 +15,7 @@
     earlyBirdTotal: 10,
     earlyBirdAvailable: 10,
     earlyBirdSold: 0,
+    totalSold: 0,
     currentTier: "early_bird",
     unitAmount: 2900,
     publishableKey: "",
@@ -28,6 +29,7 @@
     priceSave: section.querySelector("[data-meetup-price-save]"),
     priceNote: section.querySelector("[data-meetup-price-note]"),
     availability: section.querySelector("[data-meetup-availability]"),
+    availabilityText: section.querySelector("[data-meetup-availability-text]"),
     availableLabel: section.querySelector("[data-early-bird-available-label]"),
     totalLabel: section.querySelector("[data-early-bird-total-label]"),
     meter: section.querySelector("[data-meetup-meter]"),
@@ -139,14 +141,30 @@
         fromMock ? "mock" : "live"
       );
     }
+  };
 
+  const setMeter = (available, total, label) => {
     if (els.meter) {
-      els.meter.setAttribute(
-        "aria-label",
-        fromMock
-          ? "Dostupnost early bird ulaznica (privremeni prikaz)"
-          : "Dostupnost early bird ulaznica"
-      );
+      els.meter.setAttribute("aria-valuemax", String(total));
+      els.meter.setAttribute("aria-valuenow", String(available));
+      els.meter.setAttribute("aria-label", label);
+    }
+    if (els.meterFill) {
+      const pct = total > 0 ? Math.round((available / total) * 100) : 0;
+      els.meterFill.style.width = `${pct}%`;
+    }
+  };
+
+  const setAvailabilityCopy = (available, total, kind) => {
+    if (els.availabilityText) {
+      if (kind === "early_bird") {
+        els.availabilityText.textContent = `${available} od ${total} early bird mjesta još je dostupno`;
+      } else {
+        els.availabilityText.textContent = `${available} od ${total} mjesta još je dostupno`;
+      }
+    } else {
+      if (els.availableLabel) els.availableLabel.textContent = String(available);
+      if (els.totalLabel) els.totalLabel.textContent = String(total);
     }
   };
 
@@ -202,7 +220,10 @@
     const earlyTotal = Number(next.earlyBirdTotal) || 10;
     const earlyAvailable = Math.max(0, Number(next.earlyBirdAvailable) || 0);
     const capacityTotal = Number(next.capacityTotal) || 30;
+    const totalSold = Math.max(0, Number(next.totalSold) || 0);
+    const totalAvailable = Math.max(0, capacityTotal - totalSold);
     const amount = Number(next.unitAmount) || (tier === "standard" ? 4500 : 2900);
+    const mockSuffix = fromMock ? " (privremeni prikaz)" : "";
 
     if (els.priceValue) els.priceValue.textContent = euroFromCents(amount);
     if (els.capacity) {
@@ -227,7 +248,13 @@
       }
       setHidden(els.priceWas, true);
       setHidden(els.priceSave, true);
-      setHidden(els.availability, true);
+      setHidden(els.availability, false);
+      setAvailabilityCopy(totalAvailable, capacityTotal, "standard");
+      setMeter(
+        totalAvailable,
+        capacityTotal,
+        `Dostupnost ulaznica${mockSuffix}`
+      );
     } else {
       if (els.priceLabel) els.priceLabel.textContent = "EARLY BIRD";
       if (els.priceNote) {
@@ -242,16 +269,12 @@
       setHidden(els.priceWas, false);
       setHidden(els.priceSave, false);
       setHidden(els.availability, false);
-      if (els.availableLabel) els.availableLabel.textContent = String(earlyAvailable);
-      if (els.totalLabel) els.totalLabel.textContent = String(earlyTotal);
-      if (els.meter) {
-        els.meter.setAttribute("aria-valuemax", String(earlyTotal));
-        els.meter.setAttribute("aria-valuenow", String(earlyAvailable));
-      }
-      if (els.meterFill) {
-        const pct = earlyTotal > 0 ? Math.round((earlyAvailable / earlyTotal) * 100) : 0;
-        els.meterFill.style.width = `${pct}%`;
-      }
+      setAvailabilityCopy(earlyAvailable, earlyTotal, "early_bird");
+      setMeter(
+        earlyAvailable,
+        earlyTotal,
+        `Dostupnost early bird ulaznica${mockSuffix}`
+      );
     }
   };
 
@@ -272,6 +295,7 @@
         earlyBirdTotal: Number(data.earlyBirdTotal) || 10,
         earlyBirdAvailable: Math.max(0, Number(data.earlyBirdAvailable) || 0),
         earlyBirdSold: Math.max(0, Number(data.earlyBirdSold) || 0),
+        totalSold: Math.max(0, Number(data.totalSold) || 0),
         currentTier: data.currentTier,
         unitAmount: Number(data.unitAmount) || 2900,
         publishableKey: data.publishableKey || "",

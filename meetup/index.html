@@ -772,7 +772,8 @@
               </p>
 
               <!--
-                Early bird numbers are filled from GET /api/meetup/ticket-status.
+                Availability numbers are filled from GET /api/meetup/ticket-status
+                (early bird remaining / total capacity remaining after early bird).
                 Markup values below are initial/fallback only when the API is unreachable.
               -->
               <div
@@ -780,7 +781,7 @@
                 data-meetup-availability
                 data-early-bird-mock="true"
               >
-                <p class="meetup-tickets__availability-text">
+                <p class="meetup-tickets__availability-text" data-meetup-availability-text>
                   <span data-early-bird-available-label>10</span> od
                   <span data-early-bird-total-label>10</span> early bird mjesta još je dostupno
                 </p>
@@ -936,7 +937,7 @@
 
     <script src="../js/main.js?v=polish-1" defer></script>
     <script src="../js/mh-visual.js?v=1" defer></script>
-    <script src="../js/meetup-tickets.js?v=9" defer></script>
+    <script src="../js/meetup-tickets.js?v=10" defer></script>
     <script
       src="../js/analytics.js?v=cookie-ui-1"
       defer

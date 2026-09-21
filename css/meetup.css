@@ -1684,7 +1684,7 @@
 }
 
 .meetup-thanks__nav {
-  margin: 0 0 clamp(1.25rem, 3.5vw, 1.75rem);
+  margin: 0 0 clamp(1rem, 2.8vw, 1.35rem);
 }
 
 .meetup-thanks__back-link {
@@ -1700,6 +1700,11 @@
 .meetup-thanks__back-link:focus-visible {
   text-decoration: underline;
   text-underline-offset: 0.14em;
+}
+
+.meetup-thanks__eyebrow {
+  margin: 0 0 var(--space-3);
+  color: var(--color-heading);
 }
 
 .meetup-thanks__title {
@@ -1722,18 +1727,22 @@
 }
 
 .meetup-thanks__event {
-  margin: clamp(0.85rem, 2.5vw, 1.15rem) 0 0;
+  margin: clamp(0.45rem, 1.5vw, 0.65rem) 0 0;
   font-family: var(--font-body);
-  font-size: clamp(1.85rem, 5.5vw, 2.65rem);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: var(--color-heading);
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
   text-transform: uppercase;
 }
 
+.meetup-thanks__confirm {
+  margin-top: clamp(1rem, 2.8vw, 1.35rem);
+}
+
 .meetup-thanks__lead {
-  margin: clamp(0.55rem, 1.8vw, 0.75rem) 0 0;
+  margin: 0;
   font-family: var(--font-body);
   font-size: clamp(1.05rem, 2.4vw, 1.2rem);
   font-weight: 500;
@@ -1743,22 +1752,22 @@
 
 .meetup-thanks__text,
 .meetup-thanks__body p {
-  margin: clamp(0.9rem, 2.5vw, 1.15rem) 0 0;
+  margin: 0.65rem 0 0;
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--color-body);
 }
 
 .meetup-thanks__body {
-  margin-top: clamp(0.35rem, 1.5vw, 0.5rem);
+  margin-top: 0.35rem;
 }
 
 .meetup-thanks__body p + p {
-  margin-top: var(--space-3);
+  margin-top: 0.55rem;
 }
 
 .meetup-thanks__legal {
-  margin: clamp(1.5rem, 4vw, 2rem) 0 0;
+  margin: clamp(1.35rem, 3.5vw, 1.85rem) 0 0;
   font-family: var(--font-body);
   font-size: var(--text-sm);
   line-height: 1.45;
@@ -1766,14 +1775,14 @@
 }
 
 .meetup-thanks__legal a {
-  color: var(--color-heading);
+  color: var(--color-muted);
   text-decoration: underline;
   text-underline-offset: 0.14em;
 }
 
 .meetup-thanks__legal a:hover,
 .meetup-thanks__legal a:focus-visible {
-  color: var(--color-body);
+  color: var(--color-heading);
 }
 
 .meetup-thanks__legal-sep {
@@ -1826,11 +1835,20 @@
   overflow: hidden;
 }
 
+.meetup-thanks__venue-note {
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-heading);
+}
+
 .meetup-thanks__venue img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   object-position: center;
 }
@@ -1856,7 +1874,7 @@
   }
 
   .meetup-thanks__event {
-    font-size: clamp(1.75rem, 8vw, 2.15rem);
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
   }
 
   .meetup-thanks__calendar-title {

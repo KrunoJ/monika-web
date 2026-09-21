@@ -37,7 +37,7 @@
     />
 
     <link rel="stylesheet" href="../../css/main.css?v=meetup-hero-1" />
-    <link rel="stylesheet" href="../../css/meetup.css?v=42" />
+    <link rel="stylesheet" href="../../css/meetup.css?v=43" />
 
     <script>
       document.documentElement.classList.add("js");
@@ -123,26 +123,23 @@
             <p class="meetup-thanks__nav">
               <a class="meetup-thanks__back-link" href="/meetup/">← Natrag na event</a>
             </p>
+            <p class="section-label meetup-thanks__eyebrow">// USPJEŠNA PRIJAVA</p>
             <h1 class="meetup-thanks__title">
               Vidimo se 4.11. <span class="meetup-thanks__heart" aria-hidden="true">🧡</span>
             </h1>
             <p class="meetup-thanks__event">OSTANI U KONTAKTU.</p>
-            <p class="meetup-thanks__lead">Tvoje mjesto na meetupu je rezervirano.</p>
-            <div class="meetup-thanks__body">
-              <p>
-                Potvrda uspješne uplate stiže ti na email putem Stripea, a fiskalizirani račun
-                primit ćeš zasebnim mailom putem Minimax sustava.
-              </p>
-              <p>
-                Prije meetupa javit ću ti se i s praktičnim informacijama o dolasku i programu.
-              </p>
+            <div class="meetup-thanks__confirm">
+              <p class="meetup-thanks__lead">Tvoje mjesto na meetupu je rezervirano.</p>
+              <div class="meetup-thanks__body">
+                <p>
+                  Potvrda uspješne uplate stiže ti na email putem Stripea, a fiskalizirani račun
+                  primit ćeš zasebnim mailom putem Minimax sustava.
+                </p>
+                <p>
+                  Prije meetupa javit ću ti se i s praktičnim informacijama o dolasku i programu.
+                </p>
+              </div>
             </div>
-
-            <p class="meetup-thanks__legal">
-              <a href="../uvjeti-kupnje/">Uvjeti kupnje</a>
-              <span class="meetup-thanks__legal-sep" aria-hidden="true">·</span>
-              <a href="../privatnost/">Privatnost</a>
-            </p>
 
             <div class="meetup-thanks__calendar">
               <h2 class="meetup-thanks__calendar-title">Spremi datum u kalendar</h2>
@@ -164,21 +161,28 @@
             </div>
 
             <figure class="meetup-thanks__venue">
+              <p class="meetup-thanks__venue-note">A ovdje se vidimo. :)</p>
               <picture>
                 <source
-                  srcset="../../assets/images/meetup/salon-6.webp"
+                  srcset="../../assets/images/meetup/meetup-catering.webp?v=2"
                   type="image/webp"
                 />
                 <img
-                  src="../../assets/images/meetup/salon-6.jpg"
-                  alt="Salon 6, Zagreb - prostor meetupa"
-                  width="2400"
-                  height="1800"
+                  src="../../assets/images/meetup/meetup-catering.jpg?v=2"
+                  alt="Catering na meetupu OSTANI U KONTAKTU."
+                  width="1600"
+                  height="2400"
                   loading="lazy"
                   decoding="async"
                 />
               </picture>
             </figure>
+
+            <p class="meetup-thanks__legal">
+              <a href="../uvjeti-kupnje/">Uvjeti kupnje</a>
+              <span class="meetup-thanks__legal-sep" aria-hidden="true">·</span>
+              <a href="../privatnost/">Privatnost</a>
+            </p>
           </div>
 
           <div class="meetup-thanks__invalid" data-meetup-thanks-invalid hidden>

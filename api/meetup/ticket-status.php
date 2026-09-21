@@ -26,6 +26,7 @@ try {
         'earlyBirdTotal' => $status['earlyBirdTotal'],
         'earlyBirdAvailable' => $status['earlyBirdAvailable'],
         'earlyBirdSold' => $status['earlyBirdSold'],
+        'totalSold' => $status['totalSold'],
         'currentTier' => $status['currentTier'],
         'unitAmount' => $status['unitAmount'],
         'publishableKey' => $status['publishableKey'],
