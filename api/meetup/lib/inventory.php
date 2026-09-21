@@ -2,13 +2,19 @@
 /**
  * Meetup ticket inventory store (paid sales only).
  *
- * Default seed starts at zero sold. Soft-hold reservations are not used;
- * availability is derived from paid webhook increments.
+ * Runtime file is inventory.local.json (gitignored) so deploys cannot overwrite sold counts.
+ * Soft-hold reservations are not used; availability is derived from paid webhook increments.
  */
 
 declare(strict_types=1);
 
 function meetup_inventory_path(): string
+{
+    return __DIR__ . '/../data/inventory.local.json';
+}
+
+/** Legacy path (was git-tracked); used only for one-time migration to .local.json. */
+function meetup_inventory_legacy_path(): string
 {
     return __DIR__ . '/../data/inventory.json';
 }
@@ -33,6 +39,39 @@ function meetup_inventory_default(): array
         'reservedEarlyBird' => 0,
         'reservedStandard' => 0,
     ];
+}
+
+/**
+ * Ensure the runtime local store exists.
+ * Prefer copying legacy inventory.json when local is missing (one-time migrate).
+ */
+function meetup_inventory_ensure_store(): void
+{
+    $path = meetup_inventory_path();
+    if (is_file($path)) {
+        return;
+    }
+
+    $dir = dirname($path);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
+    $legacy = meetup_inventory_legacy_path();
+    if (is_file($legacy)) {
+        $raw = file_get_contents($legacy);
+        if (is_string($raw) && $raw !== '') {
+            $decoded = json_decode($raw, true);
+            if (is_array($decoded)) {
+                $inventory = meetup_inventory_normalize($decoded);
+                $inventory['source'] = (string) ($inventory['source'] ?? 'migrated-from-legacy');
+                meetup_inventory_write($inventory);
+                return;
+            }
+        }
+    }
+
+    meetup_inventory_write(meetup_inventory_default());
 }
 
 function meetup_inventory_normalize(array $data): array
@@ -73,6 +112,7 @@ function meetup_inventory_write_unlocked($fh, array $inventory): array
  */
 function meetup_inventory_with_lock(callable $fn)
 {
+    meetup_inventory_ensure_store();
     $path = meetup_inventory_path();
     $dir = dirname($path);
     if (!is_dir($dir)) {
@@ -109,6 +149,7 @@ function meetup_inventory_with_lock(callable $fn)
 
 function meetup_inventory_read(): array
 {
+    meetup_inventory_ensure_store();
     $path = meetup_inventory_path();
     if (!is_file($path)) {
         $seed = meetup_inventory_default();

@@ -11,7 +11,8 @@ No secrets in this file. Use `api/meetup/config.local.php` (gitignored) for keys
 - [ ] API + `/meetup` files are deployed to the same host as the webhook URL
 - [ ] Stripe webhook destination points to `https://monikajagic.com/api/meetup/webhook`
 - [ ] Event enabled: `checkout.session.completed`
-- [ ] `data/inventory.json` starts at `earlyBirdSold: 0` / `totalSold: 0` (no mock sold counts)
+- [ ] Runtime store is `data/inventory.local.json` (gitignored). Use `inventory.example.json` only as a docs seed.
+- [ ] On a fresh environment, `inventory.local.json` may be created automatically at `earlyBirdSold: 0` / `totalSold: 0`
 
 ## API smoke checks
 
@@ -59,4 +60,4 @@ curl -s -X POST https://monikajagic.com/api/meetup/create-checkout \
 
 1. One full purchase completes on `/meetup`
 2. Webhook updates inventory
-3. Early-bird → standard switch is verified (or simulated by editing sold counts carefully in `inventory.json` for a dry run)
+3. Early-bird → standard switch is verified (or simulated by editing sold counts carefully in `inventory.local.json` for a dry run)
