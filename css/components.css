@@ -95,8 +95,8 @@
 .site-announce__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
   width: min(100% - (var(--page-pad) * 2), var(--content-max));
   margin-inline: auto;
   padding: 0.4rem 0;
