@@ -80,7 +80,7 @@
 
 .site-announce {
   display: block;
-  background: var(--color-heading);
+  background: #7f92a6;
   color: var(--color-cream);
   text-decoration: none;
   transition: filter 0.18s ease;

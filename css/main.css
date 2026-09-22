@@ -446,7 +446,7 @@ button {
 
 .site-announce {
   display: block;
-  background: var(--color-heading);
+  background: #7f92a6;
   color: var(--color-cream);
   text-decoration: none;
   transition: filter 0.18s ease;
@@ -463,7 +463,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  width: min(100% - 2 * var(--space-4), var(--container));
+  width: min(100% - (var(--page-pad) * 2), var(--content-max));
   margin-inline: auto;
   padding: 0.4rem 0;
   font-family: var(--font-body);
@@ -500,9 +500,6 @@ button {
 @media (max-width: 767px) {
   .site-announce__inner {
     justify-content: center;
-    width: 100%;
-    padding-inline: var(--space-4);
-    box-sizing: border-box;
   }
 
   .site-announce__full,
