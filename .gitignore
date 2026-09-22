@@ -13,3 +13,5 @@ api/meetup/tools/*.key
 api/meetup/data/.force-sold-29-done
 
 api/meetup/data/.force-reset-sold-0-done
+
+api/meetup/data/.force-reset-sold-0b-done
