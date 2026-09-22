@@ -25,6 +25,9 @@
     if (path.includes("/dizajn-e-knjiga") || path.includes("/landing-stranice")) {
       return null;
     }
+    if (path.includes("/meetup")) {
+      return null;
+    }
     if (path.includes("/biznis-okvir") || path.includes("/case-study")) {
       return "biznis-okvir";
     }
