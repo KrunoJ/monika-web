@@ -17,6 +17,10 @@ function meetup_mailerlite_configured(array $config): bool
  * MailerLite docs: POST /api/subscribers is create/update and non-destructive —
  * omitting groups/fields does not remove existing ones; listing a group only adds it.
  *
+ * Ticket purchase is enough to be on the operational attendees list, so we send
+ * resubscribe=true. Without it, MailerLite returns 422 for previously unsubscribed
+ * contacts and never adds them to the meetup group.
+ *
  * @return array{ok:bool, skipped?:bool, reason?:string, http_status?:int}
  */
 function meetup_mailerlite_sync_attendee(array $config, string $email, ?string $fullName): array
@@ -36,6 +40,8 @@ function meetup_mailerlite_sync_attendee(array $config, string $email, ?string $
     $payload = [
         'email' => $email,
         'groups' => [$groupId],
+        // Required for previously unsubscribed contacts (operational meetup group).
+        'resubscribe' => true,
     ];
 
     $fullName = $fullName !== null ? trim($fullName) : '';
@@ -45,8 +51,6 @@ function meetup_mailerlite_sync_attendee(array $config, string $email, ?string $
             'name' => $fullName,
         ];
     }
-
-    // Do not send status / resubscribe — avoid changing marketing consent or other groups.
 
     $ch = curl_init('https://connect.mailerlite.com/api/subscribers');
     if ($ch === false) {
