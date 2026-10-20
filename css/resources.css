@@ -95,6 +95,78 @@
   box-shadow: none;
 }
 
+.res-course__thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0;
+  color: inherit;
+}
+
+.res-course__thumb:hover .res-media--course,
+.res-course__thumb:focus-visible .res-media--course {
+  border-color: color-mix(in srgb, var(--color-heading) 45%, var(--color-border));
+}
+
+.res-course__thumb:hover .res-play,
+.res-course__thumb:focus-visible .res-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.res-course__thumb:focus-visible {
+  outline: none;
+}
+
+.res-course__thumb:focus-visible .res-media--course {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.res-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--color-cream);
+  background: color-mix(in srgb, var(--color-heading) 72%, transparent);
+  transform: translate(-50%, -50%);
+  opacity: 0.92;
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  pointer-events: none;
+}
+
+.res-play svg {
+  display: block;
+}
+
+.res-course__duration {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.5rem;
+  z-index: 1;
+  padding: 0.18rem 0.42rem;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--color-cream);
+  background: color-mix(in srgb, var(--color-body) 78%, transparent);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .res-course__title {
   font-size: clamp(1.35rem, 2.4vw, 1.65rem);
   max-width: 18ch;
@@ -108,34 +180,84 @@
   line-height: var(--leading-body);
 }
 
-.res-course__meta {
-  margin-top: 0.85rem;
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  letter-spacing: 0.01em;
+/* Course video modal */
+body.res-modal-open {
+  overflow: hidden;
 }
 
-.res-course__meta-label {
-  font-weight: 600;
-  color: var(--color-body);
-  margin-right: 0.35rem;
+.res-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2rem);
 }
 
-.res-course__action {
-  margin-top: 1rem;
+.res-modal[hidden] {
+  display: none;
 }
 
-.res-course__link {
+.res-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-body) 62%, transparent);
+}
+
+.res-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 56rem);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border-strong);
+  padding: clamp(1.75rem, 4vw, 2.25rem) clamp(0.85rem, 3vw, 1.5rem)
+    clamp(0.85rem, 3vw, 1.5rem);
+}
+
+.res-modal__close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.45rem;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
-  font-size: var(--text-ui);
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-body);
+  font-size: 1.65rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.res-course__pending {
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  font-style: italic;
+.res-modal__close:hover,
+.res-modal__close:focus-visible {
+  color: var(--color-heading);
+}
+
+.res-modal__close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.res-modal__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #1a120e;
+  overflow: hidden;
+}
+
+.res-modal__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* —— Članci (editorial list) —— */
