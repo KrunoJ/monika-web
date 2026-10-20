@@ -114,28 +114,6 @@
       .join("");
   };
 
-  const renderEbook = (root) => {
-    const ebook = data.ebook || {};
-    const cover = (ebook.cover || "").trim();
-    const coverHtml = cover
-      ? `<img class="res-ebook__cover-img" src="${escapeHtml(cover)}" alt="" width="480" height="640" loading="lazy" decoding="async" />`
-      : `<div class="res-ebook__cover-placeholder" aria-hidden="true"><span>naslovnica</span></div>`;
-
-    const cta = hasUrl(ebook.url)
-      ? `<a class="btn btn--on-dark res-ebook__cta" href="${escapeHtml(ebook.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ebook.cta || "Saznaj više")}</a>`
-      : "";
-
-    root.innerHTML = `
-      <div class="res-ebook__visual">${coverHtml}</div>
-      <div class="res-ebook__copy">
-        <p class="section-label res-ebook__label">// e-knjiga</p>
-        <h2 id="resources-ebook-title" class="res-ebook__title">${escapeHtml(ebook.title)}</h2>
-        <p class="res-ebook__desc">${escapeHtml(ebook.description)}</p>
-        ${cta}
-      </div>
-    `;
-  };
-
   const renderYoutubeMore = (root) => {
     if (!hasUrl(data.youtubeChannel)) {
       root.hidden = true;
@@ -152,12 +130,10 @@
   const coursesRoot = document.querySelector("[data-res-courses]");
   const articlesRoot = document.querySelector("[data-res-articles]");
   const tutorialsRoot = document.querySelector("[data-res-tutorials]");
-  const ebookRoot = document.querySelector("[data-res-ebook]");
   const ytRoot = document.querySelector("[data-res-youtube-more]");
 
   if (coursesRoot) renderCourses(coursesRoot);
   if (articlesRoot) renderArticles(articlesRoot);
   if (tutorialsRoot) renderTutorials(tutorialsRoot);
-  if (ebookRoot) renderEbook(ebookRoot);
   if (ytRoot) renderYoutubeMore(ytRoot);
 })();

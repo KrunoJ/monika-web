@@ -131,13 +131,4 @@ window.MONIKA_RESOURCES = {
       hidden: false,
     },
   ],
-
-  ebook: {
-    title: "Prvi klik počinje u glavi",
-    description:
-      "E-knjiga o tome kako razmišljati o prvom kontaktu, ponudi i putu do kupnje - prije nego što klikneš na sljedeći alat.",
-    url: "https://subscribepage.io/ebook_prviklikpocinjeuglavi",
-    cover: "",
-    cta: "Saznaj više",
-  },
 };
