@@ -14,9 +14,8 @@ window.MONIKA_RESOURCES = {
     {
       id: "newsletter-strategija",
       title: "Newsletter strategija",
-      description:
-        "Kako postaviti temelje newsletter strategije, od ciljeva i sadržaja do odnosa s pretplatnicima.",
-      duration: "približno 99 minuta",
+      description: "Od ciljeva i sadržaja do odnosa s pretplatnicima.",
+      duration: "1 h 39 min",
       url: "https://youtu.be/5KrB4fmCLzM",
       thumbnail: "https://i.ytimg.com/vi/5KrB4fmCLzM/hqdefault.jpg",
       hidden: false,
@@ -24,9 +23,8 @@ window.MONIKA_RESOURCES = {
     {
       id: "lead-magnet",
       title: "Izgradnja newsletter liste uz lead magnet",
-      description:
-        "Kako odabrati i osmisliti lead magnet te ga koristiti za izgradnju newsletter liste.",
-      duration: "približno 56 minuta",
+      description: "Kako osmisliti lead magnet i privući prave pretplatnike.",
+      duration: "56 min",
       url: "https://youtu.be/aCJsylFLoQ4",
       thumbnail: "https://i.ytimg.com/vi/aCJsylFLoQ4/hqdefault.jpg",
       hidden: false,
@@ -34,9 +32,8 @@ window.MONIKA_RESOURCES = {
     {
       id: "pasivni-proizvodi",
       title: "Pasivni proizvodi: Kreiranje i lansiranje uz newsletter",
-      description:
-        "Od odabira digitalnog proizvoda do pripreme i lansiranja uz pomoć newslettera.",
-      duration: "približno 59 minuta",
+      description: "Od odabira proizvoda do pripreme i lansiranja.",
+      duration: "59 min",
       url: "https://youtu.be/sMMpfyrxVLc",
       thumbnail: "https://i.ytimg.com/vi/sMMpfyrxVLc/hqdefault.jpg",
       hidden: false,
