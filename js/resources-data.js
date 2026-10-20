@@ -97,7 +97,7 @@ window.MONIKA_RESOURCES = {
     },
     {
       id: "newsletter-arhiva",
-      title: "Newsletter arhiva",
+      title: "Kako i zašto napraviti newsletter arhivu?",
       duration: "",
       url: "https://youtu.be/uzE-2kBkbK4",
       thumbnail: "https://i.ytimg.com/vi/uzE-2kBkbK4/hqdefault.jpg",
