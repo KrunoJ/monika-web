@@ -132,14 +132,33 @@
         const topic = item.topic
           ? `<span class="res-article__topic">${escapeHtml(item.topic)}</span>`
           : "";
-        const title = hasUrl(item.url)
-          ? `<a class="res-article__title" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)} ${externalIcon}</a>`
-          : `<span class="res-article__title res-article__title--plain">${escapeHtml(item.title)}</span>`;
+        const title = `<span class="res-article__title">${escapeHtml(item.title)}</span>`;
+        const ext = hasUrl(item.url)
+          ? `<span class="res-article__ext" aria-hidden="true">${externalIcon}</span>`
+          : "";
+
+        const inner = `
+          ${topic}
+          ${ext}
+          ${title}
+        `;
+
+        if (hasUrl(item.url)) {
+          return `
+            <li class="res-article">
+              <a
+                class="res-article__link"
+                href="${escapeHtml(item.url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >${inner}</a>
+            </li>
+          `;
+        }
 
         return `
           <li class="res-article">
-            ${topic}
-            ${title}
+            <div class="res-article__link res-article__link--plain">${inner}</div>
           </li>
         `;
       })
