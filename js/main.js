@@ -34,6 +34,7 @@
     if (path.includes("/newsletter-sustav")) {
       return "newsletter-sustav";
     }
+    if (path.includes("/resursi")) return "resursi";
     if (path.includes("/o-meni")) return "o-meni";
     return "home";
   };
@@ -43,6 +44,7 @@
       const path = normalizePath(new URL(anchor.href, window.location.href).pathname);
       if (path.includes("/biznis-okvir")) return "biznis-okvir";
       if (path.includes("/newsletter-sustav")) return "newsletter-sustav";
+      if (path.includes("/resursi")) return "resursi";
       if (path.includes("/o-meni")) return "o-meni";
       return "home";
     } catch (_) {
