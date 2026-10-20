@@ -80,12 +80,12 @@
       ? `<span class="res-course__duration">${escapeHtml(duration)}</span>`
       : "";
     const img = thumb
-      ? `<img src="${escapeHtml(thumb)}" alt="" width="640" height="360" loading="lazy" decoding="async" />`
+      ? `<img class="res-course__img" src="${escapeHtml(thumb)}" alt="" width="640" height="360" loading="lazy" decoding="async" />`
       : `<span class="res-media__hint">thumbnail</span>`;
 
     if (!videoId) {
       return `
-        <div class="res-media res-media--course${thumb ? "" : " res-media--placeholder"}">
+        <div class="res-course__thumb res-course__thumb--static${thumb ? "" : " res-course__thumb--placeholder"}">
           ${img}
           ${durationBadge}
         </div>
@@ -101,11 +101,9 @@
         data-video-title="${escapeHtml(item.title)}"
         aria-label="Pokreni video: ${escapeHtml(item.title)}"
       >
-        <span class="res-media res-media--course${thumb ? "" : " res-media--placeholder"}">
-          ${img}
-          ${playIcon}
-          ${durationBadge}
-        </span>
+        ${img}
+        ${playIcon}
+        ${durationBadge}
       </button>
     `;
   };
