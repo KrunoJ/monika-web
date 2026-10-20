@@ -133,15 +133,7 @@
           ? `<span class="res-article__topic">${escapeHtml(item.topic)}</span>`
           : "";
         const title = `<span class="res-article__title">${escapeHtml(item.title)}</span>`;
-        const ext = hasUrl(item.url)
-          ? `<span class="res-article__ext" aria-hidden="true">${externalIcon}</span>`
-          : "";
-
-        const inner = `
-          ${topic}
-          ${ext}
-          ${title}
-        `;
+        const inner = `${topic}${title}`;
 
         if (hasUrl(item.url)) {
           return `
