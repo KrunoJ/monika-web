@@ -187,15 +187,38 @@
       .join("");
   };
 
-  const renderYoutubeMore = (root) => {
-    if (!hasUrl(data.youtubeChannel)) {
+  const moreArrowIcon = `
+    <svg class="res-more-link__arrow" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.5 10.5 10.5 3.5M5.75 3.5H10.5V8.25"
+      />
+    </svg>
+  `;
+
+  const renderMoreLink = (root, { href, label }) => {
+    if (!root) return;
+    if (!hasUrl(href)) {
       root.hidden = true;
+      root.innerHTML = "";
       return;
     }
     root.hidden = false;
     root.innerHTML = `
-      <a class="text-link res-more-yt" href="${escapeHtml(data.youtubeChannel)}" target="_blank" rel="noopener noreferrer">
-        Još tutorijala na YouTubeu ${externalIcon}
+      <a
+        class="res-more-link"
+        href="${escapeHtml(href)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="res-more-link__row">
+          <span class="res-more-link__label">${escapeHtml(label)}</span>
+          ${moreArrowIcon}
+        </span>
       </a>
     `;
   };
@@ -307,6 +330,7 @@
 
   const coursesRoot = document.querySelector("[data-res-courses]");
   const articlesRoot = document.querySelector("[data-res-articles]");
+  const articlesMoreRoot = document.querySelector("[data-res-articles-more]");
   const tutorialsRoot = document.querySelector("[data-res-tutorials]");
   const ytRoot = document.querySelector("[data-res-youtube-more]");
 
@@ -315,6 +339,13 @@
     initCourseModal(coursesRoot);
   }
   if (articlesRoot) renderArticles(articlesRoot);
+  renderMoreLink(articlesMoreRoot, {
+    href: data.articlesAuthorUrl,
+    label: "Pročitaj i ostale moje članke",
+  });
   if (tutorialsRoot) renderTutorials(tutorialsRoot);
-  if (ytRoot) renderYoutubeMore(ytRoot);
+  renderMoreLink(ytRoot, {
+    href: data.youtubeChannel,
+    label: "Pogledaj ostale tutorijale na YouTubeu",
+  });
 })();

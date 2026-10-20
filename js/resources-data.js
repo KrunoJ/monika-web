@@ -9,6 +9,8 @@
  */
 window.MONIKA_RESOURCES = {
   youtubeChannel: "https://www.youtube.com/@monikajagic",
+  /** Autorska stranica na portalu Mali Veliki (arhiva članaka). */
+  articlesAuthorUrl: "https://www.mali-veliki.eu/author/monika-jagic/",
 
   courses: [
     {
