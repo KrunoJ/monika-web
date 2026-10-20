@@ -427,12 +427,83 @@ a.res-tutorial__title:focus-visible {
   color: var(--color-muted);
 }
 
-.res-tutorials-foot {
+/* —— Editorial “more” links (Članci / Video tutorijali) —— */
+.res-section-foot {
   margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  max-width: 36rem;
 }
 
-.res-more-yt {
-  display: inline-flex;
-  align-items: center;
+.res-more-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: var(--color-body);
+  font-family: var(--font-body);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.res-more-link__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.15rem 0 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-heading) 18%, transparent);
+  transition: border-color 0.2s ease;
+}
+
+.res-more-link__label {
   font-size: var(--text-ui);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  letter-spacing: 0.005em;
+  transition: color 0.2s ease;
+}
+
+.res-more-link__arrow {
+  flex-shrink: 0;
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--color-muted);
+  transform: translateY(0.08em);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.res-more-link:hover .res-more-link__label,
+.res-more-link:focus-visible .res-more-link__label {
+  color: var(--color-heading);
+}
+
+.res-more-link:hover .res-more-link__arrow,
+.res-more-link:focus-visible .res-more-link__arrow {
+  color: var(--color-heading);
+  transform: translate(0.12em, -0.04em);
+}
+
+.res-more-link:hover .res-more-link__row,
+.res-more-link:focus-visible .res-more-link__row {
+  border-bottom-color: color-mix(in srgb, var(--color-heading) 42%, transparent);
+}
+
+.res-more-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 479px) {
+  .res-section-foot {
+    max-width: none;
+  }
+
+  .res-more-link__row {
+    gap: 0.75rem;
+  }
+
+  .res-more-link__label {
+    font-size: var(--text-sm);
+  }
 }
